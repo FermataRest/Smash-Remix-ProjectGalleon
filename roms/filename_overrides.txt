@@ -1,0 +1,5259 @@
+00CC Mario Projectile Hitbox
+0129 Mario Fireball Graphic
+012A Mario Shield Pose
+0164 Mario Entry Model/Data
+00A1 Fox Entry Script???
+00D2 Fox Projectile Hitbox
+013A Fox Shield Pose
+013B Fox Unknown
+013C Fox Laser Graphic
+015A Fox Reflector Graphic
+0161 Link Entry GFX and Up/Down Special Graphic
+00E2 Link Boomerang Hitbox
+0146 Link Boomerang Model
+0147 Link Shield Pose
+0145 Link Boomerang Graphic
+014D C. Falcon Punch Graphic
+015E C. Falcon Entry/Kick Graphic
+014E C. Falcon Shield Pose
+0854 Ganon upsmash
+0855 Ganon downsmash
+0856 Sonic Down Back Down
+0857 Ganon forward air melee style punch
+0858 Dr. Mario down air
+0859 Dr. Mario forward air
+085A Dr. Mario taunt
+085B Wario D-Smash
+085C Wario Air Neutral Special
+085D Wario Ground Neutral Special
+085E Wario N-Air
+085F Wario U-Air
+0860 Wario Taunt
+0861 Ganon's taunt
+0862 Wario B-Air
+0863 Wario Idle
+0864 Wario Up Tilt
+0865 Wario F-Air
+0866 Wario D-Air
+0867 Falco's Forward Smash (400000000)
+0868 Falco's Taunt
+0869 Falco's Up Tilt
+086A Sonic Grab
+086B Sonic Grab Pull
+086C Sonic Forward Throw
+086D Wario F-Smash
+086E Wario U-Smash
+086F Dr. Mario's Projectile Hitbox
+0870 Dr. Mario's Projectile Graphic
+0871 Battlefield Header
+0872 Battlefield Stage
+0873 Battlefield BG
+0874 Deku Tree Header
+0875 Deku Tree Stage
+0876 Deku Tree BG File
+0877 First Destination Header
+0878 First Destination Stage
+0879 First Destination BG file
+087A Ganon's Tower Header
+087B Ganon's Tower Stage
+087C Ganon's Tower BG file
+087D Gym Leader Castle Header File
+087E Gym Leader Castle Stage File
+087F Gym Leader Castle BG
+0880 Pokemon Stadium Header
+0881 Pokemon Stadium Stage
+0882 Pokemon Stadium BG
+0883 Tal Tal Header
+0884 Tal Tal Stage
+0885 Tal Tal BG
+0886 Glacial River Header
+0887 Glacial River Stage file
+0888 Glacial River BG
+0889 Warioware Header
+088A Warioware Stage
+088B Warioware BG
+088C Flat Zone Header
+088D Flat Zone Stage File
+088E Flat Zone BG
+088F Doctor Mario Stage Header
+0890 Doctor Mario Stage
+0891 Doctor Mario Stage BG
+0892 Cool Cool Header
+0893 Cool Cool Stage
+0894 Cool Cool BG
+0895 Dragon King Header
+0896 Dragon King Stage
+0897 Dragon King BG
+0898 Fray's Stage Header
+0899 Fray's Stage Stage
+089A Fray's Stage BG
+089B Great Bay Header
+089C Great Bay Stage File
+089D Great Bay BG
+089E Tower of Heaven Header
+089F Tower of Heaven Stage
+08A0 Tower of Heaven BG
+08A1 Fountain of Dreams Header
+08A2 Fountain of Dreams Stage
+08A3 Fountain of Dreams BG
+08A4 Young Link's Taunt
+08A5 Muda Kingdom Header
+08A6 Muda Kingdom Stage
+08A7 Muda Kingdom BG
+08A8 Mementos Header
+08A9 Mementos Stage
+08AA Mementos BG
+08AB Falco Main
+08AC Falco Character
+08AD Ganondorf Main
+08AE Ganondorf Punch Graphic
+08AF Ganondorf Entry/Kick Graphic
+08B0 Ganondorf Character
+08B1 Young Link Main
+08B2 Young Link Boomerang Hitbox
+08B3 Young Link Character
+08B4 Dr. Mario Main
+08B5 Dr. Mario Character
+08B6 Showdown Header
+08B7 Showdown Stage
+08B8 Showdown BG
+08B9 SpiralM Header
+08BA SpiralM Stage
+08BB SpiralM BG
+08BC N64 Header
+08BD N64 Stage
+08BE N64 BG
+08BF Mute City DL Header
+08C0 Mute City DL Stage
+08C1 Mute City DL BG
+08C2 Mad Monster Mansion Header
+08C3 Mad Monster Mansion Stage
+08C4 Mad Monster Mansion BG
+08C5 Mushroom Kingdom DL Header
+08C6 Mushroom Kingdom DL Stage
+08C7 Mushroom Kingdom O Header
+08C8 Mushroom Kingdom O Stage
+08C9 Young Link's Up Smash
+08CA Bowser's Stadium Header
+08CB Bowser's Stadium Stage
+08CC Bowser's Stadium BG
+08CD Peach's Castle II Header
+08CE Peach's Castle II Stage
+08CF Peach's Castle II BG
+08D0 Delfino Plaza Header
+08D1 Delfino Plaza Stage
+08D2 Delfino Plaza BG
+08D3 Dark Samus Main
+08D4 Dark Samus Character
+08D5 Dark Samus Secondary File
+08D6 Dark Samus Neutral Special Graphic
+08D7 Super Sonic 1p Pose
+08D8 Dark Samus Roll F
+08D9 Dark Samus Roll B
+08DA Dark Samus Jump F
+08DB Dark Samus Jump B
+08DC Dark Samus Dash
+08DD Dark Samus Run
+08DE Corneria Header
+08DF Corneria Stage
+08E0 Corneria BG
+08E1 Kitchen Island Header
+08E2 Kitchen Island Stage
+08E3 Kitchen Island BG
+08E4 Dark Samus Down Tilt
+08E5 Dark Samus Down Smash
+08E6 Dark Samus F Double Jump
+08E7 Dark Samus B Double Jump
+08E8 Dark Samus Up Smash
+08E9 Dark Samus Nair
+08EA Dark Samus Fair
+08EB Dark Samus Bair
+08EC Big Blue Header
+08ED Big Blue Stage
+08EE Big Blue BG
+08EF Dark Samus Walk3
+08F0 Onett Header
+08F1 Onett Stage
+08F2 Onett BG
+08F3 Zebes Landing Header
+08F4 Zebes Landing Stage
+08F5 Zebes Landing BG
+08F6 Dark Samus Victory1
+08F7 Dark Samus Select
+08F8 Wario Main
+08F9 Wario Character
+08FA Wario Up Special
+08FB Wario Jab 1
+08FC Wario Jab 2
+08FD Wario FTilt High
+08FE Wario FTilt
+08FF Wario Ftilt Low
+0900 Wario Crouch Begin
+0901 Wario Crouch Idle
+0902 Wario Crouch End
+0903 Wario Down Tilt
+0904 Wario Grab
+0905 Wario Grab Pull
+0906 Wario Forward Throw
+0907 Wario Back Throw
+0908 Wario Neutral Special Recoil Air
+0909 Wario Ground Down Special
+090A Wario Air Down Special
+090B Wario Down Special Landing
+090C Frosty Village Header
+090D Frosty Village Stage
+090E Frosty Village BG
+090F Dark Samus Taunt
+0910 Dark Samus Landing Nair
+0911 Smashville2 Header
+0912 Smashville2 Stage
+0913 Smashville2 BG
+0914 ELink Main
+0915 JNess PK Fire Projectile Data
+0916 JNess Main
+0917 Lucas Main
+0918 Lucas Character
+0919 Lucas PK Fire
+091A Lucas Up Smash
+091B Lucas PK Fire Ground Animation
+091C Lucas PK Fire Air Animation
+091D Lucas PSI Magnet Start Ground
+091E Lucas PSI Magnet Hold Ground
+091F Lucas PSI Magnet Release Ground
+0920 Lucas PSI Magnet Star Air
+0921 Lucas PSI Magnet Hold Air
+0922 Lucas PSI Magnet Release Air
+0923 Lucas PK Thunder Start Ground
+0924 Lucas PK Thunder Hold Ground
+0925 Lucas PK Thunder Release Ground
+0926 Lucas PK Thunder Start Air
+0927 Lucas PK Thunder Hold Air
+0928 Lucas PK Thunder Release Air
+0929 Lucas PK Thunder 2
+092A Lucas Special Fall
+092B Dr. Mario Target Header
+092C Dr. Mario Target Stage
+092D Single Player Victor Image Bottom
+092E Single Player Victor Image Top
+092F Lucas Jab 1
+0930 Lucas Jab 2
+0931 Lucas Jab 3
+0932 Lucas Dash Attack
+0933 Lucas Forward Tilt Mid
+0934 Lucas Up Tilt
+0935 Lucas Down Smash
+0936 Lucas Neutral Air
+0937 Lucas Forward Air
+0938 Lucas Back Air
+0939 Lucas Down Air
+093A Ganondorf Target Header
+093B Ganondorf Target Stage
+093C Congo Falls Header
+093D Congo Falls Stage
+093E Congo Falls BG
+093F Lucas Forward Tilt High
+0940 Lucas Forward Tilt Low
+0941 Battlefield DL Header
+0942 Battlefield DL Stage
+0943 Doctor Mario Backthrow
+0944 Dark Samus Target Header
+0945 Dark Samus Target Stage
+0946 Wario Jump F
+0947 Wario Jump B
+0948 Wario Jump Aerial F
+0949 Wario Jump Aerial B
+094A Wario Dash
+094B Wario Run
+094C Wario Run Brake
+094D Wario Turn
+094E Wario Run Turn
+094F Wario Dash Attack
+0950 Wario Landing
+0951 Wario U-Air Landing
+0952 Wario Ledge Attack F 1
+0953 Wario Ledge Attack F 2
+0954 Wario Victory 1
+0955 Wario Victory 2
+0956 Wario Victory 3
+0957 Wario Entry R
+0958 Wario Entry L
+0959 Polygon Target Header
+095A Polygon Target Stage
+095B Sheik Team Pose
+095C Wario Pose 1P
+095D Ganondorf Pose 1P
+095E Splash Screen Image Bottom
+095F Splash Screen Image Top
+0960 Falco Target Test Header
+0961 Falco Target Test Stage
+0962 Falco Aerial Neutral Special
+0963 Falco Clap
+0964 Falco Select Pose
+0965 Falco Pose 1P
+0966 Young Link Target Test Header
+0967 Young Link Target Test Stage
+0968 Wario Target Test Header
+0969 Wario Target Test Stage
+096A Ganondorf Victory Animation 1
+096B Ganondorf Selected Animation
+096C JLink Main
+096D JLink Character
+096E JFalcon Main
+096F JFox Main
+0970 JFox Projectile
+0971 Lucas Grab
+0972 Lucas Grab Pull
+0973 JMario Main
+0974 JMario Character
+0975 JLuigi Main
+0976 JLuigi Character
+0977 Lucas Forward Throw
+0978 JMario Fireball Projectile Hitbox
+0979 JLuigi Fireball Projectile Hitbox
+097A Lucas Up Aerial
+097B Lucas Down Tilt
+097C JDK Main
+097D JPuff Main
+097E JKirby Main
+097F JYoshi Main
+0980 Lucas Taunt
+0981 Hyrule Temple Header
+0982 Hyrule Temple Stage
+0983 Hyrule Temple BG
+0984 Lucas Selected Animation
+0985 Lucas Break the Targets Header
+0986 Lucas Break the Targets Stage
+0987 JPika Main
+0988 JPika Projectile
+0989 Ganondorf Board the Platforms Header
+098A Ganondorf Board the Platforms Stage
+098B ESamus Main
+098C New Pork City Header
+098D New Pork City Stage
+098E New Pork City BG
+098F Dark Samus Board the Platforms Header
+0990 Dark Samus Board the Platforms Stage
+0991 Smashketball Header
+0992 Smashketball Stage
+0993 Smashketball BG
+0994 Lucas 1P Pose
+0995 Dr. Mario Board the Platforms Header
+0996 Dr. Mario Board the Platforms Stage
+0997 Lucas Victory Needle
+0998 Norfair Header
+0999 Norfair Stage
+099A Norfair BG
+099B Norfair Lava
+099C Corneria City Header
+099D Corneria City Stage
+099E Corneria City BG
+099F Corneria City Image 2
+09A0 Osohe Castle Header
+09A1 Osohe Castle
+09A2 Osohe Castle BG
+09A3 Yoshi's Story II Header
+09A4 Yoshi's Story II
+09A5 Yoshi's Story II BG
+09A6 Combo Meter Textures
+09A7 Lucas Entry Animation Right
+09A8 Lucas Entry Animation Left
+09A9 World 1-1 Header
+09AA World 1-1
+09AB Flat Zone II Header
+09AC Flat Zone II
+09AD Gerudo Valley Header
+09AE Gerudo Valley
+09AF Gerudo Valley BG
+09B0 Lucas PK Victory Animation
+09B1 Bowser Bomb
+09B2 Bowser Bomb Header
+09B3 Young Link Board the Platforms Header
+09B4 Young Link Board the Platforms Stage
+09B5 E Pikachu Main
+09B6 Bowser Main
+09B7 Bowser Character
+09B8 Bowser Up Special Ground
+09B9 Bowser Up Special Air
+09BA Bowser Special Fall
+09BB Bowser Idle
+09BC Bowser Jab 1
+09BD Bowser Jab 2
+09BE Bowser Landing
+09BF Bowser Fire Breath
+09C0 Bowser Falling
+09C1 Bowser Forward Air
+09C2 Bowser Grab
+09C3 Bowser Grab Pull
+09C4 Bowser Forward Smash
+09C5 Bowser Forward Throw 1
+09C6 Bowser Forward Throw 2
+09C7 Bowser Forward Throw 3
+09C8 Bowser Bomb Ground
+09C9 Bowser Bomb Air
+09CA Bowser Bomb Land
+09CB Bowser Damage High 1
+09CC Bowser Damage High 2
+09CD Bowser Damage High 3
+09CE Bowser Damage Mid 1
+09CF Bowser Damage Mid 2
+09D0 Bowser Damage Mid 3
+09D1 Bowser Damage Low 1
+09D2 Bowser Damage Low 2
+09D3 Bowser Damage Low 3
+09D4 Bowser Damage Air 1
+09D5 Bowser Damage Air 2
+09D6 Bowser Damage Air 3
+09D7 Bowser Damage Fly Mid
+09D8 Bowser Damage Fly Low
+09D9 Bowser Damage Fly Top
+09DA Bowser Damage Fly Roll
+09DB Bowser Tumble
+09DC Bowser Ceiling Bonk
+09DD Bowser Down Bounce D
+09DE Bowser Down Bounce U
+09DF Bowser Down Stand D
+09E0 Bowser Tech
+09E1 Bowser Light Item Pick up
+09E2 Bowser Item Drop
+09E3 Bowser Egg Lay Pulled
+09E4 Bowser Thrown DK Pulled
+09E5 Bowser Thrown DK
+09E6 Bowser Thrown 1
+09E7 Bowser Thrown 2
+09E8 Bowser Turn
+09E9 Bowser Laugh
+09EA Bowser Crouch
+09EB Bowser Crouch Idle
+09EC Bowser Crouch End
+09ED Bowser Fair Land
+09EE Bowser Raygun Ground
+09EF Bowser Raygun Air
+09F0 Bowser Back Throw
+09F1 Bowser Down Tilt
+09F2 Bowser Neutral Air
+09F3 Bowser Down Air
+09F4 Bowser Down  Air Land
+09F5 Bowser Up Tilt
+09F6 Bowser Teeter Start
+09F7 Bowser Teeter Loop
+09F8 Bowser Forward Tilt
+09F9 Bowser Up Smash
+09FA Bowser Dash
+09FB Bowser Run
+09FC Bowser Dash Attack
+09FD Bowser CSS
+09FE Bowser Jump Forward
+09FF Bowser Back Air
+0A00 Bowser FTilt High
+0A01 Bowser FTilt Low
+0A02 Bowser Jab 3
+0A03 Bowser Up Air
+0A04 Stage Icons
+0A05 Character Portraits
+0A06 CSS Images
+0A07 Remix Menu BG
+0A08 Bowser Clap
+0A09 Bowser Taunt
+0A0A Bowser Down Stand U
+0A0B Bowser Jump Back
+0A0C Bowser Jump 2
+0A0D Bowser Fall 2
+0A0E Bowser CliffAttackQuick1
+0A0F Bowser CliffAttackQuick2
+0A10 Bowser CliffAttackSlow1
+0A11 Bowser CliffAttackSlow2
+0A12 Bowser CliffCatch
+0A13 Bowser CliffWait
+0A14 Bowser CliffQuick
+0A15 Custom Font (Kabel)
+0A16 Bowser Victory Dance
+0A17 Falco Platform Header
+0A18 Falco Platform Stage
+0A19 Polygon Platform Header
+0A1A Polygon Platform Stage
+0A1B Hyrule Castle DL Header
+0A1C Hyrule Castle DL Stage
+0A1D Hyrule Castle Omega Header
+0A1E Hyrule Castle Omega Stage
+0A1F Congo Jungle DL Header
+0A20 Congo Jungle DL Stage
+0A21 Congo Jungle Omega Header
+0A22 Congo Jungle Omega Stage
+0A23 Peach's Castle DL Header
+0A24 Peach's Castle DL Stage
+0A25 Peach's Castle Omega Header
+0A26 Peach's Castle Omega Stage
+0A27 Bowser Enter Pipe
+0A28 Bowser Damage Elec
+0A29 Bowser Continue Fall
+0A2A Bowser Continue Up
+0A2B Bowser Run Brake
+0A2C Bowser Turn Run
+0A2D Bowser 1P Pose
+0A2E Wario Board the Platforms Header
+0A2F Wario Board the Platforms Stage
+0A30 Bowser Exit Pipe
+0A31 Bowser Stunned
+0A32 Fray's Stage Night Header
+0A33 Fray's Stage Night Stage
+0A34 Fray's Stage Night BG
+0A35 Bowser Heavy Item Throw
+0A36 Bowser Heavy Item Pickup
+0A37 Bowser Down Forward D
+0A38 Bowser Hammer Idle
+0A39 Bowser Hammer Walk
+0A3A Bowser Item Throw Dash
+0A3B Bowser Item Throw F
+0A3C Bowser Item Throw U
+0A3D Bowser Item Throw D
+0A3E Bowser Item Throw F Air
+0A3F Bowser Item Throw U Air
+0A40 Bowser Item Throw D Air
+0A41 Bowser Down Forward U
+0A42 Bowser Cliff Climb Quick 1
+0A43 Bowser Cliff Climb Quick 2
+0A44 Bowser Cliff Slow
+0A45 Bowser Cliff Climb Slow 1
+0A46 Bowser Cliff Climb Slow 2
+0A47 Bowser Cliff Escape Quick 1
+0A48 Bowser Cliff Escape Quick 2
+0A49 Bowser Cliff Escape Slow 1
+0A4A Bowser Cliff Escape Slow 2
+0A4B Bowser Thrown Mario Bros.
+0A4C Goomba Road Header
+0A4D Goomba Road Stage
+0A4E Goomba Road BG
+0A4F Lucas Board the Platforms Header
+0A50 Lucas Board the Platforms Stage
+0A51 Bowser Down Back D
+0A52 Bowser Down Back U
+0A53 Bowser Damage Fly High
+0A54 Bowser Swing Neutral
+0A55 Bowser Swing Smash
+0A56 Bowser Swing Dash
+0A57 Bowser Double Jump B
+0A58 Bowser Swing Tilt
+0A59 Bowser Clown Copter
+0A5A Bowser Entry
+0A5B Bowser Walk 1
+0A5C Bowser Walk 2
+0A5D Bowser Walk 3
+0A5E Bowser Down Smash
+0A5F Wario Clap
+0A60 Bowser Down Attack U
+0A61 Bowser Tech Forward
+0A62 Bowser Tech Backward
+0A63 Sector Z DL Header
+0A64 Sector Z DL Stage
+0A65 Saffron City O Header
+0A66 Saffron City DL Header
+0A67 Saffron City DL Stage
+0A68 Yoshi's Island DL Header
+0A69 Yoshi's Island DL Stage
+0A6A Zebes DL Header
+0A6B Zebes DL Stage
+0A6C Sector Z Omega Header
+0A6D Sector Z Omega Stage
+0A6E Saffron City Omega Stage
+0A6F Yoshi's Island Omega Header
+0A70 Yoshi's Island Omega Stage
+0A71 Dreamland Omega Header
+0A72 Dreamland Omega Stage
+0A73 Zebes Omega Header
+0A74 Zebes Omega Stage
+0A75 Bowser Down Attack D
+0A76 Bowser Back Air Landing
+0A77 Bowser Shield Pose
+0A78 Bowser Shield On
+0A79 Bowser Shield Off
+0A7A Bowser Shield Drop
+0A7B Bowser Roll F
+0A7C Bowser Roll B
+0A7D Congo Falls Barrel
+0A7E Bowser Targets Header
+0A7F Bowser Targets Stage
+0A80 Giga Bowser Main
+0A81 Giga Bowser Character
+0A82 Bowser Platforms Header
+0A83 Bowser Platforms Stage
+0A84 Giga Bowser Entry Right
+0A85 Giga Bowser Entry Left
+0A86 Ganondorf Entry 1
+0A87 Ganondorf Entry 1 Left (UNUSED/PLACEHOLDER)
+0A88 Ganondorf Entry 2 Right
+0A89 Ganondorf Entry 2 Left
+0A8A Bowser's Keep Header
+0A8B Bowser's Keep
+0A8C Bowser's Keep BG
+0A8D Kirby Custom Hats
+0A8E Kirby Wario Neutral Special Ground
+0A8F Kirby Wario Neutral Special Air
+0A90 Kirby Wario Neutral Special Recoil Air
+0A91 Kirby Falco Neutral Special Ground
+0A92 Kirby Falco Neutral Special Air
+0A93 Kirby Lucas Neutral Special Ground
+0A94 Kirby Lucas Neutral Special Air
+0A95 Kirby Bowser Neutral Special
+0A96 Custom Items
+0A97 Marth Team Pose
+0A98 Piano Main
+0A99 Piano Character
+0A9A Piano Shield Pose
+0A9B Piano Projectile Hitbox
+0A9C Piano Projectile Graphic
+0A9D Piano Idle
+0A9E Piano Dash
+0A9F Piano Run
+0AA0 Piano Walk
+0AA1 Piano Turn
+0AA2 Piano Crouch Begin
+0AA3 Piano Crouch Idle
+0AA4 Piano Crouch End
+0AA5 Piano Run Brake
+0AA6 Piano Run Turn
+0AA7 Piano Jump F
+0AA8 Piano Jump B
+0AA9 Piano Jump Aerial F
+0AAA Piano Jump Aerial B
+0AAB Piano Fall
+0AAC Piano Fall Aerial
+0AAD Piano Landing
+0AAE Piano Forward Tilt
+0AAF Piano Forward Smash/Dash Attack
+0AB0 Piano Jab
+0AB1 Piano Up Tilt
+0AB2 Piano Down Tilt
+0AB3 Piano Up Smash
+0AB4 Piano Down Smash
+0AB5 Piano Neutral Aerial
+0AB6 Piano Forward Aerial
+0AB7 Piano Back Aerial
+0AB8 Piano Up Aerial
+0AB9 Piano Down Aerial
+0ABA Piano Up Special
+0ABB Piano Fall Special
+0ABC Piano Platform Drop
+0ABD Piano Teeter
+0ABE Piano Teeter Start
+0ABF Piano Damage 1
+0AC0 Piano Damage 2
+0AC1 Piano Damage 3
+0AC2 Piano Damage Electric
+0AC3 Piano Damage Fly
+0AC4 Piano Damage Fly Top
+0AC5 Piano Damage Fly Roll
+0AC6 Piano Tumble
+0AC7 Piano Pipe Enter
+0AC8 Piano Pipe Exit
+0AC9 Piano Pipe Exit Walk
+0ACA Piano Ceiling Bonk
+0ACB Piano Down Bounce D
+0ACC Piano Down Stand D
+0ACD Piano Down Forward D
+0ACE Piano Down Back D
+0ACF Piano Down Attack D
+0AD0 Piano Down Bounce U
+0AD1 Piano Down Stand U
+0AD2 Piano Down Forward U
+0AD3 Piano Down Back U
+0AD4 Piano Down Attack U
+0AD5 Piano Tech Forward
+0AD6 Piano Tech Back
+0AD7 Piano Tech
+0AD8 Piano Unknown 053
+0AD9 Piano Cliff Catch
+0ADA Piano Cliff Wait
+0ADB Piano Cliff Quick
+0ADC Piano Cliff Climb Quick 1
+0ADD Piano Cliff Climb Quick 2
+0ADE Piano Cliff Attack Quick 2
+0ADF Piano Cliff Escape Quick 2
+0AE0 Piano Cliff Slow
+0AE1 Piano Cliff Climb Slow 1
+0AE2 Piano Cliff Climb Slow 2
+0AE3 Piano Cliff Attack Slow 1
+0AE4 Piano Cliff Attack Slow 2
+0AE5 Piano Cliff Escape Slow 1
+0AE6 Piano Cliff Escape Slow 2
+0AE7 Piano Light Item Pickup
+0AE8 Piano Item Drop
+0AE9 Piano Item Throw F
+0AEA Piano Item Throw U
+0AEB Piano Item Throw D
+0AEC Piano Item Throw Air U
+0AED Piano Item Throw Air D
+0AEE Piano Heavy Item Pickup
+0AEF Piano Heavy Item Throw
+0AF0 Piano Item Neutral
+0AF1 Piano Item Tilt
+0AF2 Piano Item Smash
+0AF3 Piano Item Dash
+0AF4 Piano Ray Gun Shoot
+0AF5 Piano Hammer
+0AF6 Piano Shield On
+0AF7 Piano Shield Off
+0AF8 Piano Roll F
+0AF9 Piano Roll B
+0AFA Piano Stun
+0AFB Piano Grab
+0AFC Piano Grab Pull
+0AFD Piano Throw F
+0AFE Piano Throw B
+0AFF Piano Capture Pulled
+0B00 Piano Thrown DK Pulled
+0B01 Piano Thrown DK
+0B02 Piano Thrown Mario Bros
+0B03 Piano Thrown 1
+0B04 Piano Thrown 2
+0B05 Piano Item Throw Dash
+0B06 Piano Taunt
+0B07 Piano DSP Begin Ground
+0B08 Piano DSP Begin Air
+0B09 Piano DSP Wait
+0B0A Piano DSP Absorb
+0B0B Piano DSP End Ground
+0B0C Piano DSP End Air
+0B0D Piano DSP Throw Ground
+0B0E Piano DSP Throw Air
+0B0F Piano NSP Ground
+0B10 Piano NSP Air
+0B11 Piano Entry R
+0B12 Piano Entry L
+0B13 Piano Victory 1
+0B14 Piano Victory 2
+0B15 Piano Select Pose
+0B16 Kirby Piano Neutral Special Ground
+0B17 Kirby Piano Neutral Special Air
+0B18 Piano Pose 1P
+0B19 Piano Continue Fall
+0B1A Piano Continue Up
+0B1B Wolf Run
+0B1C Wolf Run Brake
+0B1D Wolf Turn Run
+0B1E Wolf Crouch
+0B1F Wolf Crouch Idle
+0B20 Wolf Crouch End
+0B21 Wolf Jump Forward
+0B22 Wolf Jump Back
+0B23 Wolf Jump Aerial Forward
+0B24 Wolf Jump Aerial Backward
+0B25 Wolf Jump Squat
+0B26 Wolf Falling
+0B27 Wolf Falling Aerial
+0B28 Wolf Jab 1
+0B29 Wolf Jab 2
+0B2A Wolf Jab 3
+0B2B Wolf Dash Attack
+0B2C Wolf Up Tilt
+0B2D Wolf Forward Tilt High
+0B2E Wolf Forward Tilt Mid
+0B2F Wolf Forward Tilt Low
+0B30 Wolf Down Tilt
+0B31 Wolf Up Smash
+0B32 Wolf Forward Smash
+0B33 Wolf Down Smash
+0B34 Wolf Neutral Air
+0B35 Wolf Forward Air
+0B36 Wolf Up Air
+0B37 Wolf Back Air
+0B38 Wolf Down Air
+0B39 Young Link Victory
+0B3A Wolf CSS
+0B3B Wolf Victory 1
+0B3C Wolf Grab
+0B3D Wolf Forward Throw
+0B3E Wolf Down Attack Down
+0B3F Wolf Down Attack Up
+0B40 Wolf Down Forward Down
+0B41 Wolf Fall Special
+0B42 Wolf Neutral Special Ground
+0B43 Wolf Neutral Special Air
+0B44 Wolf Up Special Ground 1
+0B45 Wolf Appear Left
+0B46 Wolf Victory 2
+0B47 Wolf Weapon
+0B48 Wolf Back Air Landing
+0B49 Wolf Forward Air Landing
+0B4A Wolf DownStandD
+0B4B Wolf DownStandU
+0B4C Wolf DownForwardU
+0B4D Wolf Tech
+0B4E Wolf TechF
+0B4F Wolf TechB
+0B50 Wolf Down Special End Ground
+0B51 Wolf Down Special End Air
+0B52 Wolf DownBackD
+0B53 Wolf DownBackU
+0B54 Wolf DownBounceD
+0B55 Wolf DownBounceU
+0B56 Wolf Shield On
+0B57 Wolf Shield Off
+0B58 Wolf Main
+0B59 Wolf Character
+0B5A Wolf Projectile Hitbox
+0B5B Wolf Projectile Graphic
+0B5C Wolf Idle
+0B5D Wolf Turn
+0B5E Wolf Walk 1
+0B5F Wolf Walk 2
+0B60 Wolf Walk 3
+0B61 Wolf Dash
+0B62 Wolf Item Swing Neutral
+0B63 Wolf Item Swing Tilt
+0B64 Wolf Item Swing Smash
+0B65 Wolf Capture Pull
+0B66 Wolf Item Pick Up
+0B67 Wolf Item Drop
+0B68 Wolf Item Throw Forward
+0B69 Wolf Item Throw Upward
+0B6A Wolf Item Throw Downward
+0B6B Wolf Item Throw Air Forward
+0B6C Wolf Item Throw Air Upward
+0B6D Wolf Item Throw Air Downward
+0B6E Wolf Shield Drop
+0B6F Wolf Item Throw Dash
+0B70 Wolf Item Swing Dash
+0B71 Wolf Item Shoot Ground
+0B72 Wolf Item Shoot Air
+0B73 Wolf Up Special Ground 2
+0B74 Super Sonic Entry Left
+0B75 Wolf Taunt
+0B76 Wolf Reflector
+0B77 Wolfen
+0B78 Rith Essa Header
+0B79 Rith Essa Stage
+0B7A Rith Essa Background
+0B7B Mewtwo Main
+0B7C Mewtwo Character
+0B7D Mewtwo Shield Pose
+0B7E Mewtwo Idle
+0B7F Mewtwo Walk1
+0B80 Mewtwo Walk2
+0B81 Mewtwo Walk3
+0B82 Mewtwo Walk End
+0B83 Mewtwo Dash
+0B84 Mewtwo Run
+0B85 Mewtwo RunBrake
+0B86 Mewtwo Turn
+0B87 Mewtwo TurnRun
+0B88 Mewtwo JumpF
+0B89 Mewtwo JumpB
+0B8A Mewtwo JumpAerialF
+0B8B Mewtwo JumpAerialB
+0B8C Mewtwo Fall
+0B8D Mewtwo FallAerial
+0B8E Mewtwo Crouch
+0B8F Mewtwo CrouchIdle
+0B90 Mewtwo CrouchEnd
+0B91 Mewtwo Landing
+0B92 Mewtwo PlatDrop
+0B93 Mewtwo Teeter
+0B94 Mewtwo Teeterstart
+0B95 Mewtwo DamageHigh1
+0B96 Mewtwo DamageHigh2
+0B97 Mewtwo DamageHigh3
+0B98 Mewtwo DamageMid1
+0B99 Mewtwo DamageMid2
+0B9A Mewtwo DamageMid3
+0B9B Mewtwo DamageLow1
+0B9C Mewtwo DamageLow2
+0B9D Mewtwo DamageLow3
+0B9E Mewtwo DamageAir1
+0B9F Mewtwo DamageAir2
+0BA0 Mewtwo DamageAir3
+0BA1 Mewtwo DamageElec
+0BA2 Mewtwo DamageFlyHigh
+0BA3 Mewtwo DamageFlyMid
+0BA4 Mewtwo DamageFlyLow
+0BA5 Mewtwo DamageFlyTop
+0BA6 Mewtwo DamageFlyRoll
+0BA7 Mewtwo Tumble
+0BA8 Mewtwo FallSpecial
+0BA9 Mewtwo EnterPipe
+0BAA Mewtwo ExitPipe
+0BAB Mewtwo ExitPipeWalk
+0BAC Mewtwo CeilingBonk
+0BAD Mewtwo DownBounceD
+0BAE Mewtwo DownBounceU
+0BAF Mewtwo DownStandD
+0BB0 Mewtwo DownStandU
+0BB1 Mewtwo TechF
+0BB2 Mewtwo TechB
+0BB3 Mewtwo DownForwardD
+0BB4 Mewtwo DownForwardU
+0BB5 Mewtwo DownBackD
+0BB6 Mewtwo DownBackU
+0BB7 Mewtwo DownAttackD
+0BB8 Mewtwo DownAttackU
+0BB9 Mewtwo Tech
+0BBA Mewtwo Unknown_053
+0BBB Mewtwo CliffCatch
+0BBC Mewtwo CliffWait
+0BBD Mewtwo CliffQuick
+0BBE Mewtwo CliffClimbQuick1
+0BBF Mewtwo CliffClimbQuick2
+0BC0 Mewtwo CliffSlow
+0BC1 Mewtwo CliffClimbSlow1
+0BC2 Mewtwo CliffClimbSlow2
+0BC3 Mewtwo CliffAttackQuick1
+0BC4 Mewtwo CliffAttackQuick2
+0BC5 Mewtwo CliffAttackSlow1
+0BC6 Mewtwo CliffAttackSlow2
+0BC7 Mewtwo CliffEscapeQuick1
+0BC8 Mewtwo CliffEscapeQuick2
+0BC9 Mewtwo CliffEscapeSlow1
+0BCA Mewtwo CliffEscapeSlow2
+0BCB Mewtwo LightItemPickup
+0BCC Mewtwo HeavyItemPickup
+0BCD Mewtwo ItemDrop
+0BCE Mewtwo ItemThrowDash
+0BCF Mewtwo ItemThrowF
+0BD0 Mewtwo ItemThrowU
+0BD1 Mewtwo ItemThrowD
+0BD2 Mewtwo ItemThrowAirF
+0BD3 Mewtwo ItemThrowAirU
+0BD4 Mewtwo ItemThrowAirD
+0BD5 Mewtwo HeavyItemThrow
+0BD6 Mewtwo ItemNeutral
+0BD7 Mewtwo ItemTilt
+0BD8 Mewtwo ItemSmash
+0BD9 Mewtwo ItemDash
+0BDA Mewtwo ItemShoot
+0BDB Mewtwo ItemShootAir
+0BDC Mewtwo HammerIdle
+0BDD Mewtwo HammerMove
+0BDE Mewtwo ShieldOn
+0BDF Mewtwo ShieldOff
+0BE0 Mewtwo RollF
+0BE1 Mewtwo RollB
+0BE2 Mewtwo Stun
+0BE3 Mewtwo Catch
+0BE4 Mewtwo CatchPull
+0BE5 Mewtwo ThrowF
+0BE6 Mewtwo ThrowB
+0BE7 Mewtwo CapturePulled
+0BE8 Mewtwo ThrownDKPulled
+0BE9 Mewtwo ThrownMarioBros
+0BEA Mewtwo ThrownDK
+0BEB Mewtwo Thrown1
+0BEC Mewtwo Thrown2
+0BED Mewtwo Taunt
+0BEE Mewtwo Jab1
+0BEF Mewtwo Jab2Begin
+0BF0 Mewtwo DashAttack
+0BF1 Mewtwo FTiltHigh
+0BF2 Mewtwo FTilt
+0BF3 Mewtwo FTiltLow
+0BF4 Mewtwo UTilt
+0BF5 Mewtwo DTilt
+0BF6 Mewtwo FSmashHigh
+0BF7 Mewtwo FSmash
+0BF8 Mewtwo FSmashLow
+0BF9 Mewtwo USmash
+0BFA Mewtwo DSmash
+0BFB Mewtwo AttackAirN
+0BFC Mewtwo AttackAirF
+0BFD Mewtwo AttackAirB
+0BFE Mewtwo AttackAirU
+0BFF Mewtwo AttackAirD
+0C00 Mewtwo LandingAirF
+0C01 Mewtwo LandingAirN
+0C02 Mewtwo EntryR
+0C03 Mewtwo EntryL
+0C04 Mewtwo Victory 1
+0C05 Mewtwo Victory 2
+0C06 Mewtwo Victory 3
+0C07 Mewtwo Clap
+0C08 Mewtwo Continue Fall
+0C09 Mewtwo Continue Up
+0C0A Mewtwo 1P Pose
+0C0B Mewtwo Up Special Begin Ground
+0C0C Mewtwo Up Special End Ground
+0C0D Mewtwo Up Special Begin Air
+0C0E Mewtwo Up Special End Air
+0C0F Mewtwo Down Special Ground
+0C10 Mewtwo Down Special Air
+0C11 Mewtwo Neutral Special Begin Ground
+0C12 Mewtwo Neutral Special Charge Ground
+0C13 Mewtwo Neutral Special Shoot Ground
+0C14 Mewtwo Neutral Special Begin Air
+0C15 Mewtwo Neutral Special Charge Air
+0C16 Mewtwo Neutral Special Shoot Air
+0C17 Mewtwo Jab2Loop
+0C18 Mewtwo Jab2End
+0C19 Wolf 1p Mode Human
+0C1A Wolf 1p Mode CPU
+0C1B Remix 1p Kirby Stage File
+0C1C Kirby Wolf Copy Neutral Special Ground
+0C1D Kirby Wolf Copy Neutral Special Air
+0C1E Conker's Main File
+0C1F Conker's Model File
+0C20 Conker's Nut Projectile Hitboxes
+0C21 Conker's Nut Projectile Graphics
+0C22 Conker Selected
+0C23 Conker Idle
+0C24 Conker Crouch
+0C25 Conker Crouch Idle
+0C26 Conker Crouch End
+0C27 Conker Fall
+0C28 Conker Up Tilt
+0C29 Conker Dash
+0C2A Conker Run
+0C2B Conker Run Brake
+0C2C Conker Run Turn
+0C2D Conker Up Special Start Air
+0C2E Conker Up Special Loop Air
+0C2F Conker Special Fall
+0C30 Conker Forward Air
+0C31 Conker Weapons
+0C32 Conker Down Special Ground
+0C33 Conker Ray Gun Ground
+0C34 Conker's Grenade Projectile Hitboxes
+0C35 Conker's Grenade Projectile Graphics
+0C36 Conker Down Special Air
+0C37 Conker Down Special Ground Fail
+0C38 Conker Down Special Air Fail
+0C39 Conker Roll Forward
+0C3A Conker Roll Backward
+0C3B Conker Jab 1
+0C3C Conker Jab 2
+0C3D Conker Jab Loop Start
+0C3E Conker Jab Loop
+0C3F Conker Jab Loop End
+0C40 Conker Item Neutral
+0C41 Conker Item Tilt
+0C42 Conker Down Air
+0C43 Conker Jump Forward
+0C44 Conker Jump Backward
+0C45 Conker Jump Aerial Forward
+0C46 Conker Dash Attack
+0C47 Conker Down Smash
+0C48 Conker Neutral Air
+0C49 Conker Up Air
+0C4A Conker Forward Smash
+0C4B Conker Forward Tilt High
+0C4C Conker Forward Tilt Mid
+0C4D Conker Forward Tilt Low
+0C4E Conker Up Smash
+0C4F Conker Down Tilt
+0C50 Conker Back Air
+0C51 Conker DownStandU
+0C52 Conker Tech Forward
+0C53 Conker Tech Back
+0C54 Conker DownBounceU
+0C55 Conker CapturePulled
+0C56 Conker Damage Fly High
+0C57 Conker Damage Fly Mid
+0C58 Conker Damage Fly Low
+0C59 Conker Catch
+0C5A Conker Catch Pull
+0C5B Conker Forward Throw
+0C5C Conker Back Throw
+0C5D Conker Walk 1
+0C5E Conker Walk 2
+0C5F Conker Walk 3
+0C60 Conker NSP Begin Ground
+0C61 Conker NSP Wait Ground
+0C62 Conker NSP End Ground
+0C63 Conker NSP Begin Air
+0C64 Conker NSP Wait Air
+0C65 Conker NSP End Air
+0C66 Conker Cliff Catch
+0C67 Conker Cliff Wait
+0C68 Conker Cliff Quick
+0C69 Conker Cliff Climb Quick 1
+0C6A Conker Cliff Climb Quick 2
+0C6B Conker Cliff Slow
+0C6C Conker Cliff Climb Slow 1
+0C6D Conker Cliff Climb Slow 2
+0C6E Conker Cliff Attack Quick 1
+0C6F Conker Cliff Attack Quick 2
+0C70 Conker Cliff Attack Slow 1
+0C71 Conker Cliff Attack Slow 2
+0C72 Conker Cliff Escape Quick 1
+0C73 Conker Cliff Escape Quick 2
+0C74 Conker Cliff Escape Slow 1
+0C75 Conker Cliff Escape Slow 2
+0C76 Conker Jumpsquat
+0C77 Conker Item Throw F Air
+0C78 Conker Item Throw U Air
+0C79 Conker Item Throw D Air
+0C7A Conker 1p Pose
+0C7B Conker Taunt
+0C7C Conker Fall Aerial
+0C7D Conker Jump Air B
+0C7E Conker Clap
+0C7F Conker Down Attack Down
+0C80 Conker Victory 1
+0C81 Conker Victory 2
+0C82 Conker Turn
+0C83 Conker Shield Pose
+0C84 Conker Puppet Fall
+0C85 Conker Puppet Up
+0C86 Conker Shield On
+0C87 Conker Shield Off
+0C88 Greg's Hand
+0C89 Conker Entry
+0C8A Conker Shield Drop
+0C8B Bowser 1p CPU Pose
+0C8C Ganondorf 1p CPU Pose
+0C8D Venom Stage Header
+0C8E Venom Stage
+0C8F Venom Stage BG
+0C90 Wolf Appear Right
+0C91 Wolf Enter Pipe
+0C92 Wolf Exit Pipe
+0C93 Conker Forward Air Landing
+0C94 Conker Back Air Landing
+0C95 Wolf Target Test Header
+0C96 Wolf Target Test Stage
+0C97 Ganondorf Team Pose
+0C98 Doctor Mario Team Pose
+0C99 Wolf Board the Platforms Header
+0C9A Wolf Board the Platforms Stage
+0C9B Wolf Shield Pose
+0C9C Conker Target Test Header
+0C9D Conker Target Test Stage
+0C9E Wario 1p CPU Pose
+0C9F Wario Team Pose
+0CA0 Mad Piano 1p CPU Pose
+0CA1 Conker 1p CPU Pose
+0CA2 Conker Team Pose
+0CA3 Wolf Team Pose
+0CA4 Falco Duo Pose
+0CA5 Bowser Team Pose
+0CA6 Mewtwo 1p CPU Pose
+0CA7 Mewtwo Team Pose
+0CA8 Dark Samus 1p CPU Pose
+0CA9 Dark Samus Team Pose
+0CAA Lucas 1p CPU Pose
+0CAB Lucas Team Pose
+0CAC Young Link 1p CPU Pose
+0CAD Young Link Team Pose
+0CAE Conker Board the Platforms Header
+0CAF Conker Board the Platforms Stage
+0CB0 Dr. Mario 1p CPU Pose
+0CB1 Conker Item Swing Dash
+0CB2 Giga Bowser 1p CPU Pose
+0CB3 Conker Item Swing Smash
+0CB4 Windy Stage Header
+0CB5 Windy Stage
+0CB6 Windy Stage BG
+0CB7 dataDyne Stage Header
+0CB8 dataDyne Stage
+0CB9 dataDyne Stage BG
+0CBA Planet Clancer Stage Header
+0CBB Planet Clancer Stage
+0CBC Planet Clancer Stage BG
+0CBD Kirby Conker Copy Neutral Special Ground Start
+0CBE Kirby Conker Copy Neutral Special Ground Wait
+0CBF Kirby Conker Copy Neutral Special Ground End
+0CC0 Kirby Conker Copy Neutral Special Air Start
+0CC1 Kirby Conker Copy Neutral Special Air Wait
+0CC2 Kirby Conker Copy Neutral Special Air End
+0CC3 Conker Stun
+0CC4 Jungle Japes Header
+0CC5 Jungle Japes Stage
+0CC6 Mewtwo Shadowball Projectile Hitbox
+0CC7 Mewtwo Shadowball Projectile Graphics
+0CC8 Klaptrap
+0CC9 Wario Neutral Special Recoil Ground
+0CCA Marth Main
+0CCB Marth Character
+0CCC Marth Shield Pose
+0CCD Marth Tumble
+0CCE Marth Idle
+0CCF Marth DownBounceD
+0CD0 Marth DownStandD
+0CD1 Marth Walk1
+0CD2 Marth Walk2
+0CD3 Marth Walk3
+0CD4 Marth WalkEnd
+0CD5 Marth Dash
+0CD6 Marth Run
+0CD7 Marth RunBrake
+0CD8 Marth Turn
+0CD9 Marth TurnRun
+0CDA Marth Landing
+0CDB Marth JumpF
+0CDC Marth JumpB
+0CDD Marth JumpAerialF
+0CDE Marth JumpAerialB
+0CDF Marth Fall
+0CE0 Marth FallAerial
+0CE1 Marth Crouch
+0CE2 Marth CrouchIdle
+0CE3 Marth CrouchEnd
+0CE4 Marth Pass
+0CE5 Marth Teeter
+0CE6 Marth TeeterStart
+0CE7 Marth DamageHigh1
+0CE8 Marth DamageHigh2
+0CE9 Marth DamageHigh3
+0CEA Marth DamageMid1
+0CEB Marth DamageMid2
+0CEC Marth DamageMid3
+0CED Marth DamageLow1
+0CEE Marth DamageLow2
+0CEF Marth DamageLow3
+0CF0 Marth DamageAir1
+0CF1 Marth DamageAir2
+0CF2 Marth DamageAir3
+0CF3 Marth DamageElec
+0CF4 Marth DamageFlyHigh
+0CF5 Marth DamageFlyMid
+0CF6 Marth DamageFlyLow
+0CF7 Marth DamageFlyTop
+0CF8 Marth DamageFlyRoll
+0CF9 Marth FallSpecial
+0CFA Marth EnterPipe
+0CFB Marth ExitPipe
+0CFC Marth ExitPipeWalk
+0CFD Marth CeilingBonk
+0CFE Marth DownBounceU
+0CFF Marth DownStandU
+0D00 Marth TechF
+0D01 Marth TechB
+0D02 Marth DownForwardD
+0D03 Marth DownForwardU
+0D04 Marth DownBackD
+0D05 Marth DownBackU
+0D06 Marth DownAttackD
+0D07 Marth DownAttackU
+0D08 Marth Tech
+0D09 Marth Unknown053
+0D0A Marth CliffCatch
+0D0B Marth CliffWait
+0D0C Marth CliffQuick
+0D0D Marth CliffClimbQuick1
+0D0E Marth CliffClimbQuick2
+0D0F Marth CliffSlow
+0D10 Marth CliffClimbSlow1
+0D11 Marth CliffClimbSlow2
+0D12 Marth CliffAttackQuick1
+0D13 Marth CliffAttackQuick2
+0D14 Marth CliffAttackSlow1
+0D15 Marth CliffAttackSlow2
+0D16 Marth CliffEscapeQuick1
+0D17 Marth CliffEscapeQuick2
+0D18 Marth CliffEscapeSlow1
+0D19 Marth CliffEscapeSlow2
+0D1A Marth LightItemPickup
+0D1B Marth HeavyItemPickup
+0D1C Marth ItemDrop
+0D1D Marth ItemThrowDash
+0D1E Marth ItemThrowF
+0D1F Marth ItemThrowU
+0D20 Marth ItemThrowD
+0D21 Marth ItemThrowAirF
+0D22 Marth ItemThrowAirU
+0D23 Marth ItemThrowAirD
+0D24 Marth HeavyItemThrowF
+0D25 Marth ItemNeutral
+0D26 Marth ItemTilt
+0D27 Marth ItemSmash
+0D28 Marth ItemDashAttack
+0D29 Marth ItemShoot
+0D2A Marth ItemShootAir
+0D2B Marth HammerIdle
+0D2C Marth HammerMove
+0D2D Marth ShieldOn
+0D2E Marth ShieldOff
+0D2F Marth RollF
+0D30 Marth RollB
+0D31 Marth Stun
+0D32 Marth Grab
+0D33 Marth GrabPull
+0D34 Marth ThrowF
+0D35 Marth ThrowB
+0D36 Marth CapturePulled
+0D37 Marth ThrownDKPulled
+0D38 Marth ThrownMarioBros
+0D39 Marth ThrownDK
+0D3A Marth Thrown1
+0D3B Marth Thrown2
+0D3C Marth Taunt
+0D3D Marth Jab1
+0D3E Marth Jab2
+0D3F Marth DashAttack
+0D40 Marth FTilt
+0D41 Marth UTilt
+0D42 Marth DTilt
+0D43 Marth FSmash
+0D44 Marth USmash
+0D45 Marth DSmash
+0D46 Marth AttackAirN
+0D47 Marth AttackAirF
+0D48 Marth AttackAirB
+0D49 Marth AttackAirU
+0D4A Marth AttackAirD
+0D4B Marth LandingAirF
+0D4C Marth LandingAirB
+0D4D Marth Entry
+0D4E Marth Menu Idle
+0D4F Marth Up Special Air
+0D50 Marth Up Special Ground
+0D51 Marth Neutral Special Ground 1
+0D52 Marth Neutral Special Ground 2 High
+0D53 Marth Neutral Special Ground 2 Mid
+0D54 Marth Neutral Special Ground 2 Low
+0D55 Marth Neutral Special Ground 3 High
+0D56 Marth Neutral Special Ground 3 Mid
+0D57 Marth Neutral Special Ground 3 Low
+0D58 Marth Neutral Special Air 1
+0D59 Marth Neutral Special Air 2 High
+0D5A Marth Neutral Special Air 2 Mid
+0D5B Marth Neutral Special Air 2 Low
+0D5C Marth Neutral Special Air 3 High
+0D5D Marth Neutral Special Air 3 Mid
+0D5E Marth Neutral Special Air 3 Low
+0D5F Marth Victory 1
+0D60 Marth Victory 2
+0D61 Marth Victory 3
+0D62 Marth Clap
+0D63 Marth GameOver
+0D64 Marth Continue
+0D65 Marth 1P Pose
+0D66 Kirby Mewtwo Neutral Special Begin Ground
+0D67 Kirby Mewtwo Neutral Special Charge Ground
+0D68 Kirby Mewtwo Neutral Special Shoot Ground
+0D69 Kirby Mewtwo Neutral Special Begin Air
+0D6A Kirby Mewtwo Neutral Special Charge Air
+0D6B Kirby Mewtwo Neutral Special Shoot Air
+0D6C Mewtwo Usmash Graphics
+0D6D Kirby Marth Sword
+0D6E Marth Break the Targets Header
+0D6F Marth Break the Targets Stage
+0D70 Marth Counter Ground
+0D71 Marth Counter Attack Ground
+0D72 Marth Counter Air
+0D73 Marth Counter Attack Air
+0D74 Gameboy Land Header
+0D75 Gameboy Land Stage
+0D76 Mewtwo Break the Targets Header
+0D77 Mewtwo Break the Targest Stage
+0D78 Marth Board the Platforms Header
+0D79 Marth Board the Platforms Stage
+0D7A Rest Area Header
+0D7B Rest Area Stage
+0D7C Rest Area BG
+0D7D Mewtwo Board the Platforms Header
+0D7E Mewtwo Board the Platforms Stage
+0D7F Castle Siege Header
+0D80 Castle Siege Stage
+0D81 Castle Siege BG
+0D82 Yoshi's Island II Header
+0D83 Yoshi's Island II Stage
+0D84 Yoshi's Island II BG
+0D85 Final Destination DL Header
+0D86 Final Destination DL Stage
+0D87 Tent Final Destination Header
+0D88 Tent Final Destination
+0D89 Cool Cool Mountain Remix Header
+0D8A Cool Cool Mountain Remix Stage
+0D8B Stock Icons
+0D8C Duel Zone DL Header
+0D8D Duel Zone DL Stage
+0D8E Cool Cool Mountain DL Header
+0D8F Cool Cool Mountain DL Stage
+0D90 Meta Crystal DL Header
+0D91 Meta Crystal DL Stage
+0D92 Dream Greens Header
+0D93 Dream Greens Stage
+0D94 Dream Greens Images
+0D95 Peach's Castle Beta Header
+0D96 Peach's Castle Beta Stage
+0D97 Kirby Wario Neutral Special Recoil Ground
+0D98 Kirby Marth Neutral Special Ground 1
+0D99 Kirby Marth Neutral Special Ground 2 High
+0D9A Kirby Marth Neutral Special Ground 2 Mid
+0D9B Kirby Marth Neutral Special Ground 2 Low
+0D9C Kirby Marth Neutral Special Ground 3 High
+0D9D Kirby Marth Neutral Special Ground 3 Mid
+0D9E Kirby Marth Neutral Special Ground 3 Low
+0D9F Kirby Marth Neutral Special Air 1
+0DA0 Kirby Marth Neutral Special Air 2 High
+0DA1 Kirby Marth Neutral Special Air 2 Mid
+0DA2 Kirby Marth Neutral Special Air 2 Low
+0DA3 Kirby Marth Neutral Special Air 3 High
+0DA4 Kirby Marth Neutral Special Air 3 Mid
+0DA5 Kirby Marth Neutral Special Air 3 Low
+0DA6 Marth 1p CPU Pose
+0DA7 Marth Entry Special Effects
+0DA8 Sonic Main
+0DA9 Sonic Character
+0DAA Sonic Idle
+0DAB Sonic Run
+0DAC Sonic Run Brake
+0DAD Sonic Turn Run
+0DAE Sonic Jump F
+0DAF Sonic Jumpsquat
+0DB0 Sonic Forward Air
+0DB1 Sonic Down Air
+0DB2 Sonic Forward Smash Mid
+0DB3 Sonic Forward Tilt Mid
+0DB4 Sonic Jump Air F
+0DB5 Sonic CSS
+0DB6 Sonic Jump Air B
+0DB7 Super Sonic Entry Right
+0DB8 Sonic Fall
+0DB9 Sonic Fall2
+0DBA Sonic Jump B
+0DBB Sonic Ftilt High
+0DBC Sonic Ftilt Low
+0DBD Sonic UTilt
+0DBE Sonic Walk 1
+0DBF Sonic Walk 2
+0DC0 Sonic Walk 3
+0DC1 Sonic Crouch
+0DC2 Sonic Crouch Idle
+0DC3 Sonic Crouch End
+0DC4 Sonic Up Air
+0DC5 Sonic Back Air
+0DC6 Sonic Neutral Air
+0DC7 Sonic Up Smash
+0DC8 Sonic Tumble
+0DC9 Sonic Jab 1
+0DCA Sonic Jab 2
+0DCB Sonic Jab 3
+0DCC Sonic Pipe Enter
+0DCD Sonic Pipe Exit
+0DCE Sonic Shield Drop
+0DCF Sonic Spring Hitbox
+0DD0 Sonic Spring Graphic
+0DD1 Sonic 1p Pose
+0DD2 Sonic Classic 1p Pose
+0DD3 Sonic 1p CPU Pose
+0DD4 Sonic Stun
+0DD5 Sonic Taunt
+0DD6 Sonic Victory 1
+0DD7 Sonic Victory 2
+0DD8 Sonic Down Smash
+0DD9 Sonic Down Tilt
+0DDA Sonic Puppet Fall
+0DDB Sonic Puppet Up
+0DDC Sonic Spin Loop
+0DDD Sandbag Main
+0DDE Sandbag Character
+0DDF Sandbag File 1 - UNUSED
+0DE0 Sandbag File 2 - UNUSED
+0DE1 Sandbag Idle
+0DE2 Sandbag Fall
+0DE3 Sandbag Damage Low 1
+0DE4 Sandbag Damage Low 2
+0DE5 Sandbag Damage Low 3
+0DE6 Sandbag Damage Mid 1
+0DE7 Sandbag Damage Mid 2
+0DE8 Sandbag Damage Mid 3
+0DE9 Sandbag Damage High 1
+0DEA Sandbag Damage High 2
+0DEB Sandbag Damage High 3
+0DEC Hyrule Castle Remix Stage Header
+0DED Hyrule Castle Remix Stage
+0DEE Sector Z Remix Stage Header
+0DEF Sonic Down Stand Down
+0DF0 Sonic Down Stand Up
+0DF1 Remix Credits
+0DF2 Sonic Tech
+0DF3 Sonic Tech Forward
+0DF4 Sonic Tech Back
+0DF5 Sonic Spin Loop Fast
+0DF6 Sonic Charge Loop
+0DF7 REPLACE REGULAR ANIMATION
+0DF8 Sonic Down Attack Up
+0DF9 Mute City Header
+0DFA Mute City Stage
+0DFB Home Run Contest Header
+0DFC Home Run Contest Stage
+0DFD Home Run Contest Background
+0DFE Mushroom Kingdom Remix Header
+0DFF Mushroom Kingdom Remix Stage
+0E00 Sonic Neutral Special Finish
+0E01 Sonic Up Special Spring
+0E02 Sonic Special Fall
+0E03 Sonic Dash Attack
+0E04 Sonic Down Back Up
+0E05 Sonic Cliff Catch
+0E06 Sonic Cliff Wait
+0E07 Sandbag Damage Air 1
+0E08 Sandbag Damage Air 2
+0E09 Sandbag Damage Air 3
+0E0A Sandbag Damage Fly High
+0E0B Sandbag Damage Fly Mid
+0E0C Sandbag Damage Fly Low
+0E0D Sandbag Damage Fly Roll
+0E0E Sandbag Damage Fly Top
+0E0F Sandbag Down Bounce Down
+0E10 Sandbag Down Bounce Up
+0E11 Sandbag Down Stand Down
+0E12 Sandbag Down Stand Up
+0E13 Sandbag Tumble
+0E14 Sandbag Captured
+0E15 Sonic CliffQuick
+0E16 Sonic CliffClimbQuick1
+0E17 Sonic CliffClimbQuick2
+0E18 Mushroom Kingdom Remix Image 2
+0E19 Green Hill Zone Header
+0E1A Green Hill Zone Stage
+0E1B Green Hill Zone Background
+0E1C Sandbag Headstand
+0E1D Sonic Cliff Attack Quick 2
+0E1E Subcon Header
+0E1F Subcon Stage
+0E20 Subcon Background
+0E21 Sonic Cliff Escape Quick 2
+0E22 Sonic Shield Pose
+0E23 Pirate Land Header
+0E24 Pirate Land Stage
+0E25 Pirate Land Background
+0E26 Pirate Land Cannon
+0E27 Pirate Land Cannonball Hitbox
+0E28 Pirate Land Cannonball Graphic
+0E29 Casino Night Header
+0E2A Casino Night Stage
+0E2B Casino Night Background
+0E2C Casino Night Bumper
+0E2D Sonic CliffClimbSlow1
+0E2E Sonic CliffClimbSlow2
+0E2F Sonic CliffSlow
+0E30 Sonic CliffEscapeSlow2
+0E31 Sonic CliffAttackSlow2
+0E32 Super Sonic Main
+0E33 Super Sonic Character
+0E34 Super Sonic Shield Pose
+0E35 Super Sonic Run
+0E36 Super Sonic 1p CPU Pose
+0E37 Super Sonic Dash
+0E38 Classic Sonic Main
+0E39 Classic Sonic Character
+0E3A Classic Sonic Shield Pose
+0E3B Dragon King 1p Pose
+0E3C Classic Sonic Victory 1
+0E3D Super Sonic Victory 1
+0E3E Sonic Back Throw
+0E3F Sonic Break the Targets Header
+0E40 Sonic Break the Targets Stage
+0E41 Super Sonic Idle
+0E42 Sonic Neutral Special Recoil
+0E43 Sonic Board the Platforms Header
+0E44 Sonic Board the Platforms Stage
+0E45 Sonic Entry
+0E46 Sonic Entry Right
+0E47 Sonic Entry Left
+0E48 Sonic Teeter Start
+0E49 Sonic Teeter
+0E4A Super Sonic Teeter Start
+0E4B Super Sonic Teeter
+0E4C Super Sonic Clap
+0E4D Sonic Team Pose
+0E4E Metallic Madness Header
+0E4F Metallic Madness Stage
+0E50 Metallic Madness Background
+0E51 Robot Bee
+0E52 Sonic Down Forward Down
+0E53 Sonic Down Forward Up
+0E54 Sonic NSP Ground Recoil
+0E55 Sonic NSP Ground End
+0E56 Robot Bee Laser Hitbox
+0E57 Robot Bee Laser Graphics
+0E58 Sonic Forward Smash High
+0E59 Sonic Forward Smash Mid High
+0E5A Sonic Forward Smash Mid Low
+0E5B Sonic Forward Smash Low
+0E5C Kirby Sonic Neutral Special Loop
+0E5D Kirby Sonic Neutral Special Air End F
+0E5E Kirby Sonic Neutral Special Air End B
+0E5F Kirby Sonic Neutral Special Ground End F
+0E60 Kirby Sonic Neutral Special Ground End B
+0E61 Super Sonic Victory 2
+0E62 Super Sonic CSS
+0E63 Rainbow Road Header
+0E64 Rainbow Road Stage
+0E65 Crateria Acid Rain Hitbox
+0E66 Crateria Acid Rain Graphic
+0E67 Rainbow Road Chain Chomp
+0E68 Rainbow Road Chain Chomp Hitbox
+0E69 Pokemon Stadium 2 Header
+0E6A Pokemon Stadium 2 Stage
+0E6B Pokemon Stadium 2 BG
+0E6C Dark Samus Up Special
+0E6D Sheik Main
+0E6E Sheik Character
+0E6F Sheik Projectile Hitbox
+0E70 Sheik Needle
+0E71 Sheik Up Special Ground Begin
+0E72 Sheik Up Special Ground End
+0E73 Sheik Up Special Air Begin
+0E74 Sheik Up Special Air End
+0E75 Sheik Down Special Begin
+0E76 Sheik Down Special Attack
+0E77 Sheik Down Special Landing
+0E78 Sheik Down Special Recoil
+0E79 Sheik Neutral Special Ground Begin
+0E7A Sheik Neutral Special Ground Charge
+0E7B Sheik Neutral Special Ground Shoot
+0E7C Sheik Appear
+0E7D Sheik Attack air b
+0E7E Sheik Attack air d
+0E7F Sheik Attack air f
+0E80 Sheik Attack air n
+0E81 Sheik Attack air u
+0E82 Sheik Crouch
+0E83 Sheik Crouch end
+0E84 Sheik Crouch idle
+0E85 Sheik Dash
+0E86 Sheik Dash Attack
+0E87 Sheik Down Smash
+0E88 Sheik Down Tilt
+0E89 Sheik Fall
+0E8A Sheik Fall Air
+0E8B Sheik Fsmash
+0E8C Sheik Fsmash high
+0E8D Sheik Fsmash low
+0E8E Sheik Ftilt high
+0E8F Sheik Ftilt low
+0E90 Sheik Ftilt mid high
+0E91 Sheik Ftilt mid low
+0E92 Sheik Idle
+0E93 Sheik Jab loop
+0E94 Sheik Jab loop End
+0E95 Sheik Jab loop Start
+0E96 Sheik Jab1
+0E97 Sheik Jab2
+0E98 Sheik Jump air B
+0E99 Sheik Jump air F
+0E9A Sheik Jump B
+0E9B Sheik Jump F
+0E9C Sheik Lose
+0E9D Sheik Run
+0E9E Sheik Runbrake
+0E9F Sheik Selected
+0EA0 Sheik Turn
+0EA1 Sheik Turn Run
+0EA2 Sheik Usmash
+0EA3 Sheik Utilt
+0EA4 Sheik Walk1
+0EA5 Sheik Walk2
+0EA6 Sheik Walk3
+0EA7 Sheik Shield Pose
+0EA8 Sheik Victory 1
+0EA9 Sheik FTilt
+0EAA Sheik Catch
+0EAB Sheik Catch Pull
+0EAC Sheik Taunt
+0EAD Sheik Throw B
+0EAE Sheik Throw F
+0EAF Sheik Down Back D
+0EB0 Sheik Down Back U
+0EB1 Sheik Down Bounce D
+0EB2 Sheik Down Bounce U
+0EB3 Sheik Down Forward D
+0EB4 Sheik Down Forward U
+0EB5 Sheik Down Stand D
+0EB6 Sheik Down Stand U
+0EB7 Sheik Fall Special
+0EB8 Sheik Stun
+0EB9 Sheik Tech
+0EBA Sheik Teeter
+0EBB Sheik Teeter Start
+0EBC Sheik Down Attack D
+0EBD Sheik Down Attack U
+0EBE Norfair Remix Header
+0EBF Norfair Remix Stage
+0EC0 Tal Tal Heights Remix Header
+0EC1 Tal Tal Heights Remix Stage
+0EC2 Toad's Turnpike Header
+0EC3 Toad's Turnpike Stage
+0EC4 Toad's Turnpike BG
+0EC5 Sheik Victory 2
+0EC6 Sheik Neutral Special Air Begin
+0EC7 Sheik Neutral Special Air Charge
+0EC8 Sheik Neutral Special Air Shoot
+0EC9 Sheik Entry Right
+0ECA Sheik Entry Left
+0ECB Sheik DamageHigh1
+0ECC Sheik DamageHigh2
+0ECD Sheik DamageHigh3
+0ECE Sheik DamageMid1
+0ECF Sheik DamageMid2
+0ED0 Sheik DamageMid3
+0ED1 Sheik DamageLow1
+0ED2 Sheik DamageLow2
+0ED3 Sheik DamageLow3
+0ED4 Sheik DamageAir1
+0ED5 Sheik DamageAir2
+0ED6 Sheik DamageAir3
+0ED7 Sheik DamageFlyHigh
+0ED8 Sheik DamageFlyMid
+0ED9 Sheik DamageFlyLow
+0EDA Sheik DamageFlyTop
+0EDB Sheik DamageFlyRoll
+0EDC Sheik Tumble
+0EDD Sheik Board the Platforms Header
+0EDE Sheik Board the Platforms Stage
+0EDF Winter Dreamland Header
+0EE0 Winter Dreamland Stage
+0EE1 Sheik Shield Off
+0EE2 Sheik Shield On
+0EE3 Sheik Victory 3
+0EE4 Sheik 1P CPU Pose
+0EE5 Sheik 1P Pose
+0EE6 Sheik Puppet Fall
+0EE7 Sheik Puppet Up
+0EE8 Mewtwo Ending Image 1
+0EE9 Mewtwo Ending Image 2
+0EEA Kirby Sheik Neutral Special Ground Start
+0EEB Kirby Sheik Neutral Special Ground Charge
+0EEC Kirby Sheik Neutral Special Ground Shoot
+0EED Kirby Sheik Neutral Special Air Start
+0EEE Kirby Sheik Neutral Special Air Charge
+0EEF Kirby Sheik Neutral Special Air Shoot
+0EF0 Sheik Break the Targets Header
+0EF1 Sheik Break the Targets Stage
+0EF2 Sheik Item Shoot Aerial
+0EF3 Sheik Landing
+0EF4 Onett Car
+0EF5 Sheik Fair Landing
+0EF6 Sheik Bair Landing
+0EF7 Sheik Cliff Quick
+0EF8 Sheik Cliff Quick Attack 1
+0EF9 Sheik Cliff Quick Attack 2
+0EFA Sheik Enter Pipe
+0EFB Sheik Exit Pipe
+0EFC Sheik Exit Pipe Walk
+0EFD Sheik Cliff Slow
+0EFE Sheik Cliff Slow Attack 1
+0EFF Sheik Cliff Slow Attack 2
+0F00 Sheik Cliff Climb Quick 2
+0F01 Sheik Cliff Climb Slow 2
+0F02 Bowser Ending Image 1
+0F03 Bowser Ending Image 2
+0F04 Conker Ending Image 1
+0F05 Conker Ending Image 2
+0F06 Ganon Ending Image 1
+0F07 Ganon Ending Image 2
+0F08 Marth Ending Image 1
+0F09 Marth Ending Image 2
+0F0A Sheik Ending Image 1
+0F0B Sheik Ending Image 2
+0F0C Wario Ending Image 1
+0F0D Wario Ending Image 2
+0F0E Sonic Ending Image 1
+0F0F Sonic Ending Image 2
+0F10 Young Link Ending Image 1
+0F11 Young Link Ending Image 2
+0F12 Wolf Ending Image 1
+0F13 Wolf Ending Image 2
+0F14 Dark Samus Ending Image 1
+0F15 Dark Samus Ending Image 2
+0F16 Lucas Ending Image 1
+0F17 Lucas Ending Image 2
+0F18 Doctor Mario Ending Image 1
+0F19 Doctor Mario Ending Image 2
+0F1A Falco Ending Image 1
+0F1B Falco Ending Image 2
+0F1C Sheik Item Neutral
+0F1D Sheik Item Tilt
+0F1E Sheik Item Smash
+0F1F Sheik Item Dash Attack
+0F20 Sheik Item Dash Throw
+0F21 Sheik Hammer Move
+0F22 Sheik Item Throw Air U
+0F23 Sheik Roll F
+0F24 Sheik Roll B
+0F25 Sheik Uair Landing
+0F26 Glacial River Remix Header
+0F27 Glacial River Remix Stage
+0F28 Polygon Wario Main Character
+0F29 Polygon Wario Character
+0F2A Polygon Lucas Main Character
+0F2B Polygon Lucas Character
+0F2C Young Link Grab
+0F2D Young Link Grab Pull
+0F2E Marina Main
+0F2F Marina Character
+0F30 Marina Shield Pose
+0F31 Marina Idle
+0F32 Marina Walk1
+0F33 Marina Walk2
+0F34 Marina Walk3
+0F35 Marina WalkEnd
+0F36 Marina Dash
+0F37 Marina Run
+0F38 Marina RunBrake
+0F39 Marina Turn
+0F3A Marina TurnRun
+0F3B Marina JumpF
+0F3C Marina JumpB
+0F3D Marina JumpAerialF
+0F3E Marina JumpAerialB
+0F3F Marina Fall
+0F40 Marina FallAerial
+0F41 Marina Crouch
+0F42 Marina CrouchIdle
+0F43 Marina CrouchEnd
+0F44 Marina Landing
+0F45 Marina PlatDrop
+0F46 Marina Teeter
+0F47 Marina Teeterstart
+0F48 Marina DamageHigh1
+0F49 Marina DamageHigh2
+0F4A Marina DamageHigh3
+0F4B Marina DamageMid1
+0F4C Marina DamageMid2
+0F4D Marina DamageMid3
+0F4E Marina DamageLow1
+0F4F Marina DamageLow2
+0F50 Marina DamageLow3
+0F51 Marina DamageAir1
+0F52 Marina DamageAir2
+0F53 Marina DamageAir3
+0F54 Marina DamageElec
+0F55 Marina DamageFlyHigh
+0F56 Marina DamageFlyMid
+0F57 Marina DamageFlyLow
+0F58 Marina DamageFlyTop
+0F59 Marina DamageFlyRoll
+0F5A Marina Tumble
+0F5B Marina FallSpecial
+0F5C Marina EnterPipe
+0F5D Marina ExitPipe
+0F5E Marina ExitPipeWalk
+0F5F Marina CeilingBonk
+0F60 Marina DownBounceD
+0F61 Marina DownBounceU
+0F62 Marina DownStandD
+0F63 Marina DownStandU
+0F64 Marina TechF
+0F65 Marina TechB
+0F66 Marina DownForwardD
+0F67 Marina DownForwardU
+0F68 Marina DownBackD
+0F69 Marina DownBackU
+0F6A Marina DownAttackD
+0F6B Marina DownAttackU
+0F6C Marina Tech
+0F6D Marina ClangRecoil
+0F6E Marina CliffCatch
+0F6F Marina CliffWait
+0F70 Marina CliffQuick
+0F71 Marina CliffClimbQuick1
+0F72 Marina CliffClimbQuick2
+0F73 Marina CliffSlow
+0F74 Marina CliffClimbSlow1
+0F75 Marina CliffClimbSlow2
+0F76 Marina CliffAttackQuick1
+0F77 Marina CliffAttackQuick2
+0F78 Marina CliffAttackSlow1
+0F79 Marina CliffAttackSlow2
+0F7A Marina CliffEscapeQuick1
+0F7B Marina CliffEscapeQuick2
+0F7C Marina CliffEscapeSlow1
+0F7D Marina CliffEscapeSlow2
+0F7E Marina LightItemPickup
+0F7F Marina HeavyItemPickup
+0F80 Marina ItemDrop
+0F81 Marina ItemThrowDash
+0F82 Marina ItemThrowF
+0F83 Marina ItemThrowU
+0F84 Marina ItemThrowD
+0F85 Marina ItemThrowAirF
+0F86 Marina ItemThrowAirU
+0F87 Marina ItemThrowAirD
+0F88 Marina HeavyItemThrow
+0F89 Marina ItemNeutral
+0F8A Marina ItemTilt
+0F8B Marina ItemSmash
+0F8C Marina ItemDash
+0F8D Marina ItemShoot
+0F8E Marina ItemShootAir
+0F8F Marina HammerIdle
+0F90 Marina HammerMove
+0F91 Marina ShieldOn
+0F92 Marina ShieldOff
+0F93 Marina RollF
+0F94 Marina RollB
+0F95 Marina Stun
+0F96 Marina Grab
+0F97 Marina GrabPull
+0F98 Marina ThrowF
+0F99 Marina ThrowB
+0F9A Marina CapturePulled
+0F9B Marina ThrownDKPulled
+0F9C Marina ThrownMarioBros
+0F9D Marina ThrownDK
+0F9E Marina Thrown1
+0F9F Marina Thrown2
+0FA0 Marina Taunt
+0FA1 Marina Jab1
+0FA2 Marina Jab2
+0FA3 Marina DashAttack
+0FA4 Marina FTiltHigh
+0FA5 Marina FTiltMidHigh
+0FA6 Marina FTilt
+0FA7 Marina FTiltMidLow
+0FA8 Marina FTiltLow
+0FA9 Marina UTilt
+0FAA Marina DTilt
+0FAB Marina FSmashHigh
+0FAC Marina FSmash
+0FAD Marina FSmashLow
+0FAE Marina USmash
+0FAF Marina DSmash
+0FB0 Marina AttackAirN
+0FB1 Marina AttackAirF
+0FB2 Marina AttackAirB
+0FB3 Marina AttackAirU
+0FB4 Marina AttackAirD
+0FB5 Marina LandingAirF
+0FB6 Marina LandingAirB
+0FB7 Marina Jab Loop Start
+0FB8 Marina Jab Loop
+0FB9 Marina Jab Loop End
+0FBA Marina Action_0DF
+0FBB Marina Action_0E0
+0FBC Marina Neutral Special Ground
+0FBD Marina Neutral Special Ground Pull
+0FBE Marina Neutral Special Ground Throw
+0FBF Marina Neutral Special Ground Up Throw
+0FC0 Marina Neutral Special Ground Down Throw
+0FC1 Marina Neutral Special Air
+0FC2 Marina Neutral Special Air Pull
+0FC3 Marina Neutral Special Air Throw
+0FC4 Marina Neutral Special Air Up Throw
+0FC5 Marina Neutral Special Air Down Throw
+0FC6 Marina Cargo
+0FC7 Marina Cargo Turn
+0FC8 Marina Cargo JumpSquat
+0FC9 Marina Victory 1
+0FCA Marina Victory 2
+0FCB Marina Victory 3
+0FCC Marina Clap
+0FCD Marina ContinueFall
+0FCE Marina ContinueUp
+0FCF Marina 1P Pose
+0FD0 Marina Cargo Walk1
+0FD1 Marina Cargo Walk2
+0FD2 Marina Cargo Walk3
+0FD3 Marina Cargo Air
+0FD4 Marina Cargo Throw
+0FD5 Marina Cargo Throw Air
+0FD6 Marina Cargo Jump
+0FD7 Marina Cargo Shake
+0FD8 Marina Up Special Ground
+0FD9 Marina Up Special Air
+0FDA Marina Items Hitbox Info
+0FDB Marina Item Images
+0FDC Polygon Bowser Main Character
+0FDD Polygon Bowser Character
+0FDE Polygon Wolf Main Character
+0FDF Polygon Wolf Character
+0FE0 Polygon Dr. Mario Main Character
+0FE1 Marina Down Special Ground Begin
+0FE2 Marina Down Special Ground Wait
+0FE3 Marina Down Special Ground Absorb
+0FE4 Marina Down Special Ground End
+0FE5 Marina Down Special Ground Pull
+0FE6 Marina Down Special Ground Pull Fail
+0FE7 Marina Down Special Air Begin
+0FE8 Marina Down Special Air Wait
+0FE9 Marina Down Special Air Absorb
+0FEA Marina Down Special Air End
+0FEB Marina Down Special Air Pull
+0FEC Marina Down Special Air Pull Fail
+0FED Polygon Sonic Main Character
+0FEE Polygon Sonic Character
+0FEF Polygon Sheik Main Character
+0FF0 Polygon Sheik Character
+0FF1 Marina Break the Targets Header
+0FF2 Marina Break the Targets Stage
+0FF3 Dragon King Remix Header
+0FF4 Dragon King Remix Stage
+0FF5 Dragon King Remix BG
+0FF6 Marina Board the Platforms Header
+0FF7 Marina Board the Platforms Stage
+0FF8 Marina CPU Pose
+0FF9 Marina Down Special Ground Stow
+0FFA Marina Down Special Stow
+0FFB Young Link Up/Down Special Graphic
+0FFC Marina Team Pose
+0FFD Dedede Main
+0FFE Dedede Character
+0FFF Dedede Stars
+1000 Waddle Dee Info
+1001 Waddle Dee graphic
+1002 Dedede Idle
+1003 Dedede Dash
+1004 Dedede Run
+1005 Dedede Run Brake
+1006 Dedede Turn
+1007 Dedede Turn Run
+1008 Dedede Jump F
+1009 Dedede Jump B
+100A Dedede Jump Aerial F
+100B Dedede Jump Aerial B
+100C Dedede Fall
+100D Dedede Fall Aerial
+100E Dedede Jump Squat
+100F Dedede Up Special Begin
+1010 Dedede Up Special Loop
+1011 Dedede Up Special Land
+1012 Dedede Up Special Cancel
+1013 Dedede Special Fall
+1014 Dedede Special Fall Landing
+1015 Dedede Item Shoot
+1016 Dedede Item Shoot Air
+1017 Dedede Down Special Begin
+1018 Dedede Down Special Loop
+1019 Dedede Down Special End
+101A Dedede Neutral Special Begin
+101B Dedede Neutral Special Loop
+101C Dedede Neutral Special Inhale
+101D Dedede Neutral Special Inhaled Idle
+101E Dedede Neutral Special Inhaled Walk
+101F Dedede Neutral Special Spit
+1020 Dedede Neutral Special End
+1021 Dedede Hammer Idle
+1022 Dedede Hammer Move
+1023 Dedede Crouch
+1024 Dedede Crouch Idle
+1025 Dedede Crouch End
+1026 Dedede Jab 1
+1027 Dedede Jab 2
+1028 Dedede Jab 3
+1029 Dedede Dash Attack
+102A Dedede Up Tilt
+102B Dedede Forward Air
+102C Dedede Neutral Air
+102D Dedede Down Air
+102E Dedede Down Smash
+102F Dedede Catch
+1030 Dedede Catch Pull
+1031 Dedede Forward Throw
+1032 Dedede Down Tilt
+1033 Dedede Up Smash
+1034 Dedede Up Air
+1035 Dedede Back Throw
+1036 Dedede Back Air
+1037 Dedede Puppet Fall
+1038 Dedede Puppet Up
+1039 Dedede Forward Tilt
+103A Dedede Forward Smash
+103B Dedede Taunt
+103C Dedede Shield Pose
+103D Dedede Shield On
+103E Dedede Shield Off
+103F Dedede Shield Drop
+1040 Dedede Roll Forward
+1041 Dedede Roll Backward
+1042 Dedede Victory 1
+1043 Polygon Marina Main
+1044 Polygon Marina Character
+1045 Marina Ending Image 1
+1046 Marina Ending Image 2
+1047 Dedede Walk 1
+1048 Dedede Walk 2
+1049 Dedede Walk 3
+104A Dedede Cliff Quick
+104B Dedede Cliff Climb Quick 1
+104C Dedede Cliff Climb Quick 2
+104D Dedede Cliff Slow
+104E Dedede Cliff Climb Slow 1
+104F Dedede Cliff Climb Slow 2
+1050 Dedede Cliff Quick Attack 1
+1051 Dedede Cliff Quick Attack 2
+1052 Dedede Cliff Slow Attack 1
+1053 Dedede Cliff Slow Attack 2
+1054 Dedede Cliff Quick Escape 1
+1055 Dedede Cliff Quick Escape 2
+1056 Dedede Cliff Slow Escape 1
+1057 Dedede Cliff Slow Escape 2
+1058 Dedede DamageHigh1
+1059 Dedede DamageHigh2
+105A Dedede DamageHigh3
+105B Dedede DamageMid1
+105C Dedede DamageMid2
+105D Dedede DamageMid3
+105E Dedede DamageLow1
+105F Dedede DamageLow2
+1060 Dedede DamageLow3
+1061 Dedede DamageAir1
+1062 Dedede DamageAir2
+1063 Dedede DamageAir3
+1064 Dedede DamageFlyHigh
+1065 Dedede DamageFlyMid
+1066 Dedede DamageFlyLow
+1067 Dedede DamageFlyTop
+1068 Dedede DamageFlyRoll
+1069 Dedede Tumble
+106A Dedede DamageElec
+106B Dedede DownBounceD
+106C Dedede DownBounceU
+106D Dedede DownStandD
+106E Dedede DownStandU
+106F Dedede TechF
+1070 Dedede TechB
+1071 Dedede DownForwardD
+1072 Dedede DownForwardU
+1073 Dedede DownBackD
+1074 Dedede DownBackU
+1075 Dedede DownAttackD
+1076 Dedede DownAttackU
+1077 Dedede Tech
+1078 Dedede Break the Targets Header
+1079 Dedede Break the Targets Stage
+107A Dedede Up Special Ceiling Bonk
+107B Dedede Up Air Landing
+107C Dedede Neutral/Forward Air Landing
+107D Dedede Back Air Landing
+107E Dedede Down Air Landing
+107F Dedede Pipe Enter
+1080 Dedede Pipe Exit
+1081 Dedede Pipe Exit Walk
+1082 Kirby Marina Neutral Special Ground
+1083 Kirby Marina Neutral Special Ground Pull
+1084 Kirby Marina Neutral Special Ground Throw
+1085 Kirby Marina Neutral Special Ground Up Throw
+1086 Kirby Marina Neutral Special Ground Down Throw
+1087 Kirby Marina Neutral Special Air
+1088 Kirby Marina Neutral Special Air Pull
+1089 Kirby Marina Neutral Special Air Throw
+108A Kirby Marina Neutral Special Air Up Throw
+108B Kirby Marina Neutral Special Air Down Throw
+108C Dedede 1P Pose
+108D Dedede CPU Pose
+108E Dedede Cliff Catch
+108F Dedede Cliff Wait
+1090 Dedede ItemThrowDash
+1091 Dedede ItemThrowF
+1092 Dedede ItemThrowU
+1093 Dedede ItemThrowD
+1094 Dedede ItemThrowAirF
+1095 Dedede ItemThrowAirU
+1096 Dedede ItemThrowAirD
+1097 Draculas Castle Header
+1098 Draculas Castle Stage
+1099 Draculas Castle BG
+109A Dedede CapturePulled
+109B Dedede ThrownDKPulled
+109C Dedede ThrownMarioBros
+109D Dedede ThrownDK
+109E Dedede Thrown1
+109F Dedede Thrown2
+10A0 Dedede HeavyItemPickup
+10A1 Dedede HeavyItemThrow
+10A2 Dedede Teeter
+10A3 Dedede TeeterStart
+10A4 Reverse Castle Header
+10A5 Reverse Castle Stage
+10A6 Dedede ItemNeutral
+10A7 Dedede ItemTilt
+10A8 Dedede ItemSmash
+10A9 Dedede ItemDash
+10AA Dedede ItemDrop
+10AB Dedede LightItemPickup
+10AC Dedede CeilingBonk
+10AD Kirby Dedede NSP Inhaled Walk
+10AE King Dedede Platforms Header
+10AF King Dedede Platforms Stage
+10B0 Dedede Starring Left
+10B1 Dedede Starring Right
+10B2 Marina Entry GFX
+10B3 Marina Entry
+10B4 DK ThrownMarina
+10B5 C.Falcon ThrownMarina
+10B6 Dedede ClangRecoil
+10B7 Dedede Stun
+10B8 Dedede Clap
+10B9 Dedede Team Pose
+10BA Mt. Dedede Header
+10BB Mt. Dedede Stage
+10BC Mt. Dedede BG
+10BD Dedede Victory 2
+10BE Dedede Ending Image 1
+10BF Dedede Ending Image 2
+10C0 Dedede Victory 3
+10C1 Goemon Main
+10C2 Goemon Character
+10C3 Goemon DSPGround
+10C4 Goemon DSPPull
+10C5 Goemon Up Tilt
+10C6 Goemon Up Aerial
+10C7 Goemon Back Aerial
+10C8 Goemon Neutral Aerial
+10C9 Goemon Forward Aerial
+10CA Goemon Down Aerial
+10CB Goemon DSPAir
+10CC Goemon DSPGroundAttack
+10CD Goemon DSPAirAttack
+10CE Goemon DSPEnd
+10CF Goemon Up Smash
+10D0 Goemon Ryo Hitbox
+10D1 Goemon Ryo Graphic
+10D2 Goemon Ryo Fire Graphic
+10D3 Goemon Ryo Sparkle Graphic
+10D4 Goemon Idle
+10D5 Goemon Fall
+10D6 Goemon Fall Aerial
+10D7 Goemon Jump Forward
+10D8 Goemon Jump Air Forward
+10D9 Goemon Jump Air Back
+10DA Goemon Jump Backward
+10DB Goemon Crouch Begin
+10DC Goemon Crouch Idle
+10DD Goemon Crouch End
+10DE Goemon NSPGroundBegin
+10DF Goemon NSPGroundIdle
+10E0 Goemon NSPGroundEnd
+10E1 Goemon NSPGroundWalk1
+10E2 Goemon NSPGroundWalk2
+10E3 Goemon NSPGroundBackWalk1
+10E4 Goemon NSPGroundBackWalk2
+10E5 Goemon Down Tilt
+10E6 Goemon Forward Tilt High
+10E7 Goemon Forward Tilt
+10E8 Goemon Forward Tilt Low
+10E9 Goemon CPU Pose
+10EA Goemon Jab 1
+10EB Goemon Jab 2
+10EC Goemon Jab 3
+10ED Goemon Taunt
+10EE Goemon 1P Pose
+10EF Goemon Forward Smash
+10F0 Polygon Falco Main
+10F1 Polygon Falco Character
+10F2 Polygon Ganondorf Main
+10F3 Polygon Ganondorf Character
+10F4 Goemon Down Smash
+10F5 Character Bios Extended
+10F6 Character Images Extended
+10F7 Edo Town Header
+10F8 Edo Town Stage
+10F9 Edo Town BG
+10FA Goemon Dash Attack
+10FB Deku DL Header
+10FC Deku DL Stage
+10FD Zebes Landing DL Header
+10FE Zebes Landing Stage
+10FF Goemon Cloud Info
+1100 Goemon Cloud Graphic
+1101 Bullet Bill GFX
+1102 Peppy Main
+1103 Peppy Character
+1104 Peppy Gun
+1105 Slippy Main
+1106 Slippy Character
+1107 Slippy Laser Hitbox
+1108 Slippy Laser Graphic
+1109 Slippy Weapon
+110A Slippy Grab Pull
+110B Slippy Select
+110C Peppy Barrel Roll
+110D Peppy Laser Hitbox
+110E Peppy Laser GFX
+110F Goemon Victory 2
+1110 Peppy Victory 1
+1111 Goemon Break the Targets Stage
+1112 Goemon Break the Targets Header
+1113 Slippy Reflect Graphic
+1114 Ness Duo Pose
+1115 Lucas Duo Pose
+1116 Goemon Clap
+1117 Goemon CSS
+1118 Kirby Duo Pose
+1119 Dedede Duo Pose
+111A First Destination Remix Stage
+111B First Destination Remix Header
+111C Goemon Board the Platforms Header
+111D Goemon Board the Platforms Stage
+111E Goemon Grab
+111F Goemon Grab Pull
+1120 Goemon Forward Throw
+1121 Goemon Back Throw
+1122 Peppy Character Select
+1123 Twilight City Stage
+1124 Twilight City Header
+1125 Twilight City BG
+1126 Goemon CliffAttackQuick1
+1127 Goemon CliffAttackQuick2
+1128 Goemon CliffAttackSlow1
+1129 Goemon CliffAttackSlow2
+112A Goemon CliffClimbQuick2
+112B Goemon CliffClimbSlow2
+112C Goemon CliffEscapeQuick2
+112D Goemon CliffEscapeSlow1
+112E Goemon CliffEscapeSlow2
+112F Goemon CliffWait
+1130 Peppy Dash
+1131 Peppy Run
+1132 Peppy RunBrake
+1133 Peppy TurnRun
+1134 Melrode Stage
+1135 Melrode Header
+1136 Melrode BG
+1137 Peppy Grenade Hitbox
+1138 Peppy Grenade Graphic
+1139 Peppy Dash Attack
+113A Peppy Up Tilt
+113B Peppy Forward Air
+113C Peppy Back Air
+113D Peppy Up Air
+113E Link Duo Pose
+113F Sheik Duo Pose
+1140 Peppy 1P Pose
+1141 Slippy 1P Pose
+1142 Goemon DownStandD
+1143 Goemon DownBackU
+1144 Goemon DownForwardD
+1145 Goemon DownBackD
+1146 Goemon DownForwardU
+1147 Goemon DownStandU
+1148 Goemon DownAttackU
+1149 Goemon DownAttackD
+114A Falco CPU Pose
+114B Samus Duo Pose
+114C Dark Samus Duo Pose
+114D Goemon JumpSquat
+114E Goemon Dash
+114F Goemon Run
+1150 Goemon RunBrake
+1151 Goemon TurnRun
+1152 Goemon Stun
+1153 Goemon EnterPipe
+1154 Goemon ExitPipe
+1155 Pikachu Duo Pose
+1156 Mewtwo Duo Pose
+1157 Goemon Team Pose
+1158 Falco Team Pose
+1159 Goemon Ending Image 1
+115A Goemon Ending Image 2
+115B Kirby Goemon Ryo
+115C Goemon Puppet Up
+115D Goemon Up Special Loop
+115E Goemon Up Special Attack
+115F Goemon Up Special Jump
+1160 Goemon Special Fall
+1161 Goemon Entry GFX
+1162 Kirby Goemon NSP Ground Begin
+1163 Kirby Goemon NSP Ground Idle
+1164 Kirby Goemon NSP Ground End
+1165 Kirby Goemon NSP Ground Walk1
+1166 Kirby Goemon NSP Ground Walk2
+1167 Kirby Goemon NSP Ground BackWalk1
+1168 Kirby Goemon NSP Ground BackWalk2
+1169 Goemon Up Special Escape
+116A Bowser Duo Pose
+116B Donkey Kong Duo Pose
+116C Peppy DSP Throw Ground
+116D Peppy DSP Throw Air
+116E Peppy DSP Detonate Ground
+116F Peppy DSP Detonate Air
+1170 Peppy Taunt
+1171 Peppy NSP Charge Start
+1172 Peppy NSP Charge Loop
+1173 Kirby Peppy NSP Charge Start
+1174 Kirby Peppy NSP Charge Loop
+1175 Goemon Victory Sudden Impact
+1176 Peppy and Slippy Ending Image 1
+1177 Peppy and Slippy Ending Image 2
+1178 Goemon Teeter
+1179 Goemon Teeter Start
+117A Goemon Entry
+117B Slippy Duo Pose
+117C Peppy Duo Pose
+117D Goemon Shield Pose
+117E Goemon Shield On
+117F Goemon Shield Off
+1180 Peppy NSP Charge Start Air
+1181 Peppy NSP Charge Loop Air
+1182 Peppy NSP Shoot Air
+1183 Kirby Peppy NSP Shoot Air
+1184 Kirby Peppy NSP Charge Start Air
+1185 Kirby Peppy NSP Charge Loop Air
+1186 Meta Crystal Remix Stage
+1187 Meta Crystal Remix Header
+1188 Dark Samus Idle
+1189 Remix 1p Race to the Finish Header
+118A Remix 1p Race to the Finish Stage
+118B Remix 1p Race to the Finish File
+118C Grim Reapers Cavern BG
+118D Grim Reapers Cavern Stage
+118E Grim Reapers Cavern Header
+118F Banjo Main
+1190 Banjo Character
+1191 Banjo Idle
+1192 Banjo Walk1
+1193 Banjo Walk2
+1194 Banjo Walk3
+1195 Banjo WalkEnd
+1196 Banjo Dash
+1197 Banjo Run
+1198 Banjo RunBrake
+1199 Banjo Turn
+119A Banjo TurnRun
+119B Banjo JumpF
+119C Banjo JumpB
+119D Banjo JumpAerialF
+119E Banjo JumpAerialB
+119F Banjo Fall
+11A0 Banjo FallAerial
+11A1 Banjo Crouch
+11A2 Banjo CrouchIdle
+11A3 Banjo CrouchEnd
+11A4 Banjo Landing
+11A5 Banjo PlatDrop
+11A6 Banjo Teeter
+11A7 Banjo Teeterstart
+11A8 Banjo DamageHigh1
+11A9 Banjo DamageHigh2
+11AA Banjo DamageHigh3
+11AB Banjo DamageMid1
+11AC Banjo DamageMid2
+11AD Banjo DamageMid3
+11AE Banjo DamageLow1
+11AF Banjo DamageLow2
+11B0 Banjo DamageLow3
+11B1 Banjo DamageAir1
+11B2 Banjo DamageAir2
+11B3 Banjo DamageAir3
+11B4 Banjo DamageElec
+11B5 Banjo DamageFlyHigh
+11B6 Banjo DamageFlyMid
+11B7 Banjo DamageFlyLow
+11B8 Banjo DamageFlyTop
+11B9 Banjo DamageFlyRoll
+11BA Banjo Tumble
+11BB Banjo FallSpecial
+11BC Banjo EnterPipe
+11BD Banjo ExitPipe
+11BE Banjo ExitPipeWalk
+11BF Banjo CeilingBonk
+11C0 Banjo DownBounceD
+11C1 Banjo DownBounceU
+11C2 Banjo DownStandD
+11C3 Banjo DownStandU
+11C4 Banjo TechF
+11C5 Banjo TechB
+11C6 Banjo DownForwardD
+11C7 Banjo DownForwardU
+11C8 Banjo DownBackD
+11C9 Banjo DownBackU
+11CA Banjo DownAttackD
+11CB Banjo DownAttackU
+11CC Banjo Tech
+11CD Banjo ClangRecoil
+11CE Banjo CliffCatch
+11CF Banjo CliffWait
+11D0 Banjo CliffQuick
+11D1 Banjo CliffClimbQuick1
+11D2 Banjo CliffClimbQuick2
+11D3 Banjo CliffSlow
+11D4 Banjo CliffClimbSlow1
+11D5 Banjo CliffClimbSlow2
+11D6 Banjo CliffAttackQuick1
+11D7 Banjo CliffAttackQuick2
+11D8 Banjo CliffAttackSlow1
+11D9 Banjo CliffAttackSlow2
+11DA Banjo CliffEscapeQuick1
+11DB Banjo CliffEscapeQuick2
+11DC Banjo CliffEscapeSlow1
+11DD Banjo CliffEscapeSlow2
+11DE Banjo LightItemPickup
+11DF Banjo HeavyItemPickup
+11E0 Banjo ItemDrop
+11E1 Banjo ItemThrowDash
+11E2 Banjo ItemThrowF
+11E3 Banjo ItemThrowU
+11E4 Banjo ItemThrowD
+11E5 Banjo ItemThrowAirF
+11E6 Banjo ItemThrowAirU
+11E7 Banjo ItemThrowAirD
+11E8 Banjo HeavyItemThrow
+11E9 Banjo ItemNeutral
+11EA Banjo ItemTilt
+11EB Banjo ItemSmash
+11EC Banjo ItemDash
+11ED Banjo ItemShoot
+11EE Banjo ItemShootAir
+11EF Banjo HammerIdle
+11F0 Banjo HammerMove
+11F1 Banjo ShieldOn
+11F2 Banjo ShieldOff
+11F3 Banjo RollF
+11F4 Banjo RollB
+11F5 Banjo Stun
+11F6 Banjo Grab
+11F7 Banjo GrabPull
+11F8 Banjo ThrowF
+11F9 Banjo ThrowB
+11FA Banjo CapturePulled
+11FB Banjo ThrownDKPulled
+11FC Banjo ThrownMarioBros
+11FD Banjo ThrownDK
+11FE Banjo Thrown1
+11FF Banjo Thrown2
+1200 Banjo Taunt
+1201 Banjo Jab1
+1202 Banjo Jab2
+1203 Banjo DashAttack
+1204 Banjo FTiltHigh
+1205 Banjo FTiltMidHigh
+1206 Banjo FTilt
+1207 Banjo FTiltMidLow
+1208 Banjo FTiltLow
+1209 Banjo UTilt
+120A Banjo DTilt
+120B Banjo FSmash
+120C Banjo USmash
+120D Banjo DSmash
+120E Banjo AttackAirN
+120F Banjo AttackAirF
+1210 Banjo AttackAirB
+1211 Banjo AttackAirU
+1212 Banjo AttackAirD
+1213 Banjo LandingAirD
+1214 Banjo LandingAirB
+1215 Banjo Entry Left
+1216 Banjo Entry Right
+1217 Banjo Jab 3
+1218 Banjo Action_0DF
+1219 Banjo Action_0E0
+121A Banjo Neutral Special Begin
+121B Banjo Neutral Special Forward
+121C Banjo Neutral Special Backward
+121D Banjo Up Special Begin
+121E Banjo Up Special Attack
+121F Banjo Up Special Recoil
+1220 Banjo Up Special Landing
+1221 Banjo Up Special Attack End
+1222 Banjo Down Special Ground Air
+1223 Banjo Down Special Air
+1224 Banjo Down Special Landing
+1225 Banjo Down Special Loop
+1226 Banjo Down Special Ground
+1227 Banjo Victory 1
+1228 Banjo Victory 2
+1229 Banjo Victory 3
+122A Banjo Clap
+122B Banjo ContinueFall
+122C Banjo ContinueUp
+122D Banjo 1P Pose
+122E Kazooie Egg GFX
+122F Kazooie Egg Info
+1230 Polygon Dark Samus Main Character
+1231 Scuttle Town BG
+1232 Scuttle Town
+1233 Scuttle Town Header
+1234 Scuttle Town BG Night
+1235 Metal Luigi Main Character
+1236 Metal Luigi Character
+1237 Ebisumaru Main
+1238 Ebisumaru Character
+1239 Ebisumaru DSP Start
+123A Ebisumaru DSP Landing
+123B Ebisumaru DSP Recoil
+123C Ebisumaru Walk 1
+123D Ebisumaru Attack Aerial N
+123E Ebisumaru Up Special
+123F Ebisumaru Up Tilt
+1240 Ebisumaru Run
+1241 Ebisumaru Dash Attack
+1242 Big Boo's Haunt BG
+1243 Big Boo's Haunt Stage
+1244 Big Boo's Haunt Header
+1245 Yoshi's Island Melee BG
+1246 Yoshi's Island Melee Stage
+1247 Yoshi's Island Melee Header
+1248 Scuttletown Enemy Info
+1249 Scuttletown Enemy GFX
+124A Banjo Shield Pose
+124B Ebisumaru 1P Pose
+124C Ebisumaru NSP Attack
+124D Ebisumaru DSP Grounded
+124E Ebisumaru Dash
+124F Kirby Cube
+1250 Banjo Break the Targets Header
+1251 Banjo Break the Targets Stage
+1252 Banjo Entry Effects
+1253 Banjo 1p CPU Pose
+1254 Dark Samus TurnRun
+1255 Dark Samus RunBrake
+1256 Polygon Marth Main
+1257 Polygon Marth Character
+1258 Polygon Mewtwo Main
+1259 Polygon Mewtwo Character
+125A Polygon Dedede Main
+125B Polygon Dedede Character
+125C Spawned Fear BG
+125D Spawned Fear Stage
+125E Spawned Fear Header
+125F Smashville Remix BG
+1260 Smashville Remix Stage
+1261 Smashville Remix Header
+1262 Transition Smash Logo
+1263 Kirby Ebi Hat Meat
+1264 Polygon Young Link Main
+1265 Polygon Young Link Character
+1266 Banjo Board the Platforms Header
+1267 Banjo Board the Platforms Stage
+1268 Dragon King Main
+1269 Dragon King Character
+126A Dragon King CSS
+126B Dragon King Idle
+126C Dragon King USmash
+126D Dragon King FTiltHigh
+126E Dragon King FTilt
+126F Dragon King FTiltLow
+1270 Dragon King AttackAirB
+1271 Dragon King LandingAirB
+1272 Dragon King JumpB
+1273 Dragon King Fall
+1274 Dragon King DSmash
+1275 Dragon King AttackAirN
+1276 Banjo Board the Platforms Barrel Animations
+1277 Banjo Team Pose
+1278 Cacodemon
+1279 Pokefloats Header
+127A Pokefloats Stage
+127B Pokefloats BG
+127C Kirby Banjo Copy Neutral Special Start
+127D Kirby Banjo Copy Neutral Special Forward
+127E Kirby Banjo Copy Neutral Special Backward
+127F Dragon King AttackAirD
+1280 Dragon King JumpF
+1281 Dragon King JumpAerialF
+1282 Thunderball Hitbox
+1283 Thunderball Graphics
+1284 Dragon King JumpAerialB
+1285 Dragon King Taunt
+1286 Dragon King AttackAirF
+1287 Dragon King LandingAirF
+1288 Ebisumaru Taunt
+1289 Dragon King Victory 2
+128A Ebisumaru Entry
+128B Dragon King Neutral Special Ground
+128C Dragon King Down Special Ground
+128D Dragon King Down Special Air Begin
+128E Dragon King Down Special Air Loop
+128F Dragon King Down Special Air Landing (0x40000000)
+1290 Ebisumaru CSS
+1291 Ebisumaru Duo Pose
+1292 Goemon Duo Pose
+1293 Ebisumaru Victory 1
+1294 Dragon King Run
+1295 Dragon King Entry Left
+1296 Dragon King Entry Right
+1297 Dragon King Jab 1
+1298 Dragon King Jab 2
+1299 Dragon King Jab Loop Start
+129A Dragon King Jab Loop
+129B Dragon King Jab Loop End
+129C Dragon King UTilt
+129D Dragon King RunBrake
+129E Banjo Duo Pose
+129F Conker Duo Pose
+12A0 Dragon King FSmash High
+12A1 Dragon King FSmash Mid-High
+12A2 Dragon King FSmash
+12A3 Dragon King FSmash Mid-Low
+12A4 Dragon King FSmash Low
+12A5 Dragon King Neutral Special Air
+12A6 Dragon King AttackAirU
+12A7 Dragon King Up Special Ground
+12A8 Dragon King Up Special Air
+12A9 Dragon King Up Special Ground Throw
+12AA Dragon King Up Special Air Throw
+12AB Dragon King Up Special Air Landing Throw
+12AC Big Snowman Header
+12AD Big Snowman Stage
+12AE Big Snowman BG
+12AF Banjo Up Special Wall Splat
+12B0 Dragon King FTiltMidHigh
+12B1 Dragon King FTiltMidLow
+12B2 Dragon King Dash Attack
+12B3 Dragon King DTilt
+12B4 Dragon King JumpSquat
+12B5 Sheik Light Item Pickup
+12B6 Sheik Item Drop
+12B7 Sheik Item Shoot Ground
+12B8 Kirby Ebisumaru Neutral Special End
+12B9 Polygon Goemon Main
+12BA Polygon Goemon Model
+12BB Polygon Conker Main
+12BC Polygon Conker Model
+12BD Polygon Banjo Main
+12BE Polygon Banjo Model
+12BF Dragon King Shield Pose
+12C0 Dragon King Shield On
+12C1 Dragon King Shield Off
+12C2 Kirby Dragon King Neutral Special Ground
+12C3 Kirby Dragon King Neutral Special Air
+12C4 Dragon King FThrow
+12C5 Dragon King BThrow
+12C6 Dragon King Dash
+12C7 Banjo Ending Image 1
+12C8 Banjo Ending Image 2
+12C9 Ebisumaru Ending Image 1
+12CA Ebisumaru Ending Image 2
+12CB EPuff Main
+12CC Dark Samus CSS Idle
+12CD Uzi Main
+12CE Uzi Character
+12CF Uzi Railgun
+12D0 Uzi Laser Graphic
+12D1 Uzi Laser Hitbox
+
+0611 CAPTAIN DeadU
+0611 CAPTAIN ScreenKO
+05E8 CAPTAIN Entry
+05E8 CAPTAIN Unknown
+0614 CAPTAIN Revive1
+0616 CAPTAIN Revive2
+05E8 CAPTAIN ReviveWait
+05E8 CAPTAIN Idle
+05E9 CAPTAIN Walk1
+05EA CAPTAIN Walk2
+05EB CAPTAIN Walk3
+05EC CAPTAIN UNUSED
+05ED CAPTAIN Dash
+05EE CAPTAIN Run
+05EF CAPTAIN RunBrake
+05F0 CAPTAIN Turn
+05F1 CAPTAIN TurnRun
+05FB CAPTAIN JumpSquat
+05FB CAPTAIN ShieldJumpSquat
+05F2 CAPTAIN JumpF
+05F3 CAPTAIN JumpB
+05F4 CAPTAIN JumpAerialF
+05F5 CAPTAIN JumpAerialB
+05F6 CAPTAIN Fall
+05F7 CAPTAIN FallAerial
+05F8 CAPTAIN Crouch
+05F9 CAPTAIN CrouchIdle
+05FA CAPTAIN CrouchEnd
+05FB CAPTAIN LandingLight
+05FB CAPTAIN LandingHeavy
+05FC CAPTAIN Pass
+05FC CAPTAIN ShieldDrop
+05FD CAPTAIN Teeter
+05FE CAPTAIN Teeterstart
+0600 CAPTAIN Damaged
+0601 CAPTAIN Damaged
+0602 CAPTAIN DamageX?
+0603 CAPTAIN DamageX?
+0604 CAPTAIN DamageX?
+0605 CAPTAIN DamageX?
+0606 CAPTAIN Damaged
+0607 CAPTAIN Damaged
+0608 CAPTAIN Damaged
+0609 CAPTAIN Damaged
+060A CAPTAIN DamageAir?
+060B CAPTAIN Damaged
+067E CAPTAIN Damage
+067E CAPTAIN Damage
+060C CAPTAIN DamageFlyX?
+060D CAPTAIN DamageFlyX?
+060E CAPTAIN Damage?
+060F CAPTAIN DamageFlyTop?
+0610 CAPTAIN DamageFlyTop?
+0611 CAPTAIN Damaged
+0611 CAPTAIN Tumble
+0612 CAPTAIN FallSpecial
+05FB CAPTAIN LandingSpecial
+0611 CAPTAIN Tornado
+066D CAPTAIN EnterPipe
+066E CAPTAIN ExitPipe
+066F CAPTAIN ExitPipeWalk
+0613 CAPTAIN CeilingBonk
+0614 CAPTAIN DownBounceD
+0615 CAPTAIN DownBounceU
+0616 CAPTAIN DownStandD
+0617 CAPTAIN DownStandU
+0618 CAPTAIN TechF
+0619 CAPTAIN TechB
+061A CAPTAIN DownForwardD
+061B CAPTAIN DownForwardU
+061C CAPTAIN DownBackD
+061D CAPTAIN DownBackU
+061E CAPTAIN DownAttackD
+061F CAPTAIN DownAttackU
+0620 CAPTAIN Tech
+0621 CAPTAIN Unknown
+0631 CAPTAIN CliffCatch
+0632 CAPTAIN CliffWait
+0633 CAPTAIN CliffQuick
+0634 CAPTAIN CliffClimbQuick1
+0635 CAPTAIN CliffClimbQuick2
+0636 CAPTAIN CliffSlow
+0637 CAPTAIN CliffClimbSlow1
+0638 CAPTAIN CliffClimbSlow2
+0639 CAPTAIN CliffAttackQuick1
+063A CAPTAIN CliffAttackQuick2
+063B CAPTAIN CliffAttackSlow1
+063C CAPTAIN CliffAttackSlow2
+063D CAPTAIN CliffEscapeQuick1
+063E CAPTAIN CliffEscapeQuick2
+063F CAPTAIN CliffEscapeSlow1
+0640 CAPTAIN CliffEscapeSlow2
+0641 CAPTAIN LightItemPickup
+064A CAPTAIN HeavyItemPickup
+0646 CAPTAIN ItemDrop
+0645 CAPTAIN ItemThrowDash
+0642 CAPTAIN ItemThrowF
+0642 CAPTAIN ItemThrowB
+0643 CAPTAIN ItemThrowU
+0644 CAPTAIN ItemThrowD
+0642 CAPTAIN ItemThrowSmashF
+0642 CAPTAIN ItemThrowSmashB
+0643 CAPTAIN ItemThrowSmashU
+0644 CAPTAIN ItemThrowSmashD
+0647 CAPTAIN ItemThrowAirF
+0647 CAPTAIN ItemThrowAirB
+0648 CAPTAIN ItemThrowAirU
+0649 CAPTAIN ItemThrowAirD
+0647 CAPTAIN ItemThrowAirSmashF
+0647 CAPTAIN ItemThrowAirSmashB
+0648 CAPTAIN ItemThrowAirSmashU
+0649 CAPTAIN ItemThrowAirSmashF
+064B CAPTAIN HeavyItemThrowF
+064B CAPTAIN HeavyItemThrowB
+064B CAPTAIN HeavyItemThrowSmashF
+064B CAPTAIN HeavyItemThrowSmashB
+064C CAPTAIN BeamSwordNeutral
+064D CAPTAIN BeamSwordTilt
+064E CAPTAIN BeamSwordSmash
+064F CAPTAIN BeamSwordDash
+064C CAPTAIN BatNeutral
+064D CAPTAIN BatTilt
+064E CAPTAIN BatSmash
+064F CAPTAIN BatDash
+064C CAPTAIN FanNeutral
+064D CAPTAIN FanTilt
+064E CAPTAIN FanSmash
+064F CAPTAIN FanDash
+064C CAPTAIN StarRodNeutral
+064D CAPTAIN StarRodTilt
+064E CAPTAIN StarRodSmash
+064F CAPTAIN StarRodDash
+0652 CAPTAIN RayGunShoot
+067F CAPTAIN RayGunShootAir
+0652 CAPTAIN FireFlowerShoot
+067F CAPTAIN FireFlowerShootAir
+0650 CAPTAIN HammerIdle
+0651 CAPTAIN HammerWalk
+0651 CAPTAIN HammerTurn
+0651 CAPTAIN HammerJumpSquat
+0651 CAPTAIN HammerAir
+0651 CAPTAIN HammerLanding
+0622 CAPTAIN ShieldOn
+0623 CAPTAIN ShieldOff
+0624 CAPTAIN RollF
+0625 CAPTAIN RollB
+060F CAPTAIN ShieldBreak
+0611 CAPTAIN ShieldBreakFall
+0614 CAPTAIN StunLandD
+0615 CAPTAIN StunLandU
+0616 CAPTAIN StunStartD
+0617 CAPTAIN StunStartU
+05FF CAPTAIN Stun
+05FF CAPTAIN Sleep
+0626 CAPTAIN Catch
+0627 CAPTAIN CatchPull
+0628 CAPTAIN ThrowF
+0629 CAPTAIN ThrowB
+062A CAPTAIN CapturePulled
+0611 CAPTAIN InhalePulled
+0611 CAPTAIN InhaleSpat
+0611 CAPTAIN InhaleCopied
+062A CAPTAIN EggLayPulled
+05E8 CAPTAIN EggLay
+0602 CAPTAIN FalconDivePulled
+0611 CAPTAIN Unknown
+062B CAPTAIN ThrownDKPulled
+062C CAPTAIN Unknown
+062D CAPTAIN ThrownDK
+062F CAPTAIN Thrown1
+062E CAPTAIN Thrown2
+0630 CAPTAIN Taunt
+0653 CAPTAIN Jab1
+0654 CAPTAIN Jab2
+0659 CAPTAIN DashAttack
+065A CAPTAIN FTiltHigh
+065B CAPTAIN FTiltMidHigh
+065C CAPTAIN FTilt
+065D CAPTAIN FTiltMidLow
+065E CAPTAIN FTiltLow
+065F CAPTAIN UTilt
+0660 CAPTAIN DTilt
+0661 CAPTAIN FSmashHigh
+0662 CAPTAIN FSmash
+0663 CAPTAIN FSmashLow
+0664 CAPTAIN USmash
+0665 CAPTAIN DSmash
+0666 CAPTAIN AttackAirN
+0667 CAPTAIN AttackAirF
+0668 CAPTAIN AttackAirB
+0669 CAPTAIN AttackAirU
+066A CAPTAIN AttackAirD
+066B CAPTAIN LandingAirF
+066C CAPTAIN LandingAirB
+05FB CAPTAIN LandingAirX
+0655 CAPTAIN Jab 3
+0656 CAPTAIN Jab Loop Start
+0657 CAPTAIN Jab Loop
+0658 CAPTAIN Jab Loop End
+0671 CAPTAIN Appear
+0670 CAPTAIN Appear (air)
+0673 CAPTAIN Blue Falcon
+0672 CAPTAIN Blue Falcon
+0674 CAPTAIN Falcon Punch (ground)
+0675 CAPTAIN falcon punch air
+0676 CAPTAIN Down Special
+0677 CAPTAIN Velocity X Down Special ((air))
+0678 CAPTAIN Landing Down Special
+0679 CAPTAIN Down Special (air)
+067C CAPTAIN Bumping while down special
+067A CAPTAIN Falcon Dive
+067B CAPTAIN Catching Enemy While Diving
+067C CAPTAIN Falcon Dive End
+067D CAPTAIN Falcon Dive End
+0349 DONKEY DeadU
+0349 DONKEY ScreenKO
+0320 DONKEY Entry
+0320 DONKEY Unknown
+034C DONKEY Revive1
+034E DONKEY Revive2
+0320 DONKEY ReviveWait
+0320 DONKEY Idle
+0321 DONKEY Walk1
+0322 DONKEY Walk2
+0323 DONKEY Walk3
+0324 DONKEY UNUSED
+0325 DONKEY Dash
+0326 DONKEY Run
+0327 DONKEY RunBrake
+0328 DONKEY Turn
+0329 DONKEY TurnRun
+0333 DONKEY JumpSquat
+0333 DONKEY ShieldJumpSquat
+032A DONKEY JumpF
+032B DONKEY JumpB
+032C DONKEY JumpAerialF
+032D DONKEY JumpAerialB
+032E DONKEY Fall
+032F DONKEY FallAerial
+0330 DONKEY Crouch
+0331 DONKEY CrouchIdle
+0332 DONKEY CrouchEnd
+0333 DONKEY LandingLight
+0333 DONKEY LandingHeavy
+0334 DONKEY Pass
+0334 DONKEY ShieldDrop
+0335 DONKEY Teeter
+0336 DONKEY Teeterstart
+0338 DONKEY Damaged
+0339 DONKEY Damaged
+033A DONKEY DamageX?
+033B DONKEY DamageX?
+033C DONKEY DamageX?
+033D DONKEY DamageX?
+033E DONKEY Damaged
+033F DONKEY Damaged
+0340 DONKEY Damaged
+0341 DONKEY Damaged
+0342 DONKEY DamageAir?
+0343 DONKEY Damaged
+03B7 DONKEY Damage
+03B7 DONKEY Damage
+0344 DONKEY DamageFlyX?
+0345 DONKEY DamageFlyX?
+0346 DONKEY Damage?
+0347 DONKEY DamageFlyTop?
+0348 DONKEY DamageFlyTop?
+0349 DONKEY Damaged
+0349 DONKEY Tumble
+034A DONKEY FallSpecial
+0333 DONKEY LandingSpecial
+0349 DONKEY Tornado
+03A1 DONKEY EnterPipe
+03A2 DONKEY ExitPipe
+03A3 DONKEY ExitPipeWalk
+034B DONKEY CeilingBonk
+034C DONKEY DownBounceD
+034D DONKEY DownBounceU
+034E DONKEY DownStandD
+034F DONKEY DownStandU
+0350 DONKEY TechF
+0351 DONKEY TechB
+0352 DONKEY DownForwardD
+0353 DONKEY DownForwardU
+0354 DONKEY DownBackD
+0355 DONKEY DownBackU
+0356 DONKEY DownAttackD
+0357 DONKEY DownAttackU
+0358 DONKEY Tech
+0359 DONKEY Unknown
+036A DONKEY CliffCatch
+036B DONKEY CliffWait
+036F DONKEY CliffQuick
+0370 DONKEY CliffClimbQuick1
+0371 DONKEY CliffClimbQuick2
+036C DONKEY CliffSlow
+036D DONKEY CliffClimbSlow1
+036E DONKEY CliffClimbSlow2
+0372 DONKEY CliffAttackQuick1
+0373 DONKEY CliffAttackQuick2
+0374 DONKEY CliffAttackSlow1
+0375 DONKEY CliffAttackSlow2
+0376 DONKEY CliffEscapeQuick1
+0377 DONKEY CliffEscapeQuick2
+0378 DONKEY CliffEscapeSlow1
+0379 DONKEY CliffEscapeSlow2
+037A DONKEY LightItemPickup
+0383 DONKEY HeavyItemPickup
+037F DONKEY ItemDrop
+037E DONKEY ItemThrowDash
+037B DONKEY ItemThrowF
+037B DONKEY ItemThrowB
+037C DONKEY ItemThrowU
+037D DONKEY ItemThrowD
+037B DONKEY ItemThrowSmashF
+037B DONKEY ItemThrowSmashB
+037C DONKEY ItemThrowSmashU
+037D DONKEY ItemThrowSmashD
+0380 DONKEY ItemThrowAirF
+0380 DONKEY ItemThrowAirB
+0381 DONKEY ItemThrowAirU
+0382 DONKEY ItemThrowAirD
+0380 DONKEY ItemThrowAirSmashF
+0380 DONKEY ItemThrowAirSmashB
+0381 DONKEY ItemThrowAirSmashU
+0382 DONKEY ItemThrowAirSmashF
+03B1 DONKEY HeavyItemThrowF
+03B1 DONKEY HeavyItemThrowB
+03B1 DONKEY HeavyItemThrowSmashF
+03B1 DONKEY HeavyItemThrowSmashB
+0384 DONKEY BeamSwordNeutral
+0385 DONKEY BeamSwordTilt
+0386 DONKEY BeamSwordSmash
+0387 DONKEY BeamSwordDash
+0384 DONKEY BatNeutral
+0385 DONKEY BatTilt
+0386 DONKEY BatSmash
+0387 DONKEY BatDash
+0384 DONKEY FanNeutral
+0385 DONKEY FanTilt
+0386 DONKEY FanSmash
+0387 DONKEY FanDash
+0384 DONKEY StarRodNeutral
+0385 DONKEY StarRodTilt
+0386 DONKEY StarRodSmash
+0387 DONKEY StarRodDash
+038A DONKEY RayGunShoot
+03B8 DONKEY RayGunShootAir
+038A DONKEY FireFlowerShoot
+03B8 DONKEY FireFlowerShootAir
+0388 DONKEY HammerIdle
+0389 DONKEY HammerWalk
+0389 DONKEY HammerTurn
+0389 DONKEY HammerJumpSquat
+0389 DONKEY HammerAir
+0389 DONKEY HammerLanding
+035A DONKEY ShieldOn
+035B DONKEY ShieldOff
+035C DONKEY RollF
+035D DONKEY RollB
+0347 DONKEY ShieldBreak
+0349 DONKEY ShieldBreakFall
+034C DONKEY StunLandD
+034D DONKEY StunLandU
+034E DONKEY StunStartD
+034F DONKEY StunStartU
+0337 DONKEY Stun
+0337 DONKEY Sleep
+035E DONKEY Catch
+035F DONKEY CatchPull
+0360 DONKEY ThrowF
+0361 DONKEY ThrowB
+0362 DONKEY CapturePulled
+0349 DONKEY InhalePulled
+0349 DONKEY InhaleSpat
+0349 DONKEY InhaleCopied
+0362 DONKEY EggLayPulled
+0320 DONKEY EggLay
+033A DONKEY FalconDivePulled
+0349 DONKEY Unknown
+0363 DONKEY ThrownDKPulled
+0365 DONKEY Unknown
+0364 DONKEY Unknown
+0366 DONKEY ThrownDK
+0368 DONKEY Thrown1
+0367 DONKEY Thrown2
+0369 DONKEY Taunt
+038B DONKEY Jab1
+038C DONKEY Jab2
+038D DONKEY DashAttack
+038E DONKEY FTiltHigh
+038F DONKEY FTilt
+0390 DONKEY FTiltLow
+0391 DONKEY UTilt
+0392 DONKEY DTilt
+0393 DONKEY FSmashHigh
+0394 DONKEY FSmashMidHigh
+0395 DONKEY FSmash
+0396 DONKEY FSmashMidLow
+0397 DONKEY FSmashLow
+0398 DONKEY USmash
+0399 DONKEY DSmash
+039A DONKEY AttackAirN
+039B DONKEY AttackAirF
+039C DONKEY AttackAirB
+039D DONKEY AttackAirU
+039E DONKEY AttackAirD
+039F DONKEY LandingAirF
+03A0 DONKEY LandingAirB
+0333 DONKEY LandingAirX
+03A4 DONKEY Appear
+03A5 DONKEY Appear
+03A6 DONKEY Giant Punch (ground loop start)
+03A9 DONKEY Giant Punch (air loop start)
+03A7 DONKEY Giant Punch (ground loop)
+03AA DONKEY Giant Punch (air loop)
+03A8 DONKEY Giant Punch (ground punch)
+03AB DONKEY Giant Punch (air punch)
+03A8 DONKEY Giant Punch (ground fully charged punch)
+03AB DONKEY Giant Punch (air fully charged punch)
+03AC DONKEY Spinning Kong (ground)
+03AD DONKEY Spinning Kong (air)
+03AE DONKEY Hand Slap (start)
+03AF DONKEY Hand Slap (loop)
+03B0 DONKEY Hand Slap (end)
+03B2 DONKEY Cargo (standing)
+03B3 DONKEY Cargo Very Slow Walk
+03B4 DONKEY Cargo Slow walk
+03B5 DONKEY Cargo (walk)
+03B6 DONKEY Cargo (turn)
+03B2 DONKEY Cargo (jumpsquat)
+03B2 DONKEY Cargo (jump)
+03B2 DONKEY Cargo Landing
+03B1 DONKEY Cargo (ground throw)
+03B1 DONKEY Cargo (air throw)
+02AB FOX DeadU
+02AB FOX ScreenKO
+0282 FOX Entry
+0282 FOX Unknown
+02AE FOX Revive1
+02B0 FOX Revive2
+0282 FOX ReviveWait
+0282 FOX Idle
+0283 FOX Walk1
+0284 FOX Walk2
+0285 FOX Walk3
+0286 FOX UNUSED
+0287 FOX Dash
+0288 FOX Run
+0289 FOX RunBrake
+028A FOX Turn
+028B FOX TurnRun
+0295 FOX JumpSquat
+0295 FOX ShieldJumpSquat
+028C FOX JumpF
+028D FOX JumpB
+028E FOX JumpAerialF
+028F FOX JumpAerialB
+0290 FOX Fall
+0291 FOX FallAerial
+0292 FOX Crouch
+0293 FOX CrouchIdle
+0294 FOX CrouchEnd
+0295 FOX LandingLight
+0295 FOX LandingHeavy
+0296 FOX Pass
+0296 FOX ShieldDrop
+0297 FOX Teeter
+0298 FOX Teeterstart
+029A FOX Damaged
+029B FOX Damaged
+029C FOX DamageX?
+029D FOX DamageX?
+029E FOX DamageX?
+029F FOX DamageX?
+02A0 FOX Damaged
+02A1 FOX Damaged
+02A2 FOX Damaged
+02A3 FOX Damaged
+02A4 FOX DamageAir?
+02A5 FOX Damaged
+031E FOX Damage
+031E FOX Damage
+02A6 FOX DamageFlyX?
+02A7 FOX DamageFlyX?
+02A8 FOX Damage?
+02A9 FOX DamageFlyTop?
+02AA FOX DamageFlyTop?
+02AB FOX Damaged
+02AB FOX Tumble
+02AC FOX FallSpecial
+0295 FOX LandingSpecial
+02AB FOX Tornado
+0306 FOX EnterPipe
+0307 FOX ExitPipe
+0308 FOX ExitPipeWalk
+02AD FOX CeilingBonk
+02AE FOX DownBounceD
+02AF FOX DownBounceU
+02B0 FOX DownStandD
+02B1 FOX DownStandU
+02B2 FOX TechF
+02B3 FOX TechB
+02B4 FOX DownForwardD
+02B5 FOX DownForwardU
+02B6 FOX DownBackD
+02B7 FOX DownBackU
+02B8 FOX DownAttackD
+02B9 FOX DownAttackU
+02BA FOX Tech
+02BB FOX Unknown
+02CD FOX CliffCatch
+02CE FOX CliffWait
+02CF FOX CliffQuick
+02D0 FOX CliffClimbQuick1
+02D1 FOX CliffClimbQuick2
+02D2 FOX CliffSlow
+02D3 FOX CliffClimbSlow1
+02D4 FOX CliffClimbSlow2
+02D5 FOX CliffAttackQuick1
+02D6 FOX CliffAttackQuick2
+02D7 FOX CliffAttackSlow1
+02D8 FOX CliffAttackSlow2
+02D9 FOX CliffEscapeQuick1
+02DA FOX CliffEscapeQuick2
+02DB FOX CliffEscapeSlow1
+02DC FOX CliffEscapeSlow2
+02DD FOX LightItemPickup
+02E6 FOX HeavyItemPickup
+02E2 FOX ItemDrop
+02E1 FOX ItemThrowDash
+02DE FOX ItemThrowF
+02DE FOX ItemThrowB
+02DF FOX ItemThrowU
+02E0 FOX ItemThrowD
+02DE FOX ItemThrowSmashF
+02DE FOX ItemThrowSmashB
+02DF FOX ItemThrowSmashU
+02E0 FOX ItemThrowSmashD
+02E3 FOX ItemThrowAirF
+02E3 FOX ItemThrowAirB
+02E4 FOX ItemThrowAirU
+02E5 FOX ItemThrowAirD
+02E3 FOX ItemThrowAirSmashF
+02E3 FOX ItemThrowAirSmashB
+02E4 FOX ItemThrowAirSmashU
+02E5 FOX ItemThrowAirSmashF
+02E7 FOX HeavyItemThrowF
+02E7 FOX HeavyItemThrowB
+02E7 FOX HeavyItemThrowSmashF
+02E7 FOX HeavyItemThrowSmashB
+02E8 FOX BeamSwordNeutral
+02E9 FOX BeamSwordTilt
+02EA FOX BeamSwordSmash
+02EB FOX BeamSwordDash
+02E8 FOX BatNeutral
+02E9 FOX BatTilt
+02EA FOX BatSmash
+02EB FOX BatDash
+02E8 FOX FanNeutral
+02E9 FOX FanTilt
+02EA FOX FanSmash
+02EB FOX FanDash
+02E8 FOX StarRodNeutral
+02E9 FOX StarRodTilt
+02EA FOX StarRodSmash
+02EB FOX StarRodDash
+02EE FOX RayGunShoot
+031F FOX RayGunShootAir
+02EE FOX FireFlowerShoot
+031F FOX FireFlowerShootAir
+02EC FOX HammerIdle
+02ED FOX HammerWalk
+02ED FOX HammerTurn
+02ED FOX HammerJumpSquat
+02ED FOX HammerAir
+02ED FOX HammerLanding
+02BC FOX ShieldOn
+02BD FOX ShieldOff
+02BE FOX RollF
+02BF FOX RollB
+02A9 FOX ShieldBreak
+02AB FOX ShieldBreakFall
+02AE FOX StunLandD
+02AF FOX StunLandU
+02B0 FOX StunStartD
+02B1 FOX StunStartU
+0299 FOX Stun
+0299 FOX Sleep
+02C0 FOX Catch
+02C1 FOX CatchPull
+02C2 FOX ThrowF
+02C3 FOX ThrowB
+02C4 FOX CapturePulled
+02AB FOX InhalePulled
+02AB FOX InhaleSpat
+02AB FOX InhaleCopied
+02C4 FOX EggLayPulled
+0282 FOX EggLay
+029C FOX FalconDivePulled
+02AB FOX Unknown
+02C5 FOX ThrownDKPulled
+02C6 FOX Unknown
+02C7 FOX ThrownDK
+02C9 FOX Thrown1
+02C8 FOX Thrown2
+02CA FOX Thrown3
+02CB FOX Unknown
+02CC FOX Taunt
+02EF FOX Jab1
+02F0 FOX Jab2
+02F4 FOX DashAttack
+02F5 FOX FTiltHigh
+02F6 FOX FTiltMidHigh
+02F7 FOX FTilt
+02F8 FOX FTiltMidLow
+02F9 FOX FTiltLow
+02FA FOX UTilt
+02FB FOX DTilt
+02FC FOX FSmash
+02FD FOX USmash
+02FE FOX DSmash
+02FF FOX AttackAirN
+0300 FOX AttackAirF
+0301 FOX AttackAirB
+0302 FOX AttackAirU
+0303 FOX AttackAirD
+0304 FOX LandingAirF
+0305 FOX LandingAirB
+0295 FOX LandingAirX
+02F1 FOX Jab Loop Start
+02F2 FOX Jab Loop
+02F3 FOX Jab Loop End
+0309 FOX Appear
+030A FOX Arwing
+030B FOX Laser
+030C FOX Laser (aerial)
+030D FOX Fire Fox Start (ground)
+0311 FOX Fire Fox Start Aerial
+030E FOX Readying Fire Fox (ground)
+0312 FOX Readying Fire Fox (air)
+030F FOX Fire Fox (ground)
+0313 FOX Fire Fox (air)
+0310 FOX Fire Fox End (ground)
+0314 FOX Fire Fox end (air)
+0315 FOX Landing While Fire Fox (air)
+0316 FOX Shine Start
+0318 FOX Reflecting
+0319 FOX Shine
+0317 FOX Shine
+0317 FOX Switch Direction Shine
+031A FOX Shire Start (air)
+031D FOX Shine (air) End
+031B FOX Shine (air)
+031B FOX Switch Direction Shine (air)
+0517 JIGGLY DeadU
+0517 JIGGLY ScreenKO
+05D4 JIGGLY Entry
+05D4 JIGGLY Unknown
+051A JIGGLY Revive1
+051C JIGGLY Revive2
+05D4 JIGGLY ReviveWait
+05D4 JIGGLY Idle
+05D7 JIGGLY Walk1
+05D6 JIGGLY Walk2
+05D5 JIGGLY Walk3
+04EF JIGGLY UNUSED
+05B7 JIGGLY Dash
+05CD JIGGLY Run
+05CB JIGGLY RunBrake
+05D3 JIGGLY Turn
+05CC JIGGLY TurnRun
+05C6 JIGGLY JumpSquat
+05C6 JIGGLY ShieldJumpSquat
+05C5 JIGGLY JumpF
+05C4 JIGGLY JumpB
+05BC JIGGLY Fall
+05BA JIGGLY FallAerial
+05CF JIGGLY Crouch
+04FF JIGGLY CrouchIdle
+0500 JIGGLY CrouchEnd
+05C6 JIGGLY LandingLight
+05C6 JIGGLY LandingHeavy
+05C8 JIGGLY Pass
+05C8 JIGGLY ShieldDrop
+05C9 JIGGLY Teeter
+0504 JIGGLY Teeterstart
+0506 JIGGLY Damaged
+0507 JIGGLY Damaged
+0508 JIGGLY DamageX?
+0509 JIGGLY DamageX?
+050A JIGGLY DamageX?
+050B JIGGLY DamageX?
+050C JIGGLY Damaged
+050D JIGGLY Damaged
+050E JIGGLY Damaged
+050F JIGGLY Damaged
+0510 JIGGLY DamageAir?
+0511 JIGGLY Damaged
+05E7 JIGGLY Damage
+05E7 JIGGLY Damage
+0512 JIGGLY DamageFlyX?
+0513 JIGGLY DamageFlyX?
+0514 JIGGLY Damage?
+0515 JIGGLY DamageFlyTop?
+0516 JIGGLY DamageFlyTop?
+0517 JIGGLY Damaged
+0517 JIGGLY Tumble
+05BB JIGGLY FallSpecial
+05C6 JIGGLY LandingSpecial
+0517 JIGGLY Tornado
+0572 JIGGLY EnterPipe
+0573 JIGGLY ExitPipe
+05E3 JIGGLY ExitPipeWalk
+05CE JIGGLY CeilingBonk
+051A JIGGLY DownBounceD
+051B JIGGLY DownBounceU
+051C JIGGLY DownStandD
+051D JIGGLY DownStandU
+051E JIGGLY TechF
+051F JIGGLY TechB
+0520 JIGGLY DownForwardD
+0521 JIGGLY DownForwardU
+0522 JIGGLY DownBackD
+0523 JIGGLY DownBackU
+0524 JIGGLY DownAttackD
+0525 JIGGLY DownAttackU
+05CA JIGGLY Tech
+0527 JIGGLY Unknown
+053B JIGGLY CliffCatch
+053C JIGGLY CliffWait
+053D JIGGLY CliffQuick
+053E JIGGLY CliffClimbQuick1
+053F JIGGLY CliffClimbQuick2
+0540 JIGGLY CliffSlow
+0541 JIGGLY CliffClimbSlow1
+0542 JIGGLY CliffClimbSlow2
+0543 JIGGLY CliffAttackQuick1
+0544 JIGGLY CliffAttackQuick2
+0545 JIGGLY CliffAttackSlow1
+0546 JIGGLY CliffAttackSlow2
+0547 JIGGLY CliffEscapeQuick1
+0548 JIGGLY CliffEscapeQuick2
+0549 JIGGLY CliffEscapeSlow1
+054A JIGGLY CliffEscapeSlow2
+054B JIGGLY LightItemPickup
+05E4 JIGGLY HeavyItemPickup
+0550 JIGGLY ItemDrop
+05B6 JIGGLY ItemThrowDash
+05D2 JIGGLY ItemThrowF
+05D2 JIGGLY ItemThrowB
+054D JIGGLY ItemThrowU
+054E JIGGLY ItemThrowD
+05D2 JIGGLY ItemThrowSmashF
+05D2 JIGGLY ItemThrowSmashB
+054D JIGGLY ItemThrowSmashU
+054E JIGGLY ItemThrowSmashD
+0551 JIGGLY ItemThrowAirF
+0551 JIGGLY ItemThrowAirB
+0552 JIGGLY ItemThrowAirU
+0553 JIGGLY ItemThrowAirD
+0551 JIGGLY ItemThrowAirSmashF
+0551 JIGGLY ItemThrowAirSmashB
+0552 JIGGLY ItemThrowAirSmashU
+0553 JIGGLY ItemThrowAirSmashF
+05E5 JIGGLY HeavyItemThrowF
+05E5 JIGGLY HeavyItemThrowB
+05E5 JIGGLY HeavyItemThrowSmashF
+05E5 JIGGLY HeavyItemThrowSmashB
+0556 JIGGLY BeamSwordNeutral
+0557 JIGGLY BeamSwordTilt
+05D0 JIGGLY BeamSwordSmash
+05D1 JIGGLY BeamSwordDash
+0556 JIGGLY BatNeutral
+0557 JIGGLY BatTilt
+05D0 JIGGLY BatSmash
+05D1 JIGGLY BatDash
+0556 JIGGLY FanNeutral
+0557 JIGGLY FanTilt
+05D0 JIGGLY FanSmash
+05D1 JIGGLY FanDash
+0556 JIGGLY StarRodNeutral
+0557 JIGGLY StarRodTilt
+05D0 JIGGLY StarRodSmash
+05D1 JIGGLY StarRodDash
+05E6 JIGGLY RayGunShoot
+05A4 JIGGLY RayGunShootAir
+05E6 JIGGLY FireFlowerShoot
+05A4 JIGGLY FireFlowerShootAir
+055A JIGGLY HammerIdle
+055B JIGGLY HammerWalk
+055B JIGGLY HammerTurn
+055B JIGGLY HammerJumpSquat
+055B JIGGLY HammerAir
+055B JIGGLY HammerLanding
+05BD JIGGLY ShieldOn
+05BE JIGGLY ShieldOff
+05B9 JIGGLY RollF
+05B8 JIGGLY RollB
+0515 JIGGLY ShieldBreak
+0517 JIGGLY ShieldBreakFall
+051A JIGGLY StunLandD
+051B JIGGLY StunLandU
+051C JIGGLY StunStartD
+051D JIGGLY StunStartU
+0505 JIGGLY Stun
+0505 JIGGLY Sleep
+052C JIGGLY Catch
+05DA JIGGLY CatchPull
+05DB JIGGLY ThrowF
+05DC JIGGLY ThrowB
+0532 JIGGLY CapturePulled
+0517 JIGGLY InhalePulled
+0517 JIGGLY InhaleSpat
+0517 JIGGLY InhaleCopied
+0532 JIGGLY EggLayPulled
+05D4 JIGGLY EggLay
+0508 JIGGLY FalconDivePulled
+0517 JIGGLY Unknown
+05D8 JIGGLY ThrownDKPulled
+0534 JIGGLY Unknown
+05D9 JIGGLY ThrownDK
+0537 JIGGLY Thrown1
+0536 JIGGLY Thrown2
+0539 JIGGLY Thrown3
+0538 JIGGLY Unknown
+05A5 JIGGLY Taunt
+05A6 JIGGLY Jab1
+05A7 JIGGLY Jab2
+05AD JIGGLY DashAttack
+05B2 JIGGLY FTiltHigh
+05B4 JIGGLY FTilt
+05B3 JIGGLY FTiltLow
+05AE JIGGLY UTilt
+05B0 JIGGLY DTilt
+05B5 JIGGLY FSmash
+05AF JIGGLY USmash
+05B1 JIGGLY DSmash
+05A9 JIGGLY AttackAirN
+05AA JIGGLY AttackAirF
+05A8 JIGGLY AttackAirB
+05AB JIGGLY AttackAirU
+05AC JIGGLY AttackAirD
+0570 JIGGLY LandingAirF
+05C7 JIGGLY LandingAirB
+05C6 JIGGLY LandingAirD
+05C6 JIGGLY LandingAirX
+055F JIGGLY Jab Loop Start (unused)
+0560 JIGGLY Jab Loop (unused)
+0561 JIGGLY Jab Loop End (unused)
+05BF JIGGLY Jump 2
+05C0 JIGGLY Jump 3
+05C1 JIGGLY Jump 4
+05C2 JIGGLY Jump 5
+05C3 JIGGLY Jump 6
+05E1 JIGGLY Appear
+05E2 JIGGLY Appear
+05DE JIGGLY Pound (ground)
+05DF JIGGLY Pound (air)
+05E0 JIGGLY Sing (ground)
+05E0 JIGGLY Sing (air)
+05DD JIGGLY Rest (ground)
+05DD JIGGLY Rest (air)
+0517 KIRBY DeadU
+0517 KIRBY ScreenKO
+04EB KIRBY Entry
+04EB KIRBY Unknown
+051A KIRBY Revive1
+051C KIRBY Revive2
+04EB KIRBY ReviveWait
+04EB KIRBY Idle
+04EC KIRBY Walk1
+04ED KIRBY Walk2
+04EE KIRBY Walk3
+04EF KIRBY UNUSED
+04F0 KIRBY Dash
+04F1 KIRBY Run
+04F2 KIRBY RunBrake
+04F3 KIRBY Turn
+04F4 KIRBY TurnRun
+0501 KIRBY JumpSquat
+0501 KIRBY ShieldJumpSquat
+04F5 KIRBY JumpF
+04F6 KIRBY JumpB
+04FC KIRBY Fall
+04FD KIRBY FallAerial
+04FE KIRBY Crouch
+04FF KIRBY CrouchIdle
+0500 KIRBY CrouchEnd
+0501 KIRBY LandingLight
+0501 KIRBY LandingHeavy
+0502 KIRBY Pass
+0502 KIRBY ShieldDrop
+0503 KIRBY Teeter
+0504 KIRBY Teeterstart
+0506 KIRBY Damaged
+0507 KIRBY Damaged
+0508 KIRBY DamageX?
+0509 KIRBY DamageX?
+050A KIRBY DamageX?
+050B KIRBY DamageX?
+050C KIRBY Damaged
+050D KIRBY Damaged
+050E KIRBY Damaged
+050F KIRBY Damaged
+0510 KIRBY DamageAir?
+0511 KIRBY Damaged
+05A3 KIRBY Damage
+05A3 KIRBY Damage
+0512 KIRBY DamageFlyX?
+0513 KIRBY DamageFlyX?
+0514 KIRBY Damage?
+0515 KIRBY DamageFlyTop?
+0516 KIRBY DamageFlyTop?
+0517 KIRBY Damaged
+0517 KIRBY Tumble
+0518 KIRBY FallSpecial
+0501 KIRBY LandingSpecial
+0517 KIRBY Tornado
+0572 KIRBY EnterPipe
+0573 KIRBY ExitPipe
+0574 KIRBY ExitPipeWalk
+0519 KIRBY CeilingBonk
+051A KIRBY DownBounceD
+051B KIRBY DownBounceU
+051C KIRBY DownStandD
+051D KIRBY DownStandU
+051E KIRBY TechF
+051F KIRBY TechB
+0520 KIRBY DownForwardD
+0521 KIRBY DownForwardU
+0522 KIRBY DownBackD
+0523 KIRBY DownBackU
+0524 KIRBY DownAttackD
+0525 KIRBY DownAttackU
+0526 KIRBY Tech
+0527 KIRBY Unknown
+053B KIRBY CliffCatch
+053C KIRBY CliffWait
+053D KIRBY CliffQuick
+053E KIRBY CliffClimbQuick1
+053F KIRBY CliffClimbQuick2
+0540 KIRBY CliffSlow
+0541 KIRBY CliffClimbSlow1
+0542 KIRBY CliffClimbSlow2
+0543 KIRBY CliffAttackQuick1
+0544 KIRBY CliffAttackQuick2
+0545 KIRBY CliffAttackSlow1
+0546 KIRBY CliffAttackSlow2
+0547 KIRBY CliffEscapeQuick1
+0548 KIRBY CliffEscapeQuick2
+0549 KIRBY CliffEscapeSlow1
+054A KIRBY CliffEscapeSlow2
+054B KIRBY LightItemPickup
+0554 KIRBY HeavyItemPickup
+0550 KIRBY ItemDrop
+054F KIRBY ItemThrowDash
+054C KIRBY ItemThrowF
+054C KIRBY ItemThrowB
+054D KIRBY ItemThrowU
+054E KIRBY ItemThrowD
+054C KIRBY ItemThrowSmashF
+054C KIRBY ItemThrowSmashB
+054D KIRBY ItemThrowSmashU
+054E KIRBY ItemThrowSmashD
+0551 KIRBY ItemThrowAirF
+0551 KIRBY ItemThrowAirB
+0552 KIRBY ItemThrowAirU
+0553 KIRBY ItemThrowAirD
+0551 KIRBY ItemThrowAirSmashF
+0551 KIRBY ItemThrowAirSmashB
+0552 KIRBY ItemThrowAirSmashU
+0553 KIRBY ItemThrowAirSmashF
+0555 KIRBY HeavyItemThrowF
+0555 KIRBY HeavyItemThrowB
+0555 KIRBY HeavyItemThrowSmashF
+0555 KIRBY HeavyItemThrowSmashB
+0556 KIRBY BeamSwordNeutral
+0557 KIRBY BeamSwordTilt
+0558 KIRBY BeamSwordSmash
+0559 KIRBY BeamSwordDash
+0556 KIRBY BatNeutral
+0557 KIRBY BatTilt
+0558 KIRBY BatSmash
+0559 KIRBY BatDash
+0556 KIRBY FanNeutral
+0557 KIRBY FanTilt
+0558 KIRBY FanSmash
+0559 KIRBY FanDash
+0556 KIRBY StarRodNeutral
+0557 KIRBY StarRodTilt
+0558 KIRBY StarRodSmash
+0559 KIRBY StarRodDash
+055C KIRBY RayGunShoot
+05A4 KIRBY RayGunShootAir
+055C KIRBY FireFlowerShoot
+05A4 KIRBY FireFlowerShootAir
+055A KIRBY HammerIdle
+055B KIRBY HammerWalk
+055B KIRBY HammerTurn
+055B KIRBY HammerJumpSquat
+055B KIRBY HammerAir
+055B KIRBY HammerLanding
+0528 KIRBY ShieldOn
+0529 KIRBY ShieldOff
+052A KIRBY RollF
+052B KIRBY RollB
+0515 KIRBY ShieldBreak
+0517 KIRBY ShieldBreakFall
+051A KIRBY StunLandD
+051B KIRBY StunLandU
+051C KIRBY StunStartD
+051D KIRBY StunStartU
+0505 KIRBY Stun
+0505 KIRBY Sleep
+052C KIRBY Catch
+052D KIRBY CatchPull
+0531 KIRBY ThrowB
+0532 KIRBY CapturePulled
+0517 KIRBY InhalePulled
+0517 KIRBY InhaleSpat
+0517 KIRBY InhaleCopied
+0532 KIRBY EggLayPulled
+04EB KIRBY EggLay
+0508 KIRBY FalconDivePulled
+0517 KIRBY Unknown
+0533 KIRBY ThrownDKPulled
+0534 KIRBY Unknown
+0535 KIRBY ThrownDK
+0537 KIRBY Thrown1
+0536 KIRBY Thrown2
+0539 KIRBY Thrown3
+0538 KIRBY Unknown
+053A KIRBY Taunt
+055D KIRBY Jab1
+055E KIRBY Jab2
+0562 KIRBY DashAttack
+0563 KIRBY FTiltHigh
+0564 KIRBY FTilt
+0565 KIRBY FTiltLow
+0566 KIRBY UTilt
+0567 KIRBY DTilt
+0568 KIRBY FSmash
+0569 KIRBY USmash
+056A KIRBY DSmash
+056B KIRBY AttackAirN
+056C KIRBY AttackAirF
+056D KIRBY AttackAirB
+056E KIRBY AttackAirU
+056F KIRBY AttackAirD
+0570 KIRBY LandingAirF
+0571 KIRBY LandingAirB
+0501 KIRBY LandingAirX
+055F KIRBY Jab Loop Start
+0560 KIRBY Jab Loop
+0561 KIRBY Jab Loop End
+04F7 KIRBY Jump 2
+04F8 KIRBY Jump 3
+04F9 KIRBY Jump 4
+04FA KIRBY Jump 5
+04FB KIRBY Jump 6
+052E KIRBY Forward Throw
+052F KIRBY Forward Throw Fall
+0530 KIRBY Forward Throw Recoil
+0575 KIRBY Mario Fireball (ground)
+0576 KIRBY Mario Fireball (air)
+0575 KIRBY Luigi Fireball (ground)
+0576 KIRBY Luigi Fireball (air)
+0582 KIRBY Laser (ground)
+0583 KIRBY Laser (air)
+057D KIRBY Charge Shot Start
+057E KIRBY Charging
+057F KIRBY Shooting Charge Shot
+0580 KIRBY Charge Shot (air)
+0581 KIRBY Shooting Charge Shot (air)
+0577 KIRBY Charge Punch Start (ground)
+057A KIRBY Charge Start (air)
+0578 KIRBY Charge Punch (ground)
+057B KIRBY Charge Punch (air)
+0484 LINK DeadU
+0484 LINK ScreenKO
+045B LINK Entry
+045B LINK Unknown
+0487 LINK Revive1
+0489 LINK Revive2
+045B LINK ReviveWait
+045B LINK Idle
+045C LINK Walk1
+045D LINK Walk2
+045E LINK Walk3
+045F LINK UNUSED
+0460 LINK Dash
+0461 LINK Run
+0462 LINK RunBrake
+0463 LINK Turn
+0464 LINK TurnRun
+046E LINK JumpSquat
+046E LINK ShieldJumpSquat
+0465 LINK JumpF
+0466 LINK JumpB
+0467 LINK JumpAerialF
+0468 LINK JumpAerialB
+0469 LINK Fall
+046A LINK FallAerial
+046B LINK Crouch
+046C LINK CrouchIdle
+046D LINK CrouchEnd
+046E LINK LandingLight
+046E LINK LandingHeavy
+046F LINK Pass
+046F LINK ShieldDrop
+0470 LINK Teeter
+0471 LINK Teeterstart
+0473 LINK Damaged
+0474 LINK Damaged
+0475 LINK DamageX?
+0476 LINK DamageX?
+0477 LINK DamageX?
+0478 LINK DamageX?
+0479 LINK Damaged
+047A LINK Damaged
+047B LINK Damaged
+047C LINK Damaged
+047D LINK DamageAir?
+047E LINK Damaged
+04E9 LINK Damage
+04E9 LINK Damage
+047F LINK DamageFlyX?
+0480 LINK DamageFlyX?
+0481 LINK Damage?
+0482 LINK DamageFlyTop?
+0483 LINK DamageFlyTop?
+0484 LINK Damaged
+0484 LINK Tumble
+0485 LINK FallSpecial
+046E LINK LandingSpecial
+0484 LINK Tornado
+04DB LINK EnterPipe
+04DC LINK ExitPipe
+04DD LINK ExitPipeWalk
+0486 LINK CeilingBonk
+0487 LINK DownBounceD
+0488 LINK DownBounceU
+0489 LINK DownStandD
+048A LINK DownStandU
+048B LINK TechF
+048C LINK TechB
+048D LINK DownForwardD
+048E LINK DownForwardU
+048F LINK DownBackD
+0490 LINK DownBackU
+0491 LINK DownAttackD
+0492 LINK DownAttackU
+0493 LINK Tech
+0494 LINK Unknown
+04A5 LINK CliffCatch
+04A6 LINK CliffWait
+04A7 LINK CliffQuick
+04A8 LINK CliffClimbQuick1
+04A9 LINK CliffClimbQuick2
+04AA LINK CliffSlow
+04AB LINK CliffClimbSlow1
+04AC LINK CliffClimbSlow2
+04AD LINK CliffAttackQuick1
+04AE LINK CliffAttackQuick2
+04AF LINK CliffAttackSlow1
+04B0 LINK CliffAttackSlow2
+04B1 LINK CliffEscapeQuick1
+04B2 LINK CliffEscapeQuick2
+04B3 LINK CliffEscapeSlow1
+04B4 LINK CliffEscapeSlow2
+04B5 LINK LightItemPickup
+04BE LINK HeavyItemPickup
+04BA LINK ItemDrop
+04B9 LINK ItemThrowDash
+04B6 LINK ItemThrowF
+04B6 LINK ItemThrowB
+04B7 LINK ItemThrowU
+04B8 LINK ItemThrowD
+04B6 LINK ItemThrowSmashF
+04B6 LINK ItemThrowSmashB
+04B7 LINK ItemThrowSmashU
+04B8 LINK ItemThrowSmashD
+04BB LINK ItemThrowAirF
+04BB LINK ItemThrowAirB
+04BC LINK ItemThrowAirU
+04BD LINK ItemThrowAirD
+04BB LINK ItemThrowAirSmashF
+04BB LINK ItemThrowAirSmashB
+04BC LINK ItemThrowAirSmashU
+04BD LINK ItemThrowAirSmashF
+04BF LINK HeavyItemThrowF
+04BF LINK HeavyItemThrowB
+04BF LINK HeavyItemThrowSmashF
+04BF LINK HeavyItemThrowSmashB
+04C0 LINK BeamSwordNeutral
+04C1 LINK BeamSwordTilt
+04C2 LINK BeamSwordSmash
+04C3 LINK BeamSwordDash
+04C0 LINK BatNeutral
+04C1 LINK BatTilt
+04C2 LINK BatSmash
+04C3 LINK BatDash
+04C0 LINK FanNeutral
+04C1 LINK FanTilt
+04C2 LINK FanSmash
+04C3 LINK FanDash
+04C0 LINK StarRodNeutral
+04C1 LINK StarRodTilt
+04C2 LINK StarRodSmash
+04C3 LINK StarRodDash
+04C6 LINK RayGunShoot
+04EA LINK RayGunShootAir
+04C6 LINK FireFlowerShoot
+04EA LINK FireFlowerShootAir
+04C4 LINK HammerIdle
+04C5 LINK HammerWalk
+04C5 LINK HammerTurn
+04C5 LINK HammerJumpSquat
+04C5 LINK HammerAir
+04C5 LINK HammerLanding
+0495 LINK ShieldOn
+0496 LINK ShieldOff
+0497 LINK RollF
+0498 LINK RollB
+0482 LINK ShieldBreak
+0484 LINK ShieldBreakFall
+0487 LINK StunLandD
+0488 LINK StunLandU
+0489 LINK StunStartD
+048A LINK StunStartU
+0472 LINK Stun
+0472 LINK Sleep
+0499 LINK Catch
+049A LINK CatchPull
+049B LINK ThrowF
+049C LINK ThrowB
+049D LINK CapturePulled
+0484 LINK InhalePulled
+0484 LINK InhaleSpat
+0484 LINK InhaleCopied
+049D LINK EggLayPulled
+045B LINK EggLay
+0475 LINK FalconDivePulled
+0484 LINK Unknown
+049E LINK ThrownDKPulled
+04A0 LINK Unknown
+04A1 LINK Unknown
+049F LINK ThrownDK
+04A3 LINK Thrown1
+04A2 LINK Thrown2
+04A4 LINK Taunt
+04C7 LINK Jab1
+04C8 LINK Jab2
+04CD LINK DashAttack
+04CE LINK FTilt
+04CF LINK UTilt
+04D0 LINK DTilt
+04D1 LINK FSmash
+04D2 LINK USmash
+04D3 LINK DSmash
+04D4 LINK AttackAirN
+04D5 LINK AttackAirF
+04D6 LINK AttackAirB
+04D7 LINK AttackAirU
+04D8 LINK AttackAirD
+04D9 LINK LandingAirF
+04DA LINK LandingAirD
+046E LINK LandingAirX
+04C9 LINK Jab 3
+04CA LINK Jab Loop Start
+04CB LINK Jab Loop
+04CC LINK Jab Loop End
+04DE LINK Appear
+04DF LINK Appear
+04E0 LINK Up Special (ground)
+04E1 LINK Up Special End (ground)
+04E2 LINK Up Special (air)
+04E3 LINK Boomerang
+04E4 LINK Catching Boomerang
+04E3 LINK Missing Boomerang
+04E5 LINK Boomerang (air)
+04E6 LINK Catching Boomerang (air)
+04E5 LINK Missing Boomerang (air)
+04E7 LINK Bomb
+04E8 LINK Bomb (air)
+021C LUIGI DeadU
+021C LUIGI ScreenKO
+044F LUIGI Entry
+044F LUIGI Unknown
+021F LUIGI Revive1
+0221 LUIGI Revive2
+044F LUIGI ReviveWait
+044F LUIGI Idle
+01F4 LUIGI Walk1
+01F5 LUIGI Walk2
+01F6 LUIGI Walk3
+01F7 LUIGI UNUSED
+0450 LUIGI Dash
+01F9 LUIGI Run
+0451 LUIGI RunBrake
+01FB LUIGI Turn
+0452 LUIGI TurnRun
+0206 LUIGI JumpSquat
+0206 LUIGI ShieldJumpSquat
+01FD LUIGI JumpF
+01FE LUIGI JumpB
+01FF LUIGI JumpAerialF
+0200 LUIGI JumpAerialB
+0201 LUIGI Fall
+0202 LUIGI FallAerial
+0203 LUIGI Crouch
+0204 LUIGI CrouchIdle
+0205 LUIGI CrouchEnd
+0206 LUIGI LandingLight
+0206 LUIGI LandingHeavy
+0207 LUIGI Pass
+0207 LUIGI ShieldDrop
+0208 LUIGI Teeter
+0209 LUIGI Teeterstart
+020B LUIGI Damaged
+020C LUIGI Damaged
+020D LUIGI DamageX?
+020E LUIGI DamageX?
+020F LUIGI DamageX?
+0210 LUIGI DamageX?
+0211 LUIGI Damaged
+0212 LUIGI Damaged
+0213 LUIGI Damaged
+0214 LUIGI Damaged
+0215 LUIGI DamageAir?
+0216 LUIGI Damaged
+0280 LUIGI Damage
+0280 LUIGI Damage
+0217 LUIGI DamageFlyX?
+0218 LUIGI DamageFlyX?
+0219 LUIGI Damage?
+021A LUIGI DamageFlyTop?
+021B LUIGI DamageFlyTop?
+021C LUIGI Damaged
+021C LUIGI Tumble
+021D LUIGI FallSpecial
+0206 LUIGI LandingSpecial
+021C LUIGI Tornado
+0276 LUIGI EnterPipe
+0277 LUIGI ExitPipe
+0278 LUIGI ExitPipeWalk
+021E LUIGI CeilingBonk
+021F LUIGI DownBounceD
+0220 LUIGI DownBounceU
+0221 LUIGI DownStandD
+0222 LUIGI DownStandU
+0223 LUIGI TechF
+0224 LUIGI TechB
+0225 LUIGI DownForwardD
+0226 LUIGI DownForwardU
+0227 LUIGI DownBackD
+0228 LUIGI DownBackU
+0229 LUIGI DownAttackD
+022A LUIGI DownAttackU
+022B LUIGI Tech
+022C LUIGI Unknown
+023C LUIGI CliffCatch
+023D LUIGI CliffWait
+023E LUIGI CliffQuick
+023F LUIGI CliffClimbQuick1
+0240 LUIGI CliffClimbQuick2
+0241 LUIGI CliffSlow
+0242 LUIGI CliffClimbSlow1
+0243 LUIGI CliffClimbSlow2
+0244 LUIGI CliffAttackQuick1
+0245 LUIGI CliffAttackQuick2
+0246 LUIGI CliffAttackSlow1
+0247 LUIGI CliffAttackSlow2
+0248 LUIGI CliffEscapeQuick1
+0249 LUIGI CliffEscapeQuick2
+024A LUIGI CliffEscapeSlow1
+024B LUIGI CliffEscapeSlow2
+024C LUIGI LightItemPickup
+0255 LUIGI HeavyItemPickup
+0251 LUIGI ItemDrop
+0250 LUIGI ItemThrowDash
+024D LUIGI ItemThrowF
+024D LUIGI ItemThrowB
+024E LUIGI ItemThrowU
+024F LUIGI ItemThrowD
+024D LUIGI ItemThrowSmashF
+024D LUIGI ItemThrowSmashB
+024E LUIGI ItemThrowSmashU
+024F LUIGI ItemThrowSmashD
+0252 LUIGI ItemThrowAirF
+0252 LUIGI ItemThrowAirB
+0253 LUIGI ItemThrowAirU
+0254 LUIGI ItemThrowAirD
+0252 LUIGI ItemThrowAirSmashF
+0252 LUIGI ItemThrowAirSmashB
+0253 LUIGI ItemThrowAirSmashU
+0254 LUIGI ItemThrowAirSmashF
+0256 LUIGI HeavyItemThrowF
+0256 LUIGI HeavyItemThrowB
+0256 LUIGI HeavyItemThrowSmashF
+0256 LUIGI HeavyItemThrowSmashB
+0257 LUIGI BeamSwordNeutral
+0258 LUIGI BeamSwordTilt
+0259 LUIGI BeamSwordSmash
+025A LUIGI BeamSwordDash
+0257 LUIGI BatNeutral
+0258 LUIGI BatTilt
+0259 LUIGI BatSmash
+025A LUIGI BatDash
+0257 LUIGI FanNeutral
+0258 LUIGI FanTilt
+0259 LUIGI FanSmash
+025A LUIGI FanDash
+0257 LUIGI StarRodNeutral
+0258 LUIGI StarRodTilt
+0259 LUIGI StarRodSmash
+025A LUIGI StarRodDash
+025D LUIGI RayGunShoot
+0281 LUIGI RayGunShootAir
+025D LUIGI FireFlowerShoot
+0281 LUIGI FireFlowerShootAir
+025B LUIGI HammerIdle
+025C LUIGI HammerWalk
+025C LUIGI HammerTurn
+025C LUIGI HammerJumpSquat
+025C LUIGI HammerAir
+025C LUIGI HammerLanding
+022D LUIGI ShieldOn
+022E LUIGI ShieldOff
+022F LUIGI RollF
+0230 LUIGI RollB
+021A LUIGI ShieldBreak
+021C LUIGI ShieldBreakFall
+021F LUIGI StunLandD
+0220 LUIGI StunLandU
+0221 LUIGI StunStartD
+0222 LUIGI StunStartU
+020A LUIGI Stun
+020A LUIGI Sleep
+0231 LUIGI Catch
+0232 LUIGI CatchPull
+0233 LUIGI ThrowF
+0234 LUIGI ThrowB
+0235 LUIGI CapturePulled
+021C LUIGI InhalePulled
+021C LUIGI InhaleSpat
+021C LUIGI InhaleCopied
+0235 LUIGI EggLayPulled
+044F LUIGI EggLay
+020D LUIGI FalconDivePulled
+021C LUIGI Unknown
+0236 LUIGI ThrownDKPulled
+0237 LUIGI Unknown
+0238 LUIGI ThrownDK
+023A LUIGI Thrown1
+0239 LUIGI Thrown2
+0453 LUIGI Taunt
+025E LUIGI Jab1
+025F LUIGI Jab2
+0454 LUIGI DashAttack
+0262 LUIGI FTiltHigh
+0263 LUIGI FTilt
+0264 LUIGI FTiltLow
+0265 LUIGI UTilt
+0455 LUIGI DTilt
+0456 LUIGI FSmashHigh
+0457 LUIGI FSmashMidHigh
+0458 LUIGI FSmash
+0459 LUIGI FSmashMidLow
+045A LUIGI FSmashLow
+026C LUIGI USmash
+026D LUIGI DSmash
+026E LUIGI AttackAirN
+026F LUIGI AttackAirF
+0270 LUIGI AttackAirB
+0271 LUIGI AttackAirU
+0272 LUIGI AttackAirD
+0273 LUIGI LandingAirF
+0274 LUIGI LandingAirB
+0275 LUIGI LandingAirU
+0206 LUIGI LandingAirX
+0260 LUIGI Jab 3
+0279 LUIGI Appear
+027A LUIGI Appear
+027B LUIGI Fireball (ground)
+027C LUIGI Fireball (air)
+027D LUIGI Super Jump Punch (ground)
+027D LUIGI Super Jump Punch (air)
+027E LUIGI Luigi Cyclone (ground)
+027F LUIGI Luigi Cyclone (air)
+021C MARIO DeadU
+021C MARIO ScreenKO
+01F3 MARIO Entry
+01F3 MARIO Unknown
+021F MARIO Revive1
+0221 MARIO Revive2
+01F3 MARIO ReviveWait
+01F3 MARIO Idle
+01F4 MARIO Walk1
+01F5 MARIO Walk2
+01F6 MARIO Walk3
+01F7 MARIO UNUSED
+01F8 MARIO Dash
+01F9 MARIO Run
+01FA MARIO RunBrake
+01FB MARIO Turn
+01FC MARIO TurnRun
+0206 MARIO JumpSquat
+0206 MARIO ShieldJumpSquat
+01FD MARIO JumpF
+01FE MARIO JumpB
+01FF MARIO JumpAerialF
+0200 MARIO JumpAerialB
+0201 MARIO Fall
+0202 MARIO FallAerial
+0203 MARIO Crouch
+0204 MARIO CrouchIdle
+0205 MARIO CrouchEnd
+0206 MARIO LandingLight
+0206 MARIO LandingHeavy
+0207 MARIO Pass
+0207 MARIO ShieldDrop
+0208 MARIO Teeter
+0209 MARIO Teeterstart
+020B MARIO Damaged
+020C MARIO Damaged
+020D MARIO DamageX?
+020E MARIO DamageX?
+020F MARIO DamageX?
+0210 MARIO DamageX?
+0211 MARIO Damaged
+0212 MARIO Damaged
+0213 MARIO Damaged
+0214 MARIO Damaged
+0215 MARIO DamageAir?
+0216 MARIO Damaged
+0280 MARIO Damage
+0280 MARIO Damage
+0217 MARIO DamageFlyX?
+0218 MARIO DamageFlyX?
+0219 MARIO Damage?
+021A MARIO DamageFlyTop?
+021B MARIO DamageFlyTop?
+021C MARIO Damaged
+021C MARIO Tumble
+021D MARIO FallSpecial
+0206 MARIO LandingSpecial
+021C MARIO Tornado
+0276 MARIO EnterPipe
+0277 MARIO ExitPipe
+0278 MARIO ExitPipeWalk
+021E MARIO CeilingBonk
+021F MARIO DownBounceD
+0220 MARIO DownBounceU
+0221 MARIO DownStandD
+0222 MARIO DownStandU
+0223 MARIO TechF
+0224 MARIO TechB
+0225 MARIO DownForwardD
+0226 MARIO DownForwardU
+0227 MARIO DownBackD
+0228 MARIO DownBackU
+0229 MARIO DownAttackD
+022A MARIO DownAttackU
+022B MARIO Tech
+022C MARIO Unknown
+023C MARIO CliffCatch
+023D MARIO CliffWait
+023E MARIO CliffQuick
+023F MARIO CliffClimbQuick1
+0240 MARIO CliffClimbQuick2
+0241 MARIO CliffSlow
+0242 MARIO CliffClimbSlow1
+0243 MARIO CliffClimbSlow2
+0244 MARIO CliffAttackQuick1
+0245 MARIO CliffAttackQuick2
+0246 MARIO CliffAttackSlow1
+0247 MARIO CliffAttackSlow2
+0248 MARIO CliffEscapeQuick1
+0249 MARIO CliffEscapeQuick2
+024A MARIO CliffEscapeSlow1
+024B MARIO CliffEscapeSlow2
+024C MARIO LightItemPickup
+0255 MARIO HeavyItemPickup
+0251 MARIO ItemDrop
+0250 MARIO ItemThrowDash
+024D MARIO ItemThrowF
+024D MARIO ItemThrowB
+024E MARIO ItemThrowU
+024F MARIO ItemThrowD
+024D MARIO ItemThrowSmashF
+024D MARIO ItemThrowSmashB
+024E MARIO ItemThrowSmashU
+024F MARIO ItemThrowSmashD
+0252 MARIO ItemThrowAirF
+0252 MARIO ItemThrowAirB
+0253 MARIO ItemThrowAirU
+0254 MARIO ItemThrowAirD
+0252 MARIO ItemThrowAirSmashF
+0252 MARIO ItemThrowAirSmashB
+0253 MARIO ItemThrowAirSmashU
+0254 MARIO ItemThrowAirSmashF
+0256 MARIO HeavyItemThrowF
+0256 MARIO HeavyItemThrowB
+0256 MARIO HeavyItemThrowSmashF
+0256 MARIO HeavyItemThrowSmashB
+0257 MARIO BeamSwordNeutral
+0258 MARIO BeamSwordTilt
+0259 MARIO BeamSwordSmash
+025A MARIO BeamSwordDash
+0257 MARIO BatNeutral
+0258 MARIO BatTilt
+0259 MARIO BatSmash
+025A MARIO BatDash
+0257 MARIO FanNeutral
+0258 MARIO FanTilt
+0259 MARIO FanSmash
+025A MARIO FanDash
+0257 MARIO StarRodNeutral
+0258 MARIO StarRodTilt
+0259 MARIO StarRodSmash
+025A MARIO StarRodDash
+025D MARIO RayGunShoot
+0281 MARIO RayGunShootAir
+025D MARIO FireFlowerShoot
+0281 MARIO FireFlowerShootAir
+025B MARIO HammerIdle
+025C MARIO HammerWalk
+025C MARIO HammerTurn
+025C MARIO HammerJumpSquat
+025C MARIO HammerAir
+025C MARIO HammerLanding
+022D MARIO ShieldOn
+022E MARIO ShieldOff
+022F MARIO RollF
+0230 MARIO RollB
+021A MARIO ShieldBreak
+021C MARIO ShieldBreakFall
+021F MARIO StunLandD
+0220 MARIO StunLandU
+0221 MARIO StunStartD
+0222 MARIO StunStartU
+020A MARIO Stun
+020A MARIO Sleep
+0231 MARIO Catch
+0232 MARIO CatchPull
+0233 MARIO ThrowF
+0234 MARIO ThrowB
+0235 MARIO CapturePulled
+021C MARIO InhalePulled
+021C MARIO InhaleSpat
+021C MARIO InhaleCopied
+0235 MARIO EggLayPulled
+01F3 MARIO EggLay
+020D MARIO FalconDivePulled
+021C MARIO Unknown
+0236 MARIO ThrownDKPulled
+0237 MARIO Unknown
+0238 MARIO ThrownDK
+023A MARIO Thrown1
+0239 MARIO Thrown2
+023B MARIO Taunt
+025E MARIO Jab1
+025F MARIO Jab2
+0261 MARIO DashAttack
+0262 MARIO FTiltHigh
+0263 MARIO FTilt
+0264 MARIO FTiltLow
+0265 MARIO UTilt
+0266 MARIO DTilt
+0267 MARIO FSmashHigh
+0268 MARIO FSmashMidHigh
+0269 MARIO FSmash
+026A MARIO FSmashMidLow
+026B MARIO FSmashLow
+026C MARIO USmash
+026D MARIO DSmash
+026E MARIO AttackAirN
+026F MARIO AttackAirF
+0270 MARIO AttackAirB
+0271 MARIO AttackAirU
+0272 MARIO AttackAirD
+0273 MARIO LandingAirF
+0274 MARIO LandingAirB
+0275 MARIO LandingAirU
+0206 MARIO LandingAirX
+0260 MARIO Jab 3
+0279 MARIO Appear
+027A MARIO Appear
+027B MARIO Fireball (ground)
+027C MARIO Fireball (air)
+027D MARIO Super Jump Punch (ground)
+027D MARIO Super Jump Punch (air)
+027E MARIO Mario Tornado (ground)
+027F MARIO Mario Tornado (air)
+06A9 NESS DeadU
+06A9 NESS ScreenKO
+0680 NESS Entry
+0680 NESS Unknown
+06AC NESS Revive1
+06AE NESS Revive2
+0680 NESS ReviveWait
+0680 NESS Idle
+0681 NESS Walk1
+0682 NESS Walk2
+0683 NESS Walk3
+0684 NESS UNUSED
+0685 NESS Dash
+0686 NESS Run
+0687 NESS RunBrake
+0688 NESS Turn
+0689 NESS TurnRun
+0693 NESS JumpSquat
+0693 NESS ShieldJumpSquat
+068A NESS JumpF
+068B NESS JumpB
+068C NESS JumpAerialF
+068D NESS JumpAerialB
+068E NESS Fall
+068F NESS FallAerial
+0690 NESS Crouch
+0691 NESS CrouchIdle
+0692 NESS CrouchEnd
+0693 NESS LandingLight
+0693 NESS LandingHeavy
+0694 NESS Pass
+0694 NESS ShieldDrop
+0695 NESS Teeter
+0696 NESS Teeterstart
+0698 NESS Damaged
+0699 NESS Damaged
+069A NESS DamageX?
+069B NESS DamageX?
+069C NESS DamageX?
+069D NESS DamageX?
+069E NESS Damaged
+069F NESS Damaged
+06A0 NESS Damaged
+06A1 NESS Damaged
+06A2 NESS DamageAir?
+06A3 NESS Damaged
+0715 NESS Damage
+0715 NESS Damage
+06A4 NESS DamageFlyX?
+06A5 NESS DamageFlyX?
+06A6 NESS Damage?
+06A7 NESS DamageFlyTop?
+06A8 NESS DamageFlyTop?
+06A9 NESS Damaged
+06A9 NESS Tumble
+06AA NESS FallSpecial
+0693 NESS LandingSpecial
+06A9 NESS Tornado
+0704 NESS EnterPipe
+0705 NESS ExitPipe
+0706 NESS ExitPipeWalk
+06AB NESS CeilingBonk
+06AC NESS DownBounceD
+06AD NESS DownBounceU
+06AE NESS DownStandD
+06AF NESS DownStandU
+06B0 NESS TechF
+06B1 NESS TechB
+06B2 NESS DownForwardD
+06B3 NESS DownForwardU
+06B4 NESS DownBackD
+06B5 NESS DownBackU
+06B6 NESS DownAttackD
+06B7 NESS DownAttackU
+06B8 NESS Tech
+06B9 NESS Unknown
+06C9 NESS CliffCatch
+06CA NESS CliffWait
+06CB NESS CliffQuick
+06CC NESS CliffClimbQuick1
+06CD NESS CliffClimbQuick2
+06CE NESS CliffSlow
+06CF NESS CliffClimbSlow1
+06D0 NESS CliffClimbSlow2
+06D1 NESS CliffAttackQuick1
+06D2 NESS CliffAttackQuick2
+06D3 NESS CliffAttackSlow1
+06D4 NESS CliffAttackSlow2
+06D5 NESS CliffEscapeQuick1
+06D6 NESS CliffEscapeQuick2
+06D7 NESS CliffEscapeSlow1
+06D8 NESS CliffEscapeSlow2
+06D9 NESS LightItemPickup
+06E2 NESS HeavyItemPickup
+06DE NESS ItemDrop
+06DD NESS ItemThrowDash
+06DA NESS ItemThrowF
+06DA NESS ItemThrowB
+06DB NESS ItemThrowU
+06DC NESS ItemThrowD
+06DA NESS ItemThrowSmashF
+06DA NESS ItemThrowSmashB
+06DB NESS ItemThrowSmashU
+06DC NESS ItemThrowSmashD
+06DF NESS ItemThrowAirF
+06DF NESS ItemThrowAirB
+06E0 NESS ItemThrowAirU
+06E1 NESS ItemThrowAirD
+06DF NESS ItemThrowAirSmashF
+06DF NESS ItemThrowAirSmashB
+06E0 NESS ItemThrowAirSmashU
+06E1 NESS ItemThrowAirSmashF
+06E3 NESS HeavyItemThrowF
+06E3 NESS HeavyItemThrowB
+06E3 NESS HeavyItemThrowSmashF
+06E3 NESS HeavyItemThrowSmashB
+06E4 NESS BeamSwordNeutral
+06E5 NESS BeamSwordTilt
+06E6 NESS BeamSwordSmash
+06E7 NESS BeamSwordDash
+06E4 NESS BatNeutral
+06E5 NESS BatTilt
+06E6 NESS BatSmash
+06E7 NESS BatDash
+06E4 NESS FanNeutral
+06E5 NESS FanTilt
+06E6 NESS FanSmash
+06E7 NESS FanDash
+06E4 NESS StarRodNeutral
+06E5 NESS StarRodTilt
+06E6 NESS StarRodSmash
+06E7 NESS StarRodDash
+06EA NESS RayGunShoot
+0716 NESS RayGunShootAir
+06EA NESS FireFlowerShoot
+0716 NESS FireFlowerShootAir
+06E8 NESS HammerIdle
+06E9 NESS HammerWalk
+06E9 NESS HammerTurn
+06E9 NESS HammerJumpSquat
+06E9 NESS HammerAir
+06E9 NESS HammerLanding
+06BA NESS ShieldOn
+06BB NESS ShieldOff
+06BC NESS RollF
+06BD NESS RollB
+06A7 NESS ShieldBreak
+06A9 NESS ShieldBreakFall
+06AC NESS StunLandD
+06AD NESS StunLandU
+06AE NESS StunStartD
+06AF NESS StunStartU
+0697 NESS Stun
+0697 NESS Sleep
+06BE NESS Catch
+06BF NESS CatchPull
+06C0 NESS ThrowF
+06C1 NESS ThrowB
+06C2 NESS CapturePulled
+06A9 NESS InhalePulled
+06A9 NESS InhaleSpat
+06A9 NESS InhaleCopied
+06C2 NESS EggLayPulled
+0680 NESS EggLay
+069A NESS FalconDivePulled
+06A9 NESS Unknown
+06C3 NESS ThrownDKPulled
+06C4 NESS Unknown
+06C5 NESS ThrownDK
+06C7 NESS Thrown1
+06C6 NESS Thrown2
+06C8 NESS Taunt
+06EB NESS Jab1
+06EC NESS Jab2
+06EE NESS DashAttack
+06EF NESS FTiltHigh
+06F0 NESS FTilt
+06F1 NESS FTiltLow
+06F2 NESS UTilt
+06F3 NESS DTilt
+06F4 NESS FSmash
+06F5 NESS USmash
+06F6 NESS DSmash
+06F7 NESS AttackAirN
+06F8 NESS AttackAirF
+06F9 NESS AttackAirB
+06FA NESS AttackAirU
+06FB NESS AttackAirD
+06FC NESS LandingAirF
+06FD NESS LandingAirB
+0693 NESS LandingAirX
+06ED NESS Jab 3
+0707 NESS AppearStart1
+0708 NESS AppearStart2
+0709 NESS Appear1
+070A NESS Appear2
+070B NESS AppearEnd
+070C NESS PK Fire (ground)
+070D NESS PK Fire (air)
+070E NESS PK Thunder Start (ground)
+070F NESS PK Thunder Start (ground)
+0710 NESS PK Thunder End
+0714 NESS PKTA
+0711 NESS PK Thunder Start (air)
+0712 NESS PK  Thunder (air)
+0713 NESS PK Thunder End (air)
+06A9 NESS Clashing During PKTA
+0714 NESS DKTA (air)
+06FE NESS Down B Start (ground)
+06FF NESS Down B (ground)
+06FF NESS Healing Down B
+0700 NESS Down Special End (ground)
+0701 NESS Down Special Start (air)
+0702 NESS Down Special (air)
+0702 NESS Healing (air) Down B
+0703 NESS Down Special End (air)
+080C PIKACHU DeadU
+080C PIKACHU ScreenKO
+07A5 PIKACHU Entry
+07A5 PIKACHU Unknown
+07C7 PIKACHU Revive1
+080D PIKACHU Revive2
+07A5 PIKACHU ReviveWait
+07A5 PIKACHU Idle
+07A6 PIKACHU Walk1
+07A7 PIKACHU Walk2
+07A8 PIKACHU Walk3
+07A9 PIKACHU UNUSED
+07AA PIKACHU Dash
+07AB PIKACHU Run
+07AC PIKACHU RunBrake
+07AD PIKACHU Turn
+07AE PIKACHU TurnRun
+07B8 PIKACHU JumpSquat
+07B8 PIKACHU ShieldJumpSquat
+07AF PIKACHU JumpF
+07B0 PIKACHU JumpB
+07B1 PIKACHU JumpAerialF
+07B2 PIKACHU JumpAerialB
+07B3 PIKACHU Fall
+07B4 PIKACHU FallAerial
+07B5 PIKACHU Crouch
+07B6 PIKACHU CrouchIdle
+07B7 PIKACHU CrouchEnd
+07B8 PIKACHU LandingLight
+07B8 PIKACHU LandingHeavy
+07B9 PIKACHU Pass
+07B9 PIKACHU ShieldDrop
+07BA PIKACHU Teeter
+07BB PIKACHU Teeterstart
+07BD PIKACHU Damaged
+07BE PIKACHU Damaged
+07BF PIKACHU DamageX?
+07C0 PIKACHU DamageX?
+07C1 PIKACHU DamageX?
+07C2 PIKACHU DamageX?
+07C3 PIKACHU Damaged
+07C4 PIKACHU Damaged
+07C5 PIKACHU Damaged
+0806 PIKACHU Damaged
+0807 PIKACHU DamageAir?
+0808 PIKACHU Damaged
+0830 PIKACHU Damage
+0830 PIKACHU Damage
+0809 PIKACHU DamageFlyX?
+080A PIKACHU DamageFlyX?
+080B PIKACHU Damage?
+0818 PIKACHU DamageFlyTop?
+0810 PIKACHU DamageFlyTop?
+080C PIKACHU Damaged
+080C PIKACHU Tumble
+07C6 PIKACHU FallSpecial
+07B8 PIKACHU LandingSpecial
+080C PIKACHU Tornado
+0823 PIKACHU EnterPipe
+0824 PIKACHU ExitPipe
+0825 PIKACHU ExitPipeWalk
+0817 PIKACHU CeilingBonk
+07C7 PIKACHU DownBounceD
+07C8 PIKACHU DownBounceU
+080D PIKACHU DownStandD
+080E PIKACHU DownStandU
+081A PIKACHU TechF
+081B PIKACHU TechB
+0811 PIKACHU DownForwardD
+0812 PIKACHU DownForwardU
+0813 PIKACHU DownBackD
+0814 PIKACHU DownBackU
+0815 PIKACHU DownAttackD
+0816 PIKACHU DownAttackU
+080F PIKACHU Tech
+0819 PIKACHU Unknown
+07F5 PIKACHU CliffCatch
+07F6 PIKACHU CliffWait
+07F7 PIKACHU CliffQuick
+07F8 PIKACHU CliffClimbQuick1
+07F9 PIKACHU CliffClimbQuick2
+07FA PIKACHU CliffSlow
+07FB PIKACHU CliffClimbSlow1
+07FC PIKACHU CliffClimbSlow2
+07FD PIKACHU CliffAttackQuick1
+07FE PIKACHU CliffAttackQuick2
+07FF PIKACHU CliffAttackSlow1
+0800 PIKACHU CliffAttackSlow2
+0801 PIKACHU CliffEscapeQuick1
+0802 PIKACHU CliffEscapeQuick2
+0803 PIKACHU CliffEscapeSlow1
+0804 PIKACHU CliffEscapeSlow2
+07CE PIKACHU LightItemPickup
+07D7 PIKACHU HeavyItemPickup
+07D2 PIKACHU ItemDrop
+07D3 PIKACHU ItemThrowDash
+07CF PIKACHU ItemThrowF
+07CF PIKACHU ItemThrowB
+07D0 PIKACHU ItemThrowU
+07D1 PIKACHU ItemThrowD
+07CF PIKACHU ItemThrowSmashF
+07CF PIKACHU ItemThrowSmashB
+07D0 PIKACHU ItemThrowSmashU
+07D1 PIKACHU ItemThrowSmashD
+07D4 PIKACHU ItemThrowAirF
+07D4 PIKACHU ItemThrowAirB
+07D5 PIKACHU ItemThrowAirU
+07D6 PIKACHU ItemThrowAirD
+07D4 PIKACHU ItemThrowAirSmashF
+07D4 PIKACHU ItemThrowAirSmashB
+07D5 PIKACHU ItemThrowAirSmashU
+07D6 PIKACHU ItemThrowAirSmashF
+07D8 PIKACHU HeavyItemThrowF
+07D8 PIKACHU HeavyItemThrowB
+07D8 PIKACHU HeavyItemThrowSmashF
+07D8 PIKACHU HeavyItemThrowSmashB
+07D9 PIKACHU BeamSwordNeutral
+07DA PIKACHU BeamSwordTilt
+07DB PIKACHU BeamSwordSmash
+07DC PIKACHU BeamSwordDash
+07D9 PIKACHU BatNeutral
+07DA PIKACHU BatTilt
+07DB PIKACHU BatSmash
+07DC PIKACHU BatDash
+07D9 PIKACHU FanNeutral
+07DA PIKACHU FanTilt
+07DB PIKACHU FanSmash
+07DC PIKACHU FanDash
+07D9 PIKACHU StarRodNeutral
+07DA PIKACHU StarRodTilt
+07DB PIKACHU StarRodSmash
+07DC PIKACHU StarRodDash
+07DF PIKACHU RayGunShoot
+0831 PIKACHU RayGunShootAir
+07DF PIKACHU FireFlowerShoot
+0831 PIKACHU FireFlowerShootAir
+07DD PIKACHU HammerIdle
+07DE PIKACHU HammerWalk
+07DE PIKACHU HammerTurn
+07DE PIKACHU HammerJumpSquat
+07DE PIKACHU HammerAir
+07DE PIKACHU HammerLanding
+07F1 PIKACHU ShieldOn
+07F2 PIKACHU ShieldOff
+07F3 PIKACHU RollF
+07F4 PIKACHU RollB
+0818 PIKACHU ShieldBreak
+080C PIKACHU ShieldBreakFall
+07C7 PIKACHU StunLandD
+07C8 PIKACHU StunLandU
+080D PIKACHU StunStartD
+080E PIKACHU StunStartU
+07BC PIKACHU Stun
+07BC PIKACHU Sleep
+07C9 PIKACHU Catch
+07CA PIKACHU CatchPull
+07CB PIKACHU ThrowF
+07CC PIKACHU ThrowB
+0805 PIKACHU CapturePulled
+080C PIKACHU InhalePulled
+080C PIKACHU InhaleSpat
+080C PIKACHU InhaleCopied
+0805 PIKACHU EggLayPulled
+07BF PIKACHU FalconDivePulled
+080C PIKACHU Unknown
+081C PIKACHU ThrownDKPulled
+081E PIKACHU Unknown
+081D PIKACHU ThrownDK
+081F PIKACHU Thrown1
+0820 PIKACHU Thrown2
+07CD PIKACHU Taunt
+07E0 PIKACHU Jab1
+07E1 PIKACHU DashAttack
+07E2 PIKACHU FTiltHigh
+07E3 PIKACHU FTilt
+07E4 PIKACHU FTiltLow
+07E5 PIKACHU UTilt
+07E6 PIKACHU DTilt
+07E7 PIKACHU FSmash
+07E8 PIKACHU USmash
+07E9 PIKACHU DSmash
+07EA PIKACHU AttackAirN
+07EB PIKACHU AttackAirF
+07EC PIKACHU AttackAirB
+07ED PIKACHU AttackAirU
+07EE PIKACHU AttackAirD
+07EF PIKACHU LandingAirF
+07F0 PIKACHU LandingAirD
+07B8 PIKACHU LandingAirX
+0821 PIKACHU Appear
+0822 PIKACHU Appear
+0826 PIKACHU Neutral Special (ground)
+0827 PIKACHU Neutral Special (air)
+082A PIKACHU Down Special Start
+082B PIKACHU Down Special Start
+082B PIKACHU Getting Thundered
+082C PIKACHU Down Special End
+082D PIKACHU Down Special Start (air)
+082E PIKACHU Down Special (air)
+082E PIKACHU Down Special Thundered (air)
+082F PIKACHU Down Special End (air)
+0828 PIKACHU Up Special
+0828 PIKACHU Up Special End
+0829 PIKACHU Up Special (air)
+0829 PIKACHU Up Special (air) End
+03E2 SAMUS DeadU
+03E2 SAMUS ScreenKO
+03B9 SAMUS Entry
+03B9 SAMUS Unknown
+03E5 SAMUS Revive1
+03E7 SAMUS Revive2
+03B9 SAMUS ReviveWait
+03B9 SAMUS Idle
+03BA SAMUS Walk1
+03BB SAMUS Walk2
+03BC SAMUS Walk3
+03BD SAMUS UNUSED
+03BE SAMUS Dash
+03BF SAMUS Run
+03C0 SAMUS RunBrake
+03C1 SAMUS Turn
+03C2 SAMUS TurnRun
+03CC SAMUS JumpSquat
+03CC SAMUS ShieldJumpSquat
+03C3 SAMUS JumpF
+03C4 SAMUS JumpB
+03C5 SAMUS JumpAerialF
+03C6 SAMUS JumpAerialB
+03C7 SAMUS Fall
+03C8 SAMUS FallAerial
+03C9 SAMUS Crouch
+03CA SAMUS CrouchIdle
+03CB SAMUS CrouchEnd
+03CC SAMUS LandingLight
+03CC SAMUS LandingHeavy
+03CD SAMUS Pass
+03CD SAMUS ShieldDrop
+03CE SAMUS Teeter
+03CF SAMUS Teeterstart
+03D1 SAMUS Damaged
+03D2 SAMUS Damaged
+03D3 SAMUS DamageX?
+03D4 SAMUS DamageX?
+03D5 SAMUS DamageX?
+03D6 SAMUS DamageX?
+03D7 SAMUS Damaged
+03D8 SAMUS Damaged
+03D9 SAMUS Damaged
+03DA SAMUS Damaged
+03DB SAMUS DamageAir?
+03DC SAMUS Damaged
+044D SAMUS Damage
+044D SAMUS Damage
+03DD SAMUS DamageFlyX?
+03DE SAMUS DamageFlyX?
+03DF SAMUS Damage?
+03E0 SAMUS DamageFlyTop?
+03E1 SAMUS DamageFlyTop?
+03E2 SAMUS Damaged
+03E2 SAMUS Tumble
+03E3 SAMUS FallSpecial
+03CC SAMUS LandingSpecial
+03E2 SAMUS Tornado
+043F SAMUS EnterPipe
+0440 SAMUS ExitPipe
+0441 SAMUS ExitPipeWalk
+03E4 SAMUS CeilingBonk
+03E5 SAMUS DownBounceD
+03E6 SAMUS DownBounceU
+03E7 SAMUS DownStandD
+03E8 SAMUS DownStandU
+03E9 SAMUS TechF
+03EA SAMUS TechB
+03EB SAMUS DownForwardD
+03EC SAMUS DownForwardU
+03ED SAMUS DownBackD
+03EE SAMUS DownBackU
+03EF SAMUS DownAttackD
+03F0 SAMUS DownAttackU
+03F1 SAMUS Tech
+03F2 SAMUS Unknown
+0405 SAMUS CliffCatch
+0406 SAMUS CliffWait
+0407 SAMUS CliffQuick
+0408 SAMUS CliffClimbQuick1
+0409 SAMUS CliffClimbQuick2
+040A SAMUS CliffSlow
+040B SAMUS CliffClimbSlow1
+040C SAMUS CliffClimbSlow2
+040D SAMUS CliffAttackQuick1
+040E SAMUS CliffAttackQuick2
+040F SAMUS CliffAttackSlow1
+0410 SAMUS CliffAttackSlow2
+0411 SAMUS CliffEscapeQuick1
+0412 SAMUS CliffEscapeQuick2
+0413 SAMUS CliffEscapeSlow1
+0414 SAMUS CliffEscapeSlow2
+0415 SAMUS LightItemPickup
+041E SAMUS HeavyItemPickup
+041A SAMUS ItemDrop
+0419 SAMUS ItemThrowDash
+0416 SAMUS ItemThrowF
+0416 SAMUS ItemThrowB
+0417 SAMUS ItemThrowU
+0418 SAMUS ItemThrowD
+0416 SAMUS ItemThrowSmashF
+0416 SAMUS ItemThrowSmashB
+0417 SAMUS ItemThrowSmashU
+0418 SAMUS ItemThrowSmashD
+041B SAMUS ItemThrowAirF
+041B SAMUS ItemThrowAirB
+041C SAMUS ItemThrowAirU
+041D SAMUS ItemThrowAirD
+041B SAMUS ItemThrowAirSmashF
+041B SAMUS ItemThrowAirSmashB
+041C SAMUS ItemThrowAirSmashU
+041D SAMUS ItemThrowAirSmashF
+041F SAMUS HeavyItemThrowF
+041F SAMUS HeavyItemThrowB
+041F SAMUS HeavyItemThrowSmashF
+041F SAMUS HeavyItemThrowSmashB
+0420 SAMUS BeamSwordNeutral
+0421 SAMUS BeamSwordTilt
+0422 SAMUS BeamSwordSmash
+0423 SAMUS BeamSwordDash
+0420 SAMUS BatNeutral
+0421 SAMUS BatTilt
+0422 SAMUS BatSmash
+0423 SAMUS BatDash
+0420 SAMUS FanNeutral
+0421 SAMUS FanTilt
+0422 SAMUS FanSmash
+0423 SAMUS FanDash
+0420 SAMUS StarRodNeutral
+0421 SAMUS StarRodTilt
+0422 SAMUS StarRodSmash
+0423 SAMUS StarRodDash
+0426 SAMUS RayGunShoot
+044E SAMUS RayGunShootAir
+0426 SAMUS FireFlowerShoot
+044E SAMUS FireFlowerShootAir
+0424 SAMUS HammerIdle
+0425 SAMUS HammerWalk
+0425 SAMUS HammerTurn
+0425 SAMUS HammerJumpSquat
+0425 SAMUS HammerAir
+0425 SAMUS HammerLanding
+03F3 SAMUS ShieldOn
+03F4 SAMUS ShieldOff
+03F5 SAMUS RollF
+03F6 SAMUS RollB
+03E0 SAMUS ShieldBreak
+03E2 SAMUS ShieldBreakFall
+03E5 SAMUS StunLandD
+03E6 SAMUS StunLandU
+03E7 SAMUS StunStartD
+03E8 SAMUS StunStartU
+03D0 SAMUS Stun
+03D0 SAMUS Sleep
+03F7 SAMUS Catch
+03F8 SAMUS CatchPull
+03F9 SAMUS ThrowF
+03FA SAMUS ThrowB
+03FB SAMUS CapturePulled
+03E2 SAMUS InhalePulled
+03E2 SAMUS InhaleSpat
+03E2 SAMUS InhaleCopied
+03FB SAMUS EggLayPulled
+03B9 SAMUS EggLay
+03D3 SAMUS FalconDivePulled
+03E2 SAMUS Unknown
+03FC SAMUS ThrownDKPulled
+03FD SAMUS Unknown
+03FE SAMUS Unknown
+03FF SAMUS ThrownDK
+0400 SAMUS Thrown1
+0402 SAMUS Thrown2
+0401 SAMUS Thrown3
+0403 SAMUS Unknown
+0404 SAMUS Taunt
+0427 SAMUS Jab1
+0428 SAMUS Jab2
+0429 SAMUS DashAttack
+042A SAMUS FTiltHigh
+042B SAMUS FTiltMidHigh
+042C SAMUS FTilt
+042D SAMUS FTiltMidLow
+042E SAMUS FTiltLow
+042F SAMUS UTilt
+0430 SAMUS DTilt
+0431 SAMUS FSmashHigh
+0432 SAMUS FSmashMidHigh
+0433 SAMUS FSmash
+0434 SAMUS FSmashMidLow
+0435 SAMUS FSmashLow
+0436 SAMUS USmash
+0437 SAMUS DSmash
+0438 SAMUS AttackAirN
+0439 SAMUS AttackAirF
+043A SAMUS AttackAirB
+043B SAMUS AttackAirU
+043C SAMUS AttackAirD
+043D SAMUS LandingAirB
+043E SAMUS LandingAirU
+03CC SAMUS LandingAirX
+0442 SAMUS Appear
+0443 SAMUS Appear
+0444 SAMUS Starting Charge shot
+0445 SAMUS Charging Neutral Special
+0446 SAMUS Shooting
+0447 SAMUS Starting Charge Shot (air)
+0448 SAMUS Shooting (air)
+0449 SAMUS Screw Attack (ground)
+044A SAMUS Screw Attack (air)
+044B SAMUS Bomb
+044C SAMUS Bomb (air)
+073F YOSHI DeadU
+073F YOSHI ScreenKO
+0717 YOSHI Entry
+0717 YOSHI Unknown
+0742 YOSHI Revive1
+0744 YOSHI Revive2
+0717 YOSHI ReviveWait
+0717 YOSHI Idle
+0718 YOSHI Walk1
+0719 YOSHI Walk2
+071A YOSHI Walk3
+071B YOSHI UNUSED
+071C YOSHI Dash
+071D YOSHI Run
+071E YOSHI RunBrake
+071F YOSHI Turn
+0720 YOSHI TurnRun
+0729 YOSHI JumpSquat
+0729 YOSHI ShieldJumpSquat
+0721 YOSHI JumpF
+0722 YOSHI JumpB
+0723 YOSHI JumpAerialF
+0723 YOSHI JumpAerialB
+0724 YOSHI Fall
+0725 YOSHI FallAerial
+0726 YOSHI Crouch
+0727 YOSHI CrouchIdle
+0728 YOSHI CrouchEnd
+0729 YOSHI LandingLight
+0729 YOSHI LandingHeavy
+072A YOSHI Pass
+072A YOSHI ShieldDrop
+072B YOSHI Teeter
+072C YOSHI Teeterstart
+072E YOSHI Damaged
+072F YOSHI Damaged
+0730 YOSHI DamageX?
+0731 YOSHI DamageX?
+0732 YOSHI DamageX?
+0733 YOSHI DamageX?
+0734 YOSHI Damaged
+0735 YOSHI Damaged
+0736 YOSHI Damaged
+0737 YOSHI Damaged
+0738 YOSHI DamageAir?
+0739 YOSHI Damaged
+07A3 YOSHI Damage
+07A3 YOSHI Damage
+073A YOSHI DamageFlyX?
+073B YOSHI DamageFlyX?
+073C YOSHI Damage?
+073D YOSHI DamageFlyTop?
+073E YOSHI DamageFlyTop?
+073F YOSHI Damaged
+073F YOSHI Tumble
+0740 YOSHI FallSpecial
+0729 YOSHI LandingSpecial
+073F YOSHI Tornado
+0795 YOSHI EnterPipe
+0796 YOSHI ExitPipe
+0797 YOSHI ExitPipeWalk
+0741 YOSHI CeilingBonk
+0742 YOSHI DownBounceD
+0743 YOSHI DownBounceU
+0744 YOSHI DownStandD
+0745 YOSHI DownStandU
+0746 YOSHI TechF
+0747 YOSHI TechB
+0748 YOSHI DownForwardD
+0749 YOSHI DownForwardU
+074A YOSHI DownBackD
+074B YOSHI DownBackU
+074C YOSHI DownAttackD
+074D YOSHI DownAttackU
+074E YOSHI Tech
+074F YOSHI Unknown
+075F YOSHI CliffCatch
+0760 YOSHI CliffWait
+0761 YOSHI CliffQuick
+0762 YOSHI CliffClimbQuick1
+0763 YOSHI CliffClimbQuick2
+0764 YOSHI CliffSlow
+0765 YOSHI CliffClimbSlow1
+0766 YOSHI CliffClimbSlow2
+0767 YOSHI CliffAttackQuick1
+0768 YOSHI CliffAttackQuick2
+0769 YOSHI CliffAttackSlow1
+076A YOSHI CliffAttackSlow2
+076B YOSHI CliffEscapeQuick1
+076C YOSHI CliffEscapeQuick2
+076D YOSHI CliffEscapeSlow1
+076E YOSHI CliffEscapeSlow2
+076F YOSHI LightItemPickup
+0778 YOSHI HeavyItemPickup
+0774 YOSHI ItemDrop
+0773 YOSHI ItemThrowDash
+0770 YOSHI ItemThrowF
+0770 YOSHI ItemThrowB
+0771 YOSHI ItemThrowU
+0772 YOSHI ItemThrowD
+0770 YOSHI ItemThrowSmashF
+0770 YOSHI ItemThrowSmashB
+0771 YOSHI ItemThrowSmashU
+0772 YOSHI ItemThrowSmashD
+0775 YOSHI ItemThrowAirF
+0775 YOSHI ItemThrowAirB
+0776 YOSHI ItemThrowAirU
+0777 YOSHI ItemThrowAirD
+0775 YOSHI ItemThrowAirSmashF
+0775 YOSHI ItemThrowAirSmashB
+0776 YOSHI ItemThrowAirSmashU
+0777 YOSHI ItemThrowAirSmashF
+0779 YOSHI HeavyItemThrowF
+0779 YOSHI HeavyItemThrowB
+0779 YOSHI HeavyItemThrowSmashF
+0779 YOSHI HeavyItemThrowSmashB
+077A YOSHI BeamSwordNeutral
+077B YOSHI BeamSwordTilt
+077C YOSHI BeamSwordSmash
+077D YOSHI BeamSwordDash
+077A YOSHI BatNeutral
+077B YOSHI BatTilt
+077C YOSHI BatSmash
+077D YOSHI BatDash
+077A YOSHI FanNeutral
+077B YOSHI FanTilt
+077C YOSHI FanSmash
+077D YOSHI FanDash
+077A YOSHI StarRodNeutral
+077B YOSHI StarRodTilt
+077C YOSHI StarRodSmash
+077D YOSHI StarRodDash
+0780 YOSHI RayGunShoot
+07A4 YOSHI RayGunShootAir
+0780 YOSHI FireFlowerShoot
+07A4 YOSHI FireFlowerShootAir
+077E YOSHI HammerIdle
+077F YOSHI HammerWalk
+077F YOSHI HammerTurn
+077F YOSHI HammerJumpSquat
+077F YOSHI HammerAir
+077F YOSHI HammerLanding
+0750 YOSHI ShieldOn
+0751 YOSHI ShieldOff
+0752 YOSHI RollF
+0753 YOSHI RollB
+073D YOSHI ShieldBreak
+073F YOSHI ShieldBreakFall
+0742 YOSHI StunLandD
+0743 YOSHI StunLandU
+0744 YOSHI StunStartD
+0745 YOSHI StunStartU
+072D YOSHI Stun
+072D YOSHI Sleep
+0754 YOSHI Catch
+0755 YOSHI CatchPull
+0756 YOSHI ThrowF
+0757 YOSHI ThrowB
+0758 YOSHI CapturePulled
+073F YOSHI InhalePulled
+073F YOSHI InhaleSpat
+073F YOSHI InhaleCopied
+0758 YOSHI EggLayPulled
+0717 YOSHI EggLay
+0730 YOSHI FalconDivePulled
+073F YOSHI Unknown
+0759 YOSHI ThrownDKPulled
+075A YOSHI Unknown
+075B YOSHI ThrownDK
+075D YOSHI Thrown1
+075C YOSHI Thrown2
+075E YOSHI Taunt
+0781 YOSHI Jab1
+0782 YOSHI Jab2
+0783 YOSHI DashAttack
+0784 YOSHI FTiltHigh
+0785 YOSHI FTilt
+0786 YOSHI FTiltLow
+0787 YOSHI UTilt
+0788 YOSHI DTilt
+0789 YOSHI FSmashHigh
+078A YOSHI FSmash
+078B YOSHI FSmashLow
+078C YOSHI USmash
+078D YOSHI DSmash
+078E YOSHI AttackAirN
+078F YOSHI AttackAirF
+0790 YOSHI AttackAirB
+0791 YOSHI AttackAirU
+0792 YOSHI AttackAirD
+0793 YOSHI LandingAirF
+0794 YOSHI LandingAirB
+0729 YOSHI LandingAirX
+07A1 YOSHI Appear
+07A2 YOSHI Appear
+0798 YOSHI Egg Throw (ground)
+0799 YOSHI Egg Throw (air)
+079A YOSHI Ground Pound (ground start)
+079B YOSHI Ground Pound (landing)
+079C YOSHI Ground Pound (air)
+079D YOSHI Egg Lay (ground use/miss)
+079D YOSHI Egg Lay (grabbed someone, still going out)
+079E YOSHI Egg Lay (grabbed someone, coming in and swallowing)
+079F YOSHI Egg Lay (air use/miss)
+079F YOSHI Egg Lay (air grab out)
+07A0 YOSHI Egg Lay (air grab in)
+00FE Dashed Numbers Image Lookup
+0028 Aeroplane Transition
+0029 Check Transition
+002A Gakubuthi Transition
+002B Kannon Transition
+002C Star Transition
+002D Sundare1 Transition
+002E Sundare2 Transition
+002F Unknown Transition
+0030 Block Transition
+0031 RotScale Transition
+0032 Curtain Transition
+0033 Camera Transition
+0016 CSS Shadow
+0053 Moveset GFX 1
+0054 Moveset GFX 2
+0055 Moveset GFX 3
+00A3 Shield GFX
+00C5 Pause Menu GFX
+00C6 How to Play GFX
