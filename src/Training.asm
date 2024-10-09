@@ -2581,6 +2581,7 @@ scope Training {
     string_mluigi:; char_0x45:; db "Metal Luigi", 0x00
     string_ebi:; char_0x46:; db "Ebisumaru", 0x00
     string_dragonking:; char_0x47:; db "Dragon King", 0x00
+    string_uzi; char_0x48:; db "Uzi", 0x00
     OS.align(4)
 
     string_table_char:
@@ -2615,6 +2616,7 @@ scope Training {
     dw char_0x40            // DEDEDE
     dw char_0x41            // GOEMON
     dw char_0x44            // BANJO
+    dw char_0x48            // UZI
 
     dw char_0x2A            // J MARIO
     dw char_0x29            // J FOX

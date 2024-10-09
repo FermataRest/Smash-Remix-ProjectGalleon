@@ -376,6 +376,12 @@
         db 4        // down
         db 0        // unused
 
+        entry_uzi:
+        db 2        // forward (change later)
+        db 2        // up      (change later)
+        db 2        // down    (change later)
+        db 0        // unused
+
         frame_table:
         // vanilla fighters
         dw entry_mario  // mario
@@ -453,6 +459,7 @@
         dw entry_mario      // METAL LUIGI
         dw entry_ebisumaru  // EBI
         dw entry_dragonking // DRAGON KING
+        dw entry_uzi        // UZI
 
         // remix polygons
         dw entry_wario
