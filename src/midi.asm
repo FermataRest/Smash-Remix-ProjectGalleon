@@ -271,6 +271,7 @@ scope MIDI {
     add_game(sbk, "Snowboard Kids")
     add_game(sbk2, "Snowboard Kids 2")
     add_game(2hu6, "Touhou 6: Embodiment of Scarlet Devil")
+	add_game(md, "Murder Drones")
     OS.align(4)
 
     // insert custom midi files
@@ -538,6 +539,7 @@ scope MIDI {
     insert_midi(BATTLE_C1, OS.TRUE, OS.TRUE, "Battle C1", smtiv)
     insert_extra_midi(PLAY_A_MINIGAME)
     insert_midi(CREDITS_BRAWL, OS.TRUE, OS.TRUE, "Credits (Brawl)", ssb)
+	insert_midi(COPPER_9, OS.TRUE, OS.TRUE, "Copper 9", md)
 
     pushvar origin, base
 

@@ -1664,7 +1664,7 @@ scope SinglePlayer {
         constant MLUIGI(0x0000AAB0)
         constant EBI(0x0000AF80)
         constant DRAGONKING(0x0000B4B0)
-        constant UZI(0x0000AF80)
+        constant UZI(0x0000C088)
 
         // Duo Teams
         constant STARFOX(0x00006238)
@@ -1906,7 +1906,7 @@ scope SinglePlayer {
         constant MLUIGI(0x00000024 + LUIGI)
         constant EBI(0x00000046)
         constant DRAGONKING(0x00000046)
-        constant UZI(0x00000044)
+        constant UZI(0x00000065)
         // TODO: make sure these are good
         constant JSAMUS(0x00000032)
         constant JNESS(0x00000032)
