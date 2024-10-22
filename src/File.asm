@@ -2694,4 +2694,6 @@ scope File {
 	constant UZI_RAILGUN(0x12CF)
 	constant UZI_LASER_GRAPHIC(0x12D0)
 	constant UZI_LASER_HITBOX(0x12D1)
+	constant UZI_IDLE(0x12D2)
+
  }
