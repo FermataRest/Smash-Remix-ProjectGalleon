@@ -2703,6 +2703,11 @@
 12D0 Uzi Laser Graphic
 12D1 Uzi Laser Hitbox
 12D2 Uzi Idle
+12D3 Uzi Run
+12D4 Uzi Walk2
+12D5 Uzi Walk3
+12D6 Uzi Taunt
+
 0611 CAPTAIN DeadU
 0611 CAPTAIN ScreenKO
 05E8 CAPTAIN Entry

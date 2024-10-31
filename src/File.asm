@@ -2695,5 +2695,8 @@ scope File {
 	constant UZI_LASER_GRAPHIC(0x12D0)
 	constant UZI_LASER_HITBOX(0x12D1)
 	constant UZI_IDLE(0x12D2)
-
+	constant UZI_RUN(0x12D3)
+	constant UZI_WALK2(0x12D4)
+	constant UZI_WALK3(0x12D5)
+	constant UZI_TAUNT(0x12D6)
  }
