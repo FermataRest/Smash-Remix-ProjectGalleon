@@ -2702,7 +2702,7 @@
 12CF Uzi Railgun
 12D0 Uzi Laser Graphic
 12D1 Uzi Laser Hitbox
-
+12D2 Uzi Idle
 0611 CAPTAIN DeadU
 0611 CAPTAIN ScreenKO
 05E8 CAPTAIN Entry

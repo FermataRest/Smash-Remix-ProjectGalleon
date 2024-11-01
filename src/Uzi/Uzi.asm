@@ -24,11 +24,14 @@ scope Uzi {
 	// Modify Action Parameters           // Action              // Animation                   // Moveset Data          // Flags
     //Character.edit_action_parameters(UZI, 0xE1,                  0x25D,                      NSP_GROUND,                 0)
  	//Character.edit_action_parameters(UZI, 0xE2,                  0x281,                      NSP_AIR,                    0)
+	Character.edit_action_parameters(UZI, Action.Idle,			File.UZI_IDLE,				   -1,						  -1)
 
+	// Modify Menu Action Parameters                // Action         // Animation                   // Moveset Data             // Flags
+	Character.edit_menu_action_parameters(UZI, 0x0,              File.UZI_IDLE,            -1,                       -1)
+	
     // Modify Actions                     // Action              // Staling ID   // Main ASM                // Interrupt/Other ASM        // Movement/Physics ASM         // Collision ASM
     Character.edit_action(UZI,            0xE1,                  -1,             UziNSP.main_,              -1,                           -1,                             -1)
     Character.edit_action(UZI,            0xE2,                  -1,             UziNSP.main_,              -1,                           -1,                             UziNSP.air_collision_)
-
 	// Add Action Parameters                  // Action Name       // Base Action   // Animation                // Moveset Data       // Flags
 
 	// Add Actions                     // Action Name     // Base Action  //Parameters                    // Staling ID   // Main ASM                       // Interrupt/Other ASM           // Movement/Physics ASM  	          // Collision ASM
