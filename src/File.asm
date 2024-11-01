@@ -2699,4 +2699,10 @@ scope File {
 	constant UZI_WALK2(0x12D4)
 	constant UZI_WALK3(0x12D5)
 	constant UZI_TAUNT(0x12D6)
+	constant UZI_JUMP_F(0x12D7)
+	constant UZI_JUMP_B(0x12D8)
+	constant UZI_JUMP_AF(0x12D9)
+	constant UZI_JUMP_AB(0x12E0)
+	constant UZI_SHIELD_BREAK(0x12E1)
+	constant UZI_HEAVYITEMPICK(0x12E2)
  }

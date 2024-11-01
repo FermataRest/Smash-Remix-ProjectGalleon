@@ -2707,6 +2707,12 @@
 12D4 Uzi Walk2
 12D5 Uzi Walk3
 12D6 Uzi Taunt
+12D7 Uzi JumpF
+12D8 Uzi JumpB
+12D9 Uzi JumpAF
+12E0 Uzi JumpAB
+12E1 Uzi Shield Break
+12E2 Uzi HeavyItemPickup
 
 0611 CAPTAIN DeadU
 0611 CAPTAIN ScreenKO
