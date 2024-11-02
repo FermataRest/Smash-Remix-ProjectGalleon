@@ -6,7 +6,7 @@ scope Uzi {
 
 	// Insert Moveset files
 	insert TAUNT, "moveset/TAUNT.bin"
-	insert RUN, "moveset/RUN.bin"
+	insert RUN, "moveset/RUN.bin"; Moveset.GO_TO(RUN)
 	insert RAILGUN, "moveset/RAILGUN.bin"
 	insert BITCHDOWN, "moveset/DOORMAN_BROKE.bin"
 	insert SHITHEAVY, "moveset/HEAVYPICK.bin"
