@@ -3297,7 +3297,7 @@ scope Character {
     // 0x47 - DRAGONKING
     define_character(DRAGONKING, CAPTAIN, File.DRAGONKING_MAIN, 0x0EB, 0, File.DRAGONKING_CHARACTER, File.DRAGONKING_SHIELD_POSE, 0, 0x15B, 0x14D, 0, 0x488, 5, OS.TRUE, OS.TRUE, Stages.id.BTT_FALCON, Stages.id.BTP_FALCON, Stages.id.BTT_GND, Stages.id.BTP_GND, sound_type.J, variant_type.SPECIAL)
 	// 0x48 - UZI
-	define_character(UZI, FOX, File.UZI_MAIN, 0x0D0, 0, File.UZI_CHARACTER, 0x13A, File.UZI_LASER_HITBOX, 0x15A, 0x0A1, File.UZI_LASER_GRAPHIC, 0x46C, 0, OS.TRUE, OS.FALSE, Stages.id.BTT_FOX, Stages.id.BTP_FOX, Stages.id.BTT_FOX, Stages.id.BTP_FOX, sound_type.U, variant_type.NA)
+	define_character(UZI, FOX, File.UZI_MAIN, 0x0D0, 0, File.UZI_CHARACTER, 0x13A, File.UZI_LASER_HITBOX, 0x15A, 0x0A1, File.UZI_LASER_GRAPHIC, 0x474, 0, OS.TRUE, OS.FALSE, Stages.id.BTT_FOX, Stages.id.BTP_FOX, Stages.id.BTT_FOX, Stages.id.BTP_FOX, sound_type.U, variant_type.NA)
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
