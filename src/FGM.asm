@@ -1571,7 +1571,14 @@ scope FGM {
 	add_sound(Uzi/sounds/Laugh, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
 	add_sound(Uzi/sounds/jumpaction1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
 	add_sound(Uzi/sounds/jumpaction2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/boxgrab, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0 , -1)
+	add_sound(Uzi/sounds/boxgrab, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/attack1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/attack2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/attack3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/attack4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+	add_sound(Uzi/sounds/starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
 
     // This is always last
     write_sounds()
