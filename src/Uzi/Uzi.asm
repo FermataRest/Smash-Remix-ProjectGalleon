@@ -8,6 +8,7 @@ scope Uzi {
     insert TAUNT, "moveset/TAUNT.bin"
     insert RUN, "moveset/RUN.bin"; Moveset.GO_TO(RUN) // loops
     insert RAILGUN, "moveset/RAILGUN.bin"
+    insert RAILGUN_AERIAL, "moveset/RAILGUN_AERIAL.bin"
     insert SPARKLE, "moveset/SPARKLE.bin"; Moveset.GO_TO(SPARKLE) // loops
     insert BITCHDOWN, "moveset/DOORMAN_BROKE.bin"; Moveset.GO_TO(SPARKLE) // loops
     insert SHITHEAVY, "moveset/HEAVYPICK.bin"
@@ -27,7 +28,7 @@ scope Uzi {
 
     // Modify Action Parameters           // Action                     // Animation                    // Moveset Data             // Flags
     Character.edit_action_parameters(UZI, 0xE1,                         -1,                             RAILGUN,                     0)
-    Character.edit_action_parameters(UZI, 0xE2,                         -1,                             RAILGUN,                     0)
+    Character.edit_action_parameters(UZI, 0xE2,                         -1,                             RAILGUN_AERIAL,              0)
     Character.edit_action_parameters(UZI, Action.Taunt,                 File.UZI_TAUNT,                 TAUNT,                      -1)
     Character.edit_action_parameters(UZI, Action.Idle,                  File.UZI_IDLE,                  -1,                         -1)
     Character.edit_action_parameters(UZI, Action.Run,                   File.UZI_RUN,                   RUN,                        -1)

@@ -55,17 +55,39 @@ scope UziNSP {
         sw      a0, 0x0028(sp)              // store ra, a0
         lw      v0, 0x0084(a0)              // v0 = player struct
         lw      t6, 0x017C(v0)              // t6 = temp variable 1
+        lw      t8, 0x014C(v0)              // t8 = aerial state
         beql    t6, r0, _continue           // branch if temp variable 1 is not set
         mtc1    r0, f6                      // f6 = 0
         
         // if temp variable 1 is set
-        addiu   a1, sp, 0x0018              // 0x0018(sp) = offset coordinates
         sw      r0, 0x017C(v0)              // reset temp variable 1
-        sw      r0, 0x0018(sp)              // x offset = 0
-        lui     at, 0x4200                  // ~
-        sw      at, 0x001C(sp)              // y offset = 32
-        lui     at, 0x43AA                  // ~
-        sw      at, 0x0020(sp)              // z offset = 340
+        bnez    t8, _aerial
+        addiu   a1, sp, 0x0018              // 0x0018(sp) = offset coordinates
+        
+        // if grounded, use these offsets
+        lui     at, 0x4396                  // ~
+        sw      at, 0x0018(sp)              // x offset = 300
+        
+        lui     at, 0x4220                  // ~
+        sw      at, 0x001C(sp)              // y offset = 40
+        
+        lui     at, 0xC2FA                  // ~
+        sw      at, 0x0020(sp)              // z offset = -125
+        b       _after_offset
+        nop
+        
+        _aerial:
+        // if not grounded, use these offsets instead
+        lui     at, 0x4396                  // ~
+        sw      at, 0x0018(sp)              // x offset = 300
+        
+        lui     at, 0x4220                  // ~
+        sw      at, 0x001C(sp)              // y offset = 40
+        
+        lui     at, 0xC31B                  // ~
+        sw      at, 0x0020(sp)              // z offset = -155
+        
+        _after_offset:
         jal     0x800EDF24                  // returns x/y/z coordinates of the model part in a0 to a1, a1 can also contain offset coordinates
         lw      a0, 0x092C(v0)              // a0 = weapon part struct
         lw      a0, 0x0028(sp)              // a0 = player object
