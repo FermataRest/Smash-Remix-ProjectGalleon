@@ -2710,9 +2710,13 @@
 12D7 Uzi JumpF
 12D8 Uzi JumpB
 12D9 Uzi JumpAF
-12E0 Uzi JumpAB
-12E1 Uzi Shield Break
-12E2 Uzi HeavyItemPickup
+12DA Uzi JumpAB
+12DB Uzi Shield Break
+12DC Uzi HeavyItemPickup
+12DD Uzi Stun Sleep
+12DE Copper-9 Header
+12DF Copper-9 Stage
+12E0 Copper-9 BG
 
 0611 CAPTAIN DeadU
 0611 CAPTAIN ScreenKO

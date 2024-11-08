@@ -1596,6 +1596,12 @@ scope Spawn {
     float32  4095,  0645
     float32 -2090,  1745
     float32  2210,  0645
+    
+    // C8 - Copper 9
+    float32 -3400,  0100
+    float32  2200,  0100
+    float32 -1200,  0100
+    float32  4200,  0100
 
     neutral_table:
     // 00 - Peach's Castle
@@ -2801,6 +2807,12 @@ scope Spawn {
     float32  4095,  0645
     float32 -2090,  1745
     float32  2210,  0645
+
+    // C8 - Copper 9
+    float32 -3400,  0100
+    float32  2200,  0100
+    float32 -1200,  0100
+    float32  4200,  0100
     
 }
 

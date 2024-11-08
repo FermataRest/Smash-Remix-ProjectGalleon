@@ -223,8 +223,9 @@ scope Stages {
         constant BTP_BANJO(0xC5)
         constant POKEFLOATS(0xC6)
         constant BIG_SNOWMAN(0xC7)
+        constant COPPER_9(0xC8)
 
-        constant MAX_STAGE_ID(0xC7)
+        constant MAX_STAGE_ID(0xC8)
 
         // not an actual id, some arbitary number Sakurai picked(?)
         constant RANDOM(0xDE)
@@ -462,6 +463,7 @@ scope Stages {
         constant BTP_BANJO(0x1266)
         constant POKEFLOATS(0x1279)
         constant BIG_SNOWMAN(0x12AC)
+        constant COPPER_9(0x12DE)
     }
 
     scope function {
@@ -506,7 +508,7 @@ scope Stages {
     constant NUM_ROWS(3)
     constant NUM_COLUMNS(6)
     constant NUM_ICONS(NUM_ROWS * NUM_COLUMNS)
-    constant NUM_PAGES(0x05)
+    constant NUM_PAGES(0x06)
 
     // list of instructions that read from the stage id (A press on versus stage select screen)
     // they're in order (you're welcome)
@@ -2934,6 +2936,26 @@ scope Stages {
     db id.POKEFLOATS                        // 58
     db id.BIG_SNOWMAN                       // 59
     db id.RANDOM                            // 60
+    
+    // page 6 (more stages)
+    db id.COPPER_9                          // 61
+    db id.RANDOM                            // 62
+    db id.RANDOM                            // 63
+    db id.RANDOM                            // 64
+    db id.RANDOM                            // 65
+    db id.RANDOM                            // 66
+    db id.RANDOM                            // 67
+    db id.RANDOM                            // 68
+    db id.RANDOM                            // 69
+    db id.RANDOM                            // 6A
+    db id.RANDOM                            // 6B
+    db id.RANDOM                            // 6C
+    db id.RANDOM                            // 6D
+    db id.RANDOM                            // 6E
+    db id.RANDOM                            // 6F
+    db id.RANDOM                            // 70
+    db id.RANDOM                            // 71
+    db id.RANDOM                            // 72
 
     OS.align(16)
 
@@ -3273,6 +3295,7 @@ scope Stages {
     dw OS.NULL                              // Banjo BTP
     dw function.CLONE                       // Pokefloats
     dw function.CLONE                       // Big Snowman
+    dw OS.NULL                              // Copper-9
 
     // @ Description
     // Offsets to image footer struct for stage icons sorted by stage id
@@ -3477,6 +3500,7 @@ scope Stages {
     dw 0x0000A578                           // BTP Banjo
     dw 0x00039278                           // Pokefloats
     dw 0x00039C30                           // Big Snowman
+    dw 0x0003C310                           // Copper-9
 
 
     icon_offset_random:
@@ -3724,6 +3748,7 @@ scope Stages {
     float32 0.5                         // BTP Banjo
     float32 0.6                         // Pokefloats
     float32 0.5                         // Big Snowman
+    float32 0.4                         // Copper-9
 
     // @ Description
     // This holds pointers to position arrays for positioning stage previews.
@@ -3933,6 +3958,7 @@ scope Stages {
     db id.SECTOR_Z                      // Banjo BTP
     db id.PEACHS_CASTLE                 // Pokefloats
     db id.PEACHS_CASTLE                 // Big Snowman
+    db id.SECTOR_Z                      // Copper-9
     OS.align(4)
 
     stage_file_table:
@@ -4137,6 +4163,7 @@ scope Stages {
     dw header.BTP_BANJO,              type.BTP
     dw header.POKEFLOATS,             type.CLONE
     dw header.BIG_SNOWMAN,            type.CLONE
+    dw header.COPPER_9,               type.CLONE
 
     class_table:
     constant class_table_origin(origin())
@@ -5001,6 +5028,7 @@ scope Stages {
     add_bg_animation(SMASHVILLE_REMIX)
     add_stage(pokefloats, "Poke Floats", {MIDI.id.POKEFLOATS}, {MIDI.id.BATTLE_GOLD_SILVER}, {MIDI.id.GOLDENROD_CITY}, OS.FALSE, HAZARDS_ON_MOVEMENT_ON, OS.FALSE, OS.TRUE, class.BATTLE, -1, -1, -1, -1, -1, 0x05, 0x05, 0x05, default_blue_shell_rate, default_lightning_rate, default_item_rate, default_item_rate, POKEMON, Hazards.type.MOVEMENT)
     add_stage(big_snowman, "Big Snowman", {MIDI.id.BIG_SNOWMAN}, {MIDI.id.WENDYS_HOUSE}, {MIDI.id.SILVER_MOUNTAIN}, OS.FALSE, HAZARDS_ON_MOVEMENT_ON, OS.TRUE, OS.TRUE, class.BATTLE, -1, -1, -1, -1, -1, 0x05, 0x05, 0x05, default_blue_shell_rate, default_lightning_rate, default_item_rate, default_item_rate, SNOWBOARDKIDS, Hazards.type.MOVEMENT)
+    add_stage(copper_9, "Copper-9", {MIDI.id.COPPER_9}, {MIDI.id.COPPER_9}, {MIDI.id.COPPER_9}, OS.FALSE, HAZARDS_ON_MOVEMENT_ON, OS.TRUE, OS.TRUE, class.BATTLE, -1, -1, -1, -1, -1, 0x05, 0x05, 0x05, default_blue_shell_rate, default_lightning_rate, default_item_rate, default_item_rate, WORKER, Hazards.type.NONE)
 
     map 0, 0, 256 // restore string mappings
 
