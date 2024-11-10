@@ -143,6 +143,7 @@ scope CharacterDataScreen {
         dw Character.id.BANJO
         dw Character.id.CONKER
         dw Character.id.MARINA
+        dw Character.id.UZI
 
         // This table is used to map character ID to data screen ID
         scope character_id_to_data_screen_id_table: {
@@ -869,6 +870,7 @@ scope CharacterDataScreen {
         set_action(DSP, Banjo.Action.DSPG, 0x0000029A, 0x00000000)
         set_action(JAB, Action.Jab2, 0x0000029A, 0x00000000)
         set_action(JAB, Banjo.Action.Jab3, 0x0000029A, 0x40000000)
+    add_char_to_data_screen(UZI,   0x80009188, 0x00000000, 0x00000000, 33, 50, 0x8001A758, 0x80003388, offset.blaster_shot, offset.reflector, offset.fire_bird, 1, FOX,      1, FOX)
 
     extend_tables()
 
