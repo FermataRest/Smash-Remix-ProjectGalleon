@@ -1579,6 +1579,10 @@ scope FGM {
 	add_sound(Uzi/sounds/hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
 	add_sound(Uzi/sounds/ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
 	add_sound(Uzi/sounds/starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Uzi/sounds/shieldbreak, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Uzi/sounds/DIZZY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Uzi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1)
+    
 
     // This is always last
     write_sounds()

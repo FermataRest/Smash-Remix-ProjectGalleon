@@ -14,7 +14,8 @@ scope Uzi {
     insert SHITHEAVY, "moveset/HEAVYPICK.bin"
     insert JUMP, "moveset/JUMP1.bin"
     insert JUMP_2, "moveset/JUMP2.bin"
-    insert STUN, "moveset/STUN.bin"; Moveset.GO_TO(STUN) // loops
+    insert STUN, "moveset/STUN.bin"; Moveset.GO_TO(STUN2) // loops
+    insert STUN2, "moveset/STUN2.bin"; Moveset.GO_TO(STUN2) // loops
     insert SLEEP, "moveset/SLEEP.bin"; Moveset.GO_TO(SLEEP) // loops
 
     // @ Description
@@ -61,5 +62,18 @@ scope Uzi {
 
     // Set default costume shield colors
     Character.set_costume_shield_colors(UZI, AZURE, RED, GREEN, YELLOW, BLACK, WHITE, GREEN, YELLOW)
+    
+    // Use Mario's initial/grounded script.
+    Character.table_patch_start(initial_script, Character.id.UZI, 0x4)
+    dw 0x800D7DCC
+    OS.patch_end()
+    Character.table_patch_start(grounded_script, Character.id.UZI, 0x4)
+    dw 0x800DE428
+    OS.patch_end()
+
+    // Set crowd chant FGM.
+    Character.table_patch_start(crowd_chant_fgm, Character.id.UZI, 0x2)
+    dh  0x058B
+    OS.patch_end()
 
 }
