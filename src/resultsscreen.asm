@@ -422,7 +422,7 @@ scope ResultsScreen {
         constant MISCHIEF_MAKERS(0xAD18)
         constant GOEMON(0xB888)
         constant BANJO_KAZOOIE(0xC6B8)
-        constant WORKER(0xCEE8)
+        constant WORKER(0xCF18)
     }
 
     // @ Description
@@ -448,7 +448,7 @@ scope ResultsScreen {
         constant MISCHIEF_MAKERS(0xAE20)
         constant GOEMON(0xB990)
         constant BANJO_KAZOOIE(0xC7C0)
-        constant WORKER(0xCFF0)
+        constant WORKER(0xD020)
     }
 
     // @ Description
@@ -474,7 +474,7 @@ scope ResultsScreen {
         constant MISCHIEF_MAKERS(0xAE78)
         constant GOEMON(0xB9E8)
         constant BANJO_KAZOOIE(0xC818)
-        constant WORKER(0xD048)
+        constant WORKER(0xD078)
     }
 
     // @ Description

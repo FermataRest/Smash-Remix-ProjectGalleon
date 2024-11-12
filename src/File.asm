@@ -2706,4 +2706,5 @@ scope File {
     constant UZI_SHIELD_BREAK(0x12DB)   // placeholder
     constant UZI_HEAVYITEMPICK(0x12DC)  // placeholder
     constant UZI_STUNSLEEP(0x12DD)
+    constant UZI_LOSE(0x12E1)
  }

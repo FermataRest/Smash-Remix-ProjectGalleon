@@ -17,6 +17,7 @@ scope Uzi {
     insert STUN, "moveset/STUN.bin"; Moveset.GO_TO(STUN2) // loops
     insert STUN2, "moveset/STUN2.bin"; Moveset.GO_TO(STUN2) // loops
     insert SLEEP, "moveset/SLEEP.bin"; Moveset.GO_TO(SLEEP) // loops
+    insert LOSE, "moveset/LOSE.bin"
 
     // @ Description
     // Uzi's Extra Actions
@@ -31,6 +32,7 @@ scope Uzi {
     Character.edit_action_parameters(UZI, 0xE1,                         -1,                             RAILGUN,                     0)
     Character.edit_action_parameters(UZI, 0xE2,                         -1,                             RAILGUN_AERIAL,              0)
     Character.edit_action_parameters(UZI, Action.Taunt,                 File.UZI_TAUNT,                 TAUNT,                      -1)
+    Character.edit_action_parameters(UZI, Action.ReviveWait,            File.UZI_IDLE,                  -1,                         -1)
     Character.edit_action_parameters(UZI, Action.Idle,                  File.UZI_IDLE,                  -1,                         -1)
     Character.edit_action_parameters(UZI, Action.Run,                   File.UZI_RUN,                   RUN,                        -1)
     Character.edit_action_parameters(UZI, Action.Walk2,                 File.UZI_WALK2,                 -1,                         -1)
@@ -44,17 +46,20 @@ scope Uzi {
     Character.edit_action_parameters(UZI, Action.JumpAerialF,           -1,                             JUMP_2,                     -1)
     Character.edit_action_parameters(UZI, Action.JumpAerialB,           -1,                             JUMP_2,                     -1)
 
-    // Modify Menu Action Parameters           // Action    // Animation            // Moveset Data     // Flags
-    Character.edit_menu_action_parameters(UZI, 0x0,         File.UZI_IDLE,          -1,                 -1)
-
     // Modify Actions                     // Action              // Staling ID   // Main ASM                // Interrupt/Other ASM        // Movement/Physics ASM         // Collision ASM
     Character.edit_action(UZI,            0xE1,                  -1,             UziNSP.main_,              -1,                           -1,                             -1)
     Character.edit_action(UZI,            0xE2,                  -1,             UziNSP.main_,              -1,                           -1,                             UziNSP.air_collision_)
 
-    // Add Action Parameters                  // Action Name       // Base Action   // Animation                // Moveset Data       // Flags
+    // Modify Menu Action Parameters           // Action    // Animation            // Moveset Data     // Flags
+    Character.edit_menu_action_parameters(UZI, 0x0,         File.UZI_IDLE,          -1,                 -1)
+    Character.edit_menu_action_parameters(UZI, 0x5,         File.UZI_LOSE,          LOSE,               -1)
 
-    // Add Actions                     // Action Name     // Base Action  //Parameters                    // Staling ID   // Main ASM                       // Interrupt/Other ASM           // Movement/Physics ASM  	          // Collision ASM
-
+    // Add Action Parameters             // Action Name       // Base Action   // Animation                // Moveset Data       // Flags
+    //Character.add_new_action_params(UZI, USP_Ground,          -1,              File.UZI_USPG,              USPG,                 0)
+    // ^ placeholder stuff ^
+    // Add Actions                // Action Name      // Base Action      //Parameters                  // Staling ID   // Main ASM                // Interrupt/Other ASM         // Movement/Physics ASM  	        // Collision ASM
+    //Character.add_new_action(UZI, USP_Ground,         -1,                 ActionParams.USP_Ground,      0x1E,           UziUSP.main_,              0,                             UziUSP.ground_physics_,           UziUSP.ground_collision_)
+    // ^ placeholder stuff ^
 
     // Set default costumes
     Character.set_default_costumes(Character.id.UZI, 0, 1, 2, 3, 1, 0, 2)
@@ -74,6 +79,11 @@ scope Uzi {
     // Set crowd chant FGM.
     Character.table_patch_start(crowd_chant_fgm, Character.id.UZI, 0x2)
     dh  0x058B
+    OS.patch_end()
+
+    // Set menu zoom size.
+    Character.table_patch_start(menu_zoom, Character.id.UZI, 0x4)
+    float32 1.00
     OS.patch_end()
 
 }
