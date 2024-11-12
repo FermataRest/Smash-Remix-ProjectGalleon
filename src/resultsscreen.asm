@@ -422,6 +422,7 @@ scope ResultsScreen {
         constant MISCHIEF_MAKERS(0xAD18)
         constant GOEMON(0xB888)
         constant BANJO_KAZOOIE(0xC6B8)
+        constant WORKER(0xCEE8)
     }
 
     // @ Description
@@ -447,6 +448,7 @@ scope ResultsScreen {
         constant MISCHIEF_MAKERS(0xAE20)
         constant GOEMON(0xB990)
         constant BANJO_KAZOOIE(0xC7C0)
+        constant WORKER(0xCFF0)
     }
 
     // @ Description
@@ -472,6 +474,7 @@ scope ResultsScreen {
         constant MISCHIEF_MAKERS(0xAE78)
         constant GOEMON(0xB9E8)
         constant BANJO_KAZOOIE(0xC818)
+        constant WORKER(0xD048)
     }
 
     // @ Description
@@ -718,7 +721,7 @@ scope ResultsScreen {
     add_to_results_screen(Character.id.MLUIGI,   FGM.announcer.names.MLUIGI,                 MARIO_BROS,      Character.id.MARIO,   185,     METAL LUIGI,     20,     0.65,      0x0C)
     add_to_results_screen(Character.id.EBI,      FGM.announcer.names.EBI,                    GOEMON,          Character.id.CAPTAIN, 180,     EBISUMARU,       20,     0.65,      {MIDI.id.GOEMON_VICTORY})
     add_to_results_screen(Character.id.DRAGONKING, FGM.announcer.names.DRAGONKING,           SMASH,           Character.id.CAPTAIN, 170,     D.1KING,         30,     1,         {MIDI.id.DKING_VICTORY})
-	add_to_results_screen(Character.id.UZI,      FGM.announcer.names.UZI,                    SMASH,           Character.id.FOX,     145,     UZI,             65,     1,         0x0C)
+	add_to_results_screen(Character.id.UZI,      FGM.announcer.names.UZI,                    WORKER,          Character.id.FOX,     145,     UZI,             65,     1,         0x0C)
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
