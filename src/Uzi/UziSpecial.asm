@@ -3,7 +3,7 @@
 // This file contains subroutines used by Uzi's special moves.
 
 // @ Description
-// Subroutines for Neutral Special
+// Subroutines for Neutral Special - Mostly stolen from Slippy and Peppy.
 scope UziNSP {
 
     // @ Description
@@ -221,7 +221,84 @@ scope UziNSP {
         jr             ra
         or             v0, v1, r0
     }    
+
+    // @ Description
+    // based on 0x80168924
+    blaster_projectile_collision_check_: {
+        addiu   sp, sp, -0x18
+        sw      ra, 0x0014 (sp)
+
+        jal     0x80167C04
+        sw      a0, 0x0018 (sp)
+        beqz    v0, _end
+        lw      t6, 0x0018 (sp)
+        lw      a0, 0x0074 (t6)
+        jal     create_green_blast_gfx_    // create orange blast gfx
+        addiu   a0, a0, 0x001c
+        b       _end_2
+        addiu   v0, r0, 0x0001
+
+        _end:
+        or v0, r0, r0
+
+        _end_2:
+        lw ra, 0x0014 (sp)
+        jr      ra
+        addiu sp, sp, 0x18
+    }
     
+    // @ Description
+    // based on 80168964
+    scope blaster_projectile_collision: {
+        addiu   sp, sp, -0x18
+        sw      ra, 0x0014(sp)
+        lw      a0, 0x0074(a0)
+        jal     create_green_blast_gfx_
+        addiu   a0, a0, 0x001C
+        lw      ra, 0x0014(sp)
+        addiu   sp, sp, 0x18
+        jr      ra
+        addiu   v0, r0, 0x0001        // destroy projectile
+    }
+    
+    // @ Description
+    // based on 80168964
+    scope blaster_projectile_collision_2: {
+        addiu          sp, sp, -0x20
+        sw             ra, 0x0014(sp)
+        lw             v0, 0x0084(a0)
+        lui            at, 0x4000
+        mtc1           at, f6
+        lwc1           f4, 0x0244(v0)
+        or             a3, a0, r0
+        sw             a3, 0x0020(sp)
+        mul.s          f8, f4, f6
+        addiu          a0, v0, 0x0020
+        sw             v0, 0x001c(sp)
+        addiu          a1, v0, 0x0248
+        mfc1           a2, f8
+        jal            0x80019438
+        nop
+        lw             v0, 0x001C(sp)
+        lwc1           f12, 0x0024(v0)
+        jal            0x8001863c
+        lwc1           f14, 0x0020(v0)
+        lw             a3, 0x0020(sp)
+        lui            at, 0x3f80
+        mtc1           at, f10
+        lw             t6, 0x0074(a3)
+        swc1           f0, 0x0038(t6)
+        lw             t7, 0x0074(a3)
+        swc1           f10, 0x0040(t7)
+        lw             a0, 0x0074(a3)
+        jal            create_green_blast_gfx_
+        addiu          a0, a0, 0x001C
+        lw             ra, 0x0014(sp)
+        addiu          sp, sp, 0x20
+        jr             ra
+        or             v0, r0, r0
+    }
+
     // @ Description
     // Projectile struct for Uzi's laser.
     OS.align(16)
@@ -229,5 +306,15 @@ scope UziNSP {
     dw 0x00000000
     dw 0x00000001
     dw Character.UZI_file_6_ptr
-    OS.copy_segment(0x10391C, 0x28)
+    dw 0x00000000                           // offset to hitbox
+    dw 0x1C000000                           // This determines z axis rotation? (samus is 1246)
+    dw 0x801688D0                           // This is the main subroutine for the projectile, handles duration and other things. (default 0x80168540) (samus 0x80168F98)
+    dw blaster_projectile_collision_check_  // This function runs when the projectile collides with clipping. (0x801685F0 - Mario) (0x80169108 - Samus)
+    dw blaster_projectile_collision         // This function runs when the projectile collides with a hurtbox.
+    dw blaster_projectile_collision         // This function runs when the projectile collides with a shield.
+    dw blaster_projectile_collision_2       // This function runs when the projectile collides with edges of a shield and bounces off
+    dw blaster_projectile_collision         // This function runs when the projectile collides/clangs with a hitbox.
+    dw 0x80168A14                           // This function runs when the projectile collides with Fox's reflector (default 0x80168748)
+    dw blaster_projectile_collision         // This function runs when the projectile collides with Ness's psi magnet// absorb routine
+    OS.copy_segment(0x103904, 0x0C)
 }
