@@ -50,9 +50,17 @@ scope Uzi {
     Character.edit_action(UZI,            0xE1,                  -1,             UziNSP.main_,              -1,                           -1,                             -1)
     Character.edit_action(UZI,            0xE2,                  -1,             UziNSP.main_,              -1,                           -1,                             UziNSP.air_collision_)
 
-    // Modify Menu Action Parameters           // Action    // Animation            // Moveset Data     // Flags
-    Character.edit_menu_action_parameters(UZI, 0x0,         File.UZI_IDLE,          -1,                 -1)
-    Character.edit_menu_action_parameters(UZI, 0x5,         File.UZI_LOSE,          LOSE,               -1)
+    // Modify Menu Action Parameters           // Action    // Animation             // Moveset Data     // Flags
+    Character.edit_menu_action_parameters(UZI, 0x0,         File.UZI_IDLE,           -1,                 -1)
+    //Character.edit_menu_action_parameters(UZI, 0x1,         File.UZI_VICTORY_1,      VICTORY_1,          -1)
+    //Character.edit_menu_action_parameters(UZI, 0x2,         File.UZI_VICTORY_2,      VICTORY_2,          -1)
+    //Character.edit_menu_action_parameters(UZI, 0x3,         File.UZI_VICTORY_3,      VICTORY_3,          -1)
+    //Character.edit_menu_action_parameters(UZI, 0x4,         File.UZI_SELECT,         SELECT,             -1)
+    Character.edit_menu_action_parameters(UZI, 0x5,         File.UZI_LOSE,           LOSE,               -1)
+    //Character.edit_menu_action_parameters(UZI, 0x9,         File.UZI_GAME_OVER,      -1,                 -1)
+    //Character.edit_menu_action_parameters(UZI, 0xA,         File.UZI_GAME_CONTINUE,  -1,                 -1)
+    //Character.edit_menu_action_parameters(UZI, 0xD,         File.UZI_POSE_1P,        0x80000000,         -1)
+    //Character.edit_menu_action_parameters(UZI, 0xE,         File.UZI_POSE_1P_CPU,    0x80000000,         -1)
 
     // Add Action Parameters             // Action Name       // Base Action   // Animation                // Moveset Data       // Flags
     //Character.add_new_action_params(UZI, USP_Ground,          -1,              File.UZI_USPG,              USPG,                 0)
