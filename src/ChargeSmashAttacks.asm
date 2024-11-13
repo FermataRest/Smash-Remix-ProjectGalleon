@@ -381,7 +381,25 @@
         db 2        // up      (change later)
         db 2        // down    (change later)
         db 0        // unused
+        
+        entry_sdv:
+        db 2        // forward (change later)
+        db 2        // up      (change later)
+        db 2        // down    (change later)
+        db 0        // unused
 
+        entry_sdn:
+        db 2        // forward (change later)
+        db 2        // up      (change later)
+        db 2        // down    (change later)
+        db 0        // unused
+
+        entry_sdj:
+        db 2        // forward (change later)
+        db 2        // up      (change later)
+        db 2        // down    (change later)
+        db 0        // unused
+        
         frame_table:
         // vanilla fighters
         dw entry_mario  // mario
@@ -460,6 +478,7 @@
         dw entry_ebisumaru  // EBI
         dw entry_dragonking // DRAGON KING
         dw entry_uzi        // UZI
+        dw entry_sdv        // V
 
         // remix polygons
         dw entry_wario

@@ -2718,6 +2718,8 @@
 12DF Copper-9 Stage
 12E0 Copper-9 BG
 12E1 Uzi Lose
+12E2 V Main
+12E3 V Character
 
 0611 CAPTAIN DeadU
 0611 CAPTAIN ScreenKO

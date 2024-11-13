@@ -221,6 +221,7 @@ scope CharacterSelect {
     dw  0xCEE0 + 0x200                      // 0x46 - EBISUMARU
     dw  0x58D0 + 0x200                      // 0x47 - DRAGONKING
 	dw  0xCAE0 + 0x200                      // 0x48 - UZI
+    dw  0x10F38 + 0x200                     // 0x49 - V
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
@@ -355,6 +356,7 @@ scope CharacterSelect {
     add_alt_req_list(Character.id.EBI, req/EBI_MODEL)
     add_alt_req_list(Character.id.DRAGONKING, req/DRAGONKING_MODEL)
 	add_alt_req_list(Character.id.UZI, req/UZI_MODEL)
+    add_alt_req_list(Character.id.V, req/SERIAL_V_MODEL)
 
     // POLYGONS
     add_alt_req_list(Character.id.NWARIO, req/NWARIO_MODEL)
@@ -2363,6 +2365,7 @@ scope CharacterSelect {
         constant GOEMON(0x00023938)
         constant BANJO(0x00026B68 + 0x10)
 		constant UZI(0x0002AE50 + 0x10)
+        constant V(0x0002BF08 + 0x10)
         // j
         constant JMARIO(0x00001078)
         constant JFOX(0x00002138)
@@ -2464,6 +2467,7 @@ scope CharacterSelect {
             constant DOOM(0x0000DEB8)
             constant SNOWBOARDKIDS(0xE510)
 			constant WORKER(0xEB68)
+            constant DISASSEMBLY(0xEB68)
         }
 
         // @ Description
@@ -2545,6 +2549,8 @@ scope CharacterSelect {
             constant Y_SNOWBOARDKIDS(0x419C0000)
 			constant X_WORKER(0x40000000)
 			constant Y_WORKER(0x419C0000)
+            constant X_DISASSEMBLY(0x40000000)
+            constant Y_DISASSEMBLY(0x419C0000)
         }
 
         table:
@@ -2588,6 +2594,7 @@ scope CharacterSelect {
         dw offset.DOOM,             position.X_DOOM,             position.Y_DOOM
         dw offset.SNOWBOARDKIDS,    position.X_SNOWBOARDKIDS,    position.Y_SNOWBOARDKIDS
 		dw offset.WORKER,           position.X_WORKER,           position.Y_WORKER
+        dw offset.DISASSEMBLY,      position.X_DISASSEMBLY,      position.Y_DISASSEMBLY
     }
 
     // @ Description
@@ -2695,6 +2702,7 @@ scope CharacterSelect {
         constant DRAGONKING(0x00023A28 + 0x10)
         constant EPUFF(0x00024CE0 + 0x10)
 		constant UZI(0x000251B8 + 0x10)
+        constant V(0x00025690 + 0x10)
         // POLYGONS
         constant NWARIO(0x0001CB28)
         constant NLUCAS(0x0001D008)
@@ -2796,7 +2804,7 @@ scope CharacterSelect {
        define slot_21(JIGGLYPUFF)
        define slot_22(FALCO)
        define slot_23(SHEIK)
-       define slot_24(NONE)
+       define slot_24(V)
        
        //row 3
        define slot_25(NONE)
@@ -5590,6 +5598,7 @@ scope CharacterSelect {
     add_to_css(Character.id.EBI,    FGM.announcer.names.EBI,            1.50,         0x00010001, GOEMON,       name_texture.EBI,            portrait_offsets.EBI,            25)
     add_to_css(Character.id.DRAGONKING, FGM.announcer.names.DRAGONKING, 1.50,         0x00010002, SMASH,        name_texture.DRAGONKING,     portrait_offsets.DRAGONKING,      8)
 	add_to_css(Character.id.UZI,    FGM.announcer.names.UZI,            1.50,         0x00010004, WORKER,       name_texture.UZI,            portrait_offsets.UZI,            -1)
+    add_to_css(Character.id.V,      FGM.announcer.names.V,              1.50,         0x00010004, DISASSEMBLY,  name_texture.V,              portrait_offsets.V,              -1)
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS

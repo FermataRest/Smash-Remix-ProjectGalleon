@@ -268,6 +268,15 @@ include "src/NBanjo/NBanjo.asm"
 // UZI
 include "src/Uzi/UziSpecial.asm"
 include "src/Uzi/Uzi.asm"
+// V
+include "src/Serial_V/VSpecial.asm"
+include "src/Serial_V/V.asm"
+// N
+
+// J
+
+// CYN
+
 
 // KIRBY
 include "src/Kirby/Kirby.asm"

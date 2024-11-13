@@ -2707,4 +2707,6 @@ scope File {
     constant UZI_HEAVYITEMPICK(0x12DC)  // placeholder
     constant UZI_STUNSLEEP(0x12DD)
     constant UZI_LOSE(0x12E1)
+    constant V_MAIN(0x12E2)
+    constant V_CHARACTER(0x12E3)
  }

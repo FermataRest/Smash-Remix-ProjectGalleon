@@ -3102,6 +3102,7 @@ scope TwelveCharBattle {
     add_defeat_parameters(File.GOEMON_DOWN_STAND_U,     defeated_moveset_mario,     0)          // 0x46 - EBI
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - DRAGONKING
     add_defeat_parameters(0x2B1,                        defeated_moveset_fox_link,  0)          // 0x48 - UZI
+    add_defeat_parameters(0x2B1,                        defeated_moveset_fox_link,  0)          // 0x49 - V
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS

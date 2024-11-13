@@ -12,7 +12,7 @@ include "OS.asm"
 
 scope Character {
     // number of character slots to add
-    constant ADD_CHARACTERS(62)
+    constant ADD_CHARACTERS(63)
     // start and end offset for the main character struct table (RAM 0x80116E10)
     constant STRUCT_TABLE(0x92610)
     variable STRUCT_TABLE_END(STRUCT_TABLE + 0x6C)
@@ -3298,6 +3298,8 @@ scope Character {
     define_character(DRAGONKING, CAPTAIN, File.DRAGONKING_MAIN, 0x0EB, 0, File.DRAGONKING_CHARACTER, File.DRAGONKING_SHIELD_POSE, 0, 0x15B, 0x14D, 0, 0x488, 5, OS.TRUE, OS.TRUE, Stages.id.BTT_FALCON, Stages.id.BTP_FALCON, Stages.id.BTT_GND, Stages.id.BTP_GND, sound_type.J, variant_type.SPECIAL)
 	// 0x48 - UZI
 	define_character(UZI, FOX, File.UZI_MAIN, 0x0D0, 0, File.UZI_CHARACTER, 0x13A, File.UZI_LASER_HITBOX, 0x15A, 0x0A1, File.UZI_LASER_GRAPHIC, 0x474, 0, OS.TRUE, OS.FALSE, Stages.id.BTT_FOX, Stages.id.BTP_FOX, Stages.id.BTT_FOX, Stages.id.BTP_FOX, sound_type.U, variant_type.NA)
+	// 0x49 - V
+	define_character(V, FOX, File.V_MAIN, 0x0D0, 0, File.V_CHARACTER, 0x13A, 0x0D1, 0x15A, 0x0A1, 0x013C, 0x46C, 0, OS.TRUE, OS.FALSE, Stages.id.BTT_FOX, Stages.id.BTP_FOX, Stages.id.BTT_FOX, Stages.id.BTP_FOX, sound_type.U, variant_type.NA)
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
