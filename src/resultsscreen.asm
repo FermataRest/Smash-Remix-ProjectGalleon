@@ -424,6 +424,7 @@ scope ResultsScreen {
         constant BANJO_KAZOOIE(0xC6B8)
         constant WORKER(0xCF18)
         constant DISASSEMBLY(0xDD88)
+        constant SOLVER(0xE418)
     }
 
     // @ Description
@@ -451,6 +452,7 @@ scope ResultsScreen {
         constant BANJO_KAZOOIE(0xC7C0)
         constant WORKER(0xD020)
         constant DISASSEMBLY(0xDE90)
+        constant SOLVER(0xE520)
     }
 
     // @ Description
@@ -478,6 +480,7 @@ scope ResultsScreen {
         constant BANJO_KAZOOIE(0xC818)
         constant WORKER(0xD078)
         constant DISASSEMBLY(0xDEE8)
+        constant SOLVER(0xE578)
     }
 
     // @ Description
