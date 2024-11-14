@@ -540,6 +540,7 @@ scope MIDI {
     insert_extra_midi(PLAY_A_MINIGAME)
     insert_midi(CREDITS_BRAWL, OS.TRUE, OS.TRUE, "Credits (Brawl)", ssb)
 	insert_midi(COPPER_9, OS.TRUE, OS.TRUE, "Copper 9", md)
+    insert_extra_midi(UZI_VICTORY)
 
     pushvar origin, base
 
