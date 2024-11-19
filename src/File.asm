@@ -2709,4 +2709,6 @@ scope File {
     constant UZI_LOSE(0x12E1)
     constant V_MAIN(0x12E2)
     constant V_CHARACTER(0x12E3)
+    constant N_MAIN(0x12E4)
+    constant N_CHARACTER(0x12E5)
  }

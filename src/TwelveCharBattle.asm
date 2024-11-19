@@ -3103,6 +3103,7 @@ scope TwelveCharBattle {
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - DRAGONKING
     add_defeat_parameters(0x2B1,                        defeated_moveset_fox_link,  0)          // 0x48 - UZI
     add_defeat_parameters(0x2B1,                        defeated_moveset_fox_link,  0)          // 0x49 - V
+    add_defeat_parameters(0x2B1,                        defeated_moveset_fox_link,  0)          // 0x4A - N
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS

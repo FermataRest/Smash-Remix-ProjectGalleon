@@ -222,6 +222,7 @@ scope CharacterSelect {
     dw  0x58D0 + 0x200                      // 0x47 - DRAGONKING
 	dw  0xCAE0 + 0x200                      // 0x48 - UZI
     dw  0x10F38 + 0x200                     // 0x49 - V
+    dw  0x10F38 + 0x200                     // 0x4A - N
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
@@ -357,6 +358,7 @@ scope CharacterSelect {
     add_alt_req_list(Character.id.DRAGONKING, req/DRAGONKING_MODEL)
 	add_alt_req_list(Character.id.UZI, req/UZI_MODEL)
     add_alt_req_list(Character.id.V, req/SERIAL_V_MODEL)
+    add_alt_req_list(Character.id.N, req/SERIAL_N_MODEL)
 
     // POLYGONS
     add_alt_req_list(Character.id.NWARIO, req/NWARIO_MODEL)
@@ -2366,6 +2368,7 @@ scope CharacterSelect {
         constant BANJO(0x00026B68 + 0x10)
 		constant UZI(0x0002AE50 + 0x10)
         constant V(0x0002BF08 + 0x10)
+        constant N(0x0002CFC0 + 0x10)
         // j
         constant JMARIO(0x00001078)
         constant JFOX(0x00002138)
@@ -2704,6 +2707,7 @@ scope CharacterSelect {
         constant EPUFF(0x00024CE0 + 0x10)
 		constant UZI(0x000251B8 + 0x10)
         constant V(0x00025690 + 0x10)
+        constant N(0x00025690 + 0x10)
         // POLYGONS
         constant NWARIO(0x0001CB28)
         constant NLUCAS(0x0001D008)
@@ -2805,7 +2809,7 @@ scope CharacterSelect {
        define slot_21(JIGGLYPUFF)
        define slot_22(FALCO)
        define slot_23(SHEIK)
-       define slot_24(V)
+       define slot_24(N)
        
        //row 3
        define slot_25(NONE)
@@ -2819,7 +2823,7 @@ scope CharacterSelect {
        define slot_33(MTWO)
        define slot_34(MARTH)
        define slot_35(BANJO)
-       define slot_36(NONE)
+       define slot_36(V)
     }
 
     // @ Description
@@ -5600,6 +5604,7 @@ scope CharacterSelect {
     add_to_css(Character.id.DRAGONKING, FGM.announcer.names.DRAGONKING, 1.50,         0x00010002, SMASH,        name_texture.DRAGONKING,     portrait_offsets.DRAGONKING,      8)
 	add_to_css(Character.id.UZI,    FGM.announcer.names.UZI,            1.50,         0x00010004, WORKER,       name_texture.UZI,            portrait_offsets.UZI,            -1)
     add_to_css(Character.id.V,      FGM.announcer.names.V,              1.50,         0x00010004, DISASSEMBLY,  name_texture.V,              portrait_offsets.V,              -1)
+    add_to_css(Character.id.N,      FGM.announcer.names.N,              1.50,         0x00010004, DISASSEMBLY,  name_texture.N,              portrait_offsets.N,              -1)
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS

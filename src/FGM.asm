@@ -1583,6 +1583,7 @@ scope FGM {
     add_sound(Uzi/sounds/DIZZY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Uzi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1)
     add_sound(Serial_V/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Serial_N/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     
 
     // This is always last
@@ -1767,6 +1768,7 @@ scope FGM {
             constant EPUFF(1388)
 			constant UZI(1403)
             constant V(1420)
+            constant N(1421)
         }
 
         scope css {

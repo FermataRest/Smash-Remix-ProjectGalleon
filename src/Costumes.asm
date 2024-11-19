@@ -991,6 +991,7 @@ scope Costumes {
         db 0x05                             // Dragon King
         db 0x05                             // Uzi
         db 0x05                             // V
+        db 0x05                             // N
         // Polygons
         db 0x05                             // Polygon Wario
         db 0x05                             // Polygon Lucas

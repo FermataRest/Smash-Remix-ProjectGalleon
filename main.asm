@@ -272,7 +272,8 @@ include "src/Uzi/Uzi.asm"
 include "src/Serial_V/VSpecial.asm"
 include "src/Serial_V/V.asm"
 // N
-
+include "src/Serial_N/NSpecial.asm"
+include "src/Serial_N/N.asm"
 // J
 
 // CYN

@@ -479,6 +479,7 @@
         dw entry_dragonking // DRAGON KING
         dw entry_uzi        // UZI
         dw entry_sdv        // V
+        dw entry_sdn        // N
 
         // remix polygons
         dw entry_wario

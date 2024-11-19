@@ -728,7 +728,8 @@ scope ResultsScreen {
     add_to_results_screen(Character.id.EBI,      FGM.announcer.names.EBI,                    GOEMON,          Character.id.CAPTAIN, 180,     EBISUMARU,       20,     0.65,      {MIDI.id.GOEMON_VICTORY})
     add_to_results_screen(Character.id.DRAGONKING, FGM.announcer.names.DRAGONKING,           SMASH,           Character.id.CAPTAIN, 170,     D.1KING,         30,     1,         {MIDI.id.DKING_VICTORY})
 	add_to_results_screen(Character.id.UZI,      FGM.announcer.names.UZI,                    WORKER,          Character.id.FOX,     145,     UZI,             65,     1,         {MIDI.id.UZI_VICTORY})
-    add_to_results_screen(Character.id.V,        FGM.announcer.names.V,                      DISASSEMBLY,     Character.id.FOX,     135,     V,               85,     1,         0x0C)
+    add_to_results_screen(Character.id.V,        FGM.announcer.names.V,                      DISASSEMBLY,     Character.id.FOX,     135,     V,               85,     1,         {MIDI.id.UZI_VICTORY})
+    add_to_results_screen(Character.id.N,        FGM.announcer.names.N,                      DISASSEMBLY,     Character.id.FOX,     135,     N,               85,     1,         {MIDI.id.UZI_VICTORY})
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS

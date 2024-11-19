@@ -2583,6 +2583,7 @@ scope Training {
     string_dragonking:; char_0x47:; db "Dragon King", 0x00
     string_uzi:; char_0x48:; db "Uzi", 0x00
     string_v:; char_0x49:; db "V", 0x00
+    string_n:; char_0x4A:; db "N", 0x00
     OS.align(4)
 
     string_table_char:
@@ -2619,6 +2620,7 @@ scope Training {
     dw char_0x44            // BANJO
     dw char_0x48            // UZI
     dw char_0x49            // V
+    dw char_0x4A            // N
 
     dw char_0x2A            // J MARIO
     dw char_0x29            // J FOX
@@ -2719,10 +2721,11 @@ scope Training {
         constant BANJO(0x1D)
 		constant UZI(0x1E)
         constant V(0x1F)
+        constant N(0x20)
 
         // Increment JMARIO after adding more characters above
         // j characters
-        constant JMARIO(0x20)
+        constant JMARIO(0x21)
         constant JFOX(JMARIO + 0x01)
         constant JDK(JMARIO + 0x02)
         constant JSAMUS(JMARIO + 0x03)
@@ -2818,6 +2821,7 @@ scope Training {
     db Character.id.BANJO
 	db Character.id.UZI
     db Character.id.V
+    db Character.id.N
 
     db Character.id.JMARIO
     db Character.id.JFOX
@@ -2954,6 +2958,7 @@ scope Training {
     db id.DRAGONKING
 	db id.UZI
     db id.V
+    db id.N
 	// ADD NEW CHARACTERS Here
 
 	// REMIX POLYGONS

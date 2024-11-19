@@ -2720,6 +2720,8 @@
 12E1 Uzi Lose
 12E2 V Main
 12E3 V Character
+12E4 N Main
+12E5 N Character
 
 0611 CAPTAIN DeadU
 0611 CAPTAIN ScreenKO

@@ -1666,6 +1666,7 @@ scope SinglePlayer {
         constant DRAGONKING(0x0000B4B0)
         constant UZI(0x0000C088)
         constant V(0x0000C200)
+        constant N(0x0000C200)
 
         // Duo Teams
         constant STARFOX(0x00006238)
@@ -1909,6 +1910,7 @@ scope SinglePlayer {
         constant DRAGONKING(0x00000046)
         constant UZI(0x00000065)
         constant V(0x000000046)
+        constant N(0x000000046)
         // TODO: make sure these are good
         constant JSAMUS(0x00000032)
         constant JNESS(0x00000032)
@@ -2372,6 +2374,7 @@ scope SinglePlayer {
     dh File.SINGLEPLAYER_VICTORY_IMAGE_BOTTOM               // DRAGON KING
     dh File.SINGLEPLAYER_VICTORY_IMAGE_BOTTOM               // UZI
     dh File.SINGLEPLAYER_VICTORY_IMAGE_BOTTOM               // V
+    dh File.SINGLEPLAYER_VICTORY_IMAGE_BOTTOM               // N
 
     // ADD NEW CHARACTERS HERE
 
@@ -2747,6 +2750,7 @@ scope SinglePlayer {
     add_to_single_player(Character.id.DRAGONKING, name_texture.DRAGONKING, name_delay.DRAGONKING)
     add_to_single_player(Character.id.UZI,        name_texture.UZI,        name_delay.UZI)
     add_to_single_player(Character.id.V,          name_texture.V,          name_delay.V)
+    add_to_single_player(Character.id.N,          name_texture.N,          name_delay.N)
 
     // REMIX POLYGONS    character id          name texture          name delay
     add_to_single_player(Character.id.NWARIO,  name_texture.NWARIO,  name_delay.NWARIO)
