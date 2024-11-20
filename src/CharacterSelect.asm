@@ -2471,7 +2471,8 @@ scope CharacterSelect {
             constant DOOM(0x0000DEB8)
             constant SNOWBOARDKIDS(0xE510)
 			constant WORKER(0xEB68)
-            constant DISASSEMBLY(0xF1B0)
+            constant DISASSEMBLY(0xF1C0)
+            constant SOLVER(0xF818)
         }
 
         // @ Description
