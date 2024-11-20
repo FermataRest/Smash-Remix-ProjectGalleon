@@ -1677,6 +1677,16 @@ scope CharacterSelect {
         lli     a0, Character.id.SANDBAG    // a0 = SANDBAG
         beql    a0, s0, _loop               // if char_id = SANDBAG, skip
         addiu   s0, s0, 0x0001              // increment index
+        
+        lli     a0, Character.id.UZI        // a0 = UZI
+        beql    a0, s0, _loop               // if char_id = UZI, skip
+        addiu   s0, s0, 0x0001              // increment index
+        lli     a0, Character.id.V          // a0 = V
+        beql    a0, s0, _loop               // if char_id = V, skip
+        addiu   s0, s0, 0x0001              // increment index
+        lli     a0, Character.id.N          // a0 = N
+        beql    a0, s0, _loop               // if char_id = N, skip
+        addiu   s0, s0, 0x0001              // increment index
 
 		// check variant
         li      a0, Character.variant_type.table
