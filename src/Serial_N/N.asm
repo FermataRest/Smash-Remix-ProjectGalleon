@@ -57,6 +57,6 @@ scope N {
     
     // Set menu zoom size.
     Character.table_patch_start(menu_zoom, Character.id.N, 0x4)
-    float32 1.2
+    float32 1.4
     OS.patch_end()
 }

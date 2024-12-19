@@ -91,7 +91,7 @@ scope Uzi {
 
     // Set menu zoom size.
     Character.table_patch_start(menu_zoom, Character.id.UZI, 0x4)
-    float32 1.175
+    float32 1.125
     OS.patch_end()
 
 }

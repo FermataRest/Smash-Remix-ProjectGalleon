@@ -221,8 +221,8 @@ scope CharacterSelect {
     dw  0xCEE0 + 0x200                      // 0x46 - EBISUMARU
     dw  0x58D0 + 0x200                      // 0x47 - DRAGONKING
 	dw  0xCAE0 + 0x200                      // 0x48 - UZI
-    dw  0x10F38 + 0x200                     // 0x49 - V
-    dw  0x10F38 + 0x200                     // 0x4A - N
+    dw  0xDE08 + 0x200                      // 0x49 - V
+    dw  0xC0A8 + 0x200                      // 0x4A - N
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
@@ -2718,7 +2718,7 @@ scope CharacterSelect {
         constant EPUFF(0x00024CE0 + 0x10)
 		constant UZI(0x000251B8 + 0x10)
         constant V(0x00025690 + 0x10)
-        constant N(0x00025690 + 0x10)
+        constant N(0x00025B68 + 0x10)
         // POLYGONS
         constant NWARIO(0x0001CB28)
         constant NLUCAS(0x0001D008)
