@@ -237,6 +237,38 @@ scope projectile_shoot_fgm_fix: {
     nop
 }
 
+scope uzi_reflect: {
+    OS.patch_start(0x5E92C, 0x800E312C)
+    j       uzi_reflect
+    sw      v1, 0x07C8(s1)              // original line 1
+    _return:
+    OS.patch_end()
+
+    // a1 = s6
+    // s0 = item struct
+    // s1 = player struct
+    // s6 = item coll data?
+
+    addiu   at, r0, 0x1009              // at = golden gun id
+    lw      t3, 0x000C(s0)              // t3 = item id
+    bne     t3, at, _regular            // branch if item id != golden gun
+    lw      t3, 0x0008(s1)              // get char id
+
+    addiu   at, r0, Character.id.UZI    // at = UZI
+    bne     t3, at, _regular            // branch if char id != UZI
+    addiu   at, r0, 0x0005              // ~
+
+    sw      at, 0x07C8(s1)              // shield damage = 5
+    lwc1    f6, 0x0020(s0)              // f6 = wp vel x
+    neg.s   f4, f6                      // f4 = -wp vel x
+    j       _return                     // ~
+    swc1    f4, 0x0020(s0)              // wp vel x = f4
+
+    _regular:
+    j       _return
+    sw      t6, 0x07CC(s1)
+}
+
 scope projectile_properties_fix: {
     OS.patch_start(0xF04CC, 0x80175A8C)
     j       projectile_properties_fix
