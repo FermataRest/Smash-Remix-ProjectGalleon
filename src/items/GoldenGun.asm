@@ -239,8 +239,8 @@ scope projectile_shoot_fgm_fix: {
 
 scope uzi_reflect: {
     OS.patch_start(0x5E92C, 0x800E312C)
-    j       uzi_reflect
     sw      v1, 0x07C8(s1)      // og line 2
+    j       uzi_reflect
     _return:
     OS.patch_end()
 
