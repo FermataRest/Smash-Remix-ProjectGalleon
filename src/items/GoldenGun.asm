@@ -250,19 +250,21 @@ scope uzi_reflect: {
     // s6 = item coll data?
 
     addiu   at, r0, 0x1009              // at = golden gun id
-    lw      t3, 0x000C(s0)              // t3 = item id
-    bne     t3, at, _regular            // branch if item id != golden gun
-    lw      t3, 0x0008(s1)              // get char id
+    lw      t3, 0x000C(s0)              // t3 = current item id
+    bne     t3, at, _regular            // branch if current item id != golden gun
+    lw      t3, 0x0008(s1)              // t3 = current char id
 
     addiu   at, r0, Character.id.UZI    // at = UZI
-    bne     t3, at, _regular            // branch if char id != UZI
+    bne     t3, at, _regular            // branch if current char id != UZI
     addiu   at, r0, 0x0005              // ~
 
+    lwc1    f6, 0x0020(s0)              // f6 = bul x vel
+    neg.s   f4, f6                      // f4 = -f6
     sw      at, 0x07C8(s1)              // shield damage = 5
-    lwc1    f6, 0x0020(s0)              // f6 = wp vel x
-    neg.s   f4, f6                      // f4 = -wp vel x
+    swc1    f4, 0x0020(s0)              // bul x vel = f4
+    lw      t3, 0x0054(sp)              // get gobj of player reflecting (Uzi)
     j       _return                     // ~
-    swc1    f4, 0x0020(s0)              // wp vel x = f4
+    sw      t3, 0x0008(s0)              // set weapon owner to Uzi (now player shooting can get hit)
 
     _regular:
     j       _return
