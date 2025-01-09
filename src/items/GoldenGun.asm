@@ -240,35 +240,56 @@ scope projectile_shoot_fgm_fix: {
 scope uzi_reflect: {
     OS.patch_start(0x5E92C, 0x800E312C)
     j       uzi_reflect
-    sw      v1, 0x07C8(s1)              // original line 1
+    sw      v1, 0x07C8(s1)      // og line 2
     _return:
     OS.patch_end()
 
-    // a1 = s6
     // s0 = item struct
     // s1 = player struct
-    // s6 = item coll data?
 
-    addiu   at, r0, 0x1009              // at = golden gun id
-    lw      t3, 0x000C(s0)              // t3 = current item id
-    bne     t3, at, _regular            // branch if current item id != golden gun
-    lw      t3, 0x0008(s1)              // t3 = current char id
+    addiu   at, r0, Item.GoldenGun.PROJECTILE_ID // at = golden gun id
+    lw      t3, 0x000C(s0)                       // t3 = held item id
+    bne     t3, at, _regular                     // branch if held item id != golden gun
 
-    addiu   at, r0, Character.id.UZI    // at = UZI
-    bne     t3, at, _regular            // branch if current char id != UZI
-    addiu   at, r0, 0x0005              // ~
+    lw      t3, 0x0008(s1)           // t3 = current char id
+    addiu   at, r0, Character.id.UZI // at = Uzi char id
+    bne     t3, at, _regular         // stop if current char id != Uzi
+    addiu   at, r0, 0x0005           // at = 5
 
-    lwc1    f6, 0x0020(s0)              // f6 = bul x vel
-    neg.s   f4, f6                      // f4 = -f6
-    sw      at, 0x07C8(s1)              // shield damage = 5
-    swc1    f4, 0x0020(s0)              // bul x vel = f4
-    lw      t3, 0x0054(sp)              // get gobj of player reflecting (Uzi)
-    j       _return                     // ~
-    sw      t3, 0x0008(s0)              // set weapon owner to Uzi (now player shooting can get hit)
+    sw      at, 0x07C8(s1)      // shield damage = at
+    lw      at, 0x0054(sp)      // get gobj of player reflecting
+    sw      at, 0x0008(s0)      // set weapon owner to player reflecting
+
+    addiu   s4, r0, 0x0001      // s4 = 1 only if Uzi shielded golden gun
+    lwc1    f6, 0x0020(s0)      // f6 = bullet x vel
+    neg.s   f4, f6              // f4 = -f6
+    j       _return             // ~
+    swc1    f4, 0x0020(s0)      // bullet x vel = f4
 
     _regular:
     j       _return
-    sw      t6, 0x07CC(s1)
+    sw      t6, 0x07CC(s1)      // og line 1
+}
+
+scope uzi_reflect_fgm: {
+    OS.patch_start(0x5E998, 0x800E3198)
+    j       uzi_reflect_fgm
+    nop
+    _return:
+    OS.patch_end()
+
+    jal     0x80100BF0          // og line 1
+    addu    a1, t3, v1          // og line 2
+
+    beqz    s4, _end            // branch if s4 == 1, only set when Uzi shields Golden Gun
+    nop                         // ~
+
+    jal     0x800269C0          // play fgm
+    addiu   a0, r0, 0x058E      // fgm id = 0x58E (Shield Ricochet)
+
+    _end:   
+    j       _return             // ~
+    or      s4, r0, r0          // s4 = 0
 }
 
 scope projectile_properties_fix: {

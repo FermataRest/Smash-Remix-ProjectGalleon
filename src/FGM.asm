@@ -1584,6 +1584,7 @@ scope FGM {
     add_sound(Uzi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1)
     add_sound(Serial_V/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(Serial_N/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Uzi/sounds/SOLVER_RICOCHET, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     
 
     // This is always last
