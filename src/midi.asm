@@ -277,6 +277,7 @@ scope MIDI {
 	add_game(redearth, "Red Earth")
 	add_game(spark, "South Park")
 	add_game(unreal, "Unreal")
+	add_game(ssfs, "6646")
     OS.align(4)
 
     // insert custom midi files
@@ -563,6 +564,7 @@ scope MIDI {
 	insert_midi(TABUNDANCE, OS.TRUE, OS.TRUE, "Tabun Dance (Unused Track)", spark)
 	insert_midi(ELEVATORCAVERNS, OS.TRUE, OS.TRUE, "Elevator (Caverns)", goldeneye)
 	insert_midi(UNREALHUB3, OS.TRUE, OS.TRUE, "Hub 3 (Spire)", unreal)
+	insert_midi(HUNDREDCHAIN, OS.TRUE, OS.TRUE, "Hundred Chain (Melty Blood Arrange)", ssfs)
     pushvar origin, base
 
     // Extend Sound Test Music numbers so we can test in game easier
