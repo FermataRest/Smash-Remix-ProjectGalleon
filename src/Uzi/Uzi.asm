@@ -94,4 +94,43 @@ scope Uzi {
     float32 1.125
     OS.patch_end()
 
+    // @ Description
+    // s0 = item struct
+    // s1 = player struct
+    // Edits routine 800E3048 ;(known as ftMainUpdateShieldStatWeapon in decomp)
+    scope ggun_reflect: {
+        OS.patch_start(0x5E92C, 0x800E312C)
+        sw      v1, 0x07C8(s1)      // og line 2
+        j       ggun_reflect
+        _return:
+        OS.patch_end()
+
+        addiu   t2, r0, Character.id.UZI             // t2 = Uzi char id
+        addiu   t3, r0, Item.GoldenGun.PROJECTILE_ID // t3 = Golden Gun id
+
+        lw      at, 0x0008(s1)      // at = current char id
+        bne     at, t2, _regular    // stop if current char id != Uzi
+        lw      at, 0x000C(s0)      // at = held item id
+        bne     at, t3, _regular    // branch if held item id != golden gun
+
+        addiu   t2, r0, 0x0005      // t2 = 5
+        sw      t2, 0x07C8(s1)      // shield damage = t2
+        lw      t3, 0x0054(sp)      // get gobj of player reflecting
+        sw      t3, 0x0008(s0)      // set weapon owner to player reflecting
+
+        OS.save_registers()
+        jal     0x800269C0          // play fgm
+        addiu   a0, r0, 0x058E      // fgm id = 0x58E (Shield Ricochet)
+        OS.restore_registers()
+
+        lwc1    f6, 0x0020(s0)      // f6 = bullet x vel
+        neg.s   f4, f6              // f4 = -f6
+        j       _return             // ~
+        swc1    f4, 0x0020(s0)      // bullet x vel = f4
+
+        _regular:
+        j       _return
+        sw      t6, 0x07CC(s1)      // og line 1
+    }
+
 }
