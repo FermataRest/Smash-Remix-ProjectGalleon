@@ -565,6 +565,7 @@ scope MIDI {
 	insert_midi(ELEVATORCAVERNS, OS.TRUE, OS.TRUE, "Elevator (Caverns)", goldeneye)
 	insert_midi(UNREALHUB3, OS.TRUE, OS.TRUE, "Hub 3 (Spire)", unreal)
 	insert_midi(HUNDREDCHAIN, OS.TRUE, OS.TRUE, "Hundred Chain (Melty Blood Arrange)", ssfs)
+	insert_midi(TARGITZANBT, OS.TRUE, OS.TRUE, "Vs. Targitzan", banjo2)
     pushvar origin, base
 
     // Extend Sound Test Music numbers so we can test in game easier
