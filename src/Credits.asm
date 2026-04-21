@@ -15,12 +15,12 @@ scope Credits {
     OS.patch_start(0x183F58, 0x80136858)
     dw 0x54
     OS.patch_end()
-    
+
     // credits speed is faster when start button is pressed
     OS.patch_start(0x187EB4, 0x8013A7B4)
     dw 0x3DCCCCCD   // speed = 0.1 (was 0.05)
     OS.patch_end()
-    
+
     // make the credits move twice as fast
 
     // @ Description
@@ -310,7 +310,9 @@ scope Credits {
     add_title("Developer")
     add_name("MarioReincarnate", "Let's just say you owe him|lunch", remix)
     add_name("Cyjorg", "Stage Engine", remix)
-    add_name("Halofactory", "That's the way she goes.", remix)
+    add_name("Halofactory", "Way of the road, buddy", remix)
+    add_name("Shino", "Parry, Special Zoom, Rage,|CPU AI wizard,|Refactoring, tools,|scripting, modding engine", remix)
+    add_name("goombapatrol", "Is this a work in progress?|nop", remix)
 
     add_title("Lead Artist")
     add_name("Sope", "Should lay off the alcohol|tbh", remix)
@@ -325,8 +327,8 @@ scope Credits {
     add_name("Honey", "Gameplay Balance & Design", remix)
 
     add_title("Lead Tester")
-    add_name("goombapatrol", "Quality Control|They make it, I break it", remix)
-    add_name("CMM1215", "Hardware Testing|1P & Item Spawn Tweaks|Banjo Bio Brigade", remix)
+    add_name("goombapatrol", "Quality Assurance|Menu Coding Support|They make it, I break it", remix)
+    add_name("CMM1215", "Hardware Testing|Public Patch Notes|1P & Item Spawn Tweaks|Misc Character Bios", remix)
 
     add_title("Installation Specialist")
     add_name("CEnnis91", "-- .- -.. .|-.-- --- ..-|.-.. --- --- -.-", remix)
@@ -342,9 +344,12 @@ scope Credits {
     add_name("Adrian Garcia", "Dark Samus Textures", remix)
     add_name("M-1", "Wolf Model, Gerudo Valley", remix)
     add_name("TheQuickSlash", "\dDork\d -Sope|oFTo | https://youtu.be/ | widZEAJc0QM", remix)
-    add_name("Halofactory", "Sheik, Ebisumaru Models|Smashville v2", remix)
+    add_name("Halofactory", "Sheik, Polygon Sheik|Models|Stage Modeling", remix)
     add_name("Jay6T4", "Metal Luigi Model", remix)
-    add_name("HeronNobody", "Ebisumaru Model", remix)
+    add_name("HeronNobody", "Ebisumaru and Roy Models", remix)
+    add_name("OniFox", "Roy and Dark Samus Models", remix)
+    add_name("PrufStudent", "Roy Model Optimization,|Wolf Model Optimization", remix)
+    add_name("Pringles", "Dr. Luigi Model, Wolf|Model Optimization", remix)
 
     add_title("Artists")
     add_name("Sope", "Character Models, VFX,|Character Artwork", remix)
@@ -358,7 +363,8 @@ scope Credits {
     add_name("TheQuickSlash", "Sonic Victory Image|Goemon Victory Image|Super Sonic Portrait", remix)
     add_name("Halofactory", "Sheik Portrait", remix)
     add_name("Pringles", "Ebisumaru Portrait, Metal|Luigi Portrait", remix)
-	add_name("1upShyguy", "Snowboard Kids|Series Icon", remix)
+    add_name("1upShyguy", "Snowboard Kids|Series Icon", remix)
+    add_name("OniFox", "Roy and Dark Samus|Portraits, Various|Victory Images", remix)
 
     add_title("Animators")
     add_name("Sope", "Character and Stage|Animations", remix)
@@ -377,6 +383,8 @@ scope Credits {
     add_name("Halofactory", "Character Animations", remix)
     add_name("TheQuickSlash", "Character Animations", remix)
     add_name("Pringles", "Character Animations", remix)
+    add_name("OniFox", "Character Animations", remix)
+    add_name("UltIMa647", "Character Animations", remix)
 
     add_title("Musicians")
     add_name("TT", "Music Porter and Arranger", remix)
@@ -395,9 +403,9 @@ scope Credits {
     add_name("supa", "", remix)
     add_name("Pringles", "Three twenties,|or something?", remix)
     add_name("TheMrIron2", "", remix)
-    add_name("Unforseen Uplink", "", remix)
+    add_name("copperthejackal", "", remix)
     add_name("1upShyguy", "Music Porter and Arranger|Menu Music Madman", remix)
-    add_name("Halofactory", "Music Porter", remix)
+    add_name("Halofactory", "Music Porter and Arranger", remix)
 
     add_title("Stage Designers")
     add_name("BridGurrr", "Ganon's Tower, Deku Tree,|First Destination", remix)
@@ -413,22 +421,27 @@ scope Credits {
     add_name("Retro64", "Dr. Mario, Kitchen Island,|Onett, New Pork City,|Bowser's Keep, Windy,|Casino Night Zone", remix)
     add_name("TheQuickSlash", "dataDyne, Castle Siege,|Edo Town, Big Snowman", remix)
     add_name("ownsoldier", "Rith Essa", remix)
-    add_name("Halofactory", "Dracula's Castle,|Reverse Castle", remix)
+    add_name("Halofactory", "Smashville, Drac's Castle,|Mad Monster Rework|Shading on Ganon's Tower|and Frosty Village ", remix)
     add_name("Pringles", "First Destination Remix,|Big Boo's Haunt, RTTF|Remix", remix)
     add_name("HeronNobody", "Melrode, Deku Tree,|Crateria, Big Snowman", remix)
+    add_name("Sam the Salmon", "Pigmask Fortress, N. Sanity|Beach, Snow Go, Windy|Shading, N64 Remix|Shading, Melrode Shading", remix)
+    add_name("OniFox", "Hyrule Temple Rework", remix)
+    add_name("Maafia", "Autumn How to Play", remix)
 
     add_title("Voice Artists")
     add_name("Zarkpudd", "Narration", remix)
     add_name("Puma Pet", "Editing and Effects", remix)
     add_name("Pringles", "Editing and Effects", remix)
     add_name("TheMrIron2", "Narration", remix)
+    add_name("Jeff Manning", "Narration", remix)
 
     add_title("Modders")
     add_name("Qapples", "", remix)
     add_name("smb123w64gb", "", remix)
     add_name("FaxMeAppleJuice", "Regional Variant Porting", remix)
-    add_name("goombapatrol", "Menu Coding Support,|1P Practice, Tripping,|Dpad ctrl, PKMN Toggles,|P-Wing, Misc Coding", remix)
+    add_name("goombapatrol", "Accessibility, 1P Practice,|Tripping, D-Pad Support,|Magic Kirby, PKMN Toggles,|P-Wing, Stopwatch, etc.", remix)
     add_name("VetriTheRetri", "Credits: Looks like Vetri", remix)
+    add_name("Krix08", "Extended VS Stats|Volume Toggles|Sleeping, Tripping Failed Z|Cancel Punishments", remix)
 
     add_title("Consultants")
     add_name("Madao", "Moveset Consultant", remix)
@@ -446,6 +459,12 @@ scope Credits {
     add_name("Anonymous", "Stage Consultant|Grim Reaper's Cavern", remix)
     add_name("SilverJake", "Stage Consultant", remix)
     add_name("Ploaj", "Animation and Model|Extraction Consultant", remix)
+    add_name("Gent", "PAL Compatibility|Consultant", remix)
+    add_name("Nokaubure", "Stage Consultant", remix)
+    add_name("ALM5252", "Dr. Luigi Consultant", remix)
+    add_name("LMG", "Original UI Design|Consultant", remix)
+    add_name("TheNewJGG", "Sonic Car Model", remix)
+    add_name("Mark Kurko", "Project Dream:|Lost MIDI", remix)
 
     add_title("Playtesters")
     add_name("Abnormal Adept", "", remix)
@@ -464,7 +483,7 @@ scope Credits {
     add_name("measTHEbeast", "", remix)
     add_name("Xrmy", "", remix)
     add_name("Q!", "", remix)
-    add_name("Raychu", "", remix)
+    add_name("Raychu", "He did cool things|with Ness.", remix)
     add_name("Pluto", "", remix)
     add_name("The Yid", "", remix)
     add_name("Wololo", "", remix)
@@ -483,7 +502,7 @@ scope Credits {
     add_name("Loz", "", remix)
     add_name("jonnjonn", "", remix)
     add_name("Kaki", "", remix)
-    add_name("Maafia", "Playtester Tourney|Regular", remix)
+    add_name("Maafia", "Playtester Tourney|Regular|\dTo my two brothers,|Abdul and Hameed,|I love you both.\d", remix)
     add_name("SushiiZ", "", remix)
     add_name("JaimeHR", "Playtester Tourney Champ|Playtester Tourney|Regular", remix)
     add_name("MojoMonkey", "", remix)
@@ -506,7 +525,7 @@ scope Credits {
     add_name("Kix", "", remix)
     add_name("HAMMERHEART", "", remix)
     add_name("beta", "", remix)
-	add_name("Halofactory","",remix)
+    add_name("Halofactory","",remix)
     add_name("LOC", "", remix)
     add_name("Maciaga", "", remix)
     add_name("pecosix", "", remix)
@@ -546,7 +565,27 @@ scope Credits {
     add_name("swooce", "", remix)
     add_name("microwaved hotdogs", "", remix)
     add_name("G-Rabbit", "", remix)
-    add_name("luigit0ilet", "", remix)
+    add_name("MUGEN", "Formerly luigit0ilet", remix)
+    add_name("Bobakanoosh", "", remix)
+    add_name("TyloRen_", "", remix)
+    add_name("SPLORCH", "", remix)
+    add_name("Mrmariobros222", "Playtester|Extraordinaire", remix)
+    add_name("bizzozeron", "", remix)
+    add_name("Cagt", "", remix)
+    add_name("Herb", "", remix)
+    add_name("Imakuni", "", remix)
+    add_name("Mist", "", remix)
+    add_name("KYOP", "", remix)
+    add_name("Julianmario", "", remix)
+    add_name("Matthew McClesky", "", remix)
+    add_name("Ashley!", "", remix)
+    add_name("sONIC1098", "", remix)
+    add_name("DesertYoshi", "", remix)
+    add_name("surname 05", "", remix)
+    add_name("pigma1", "", remix)
+    add_name("Vard", "", remix)
+    add_name("Lendri B. Mujina", "", remix)
+    add_name("Fred C.", "", remix)
 
 
     add_title("Original Sequencing Musical Credits")
@@ -608,7 +647,78 @@ scope Credits {
     add_name("Retro64", "Trailer Directing, Trailer|Editing, Graphics", remix)
     add_name("Pringles", "Trailer Directing,|Cinematic Animation, |Trailer Editing", remix)
     add_name("HeronNobody", "Graphics, Cinematic|Animation", remix)
+    add_name("OniFox", "Graphics, Cinematic|Animation", remix)
+    add_name("Maafia", "Footage Capturing,|Cinematic Animation", remix)
+    add_name("Matthew McCleskey", "Acting, Cinematic|Animation, Trailer|Editing", remix)
 
+
+    add_title("Project Galleon Dev Team")
+    add_company(galleon, "(Project Galleon)")
+
+    add_title("Directors")
+    add_name("JillyJane", "Director, Composer, Animator, 3D Modeller, MIDI Editor", galleon)
+    add_name("Cakiws", "Co-Director, ASM Coding, Graphic Editor, Animator, 3D Modeller", galleon)
+
+    add_title("Developers")
+    add_name("Brobgonal Second", "Smash Remix Debugged, ASM Coding", galleon)
+    add_name("Tanuki25", "Graphic editor, Ending Screen", galleon)
+    add_name("ryanbuss19", "Attribute Editor, Moveset Commands, ASM Coding, Stage Helper", galleon)
+    add_name("Mikan Ghoul Kiwi", "VA Casting Director, Instrument Designer", galleon)
+    add_name("Krix08", "ASM Coding, Moveset Commands", none)
+    add_name("Obsolete", "3D Modeller, Rigging, Animator, Playtester", galleon)
+    add_name("Avizura", "Additional Instrument Designer", galleon)
+    add_name("TheDelta", "Character Select Artworks", galleon)
+
+    add_title("Playtesters")
+    add_name("lKG64", "Playtester", galleon)
+    add_name("jesus_2007pr", "Playtester", galleon)
+    add_name("MarioYT21", "Playtester", galleon)
+
+    add_title("Voice Actors")
+    add_name("Enthuziastic |WTFAreHandlesLol", "Voice Actress for Uzi/Cyn", galleon)
+    add_name("Nero Sakamaki", "Japanese Voice Actress for Lucia Parsec", galleon)
+    add_name("Siren", "Voice Actress for Rebecca", galleon)
+    add_name("MichaelthemanX", "Voice Actor for the Announcer", galleon)
+    add_name("lucifer_kai1511", "Voice Actor for Serial Designation-N", galleon)
+    add_name("SurelyNissyVA", "Voice Actress for Serial Designation-V", galleon)
+    add_name("YuriuKeijiVA", "Voice Actress for Serial Designation-J", galleon)
+
+    add_title("Additional Credits")
+    add_name("Maafia", "Rebecca's OC", remix)
+
+    add_title("Shino Mod")
+    add_name("Shino", "Director", remix)
+    add_name("MultiVolt", "Cloud's stock icon, extra series icons", none)
+    add_name("Caballo Juan", "Extra character portraits", none)
+    add_name("Halofactory", "Tap Jump toggle", remix)
+    add_name("NewoRGBY_255", "Extra Street Fither songs and victory theme", none)
+    add_name("Pringles", "Extra Street Fither songs and victory theme", remix)
+    add_name("Smash Remix", "Smash Remix", remix)
+
+    add_title("Spider-Man Mod")
+    add_name("UltIMa647", "Director, Programming|Animation, Moveset|Announcer", remix)
+    add_name("OniFox", "Textures|Primary Playtester", none)
+    add_name("Psi-Hate", "Github Manager|Primary Playtester", none)
+    add_name("RubysCarbuncle", "Primary Playtester", none)
+    add_name("Der Fahn", "Primary Playtester", none)
+    add_name("Malon Rose", "Primary Playtester", none)
+    add_name("Unesag", "Primary Playtester", none)
+    add_name("Good King Linky", "Primary Playtester", none)
+    add_name("Pringles", "Announcer Filter", remix)
+    add_name("Smash Remix Discord Server", "Playtesting|Various Support|ty for the help :pray:", remix)
+
+    add_title("Spider-Man Sources")
+    add_name("Spider-Man", "Neversoft|September 1, 2000", none)
+    add_name("Marvel Super Heroes vs. Street Fighter", "Capcom|June 25, 1997", none)
+    add_name("Marvel vs. Capcom 3", "Capcom, Eighting|February 15, 2011", none)
+    add_name("Marvel vs. Capcom: Infinite", "Capcom|September 19, 2017", none)
+
+    add_title("Extra")
+    add_name("Super Smash Bros. Melee", "some sound effects", none)
+    add_name("Microsoft Windows 95", "startup sound effect", none)
+
+    add_title("And...")
+    add_name("You", "Thanks for Playing!", none)
 
     // The strings and tables for the Remix credits will be in an external file...
     // This constant will help with that.
@@ -634,19 +744,19 @@ scope Credits {
     // @ Description
     // Constants for offsets to the pointers
     scope offset {
-	    constant title_strings(0x00)
-	    constant name_strings(0x04)
-	    constant details_strings(0x08)
-	    constant company_strings(0x0C)
-	    constant title_info_table(0x10)
-	    constant name_info_table(0x14)
-	    constant details_info_table(0x18)
-	    constant company_info_table(0x1C)
-	    constant company_table(0x20)
-	    constant section_info_table(0x24)
-	    constant character_info_table(0x28)
-	    constant character_displaylist_table(0x2C)
-	}
+        constant title_strings(0x00)
+        constant name_strings(0x04)
+        constant details_strings(0x08)
+        constant company_strings(0x0C)
+        constant title_info_table(0x10)
+        constant name_info_table(0x14)
+        constant details_info_table(0x18)
+        constant company_info_table(0x1C)
+        constant company_table(0x20)
+        constant section_info_table(0x24)
+        constant character_info_table(0x28)
+        constant character_displaylist_table(0x2C)
+    }
 
     // @ Description
     // Holds title strings
@@ -1188,6 +1298,119 @@ scope Credits {
             jr      ra
             sll     t3, v0, 0x0003            // original line 1
         }
+    }
+
+    // @ Description
+    // Away mode credits demo (auto show details)
+    scope awayMode {
+        OS.patch_start(0x180B44, 0x80133444)
+        j       _auto_shoot                 // auto shoot names under cursor
+        sw      ra, 0x001C(sp)              // original line 1
+        OS.patch_end()
+        OS.patch_start(0x1809CC, 0x801332CC)
+        j       _handle_shoot_fgm           // suppress auto shooting noise spam
+        nop
+        OS.patch_end()
+        OS.patch_start(0x17FEC0, 0x801327C0)
+        j       _handle_shoot_gfx           // suppress auto shoot gfx spam (scStaffrollMakeHighlightGObj)
+        nop
+        OS.patch_end()
+
+        _auto_shoot:
+        li      s0, CharacterSelectDebugMenu.PlayerTag.string_table + (2 * 4)
+        lw      s0, 0x0000(s0)              // s0 = 2nd tag
+        lw      s0, 0x0000(s0)              // s0 = tag
+        li      t8, 0x61666B00
+        bne     s0, t8, _auto_shoot_end     // branch if tag is not equal
+        andi    t8, v0, 0xC000              // original line 2
+        li      s0, _manual_shot            // s0 = flag to indicate if pressed 'A' or not
+        sw      t8, 0x0000(s0)              // set flag
+        beqzl   t8, _auto_shoot_end         // branch if 'A' button wasn't pressed
+        lli     t8, OS.TRUE                 // t8 = 1 (simulate 'A' pressed)
+
+        _auto_shoot_end:
+        j       0x8013344C                  // return to function
+        nop
+
+        _handle_shoot_fgm:
+        li      a0, CharacterSelectDebugMenu.PlayerTag.string_table + (2 * 4)
+        lw      a0, 0x0000(a0)              // a0 = 2nd tag
+        lw      a0, 0x0000(a0)              // a0 = tag
+        li      v0, 0x61666B00
+        bne     a0, v0, _shoot_fgm_play     // branch if tag is not equal
+        nop
+        li      a0, _manual_shot            // a0 = flag to indicate if pressed 'A' or not
+        lw      a0, 0x0000(a0)              // a0 = nonzero if we fired with 'A'
+        beqz    a0, _handle_shoot_fgm_end   // branch (no sound)
+        nop
+        _shoot_fgm_play:
+        jal     0x800269C0                  // original line 1 (play sound)
+        addiu   a0, r0, 0x0015              // original line 2 ('select')
+
+        _handle_shoot_fgm_end:
+        j       0x801332D4                  // return to function
+        nop
+
+        _handle_shoot_gfx:
+        li      a0, CharacterSelectDebugMenu.PlayerTag.string_table + (2 * 4)
+        lw      a0, 0x0000(a0)              // a0 = 2nd tag
+        lw      a0, 0x0000(a0)              // a0 = tag
+        li      t7, 0x61666B00
+        bne     a0, t7, _handle_shoot_gfx_end // branch if tag is not equal (show gfx)
+        nop
+        li      t7, _manual_shot            // t7 = flag to indicate if pressed 'A' or not
+        lw      a0, 0x0000(t7)              // a0 = nonzero if we fired with 'A'
+        beqzl   a0, _handle_shoot_gfx_end   // branch (no gfx)
+        lli     v0, OS.TRUE                 // v0 = 1 (spoof rectangle object already existing, don't draw)
+
+        _handle_shoot_gfx_end:
+        lw      t7, 0x0074(t6)              // original line 1
+        j       0x801327C8                  // return to function
+        addiu   a0, r0, 0x0009              // original line 2
+
+        _manual_shot:
+        dw 0
+    }
+
+    // @ Description
+    // Helps reach Remix Credits while fast without overshooting
+    // Note: applies just once (press 'Start' again to speed through rest)
+    scope remix_credits_speed_assist_: {
+        OS.patch_start(0x180CC4, 0x801335C4)
+        j       remix_credits_speed_assist_
+        sw      a0, 0xA8D0(at)              // original line 1
+        _return:
+        OS.patch_end()
+
+        _check_away_mode:
+        li      t3, CharacterSelectDebugMenu.PlayerTag.string_table + (2 * 4)
+        lw      t3, 0x0000(t3)              // t3 = 2nd tag
+        lw      t3, 0x0000(t3)              // t3 = tag
+        li      v0, 0x61666B00
+        bne     t3, v0, _original           // branch if tag is not equal
+        nop
+        _check_name_id:
+        li      t3, 0x8013A8B8              // t3 = address of staff name id
+        lw      t3, 0x0000(t3)              // t3 = current name count
+        lli     v0, 0x0055                  // v0 = value of first remix id
+        bne     t3, v0, _original           // branch if the original names are still rolling
+        nop
+        // only need to slow down if already going fast via 'Start'
+        _check_speed:
+        li      v0, 0x8013A7B0              // address of 'normal' credits speed
+        lwc1    f0, 0x0000(v0)              // f0 = normal speed
+        li      v0, 0x8013A8BC              // address of current credits speed
+        lwc1    f4, 0x0000(v0)              // f4 = current speed
+        c.eq.s  f4, f0
+        bc1fl   _end                        // slow down if fast speed
+        lli     t3, OS.TRUE                 // t3 = 1 (simulate 'Start' pressed)
+
+        _original:
+        andi    t3, t2, 0x1000              // original line 2 (check if 'Start' was pressed)
+
+        _end:
+        j       _return
+        lui     at, 0x8014                  // restore at
     }
 }
 

@@ -28,9 +28,9 @@ scope Sheik {
 
     IDLE:
     Moveset.SUBROUTINE(BLINK)                   // blink
-    dw 0x0400005A; Moveset.SUBROUTINE(BLINK)    // wait 90 frames then blink
-    dw 0x0400000A; Moveset.SUBROUTINE(BLINK)    // wait 10 frames then blink
-    dw 0x04000050; Moveset.GO_TO(IDLE)          // loop
+    dw 0x0400001E; Moveset.SUBROUTINE(BLINK)    // wait 30 frames then blink
+    dw 0x04000050; Moveset.SUBROUTINE(BLINK)    // wait 80 frames then blink
+    dw 0x04000032; Moveset.GO_TO(IDLE)          // loop
 
     insert USP_BEGIN,"moveset/USP_BEGIN.bin"
     insert USP_MOVE,"moveset/USP_MOVE.bin"
@@ -104,9 +104,7 @@ scope Sheik {
     insert JAB_LOOP_END,"moveset/JAB_LOOP_END.bin"
 
     // Insert AI attack options
-    constant CPU_ATTACKS_ORIGIN(origin())
-    insert CPU_ATTACKS,"AI/attack_options.bin"
-    OS.align(16)
+    include "AI/Attacks.asm"
 
     // Action name constants.
     scope Action {
@@ -310,7 +308,7 @@ Character.edit_action_parameters(SHEIK, Action.ItemThrowAirU,           File.SHE
 // Character.edit_action_parameters(SHEIK, Action.ItemThrowAirSmashF,      File.SHEIK_ITEM_THROW_AIR,          -1,                         -1)
 // Character.edit_action_parameters(SHEIK, Action.ItemThrowAirSmashB,      File.SHEIK_ITEM_THROW_AIR,          -1,                         -1)
 Character.edit_action_parameters(SHEIK, Action.ItemThrowAirSmashU,      File.SHEIK_ITEM_THROW_AIR_U,        -1,                         -1)
-// Character.edit_action_parameters(SHEIK, Action.ItemThrowAirSmashF,      File.SHEIK_ITEM_THROW_AIR_D,        -1,                         -1)
+// Character.edit_action_parameters(SHEIK, Action.ItemThrowAirSmashD,      File.SHEIK_ITEM_THROW_AIR_D,        -1,                         -1)
 // Character.edit_action_parameters(SHEIK, Action.HeavyItemThrowF,         File.SHEIK_HEAVY_ITEM_THROW,        -1,                         -1)
 // Character.edit_action_parameters(SHEIK, Action.HeavyItemThrowB,         File.SHEIK_HEAVY_ITEM_THROW,        -1,                         -1)
 // Character.edit_action_parameters(SHEIK, Action.HeavyItemThrowSmashF,    File.SHEIK_HEAVY_ITEM_THROW,        -1,                         -1)
@@ -440,7 +438,7 @@ Character.edit_action_parameters(SHEIK, Action.LandingAirX,             File.SHE
    Character.edit_action(SHEIK, 0xE0,                   -1,            0x8013DA94,                    0,                              0x8013DB2C,                    0x800DE348)   // LEFT ENTRY
    Character.edit_action(SHEIK, 0xE1,                   -1,            0x8013DA94,                    0,                              0x8013DB2C,                    0x800DE348)   // RIGHT ENTRY
 
-    Character.edit_action(SHEIK, Action.DSP_RECOIL,     0x13,            SheikDSP.recoil_main_,         0,                               SheikDSP.recoil_physics_,       0x800DE99C)
+    Character.edit_action(SHEIK, Action.DSP_RECOIL,     0x13,            SheikDSP.recoil_main_,         0,                               SheikDSP.recoil_physics_,       0x800DE978)
     // Modify Menu Action Parameters             // Action      // Animation                // Moveset Data             // Flags
 
     Character.edit_menu_action_parameters(SHEIK, 0x0,           File.SHEIK_IDLE,            -1,                         -1)
@@ -466,7 +464,7 @@ Character.edit_action_parameters(SHEIK, Action.LandingAirX,             File.SHE
     Character.add_new_action(SHEIK, DSP_Begin,          -1,             ActionParams.DSP_Begin,             0x13,           SheikDSP.main_,             0,                              SheikDSP.physics_,                  SheikDSP.air_collision_)
     Character.add_new_action(SHEIK, DSP_Attack,         -1,             ActionParams.DSP_Attack,            0x13,           0x800D94E8,                 0,                              SheikDSP.physics_,                  SheikDSP.attack_collision_)
     Character.add_new_action(SHEIK, DSP_Landing,        -1,             ActionParams.DSP_Landing,           0x13,           0x800D94C4,                 0,                              0x800D8CCC,                         0x800DDEE8)
-    Character.add_new_action(SHEIK, DSP_Recoil,         -1,             ActionParams.DSP_Recoil,            0x13,           SheikDSP.recoil_main_,      0,                              SheikDSP.recoil_physics_,           0x800DE99C)
+    Character.add_new_action(SHEIK, DSP_Recoil,         -1,             ActionParams.DSP_Recoil,            0x13,           SheikDSP.recoil_main_,      0,                              SheikDSP.recoil_physics_,           0x800DE978)
 
 
      // Set action strings
@@ -557,30 +555,10 @@ Character.edit_action_parameters(SHEIK, Action.LandingAirX,             File.SHE
     dw      Character.id.SHEIK // set Sheik as original character (not Captain Falcon, who NSHEIK is a clone of)
     OS.patch_end()
 
-    // Set CPU behaviour
-    Character.table_patch_start(ai_behaviour, Character.id.SHEIK, 0x4)
-    dw      CPU_ATTACKS
+    // Set Remix 1P ending music
+    Character.table_patch_start(remix_1p_end_bgm, Character.id.SHEIK, 0x2)
+    dh {MIDI.id.BRAWL_OOT}
     OS.patch_end()
-
-	// Set CPU SD prevent routine
-    Character.table_patch_start(ai_attack_prevent, Character.id.SHEIK, 0x4)
-    dw    	AI.PREVENT_ATTACK.ROUTINE.NONE
-    OS.patch_end()
-
-	// Set CPU NSP long range behaviour
-    Character.table_patch_start(ai_long_range, Character.id.SHEIK, 0x4)
-    dw    	AI.LONG_RANGE.ROUTINE.NSP_SHOOT
-    OS.patch_end()
-
-    // Edit cpu attack behaviours
-    // Most of Sheiks attacks were manually updated with hex-edits.
-    // edit_attack_behavior(table, attack, override, start_hb, end_hb, min_x, max_x, min_y, max_y)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NSPA,   -1,  -1,  -1,  250, 500, -500, -250)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NSPG,   -1,  -1,  -1,  500, 1500, 200, 445)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USPA,   -1,   0,   0,    0,    0,   0,   0) // no attack with Up Special
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USPG,   -1,  -1,  -1,    0,    0,   0,   0) // no attack with Up Special
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSPG,   -1,  -1,  -1,  180, 850, 100, 400)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSPA,   -1,  -1,  -1,  180, 850, 100, 400)
 
     // an associated moveset command: b0bc0000 removes the white flicker, this is identical to Samus
     // @ Description
@@ -601,4 +579,76 @@ Character.edit_action_parameters(SHEIK, Action.LandingAirX,             File.SHE
         j       0x800E9A60                  // return
         lw      a3, 0x001C(sp)              // load a3
     }
+
+    // Custom recovery logic
+    scope recovery_logic: {
+        OS.routine_begin(0x20)
+
+        lw t0, 0x78(a0) // load location vector
+        lwc1 f2, 0x0(t0) // f2 = location X
+        lwc1 f4, 0x4(t0) // f4 = location Y
+
+        mtc1 r0, f0 // guarantee f0 = 0
+
+        // check if facing ledge
+        scope direction_check: {
+            lw t0, 0x44(a0) // t0 = player facing direction
+
+            bltz t0, _recovering_left
+            nop
+
+            _recovering_right:
+            lwc1 f6, 0x01CC+0x4c(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x50(a0) // load nearest LEFT ledge Y
+
+            sub.s f14, f6, f2 // f14 = x diff
+            sub.s f12, f8, f4 // f12 = y diff
+
+            c.le.s f14, f0 // if going reverse, skip
+            nop
+            bc1t _end // do not try to DSP when not facing ledge
+            nop
+            
+            b _check_end
+            nop
+
+            _recovering_left:
+            lwc1 f6, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+            lwc1 f8, 0x01CC+0x58(a0) // load nearest RIGHT ledge Y
+
+            sub.s f14, f6, f2 // f14 = x diff
+            sub.s f12, f8, f4 // f12 = y diff
+
+            c.le.s f0, f14 // if going reverse, skip
+            nop
+            bc1t _end // do not try to DSP when not facing ledge
+            nop
+
+            _check_end:
+        }
+
+
+        lw at, 0xADC(a0) // flag to know if aerial dsp was already used
+        bnez at, _end // if aerial dsp was already used, skip. Not worth even when high up
+        nop
+
+        lui at, 0x44FA
+        mtc1 at, f22 // f22 = 2000.0 (approximately how much Sheik moves forwards with DSP
+
+        abs.s f16, f14 // f16 = abs(x distance to ledge)
+
+        c.le.s f16, f22 // if distance to ledge is lower than 2000.0
+        nop
+        bc1t _end // do not go for DSP if already close to ledge
+        nop
+
+        _execute_ai_command:
+        jal 0x80132758 // execute AI command
+        lli a1, AI.ROUTINE.DSP // arg1 = DSP
+
+        _end:
+        OS.routine_end(0x20)
+    }
+    Character.table_patch_start(recovery_logic, Character.id.SHEIK, 0x4)
+    dw recovery_logic; OS.patch_end()
 }

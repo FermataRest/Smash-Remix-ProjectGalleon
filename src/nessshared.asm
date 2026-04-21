@@ -44,20 +44,20 @@ scope NessShared {
         nop
 
         _fixed:
-        lwc1    f14, 0x20(t0)       // 
-        swc1    f14, 0x20(v1)       // 
-        lwc1    f12, 0x24(t0)       // 
-        swc1    f12, 0x24(v1)       // 
+        lwc1    f14, 0x20(t0)       //
+        swc1    f14, 0x20(v1)       //
+        lwc1    f12, 0x24(t0)       //
+        swc1    f12, 0x24(v1)       //
         jal     0x8001863C          // Get tangent of velocity; same method used by DamageFlyRoll to calculate model rotation
-        sw      a0, 0x002C(sp)      // 
+        sw      a0, 0x002C(sp)      //
 
-        lw      a0, 0x002C(sp)      // 
-        lw      t3, 0x0074(a0)      // 
+        lw      a0, 0x002C(sp)      //
+        lw      t3, 0x0074(a0)      //
         lui     at, 0x8019          // og line 2
         lwc1    f6, 0xCB18(at)      // Get M_PI / 2
         sub.s   f0, f0, f6          // The PK Thunder trail model's rotation is, by default, situated vertically at 90 degrees; subtract 90 degrees to get the correct rotation
         j       0x8016BC2C          // return to original routine
-        swc1    f0, 0x0038(t3)      // 
+        swc1    f0, 0x0038(t3)      //
 
         // bugged version
         _normal:
@@ -83,8 +83,7 @@ scope NessShared {
         sw      t2, 0x0008(sp)              // store t2, t1
         lui     t2, 0x8019                  // the projectile struct is at a hard coded location
         addiu   t2, t2, 0xCFF0              // see above
-        lw      t2, 0x0000(t2)              // see above
-        sw      s1, 0x0078(t2)              // save player struct into projectile struct for pkfire2
+        lw      t3, 0x0000(t2)              // t3 = projectile struct
         li      a1, pkfire1_struct          // save new struct new address into a1
         lw      t1, 0x0008(s1)              // load current character ID into t1
 
@@ -95,12 +94,13 @@ scope NessShared {
         beql    t1, t2, pc() + 8            // if J Kirby, get held power character_id
         lw      t1, 0x0ADC(s1)              // t1 = character id of copied power
 
+        sw      t1, 0x0078(t3)              // save character id into projectile struct for pkfire2
         ori     t2, r0, Character.id.JNESS  // t1 = id.JNESS
         beq     t1, t2, _end                // end if character id = JNESS
         nop
         li      a1, pkfire1_struct_lucas    // save new struct new address into a1
         ori     t2, r0, Character.id.LUCAS  // t1 = id.LUCAS
-        beq     t1, t2, _end                // end if character id = JNESS
+        beq     t1, t2, _end                // end if character id = LUCAS
         nop
         lui     a1, 0x8019                  // original line 1
         addiu   a1, a1, 0x9190              // original line 2
@@ -133,16 +133,7 @@ scope NessShared {
         sw      t2, 0x0008(sp)              // ~
         sw      t3, 0x000C(sp)              // ~
 
-        lw      t3, 0x0078(v0)              // load player struct from projectile struct that we placed in pkfire1
-        lw      t1, 0x0008(t3)              // load current character ID into t1
-
-        lli     t2, Character.id.KIRBY      // t2 = id.KIRBY
-        beql    t1, t2, pc() + 8            // if Kirby, get held power character_id
-        lw      t1, 0x0ADC(t3)              // t1 = character id of copied power
-        lli     t2, Character.id.JKIRBY     // t2 = id.JKIRBY
-        beql    t1, t2, pc() + 8            // if J Kirby, get held power character_id
-        lw      t1, 0x0ADC(t3)              // t1 = character id of copied power
-
+        lw      t1, 0x0078(v0)              // load character ID from projectile struct that we placed in pkfire1
         ori     t2, r0, Character.id.NESS   // t2 = id.NESS
         beq     t1, t2, _end                // end if character id = NESS
         nop
@@ -192,6 +183,14 @@ scope NessShared {
     //TODO: figure out how long this struct actually is
     OS.copy_segment(0x106088, 0xF8)
 
+    // @ Description
+    // Set special Jump2 physics for Ness
+    Character.table_patch_start(ness_jump, Character.id.NESS, 0x1)
+    db      OS.TRUE;     OS.patch_end();
+    // Set special Jump2 physics for Polygon Ness
+    Character.table_patch_start(ness_jump, Character.id.NNESS, 0x1)
+    db      OS.TRUE;     OS.patch_end();
+
     // character ID check add for when Ness/Lucas perform their unique double jump
     scope ness_jump1_: {
         OS.patch_start(0xBA848, 0x8013FE08)
@@ -200,30 +199,23 @@ scope NessShared {
         _return:
         OS.patch_end()
 
-        addiu   at, r0, 0x000B              // original line 1
-        beq     v0, at, special_jump        // original line 2
-        lui     t2, 0x8014                  // original line 3
-        addiu   at, r0, Character.id.JNESS  // JNess Character ID
-        beq     v0, at, special_jump
-        nop
-        addiu   at, r0, Character.id.LUCAS  // Lucas Character ID
-        beq     v0, at, special_jump
-        nop
-        addiu   at, r0, Character.id.MTWO   // Mewtwo Character ID
-        beq     v0, at, special_jump
-        nop
-        addiu   at, r0, Character.id.NLUCAS // Polygon Lucas Character ID
-        beq     v0, at, special_jump
-        nop
-        addiu   at, r0, Character.id.NMTWO  // Polygon Mewtwo Character ID
-        beq     v0, at, special_jump
-        nop
-        j       _return                     // return
+        li      at, Character.ness_jump.table
+        addu    t2, v0, at                  // t2 = entry in ness_jump.table
+        lb      t2, 0x0000(t2)              // load characters entry in jump table
+        bnez    t2, _special_jump           // do special jump if not defined in the above table
         nop
 
-        special_jump:
+        // if here, then character has special ness jump
+        // addiu   at, r0, 0x000B              // original line 1
+        // beq     v0, at, _special_jump       // original line 2
+
+        _normal_jump:
+        j       _return                     // return
+        lui     t2, 0x8014                  // original line 3
+
+        _special_jump:
         j       0x8013FE20
-        nop
+        lui     t2, 0x8014                  // original line 3
     }
 
     // character ID check2 add for when Ness/Lucas perform their unique double jump
@@ -235,28 +227,17 @@ scope NessShared {
         OS.patch_end()
 
         swc1    f10, 0x004C(s0)
-        addiu   at, r0, Character.id.JNESS  // JNess Character ID
-        beq     v0, at, special_jump        // jump to special jump
+
+        li      at, Character.ness_jump.table
+        addu    t2, v0, at                  // t2 = entry in ness_jump.table
+        lb      t2, 0x0000(t2)              // load characters entry in jump table
+        bnezl   t2, _special_jump           // do special jump if not defined in the above table
         nop
-        addiu   at, r0, Character.id.NESS   // Ness Character ID
-        beq     v0, at, special_jump        // jump to special jump
-        nop
-        addiu   at, r0, Character.id.LUCAS  // Lucas Character ID
-        beq     v0, at, special_jump        // jump to special jump
-        nop
-        addiu   at, r0, Character.id.MTWO   // Mewtwo Character ID
-        beq     v0, at, special_jump
-        nop
-        addiu   at, r0, Character.id.NLUCAS // Polygon Lucas Character ID
-        beq     v0, at, special_jump        // jump to special jump
-        nop
-        addiu   at, r0, Character.id.NMTWO  // Polygon Mewtwo Character ID
-        beq     v0, at, special_jump        // jump to special jump
-        nop
+
         j       _return                     // return
         nop
 
-        special_jump:
+        _special_jump:
         j       0x8013FE94
         nop
     }
@@ -291,12 +272,33 @@ scope NessShared {
         _end:
         j       _return                     // return
         mtc1    t8, f8                      // f8 = landing fsm
-        
+
         _lucas:
         lui     a1, AIR_SPEED_MULTIPLIER_LUCAS
         j       _return                     // return
         mtc1    t8, f8                      // f8 = landing fsm
-        
+
+    }
+
+    // @ Description
+    // Patch to load the correct delay to wait before transitioning to PKThunderEnd.
+    scope up_special_ending_delay_: {
+        constant ENDING_DELAY_JNESS(0x14)   // integer: 20
+
+        OS.patch_start(0xCEA18, 0x80153FD8)
+        j       up_special_ending_delay_
+        sw      v1, 0x0B18(v0)              // original line 1
+        _return:
+        OS.patch_end()
+
+        lw      t0, 0x0008(v0)              // Get fighter kind
+        addiu   at, r0, Character.id.JNESS  // at = JNESS fighter kind
+        beql    at, t0, _store_delay        // Check if character is JNESS
+        addiu   v1, r0, ENDING_DELAY_JNESS  // If JNESS, load J version delay
+
+        _store_delay:
+        j       _return
+        sw      v1, 0xB1C(v0)               // original line 2
     }
 
     // Changes the speed of JNess Projectile to match that of the Japanese Version
@@ -478,6 +480,54 @@ scope NessShared {
         addiu   sp, sp, 0x0010              // deallocate stack space
         jr      ra                          // return
         nop
+    }
+
+    // 80185824+50
+    // Establishes a pointer to the character struct that can be used for a character id check
+    // for J Ness' PK Fire pillar
+    scope get_pillar_playerstruct_: {
+        OS.patch_start(0x1002B4, 0x80185874)
+        j       get_pillar_playerstruct_
+        lbu     t8, 0x02CE(s0)              // original line 2
+        _return:
+        OS.patch_end()
+
+        // v1 = projectile struct
+        // s0 = item struct
+        lw      t7, 0x0078(v1)              // load character ID from projectile struct, set in get_pkfire_pointer_
+        sw      t7, 0x0354(s0)              // save character ID to unused space in item struct
+
+        j       _return                     // return
+        lw      t7, 0x0008(v1)              // original line 1
+    }
+    
+    // 80185614+28
+    scope pkfire_pillar_gravity_: {
+        OS.patch_start(0x10007C, 0x8018563C)
+        lw      a1, 0x0354(a0)              // load character ID from item struct, set in get_pillar_playerstruct_
+        addiu   a1, a1, -Character.id.JNESS // ~
+        jal     pkfire_pillar_gravity_      
+        nop
+        _return:
+        OS.patch_end()
+        
+        constant U_ITPKFIRE_GRAVITY(0x3EE66666)     // float: 0.45F
+        constant U_ITPKFIRE_TVEL(0x425C)            // float: 55F
+        constant J_ITPKFIRE_GRAVITY(0x3ECCCCCD)     // float: 0.4F
+        constant J_ITPKFIRE_TVEL(0x4248)            // float: 50F
+        
+        // a0 = item struct, a1 = gravity, a2 = terminal velocity
+        beqzl   a1, _jness                  // take branch if J Ness
+        lui     a1, J_ITPKFIRE_GRAVITY >> 16 // load upper 2 bytes of J_ITPKFIRE_GRAVITY
+
+        li      a1, U_ITPKFIRE_GRAVITY      // otherwise, load U gravity (original line 1/2)
+        j       0x80172558                  // modified original line 3
+        lui     a2, U_ITPKFIRE_TVEL         // load U terminal velocity (original line 4)
+        
+        _jness:
+        ori     a1, a1, J_ITPKFIRE_GRAVITY & 0xFFFF // load lower 2 bytes of J_ITPKFIRE_GRAVITY
+        j       0x80172558                  // modified original line 3
+        lui     a2, J_ITPKFIRE_TVEL         // load J terminal velocity
     }
 
     // Load Up Special from different struct
@@ -805,16 +855,17 @@ scope NessShared {
     OS.copy_segment(0xA9CA8, 0x14)
 
     OS.align(16)
+    // Ness = 0x8012E494
     pkthunder_anim_struct_lucas:
     dw  0x060F0000
     dw  Character.LUCAS_file_4_ptr
     OS.copy_segment(0xA9C9C, 0x8)
     dw  Size.ness.usp.update_routine_._update // allows scaling usp head gfx
     OS.copy_segment(0xA9CA8, 0x4)
-    dw  0x0000AC78
-	dw  0x0000ADB8
-	dw  0x0000AEA8
-	dw  0x0000AF60
+    dw  0x000121B8
+    dw  0x000122F8  // adjust coordinates at this offset to fix head gfx location
+    dw  0x000123E8
+    dw  0x000124A0
 
     // the dw like above may need changed for every model revision for anim structs
 
@@ -825,11 +876,12 @@ scope NessShared {
     OS.copy_segment(0xA9C74, 0x20)
 
     OS.align(16)
+    // Ness = 0x8012E46C
     pkthunder_anim_struct2_lucas:
     dw  0x02120000
     dw  Character.LUCAS_file_4_ptr
     OS.copy_segment(0xA9C74, 0x10)
-    dw  0x0000B068
+    dw  0x000125A8
     dw  0x00000000
     dw  0x00000000
     dw  0x00000000
@@ -843,11 +895,12 @@ scope NessShared {
     // The anim structs are different because the numbers get updated when a new model is added via sub's import system
 
     OS.align(16)
+    // Ness = 0x8012E444
     pkthunder_anim_struct3_lucas:
     dw  0x020F0000
     dw  Character.LUCAS_file_4_ptr
     OS.copy_segment(0xA9C4C, 0x10)
-    dw  0x0000B068
+    dw  0x000125A8
     dw  0x00000000
     dw  0x00000000
     dw  0x00000000
@@ -1074,7 +1127,7 @@ scope NessShared {
         j       0x8014FF78                  // return; branch
         addiu   at, r0, 0x0017              // original line 2
     }
-	
+
 	// @ Description
 	// Adds Lucas and Jness to a character ID check allowing them to attack with USP.
 	scope cpu_pk_thunder_attack_: {
@@ -1082,25 +1135,25 @@ scope NessShared {
 		j		cpu_pk_thunder_attack_
 		addiu	at, r0, Character.id.NESS		// original line 1
 		OS.patch_end()
-		
+
 		beq		at, a0, _pk_thunder				// branch if NESS
-		addiu   at, r0, Character.id.LUCAS		
+		addiu   at, r0, Character.id.LUCAS
 		beq		at, a0, _pk_thunder				// branch if LUCAS
-		addiu   at, r0, Character.id.JNESS		
+		addiu   at, r0, Character.id.JNESS
 		bne		at, a0, _normal					// branch if not JNESS
 		nop
-		
+
 		_pk_thunder:
 		j		0x80138A6C
 		nop
-		
+
 		_normal:
 		j		0x80138A9C						// skip rest of routine if not Ness.
 		lw		ra, 0x0014(sp)					// original
 
 	}
-	
-	
+
+
 	// @ Description
 	// Replace the vanilla y offset for when Ness targets himself with PK Thunder
 	scope improved_pk_thunder_: {
@@ -1109,24 +1162,24 @@ scope NessShared {
         nop
         _return:
         OS.patch_end()
-		
+
 		constant MULTIPLIER(0x4400)		// arbitrary
 		constant LEDGE_Y_OFFSET(0x43FA) //(+25)
 		constant MAX_VALUE(0x43FA)		// if return value is greater, Ness will miss himself.
 		constant MAX_TIME(0x3B)			// If above this time, then crank the stick upwards.
-		
+
 		// safe registers f6, f8, f10
 		// t3 = player coords
-		
+
 		lbu 	at, 0x0013(s0)				// at = cpu level
 		slti	at, at, 10					// at = 0 if 10 or greater
 		beqz    at, _fix					// improved PK thunder if lvl 10
-		
+
 		// Fix if Remix 1P
         addiu   v1, r0, 0x0004
         OS.read_word(SinglePlayerModes.singleplayer_mode_flag, at) // at = singleplayer mode flag
         beq     at, v1, _fix           		// if Remix 1p, automatic advanced ai
-		
+
 		// No fix if Vanilla 1P
         OS.read_word(Global.match_info, at)	// at = current match info struct
 		lbu		at, 0x0000(at)
@@ -1136,7 +1189,7 @@ scope NessShared {
 		// fix if improved AI is on
 		OS.read_word(Toggles.entry_improved_ai + 0x4, at)	// check improved AI toggle
 		beqz    at, _normal					// act normally if it is off
-		
+
 		_fix:
 		lw      at, 0x001C(s0)			// at = current animation frame
 		addiu   a0, r0, MAX_TIME
@@ -1146,12 +1199,12 @@ scope NessShared {
         lbu     a0, 0x000D(s0)          // a0 = port
         sll     a0, a0, 0x0002          // a0 = offset to player entry
         addu    at, at, a0              // a0 = coords entry
-		
+
 		lwc1	f6, 0x001C(t3)			// f6 = player.x
 		lwc1	f14, 0x0000(at)			// f12 = target.x
 		sub.s   f14, f14, f6
 		abs.s   f14, f14				// make target coord absolute
-		
+
 		lwc1	f8, 0x0020(t3)			// f8 = player.y
 		lwc1	f12, 0x0004(at)			// f14 = target.y
 		sub.s   f12, f12, f8
@@ -1172,7 +1225,7 @@ scope NessShared {
         lui 	at, 0x42C8				// y offset = 100 original line 1
         j		_return
         mtc1 	at, f8
-		
+
 		// some return values to try later
 		// C2C8 = -100 (starts going downwards)
 		// C1C8 = -25 (he goes 0 deg, forwards)
@@ -1183,9 +1236,9 @@ scope NessShared {
 		// 43FA = 500 any higher than this it seems he misses himself
 		// getting him to go 90 degress upwards or beyond would require more work
 	}
-	
+
 	// 0x80137218 target opponent with PK Thunder
-	
+
 	// @ Description
 	// Save the last known coordinates that CPU Ness wanted to recover towards.
 	// Done when PK Thunder is created. Can probably play with this
@@ -1201,16 +1254,16 @@ scope NessShared {
         lbu     a1, 0x000D(v0)              // a1 = port
         sll     a1, a1, 0x0002              // a1 = offset to player entry
         addu    at, at, a1                  // a0 = coords entry
-		
+
 		lw      a0, 0x0074(a0)				// a0 = player position struct
-		lh		a0, 0x001C(a0)				// 
+		lh		a0, 0x001C(a0)				//
 		andi    a0, a0, 0x8000
 
 		//lwc1    f4, 0x022C(v0)				// f4 = previous x coord cpu was going towards
 		//lwc1    f6, 0x0230(v0)				// f6 = previous y coord cpu was going towards
 		//swc1    f4, 0x0000(at)				// save x
 		//swc1    f6, 0x0004(at)				// save y
-		
+
 
 		_continue_0:
 		beqzl	a0, _continue
@@ -1221,7 +1274,7 @@ scope NessShared {
 		lwc1    f14, 0x021C(v0)				// f14 = ledge y
 		swc1    f12, 0x0000(at)				// save ledge x
 		swc1    f14, 0x0004(at)				// save ledge y
-		
+
 		// sw		a1, 0x0000(a0)				// save the x coordinate
 		// // lw      a1, 0x0230(v0)			// a1 = previous y coord cpu was going towards
 		// lwc1    f6, 0x0230(v0)				// f6 = previous y coord cpu was going towards
@@ -1233,7 +1286,7 @@ scope NessShared {
 		addiu 	a1, sp, 0x0028 				// og line 2
 
 	}
-	
+
 	// @ Description
 	// Ness and Lucas will aim here when recovering with improved PK Thunder.
 	pk_thunder_target_coords:
@@ -1242,4 +1295,134 @@ scope NessShared {
 	dw 0, 0
 	dw 0, 0
 
+    scope recovery_logic: {
+        OS.routine_begin(0x20)
+        sw a0, 0x10(sp)
+
+        // Check CPU level for vanilla characters
+        lbu t1, 0x0013(a0) // t1 = cpu level
+        addiu t1, t1, -10 // t1 = 0 if level 10
+        bnezl t1, _end // if not lv10, skip
+        nop
+
+        // Only go for it when double jumping back to stage
+        lw at, 0x24(a0) // at = action id
+        lli t0, Action.JumpAerialF
+        bne t0, at, _end
+        nop
+
+        // skip if air speed is down
+        mtc1 r0, f0 // guarantee f0 = 0
+        lwc1 f20, 0x004C(a0) // f20 = y speed
+        c.le.s f20, f0 // y speed < 0?
+        nop
+        bc1t _end // if so, skip
+        nop
+
+        lw t0, 0x78(a0) // load location vector
+        lwc1 f2, 0x0(t0) // f2 = location X
+        lwc1 f4, 0x4(t0) // f4 = location Y
+
+        // check closest ledge in X
+        scope ledge_check: {
+            lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+
+            sub.s f6, f6, f2
+            abs.s f6, f6 // f6 = abs(distance) to left ledge
+
+            sub.s f8, f8, f2
+            abs.s f8, f8 // f8 = abs(distance) to right ledge
+
+            c.le.s f6, f8
+            nop
+            bc1f _right
+            nop
+
+            _left:
+            lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x50(a0) // load nearest LEFT ledge Y
+            
+            b _check_end
+            nop
+
+            _right:
+            lwc1 f6, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+            lwc1 f8, 0x01CC+0x58(a0) // load nearest RIGHT ledge Y
+
+            _check_end:
+        }
+
+        sub.s f14, f6, f2 // f14 = x diff
+        sub.s f12, f8, f4 // f12 = y diff
+
+        lw t6, 0x9C8(a0) // t6 = character attributes
+        lwc1 f20, 0xB0(t6) // f20 = ledge grab Y
+        add.s f20, f4, f20 // f20 = Y + ledge grab Y
+
+        lw t0, 0x44(a0) // t0 = player facing direction (int)
+        mtc1 t0, f10
+        cvt.s.w f10, f10 // f10 = facing direction (float)
+
+        lwc1 f22, 0xB0(t6) // f22 = ledge grab X
+        mul.s f10, f10, f22 // f10 = facing direction * ledge grab X
+        add.s f22, f2, f10 // f22 = X + facing direction * ledge grab X
+
+        // check if ledge Y + ledge grab Y is above ledge Y
+        c.le.s f20, f8 // f20 <= ledge Y?
+        nop
+        bc1t _end // if not, skip
+        nop
+
+        // check if Y > ledge Y (don't dsp if already above ledge Y)
+        c.le.s f8, f4 // ledge Y <= Y?
+        nop
+        bc1t _end // if not, skip
+        nop
+
+        // check if ledge grab X is beyond ledge X in the facing direction
+        // we can use the x diff to determine this
+        // first check if the x diff is positive or negative
+        c.lt.s f14, f0 // if x diff < 0
+        nop
+        bc1t _going_left // if x diff < 0, hold left
+        nop
+
+        _going_right:
+        // check if ledge grab X > ledge X
+        // if so, dsp
+        c.le.s f22, f6 // f22 <= ledge X?
+        nop
+        bc1f _dsp // if not, dsp
+        nop
+        b _end
+        nop
+        
+        _going_left:
+        // check if ledge grab X < ledge X
+        // if so, dsp
+        c.le.s f6, f22 // ledge X <= ledge grab X?
+        nop
+        bc1f _dsp // if not, dsp
+        nop
+        b _end
+        nop
+
+        _dsp:
+        jal 0x80132758 // execute AI command
+        lli a1, AI.ROUTINE.DSP // arg1 = DSP
+
+        b _end
+        nop
+
+        _end:
+        lw a0, 0x10(sp)
+        OS.routine_end(0x20)
+    }
+    Character.table_patch_start(recovery_logic, Character.id.NESS, 0x4)
+    dw recovery_logic; OS.patch_end()
+    Character.table_patch_start(recovery_logic, Character.id.JNESS, 0x4)
+    dw recovery_logic; OS.patch_end()
+    Character.table_patch_start(recovery_logic, Character.id.LUCAS, 0x4)
+    dw recovery_logic; OS.patch_end()
 }

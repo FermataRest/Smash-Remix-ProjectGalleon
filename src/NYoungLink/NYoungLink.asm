@@ -13,7 +13,6 @@ scope NYoungLink {
     Character.edit_action_parameters(NYLINK, Action.CliffAttackSlow2, -1,                        YoungLink.EDGEATTACKS,                -1)
     Character.edit_action_parameters(NYLINK, Action.Stun,             -1,                        YoungLink.STUN,                       -1)
     Character.edit_action_parameters(NYLINK, Action.Sleep,            -1,                        YoungLink.ASLEEP,                     -1)
-    Character.edit_action_parameters(NYLINK, Action.Grab,             -1,                        YoungLink.GRAB,                       -1)
     Character.edit_action_parameters(NYLINK, Action.Grab,            File.YLINK_GRAB,           YoungLink.GRAB,                       0x10000000)
     Character.edit_action_parameters(NYLINK, Action.GrabPull,        File.YLINK_GRAB_PULL,      YoungLink.GRAB_PULL,                  0x10000000)
     Character.edit_action_parameters(NYLINK, Action.Teeter,           -1,                        YoungLink.TEETERING,                  -1)
@@ -51,6 +50,11 @@ scope NYoungLink {
     Character.edit_menu_action_parameters(NYLINK, 0x5,               -1,                         0x80000000,                           -1)
     Character.edit_menu_action_parameters(NYLINK, 0xD,               -1,                         YoungLink.POSE_1P,                    -1)
     Character.edit_menu_action_parameters(NYLINK, 0xE,               File.YLINK_1P_CPU_POSE,     0x80000000,                 -1)
+
+    // NLINK - putting this in here sucks, but couldn't put it in character.asm this way so
+    // Modify Menu Action Parameters                    // Action           // Animation                // Moveset Data             // Flags
+    Character.edit_menu_action_parameters(NLINK,        0x2,               -1,                          YoungLink.VICTORY_POSE_2,   -1)
+
 
     // @ Description
     // Polygon Young Link's extra actions

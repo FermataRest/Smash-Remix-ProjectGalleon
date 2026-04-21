@@ -70,14 +70,14 @@ Character.edit_action_parameters(NDEDEDE, Action.JumpSquat,              File.DE
 Character.edit_action_parameters(NDEDEDE, Action.ShieldJumpSquat,        File.DEDEDE_LANDING,                -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.JumpF,                  File.DEDEDE_JUMP_F,                 Dedede.JUMP,                       -1)
 Character.edit_action_parameters(NDEDEDE, Action.JumpB,                  File.DEDEDE_JUMP_B,                 Dedede.JUMP,                       -1)
-Character.edit_action_parameters(NDEDEDE, Action.JumpAerialF,            File.DEDEDE_JUMP_AERIAL_F,          Dedede.JUMP_AERIAL_EARLY,                -1)
-Character.edit_action_parameters(NDEDEDE, Action.JumpAerialB,            File.DEDEDE_JUMP_AERIAL_B,          Dedede.JUMP_AERIAL_EARLY,                0)
+Character.edit_action_parameters(NDEDEDE, Action.JumpAerialF,            File.DEDEDE_JUMP_AERIAL_1,          Dedede.JUMP_AERIAL_EARLY,                -1)
+Character.edit_action_parameters(NDEDEDE, Action.JumpAerialB,            File.DEDEDE_JUMP_AERIAL_1,          Dedede.JUMP_AERIAL_EARLY,                0)
 
-Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump2,            File.DEDEDE_JUMP_AERIAL_F,          Dedede.JUMP_AERIAL_EARLY,                0)
-Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump3,            File.DEDEDE_JUMP_AERIAL_F,          Dedede.JUMP_AERIAL_EARLY,                0)
-Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump4,            File.DEDEDE_JUMP_AERIAL_F,          Dedede.JUMP_AERIAL,                0)
-Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump5,            File.DEDEDE_JUMP_AERIAL_F,          Dedede.JUMP_LAST,                  0)
-Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump6,            File.DEDEDE_JUMP_AERIAL_F,          Dedede.JUMP_LAST,                  0)
+Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump2,            File.DEDEDE_JUMP_AERIAL_1,          Dedede.JUMP_AERIAL_EARLY,                0)
+Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump3,            File.DEDEDE_JUMP_AERIAL_2,          Dedede.JUMP_AERIAL_EARLY,                0)
+Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump4,            File.DEDEDE_JUMP_AERIAL_3,          Dedede.JUMP_AERIAL,                0)
+Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump5,            File.DEDEDE_JUMP_AERIAL_4,          Dedede.JUMP_LAST,                  0)
+Character.edit_action_parameters(NDEDEDE, Action.KIRBY.Jump6,            File.DEDEDE_JUMP_AERIAL_4,          Dedede.JUMP_LAST,                  0)
 
 Character.edit_action_parameters(NDEDEDE, Action.Fall,                   File.DEDEDE_FALL,                   -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.FallAerial,             File.DEDEDE_FALL_AERIAL,            -1,                         -1)
@@ -165,7 +165,7 @@ Character.edit_action_parameters(NDEDEDE, Action.ItemThrowAirD,           File.D
 Character.edit_action_parameters(NDEDEDE, Action.ItemThrowAirSmashF,      File.DEDEDE_ITEM_THROW_AIR,          -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.ItemThrowAirSmashB,      File.DEDEDE_ITEM_THROW_AIR,          -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.ItemThrowAirSmashU,      File.DEDEDE_ITEM_THROW_AIR_U,        -1,                         -1)
-Character.edit_action_parameters(NDEDEDE, Action.ItemThrowAirSmashF,      File.DEDEDE_ITEM_THROW_AIR_D,        -1,                         -1)
+Character.edit_action_parameters(NDEDEDE, Action.ItemThrowAirSmashD,      File.DEDEDE_ITEM_THROW_AIR_D,        -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.HeavyItemThrowF,         File.DEDEDE_HEAVY_ITEM_THROW,        -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.HeavyItemThrowB,         File.DEDEDE_HEAVY_ITEM_THROW,        -1,                         -1)
 Character.edit_action_parameters(NDEDEDE, Action.HeavyItemThrowSmashF,    File.DEDEDE_HEAVY_ITEM_THROW,        -1,                         -1)
@@ -268,8 +268,6 @@ Character.edit_action_parameters(NDEDEDE, Action.LandingAirX,            File.DE
      Character.edit_action_parameters(NDEDEDE, Action.USP_MOVE,          File.DEDEDE_USP_LOOP,               Dedede.USP_MOVE,                   0)
      Character.edit_action_parameters(NDEDEDE, Action.USP_LAND,          File.DEDEDE_USP_LAND,               Dedede.USP_LAND,                   0)
      Character.edit_action_parameters(NDEDEDE, Action.USP_CANCEL,        File.DEDEDE_USP_CANCEL,             0x80000000,                 0)
-     //Character.edit_action_parameters(NDEDEDE, Action.USP_MOVE,        File.DEDEDE_USP_LOOP,               Dedede.USP_MOVE,                 0x00000000)
-     //Character.edit_action_parameters(NDEDEDE, Action.USP_LAND,        File.DEDEDE_USP_LAND,               Dedede.USP_LAND,                    0)
 
     Character.edit_action_parameters(NDEDEDE, Action.NSP_BEGIN_GROUND,   File.DEDEDE_NSP_BEGIN,              Dedede.NSP_BEGIN,                  0x00000000)// 0x1C000000)
     Character.edit_action_parameters(NDEDEDE, Action.NSP_LOOP_GROUND,    File.DEDEDE_NSP_LOOP,               Dedede.NSP_INHALE,                 0x00000000)// 0x1C000000)
@@ -334,8 +332,8 @@ Character.edit_action_parameters(NDEDEDE, Action.LandingAirX,            File.DE
     Character.add_new_action_params(NDEDEDE, DEDEDE_NSP_WALK_2,           -1,             File.DEDEDE_NSP_INHALED_WALK,  0x80000000,                0)
     Character.add_new_action_params(NDEDEDE, DEDEDE_NSP_WALK_3,           -1,             File.DEDEDE_NSP_INHALED_WALK,  0x80000000,                0)
     Character.add_new_action_params(NDEDEDE, DEDEDE_USP_CEILING_BONK,     -1,             File.DEDEDE_USP_CEILING_BONK,  Dedede.USP_BONK,                  0)
-    Character.add_new_action_params(NDEDEDE, DEDEDE_STARRING_RIGHT,       -1,             File.DEDEDE_STARRING_RIGHT,    Dedede.STARRING,                  0x40000008)
-    Character.add_new_action_params(NDEDEDE, DEDEDE_STARRING_LEFT,        -1,             File.DEDEDE_STARRING_LEFT,     Dedede.STARRING,                  0x40000008)
+    Character.add_new_action_params(NDEDEDE, DEDEDE_STARRING_RIGHT,       -1,             File.DEDEDE_STARRING_RIGHT,    Dedede.STARRING,                  0x40000000)
+    Character.add_new_action_params(NDEDEDE, DEDEDE_STARRING_LEFT,        -1,             File.DEDEDE_STARRING_LEFT,     Dedede.STARRING,                  0x40000000)
 
     // Add Actions                    // Action Name             // Base Action //Parameters                                // Staling ID    // Main ASM            // Interrupt/Other ASM                  // Movement/Physics ASM     // Collision ASM
     Character.add_new_action(NDEDEDE, DEDEDE_NSP_END_GROUND,      -1,           ActionParams.DEDEDE_NSP_END_GROUND,          0x12,            0x800D94C4,            0,                                      0x800D8BB4,                 0x80162798)
@@ -370,7 +368,7 @@ Character.edit_action_parameters(NDEDEDE, Action.LandingAirX,            File.DE
     Character.table_patch_start(entry_action, Character.id.NDEDEDE, 0x8)
     dw 0x6; dw 0x6
     OS.patch_end()
-    
+
     // Set Magnifying Glass Scale Override
     Character.table_patch_start(magnifying_glass_zoom, Character.id.NDEDEDE, 0x2)
     dh  0x005E
@@ -431,7 +429,7 @@ Character.edit_action_parameters(NDEDEDE, Action.LandingAirX,            File.DE
 	float32 58		// jump 4
 	float32 52		// jump 5
 	float32 0		// jump 6 (unused)
-    
+
     // Handles common things for Polygons
     Character.polygon_setup(NDEDEDE, DEDEDE)
 }

@@ -1,4 +1,4 @@
-// DrgaonKing.asm
+// DragonKing.asm
 
 // This file contains file inclusions, action edits, and assembly for Dragon King.
 
@@ -34,9 +34,8 @@ scope DragonKingUSP {
         sw      r0, 0x0180(a0)              // temp variable 2 = 0
         sw      r0, 0x0184(a0)              // temp variable 3 = 0
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -71,9 +70,8 @@ scope DragonKingUSP {
         and     v1, v1, t6                  // ~
         sb      v1, 0x018D(a0)              // disable fast fall flag
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -101,9 +99,8 @@ scope DragonKingUSP {
         sw      r0, 0x0184(a0)              // temp variable 3 = 0
         sw      r0, 0x0B18(a0)              // turn frame timer = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -143,9 +140,8 @@ scope DragonKingUSP {
         swc1    f4, 0x0048(a0)              // store updated x velocity
         swc1    f6, 0x004C(a0)              // store updated y velocity
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -169,9 +165,8 @@ scope DragonKingUSP {
         sw      r0, 0x0180(a0)              // temp variable 2 = 0
         sw      r0, 0x0184(a0)              // temp variable 3 = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -186,9 +181,8 @@ scope DragonKingUSP {
         lw      t6, 0x0830(a0)              // ~
         sw      t6, 0x0840(a0)              // update captured player?
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -321,9 +315,8 @@ scope DragonKingUSP {
         jal     0x800DDDDC                  // common ground collision subroutine (transition on no floor, slide-off)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -351,9 +344,8 @@ scope DragonKingUSP {
         jal     0x8015E310                  // command grab setup (yoshi)
         lw      a0, 0x0084(a0)              // a0 = player struct
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -365,9 +357,8 @@ scope DragonKingUSP {
         jal     0x800DE6E4                  // common air collision subroutine (transition on landing, no ledge grab)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -447,9 +438,8 @@ scope DragonKingNSP {
         lw      a0, 0x0084(a0)
         sw      r0, 0x0B20(a0)              // reset referenced gfx object
         lw      ra, 0x001C(sp)
-        addiu   sp, sp, 0x28
         jr      ra
-        nop
+        addiu   sp, sp, 0x28
     }
 
     // @ Description
@@ -471,9 +461,8 @@ scope DragonKingNSP {
         lw      a0, 0x0084(a0)
         sw      r0, 0x0B20(a0)              // reset referenced gfx object
         lw      ra, 0x001C(sp)
-        addiu   sp, sp, 0x28
         jr      ra
-        nop
+        addiu   sp, sp, 0x28
     }
 
     // @ Description
@@ -495,9 +484,8 @@ scope DragonKingNSP {
         lw      a0, 0x0084(a0)
         sw      r0, 0x0B20(a0)              // reset referenced gfx object
         lw      ra, 0x001C(sp)
-        addiu   sp, sp, 0x28
         jr      ra
-        nop
+        addiu   sp, sp, 0x28
     }
 
     // @ Description
@@ -519,9 +507,8 @@ scope DragonKingNSP {
         lw      a0, 0x0084(a0)
         sw      r0, 0x0B20(a0)              // reset referenced gfx object
         lw      ra, 0x001C(sp)
-        addiu   sp, sp, 0x28
         jr      ra
-        nop
+        addiu   sp, sp, 0x28
     }
 
     // @ Description
@@ -546,9 +533,8 @@ scope DragonKingNSP {
         nop
 
         lw      ra, 0x0014(sp)
-        addiu   sp, sp, 0x18
         jr      ra
-        nop
+        addiu   sp, sp, 0x18
     }
 
     // @ Description
@@ -650,9 +636,8 @@ scope DragonKingNSP {
 
         _end:
         lw      ra, 0x0014(sp)
-        addiu   sp, sp, 0x20
         jr      ra
-        nop
+        addiu   sp, sp, 0x20
     }
     // 8012E1D4 GFX STRUCT
 
@@ -800,9 +785,8 @@ scope DragonKingNSP {
         lw      t0, 0x0004(sp)              // ~
         lw      t1, 0x0008(sp)              // ~
         lw      ra, 0x000C(sp)              // load t0, t1, ra
-        addiu 	sp, sp, 0x0018				// deallocate stack space
         jr      ra                          // return
-        nop
+        addiu 	sp, sp, 0x0018				// deallocate stack space
     }
 
     // @ Description
@@ -909,9 +893,8 @@ scope DragonKingNSP {
     li              at, destroy_ball_on_hit_    // ~
     sw              at, 0x09EC(a0)              // store on hit routine in player struct
     lw              ra, 0x0014(sp)              // load ra
-    addiu           sp, sp, 0x0028              // deallocate stack space
     jr              ra
-    nop
+    addiu           sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -995,9 +978,8 @@ scope DragonKingDSP {
         jal     0x800E0830                  // unknown common subroutine
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -1040,52 +1022,6 @@ scope DragonKingDSP {
         jal     0x800D9480                  // common main subroutine (transition on animation end)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
-        jr      ra                          // return
-        nop
-    }
-
-        // @ Description
-    // Subroutine which sets up the movement for the aerial version of Dragon King's down special.
-    // Temp variable 2 (5800XXXX):
-    // 0x1 = control air drift (physics_)
-    // Temp variable 3 (5C00XXXX):
-    // 0x1 = begin
-    // 0x2 = apply movement speed
-    scope air_move_: {
-        // a2 = player struct
-        // 0x184 in player struct = temp variable 3
-
-        addiu   sp, sp,-0x0018              // allocate stack space
-        sw      t0, 0x0004(sp)              // ~
-        sw      t1, 0x0008(sp)              // ~
-        swc1    f0, 0x000C(sp)              // ~
-        swc1    f2, 0x0010(sp)              // store t0, t1, f0, f2
-
-        // slow x movement
-        lwc1    f0, 0x0048(a2)              // f0 = current x velocity
-        lui     t0, 0x3F60                  // ~
-        mtc1    t0, f2                      // f2 = 0.875
-        mul.s   f0, f0, f2                  // f0 = x velocity * 0.875
-        swc1    f0, 0x0048(a2)              // x velocity = (x velocity * 0.875)
-
-        _check_begin:
-        lw      t0, 0x0184(a2)              // t0 = temp variable 3
-        ori     t1, r0, BEGIN               // t1 = BEGIN
-        bne     t0, t1, _end                // skip if t0 != BEGIN
-        nop
-        // slow y movement
-        lwc1    f0, 0x004C(a2)              // f0 = current y velocity
-        lui     t0, 0x3F60                  // ~
-        mtc1    t0, f2                      // f2 = 0.875
-        mul.s   f0, f0, f2                  // f0 = x velocity * 0.875
-        swc1    f0, 0x004C(a2)              // y velocity = (y velocity * 0.875)
-
-        _end:
-        lw      t0, 0x0004(sp)              // ~
-        lw      t1, 0x0008(sp)              // ~
-        lwc1    f0, 0x000C(sp)              // ~
-        lwc1    f2, 0x0010(sp)              // load t0, t1, f0, f2
         jr      ra                          // return
         addiu   sp, sp, 0x0018              // deallocate stack space
     }
@@ -1146,7 +1082,7 @@ scope DragonKingDSP {
         lw      ra, 0x000C(sp)              // ~
         lw      a0, 0x0010(sp)              // load t0, t1, ra, a0
         jr      ra                          // return
-        addiu 	sp, sp, 0x0018				// deallocate stack space
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -1177,30 +1113,17 @@ scope DragonKingDSP {
         beq     at, v1, _main_collision     // branch if doing aerial loop action
         nop
 
-        // If Dragon King is not in the ground pound motion, run a normal aerial collision subroutine
+        // If Dragon King is not in the earthquake motion, run a normal aerial collision subroutine
         // instead.
-        jal     0x800DE99C                  // aerial collision subroutine
+        jal     0x800DE978                  // aerial collision subroutine
         nop
         b       _end                        // branch to end
         nop
 
         _main_collision:
-        li      a1, 0x801600EC          // a1 = begin_landing_
-        jal     0x800DE6E4                  // general air collision?
+        li      a1, landing_initial_        // a1 = landing_initial_
+        jal     0x800DE80C                  // common air collision subroutine (transition on landing, allow ledge grab)
         lw      a0, 0x0010(sp)              // load a0
-        lw      a0, 0x0010(sp)              // load a0
-        jal     0x800DE87C                  // check ledge/floor collision?
-        nop
-        beq     v0, r0, _end                // skip if !collision
-        nop
-        lw      a0, 0x0010(sp)              // load a0
-        lw      a1, 0x0084(a0)              // a1 = player struct
-        lhu     a2, 0x00D2(a1)              // a2 = collision flags?
-        andi    a2, a2, 0x3000              // bitmask
-        beq     a2, r0, _end                // skip if !ledge_collision
-        nop
-        jal     0x80144C24                  // ledge grab subroutine
-        nop
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
@@ -1231,5 +1154,25 @@ scope DragonKingDSP {
         lw      ra, 0x001C(sp)              // ~
         jr      ra                          // original return logic
         addiu   sp, sp, 0x0020              // ~
+    }
+
+    // @ Description
+    // Initial function for DSPLanding
+    // Copy of subroutine 0x801600EC, which begins the landing action for Falcon Kick.
+    // Loads the appropriate landing action for Dark Samus.
+    scope landing_initial_: {
+        // Copy the first 6 lines of subroutine 0x801600EC
+        OS.copy_segment(0xDAB2C, 0x18)
+        // Replace original line which loads the landing action id
+        // addiu   a1, r0, 0x00E8           // replaced line
+        lw      t6, 0x0084(a0)              // t6 = player struct
+        lui     at, 0x3F00                  // ~
+        mtc1    at, f2                      // f2 = 0.625
+        lwc1    f4, 0x0060(t6)              // f4 = ground x velocity
+        mul.s   f4, f4, f2                  // f4 = ground x velocity * 0.625
+        swc1    f4, 0x0060(t6)              // store updated ground x velocity
+        addiu   a1, r0, 0x00E8              // DSP landing action
+        // Copy the last 8 lines of subroutine 0x801600EC
+        OS.copy_segment(0xDAB48, 0x20)
     }
 }

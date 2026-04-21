@@ -477,10 +477,6 @@ scope GFX {
     add_gfx_texture(gfx/feather-2.rgba5551)
     add_gfx_texture(gfx/feather-3.rgba5551)
 
-    add_gfx_texture_block(Green_Blast, 1, 2, 0, 0x10, 0x8)
-    add_gfx_texture(gfx/green_blast.rgba5551)
-    add_gfx_texture(gfx/green_blast_palette.rgba5551)      // I don't see any other way to add a palette
-
     // ADD NEW GFX HERE
     add_gfx(Blue Explosion, gfx/blue_explosion_instructions.bin, id.EXPLOSION)
     add_gfx(Blue Bomb Explosion, gfx/blue_bomb_explosion_instructions.bin, id.EXPLOSION)
@@ -516,7 +512,6 @@ scope GFX {
     add_gfx(Gold Sparkles Secondary A, gfx/gold_sparkles_secondary_a_instructions.bin, id.KIRBY_USP_SPARKLES_SECONDARY_A)
     add_gfx(Gold Sparkles Secondary B, gfx/gold_sparkles_secondary_b_instructions.bin, id.KIRBY_USP_SPARKLES_SECONDARY_B)
     add_gfx(Gold Sparkles Primary, gfx/gold_sparkles_primary_instructions.bin, id.KIRBY_USP_SPARKLES_PRIMARY)
-    add_gfx(Green Blast, gfx/green_blast_instructions.bin, id.PINK_BLAST)
 
     // writes new GFX to ROM
     write_gfx()

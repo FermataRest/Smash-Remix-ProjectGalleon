@@ -68,6 +68,9 @@ scope TimedStock {
         nop
 
         _stock:
+        OS.read_word(VsRemixMenu.vs_mode_flag, t6) // t6 = vs_mode_flag
+        lli     t7, VsRemixMenu.mode.TUG_OF_WAR
+        beq     t6, t7, _tug_of_war         // if Tug of War, use custom logic
         sll     v1, a0, 0x0002              // (original) v1 = offset = player * 4
         lui     t6, 0x8014                  // (original) t6 = address of ?
         addu    t6, t6, v1                  // (original) t6 = address of ? + offset
@@ -76,11 +79,12 @@ scope TimedStock {
         addu    t7, t7, a0                  // t7 = address of initial stock count
         lbu     t7, 0x0000(t7)              // t7 = initial stock count
         subu    v0, t7, t6                  // v0 = initial stock count - deaths
-
         addiu   v0, v0, 0x0001              // v0 = stocks remaining at end of match
+
         beqz    v0, _end                    // if no stocks remaining, skip adding damage/h.p.
         sll     v0, v0, 0x000C              // v0 = v0 << 0xC = v0 * 0x1000
 
+        _add_damage_to_score:
         li      t6, Global.vs.p1            // t6 = vs struct for p1
         lli     v1, Global.vs.P_DIFF        // v1 = Global.vs.P_DIFF
         multu   v1, a0                      // v1 = offset to px
@@ -90,8 +94,34 @@ scope TimedStock {
         b       _end
         subu    v0, v0, v1                  // v0 = score
 
+        _tug_of_war:
+        li      t6, Global.vs.p1            // t6 = vs struct for p1
+        lli     v1, Global.vs.P_DIFF        // v1 = Global.vs.P_DIFF
+        multu   v1, a0                      // v1 = offset to px
+        mflo    v1                          // ~
+        addu    t6, t6, v1                  // t6 = Global.vs.px
+        lbu     v0, 0x000B(t6)              // v0 = ending stocks, 0-based
+        addiu   v0, v0, 0x0001              // v0 = stocks remaining at end of match
+        sll     v0, v0, 0x0018              // v0 = v0 << 0x18 = v0 * 0x1000000
+        sll     v1, a0, 0x0002              // v1 = offset = player * 4
+        lui     t6, 0x8014                  // t6 = address of ?
+        addu    t6, t6, v1                  // t6 = address of ? + offset
+        lw      t7, 0x9B90(t6)              // t7 = deaths
+        lw      t6, 0x9B80(t6)              // t6 = KOs
+        subu    v1, t6, t7                  // v1 = score = KOs - deaths
+        sll     v1, v1, 0x000C              // v1 = v1 << 0x0x = v1 * 0x1000
+        b       _add_damage_to_score
+        addu    v0, v0, v1                  // v0 = score = remaining stocks * 0x1000000 + (KOs - deaths) * 0x1000
+
         _time:
-        sll     v1, a0, 0x0002              // (original) v1 = offset = player * 4
+        sll     v1, a0, 0x0002              // v1 = offset = player * 4
+
+        // check mode
+        OS.read_word(VsRemixMenu.vs_mode_flag, t6) // t6 = vs_mode_flag
+        lli     t7, VsRemixMenu.mode.KOTH
+        beq     t6, t7, _koth               // if King of the Hill, use custom logic
+        lli     t7, VsRemixMenu.mode.SMASHKETBALL
+        beq     t6, t7, _smashketball       // if Smashketball, use custom logic
         lui     t6, 0x8014                  // (original) t6 = address of ?
         addu    t6, t6, v1                  // (original) t6 = address of ? + offset
         lw      t7, 0x9B90(t6)              // (original) t7 = deaths
@@ -101,6 +131,18 @@ scope TimedStock {
         _end:
         jr      ra
         nop
+
+        _koth:
+        li      t6, KingOfTheHill.scores
+        addu    t6, t6, v1                  // t6 = score address
+        jr      ra
+        lw      v0, 0x0000(t6)              // v0 = score = time on hill
+
+        _smashketball:
+        li      t6, Smashketball.winner_scores
+        addu    t6, t6, v1                  // t6 = score address
+        jr      ra
+        lw      v0, 0x0000(t6)              // v0 = score = shots made
     }
 
     // @ Description
@@ -127,11 +169,46 @@ scope TimedStock {
         nop
     }
 
-    // Prevent sudden death when not Time mode [bit]
-    OS.patch_start(0x10A4F8, 0x8018D608)
-    lli     t7, 0x0001                  // t7 = 1 for time
-    beq     t6, t7, 0x8018D61C          // take time branch if in Time mode
-    OS.patch_end()
+    // Prevent sudden death when not Time mode or some special VS modes
+    scope prevent_sudden_death_: {
+        OS.patch_start(0x10A4F4, 0x8018D604)
+        j       prevent_sudden_death_
+        lli     t7, 0x0001                  // t7 = 1 for time
+        _return:
+        beq     t6, t7, 0x8018D61C          // take time branch if in Time mode
+        OS.patch_end()
+
+        OS.read_word(VsRemixMenu.vs_mode_flag, t8)
+        lli     v0, VsRemixMenu.mode.KOTH
+        beq     t8, v0, _no_sudden_death    // if King of the Hill, do not continue
+        lli     v0, VsRemixMenu.mode.SMASHKETBALL
+        bne     t8, v0, _normal             // if not Smashketball, continue normally
+        nop
+
+        // if here, Smashketball can have a Sudden Death mode if the scores are tied
+        OS.read_word(Smashketball.scoreboard, v0) // v0 = scoreboard object
+        lw      t8, 0x0060(v0)              // t8 = address of Home score
+        lw      t8, 0x0000(t8)              // t8 = Home score
+        lw      v0, 0x0064(v0)              // v0 = address of Away score
+        lw      v0, 0x0000(v0)              // v0 = Away score
+        bne     t8, v0, _no_sudden_death    // if the scores aren't tied, no sudden death
+        lli     v0, 0x0064                  // v0 = infinity
+
+        li      t8, Global.vs.time          // t8 = time
+        sb      v0, 0x0000(t8)              // set time to infinity
+
+        lui     at, 0x0800A                 // at = upper half of is_suddendeath flag
+        j       0x8018DE00                  // skip score calculation for time mode, and set sudden death flag
+        lli     t4, OS.TRUE                 // t4 = TRUE for is_suddendeath flag
+
+        _normal:
+        j       _return
+        addiu   a0, a0, 0x4EF8              // original line 1
+
+        _no_sudden_death:
+        j       0x8018DE08                  // skip score calculation for time mode
+        lli     v0, OS.FALSE                // and return FALSE (no sudden death)
+    }
 
     // Allows always viewing full (KOs & TKOs) results screen
     scope show_full_results_: {

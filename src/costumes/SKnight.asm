@@ -1,0 +1,65 @@
+scope sknight_costumes {
+    // @ Description
+    // Number of additional costumes
+    constant NUM_EXTRA_COSTUMES(1)
+
+    // @ Description
+    // Number of parts
+    constant NUM_PARTS(0x18)
+
+    // @ Description
+    // Number of original costumes
+    constant NUM_COSTUMES(5)
+
+    parts_table:
+    constant PARTS_TABLE_ORIGIN(origin())
+    db NUM_EXTRA_COSTUMES       // 0x0 - number of extra costumes
+    db 0x0                      // 0x1 - special part ID
+    db 0x0                      // 0x2 - special part image index start
+    db 0x0                      // 0x3 - costumes to skip
+    fill 4 + (NUM_PARTS - 1) * 8
+
+    Costumes.define_part(2, 1, Costumes.part_type.PALETTE)                                                // part 0x2_0 - torso
+    Costumes.define_part(4, 1, Costumes.part_type.PALETTE)          // part 0x4_0 - left upper arm
+    Costumes.define_part(6, 1, Costumes.part_type.PALETTE)          // part 0x5_0 - left lower arm
+    Costumes.define_part(8, 1, Costumes.part_type.PALETTE)                                             // part 0x8_1 - head - hat M texture
+    Costumes.define_part(A, 1, Costumes.part_type.PALETTE)          // part 0xA_0 - right upper arm
+    Costumes.define_part(B, 1, Costumes.part_type.PALETTE)         // part 0xB_0 - right lower arm
+    Costumes.define_part(C, 1, Costumes.part_type.PALETTE)
+    Costumes.define_part(F, 1, Costumes.part_type.PALETTE)                                           // part 0xF_0 - left upper leg
+    Costumes.define_part(10, 1, Costumes.part_type.PALETTE)                                                   // part 0x10_0 - left lower leg
+    Costumes.define_part(12, 1, Costumes.part_type.PALETTE)                                        // part 0x12_0 - left foot
+    Costumes.define_part(14, 1, Costumes.part_type.PALETTE)                                              // part 0x14_0 - right upper leg
+    Costumes.define_part(15, 1, Costumes.part_type.PALETTE)                                               // part 0x15_0 - right lower leg
+    Costumes.define_part(17, 1, Costumes.part_type.PALETTE)                                    // part 0x17_0 - right foot
+
+    // Register extra costumes
+    Costumes.register_extra_costumes_for_char(Character.id.SKNIGHT)
+
+    // Costume 0x6
+    scope costume_0x6 {
+        palette_1:; insert "SKnight/cos_6_1.bin"
+        palette_2:; insert "SKnight/cos_6_2.bin"
+        palette_3:; insert "SKnight/cos_6_3.bin"
+
+        Costumes.set_palette_for_part(0, 2, 0, palette_1)
+        Costumes.set_palette_for_part(0, 4, 0, palette_2)
+
+        Costumes.set_palette_for_part(0, 6, 0, palette_1)
+        Costumes.set_palette_for_part(0, 8, 0, palette_1)
+
+        Costumes.set_palette_for_part(0, A, 0, palette_2)
+
+        Costumes.set_palette_for_part(0, B, 0, palette_1)
+        Costumes.set_palette_for_part(0, C, 0, palette_1)
+        Costumes.set_palette_for_part(0, F, 0, palette_1)
+        Costumes.set_palette_for_part(0, 10, 0, palette_1)
+        Costumes.set_palette_for_part(0, 12, 0, palette_1)
+        Costumes.set_palette_for_part(0, 14, 0, palette_1)
+        Costumes.set_palette_for_part(0, 15, 0, palette_1)
+        Costumes.set_palette_for_part(0, 17, 0, palette_1)
+
+        Costumes.set_stock_icon_palette_for_costume(0, SKnight/cos_6_stock_icon.bin)
+    }
+
+}

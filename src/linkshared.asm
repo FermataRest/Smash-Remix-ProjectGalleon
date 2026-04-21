@@ -88,6 +88,24 @@ scope LinkShared {
     dw  0x0000076C
     dw  0x000007B4
 
+    entry_anim_struct_1_ROY:
+    dw  0x040A0000
+    dw  Character.ROY_file_8_ptr
+    OS.copy_segment(0xA9CEC, 0x10)
+	dw	0x00000110					        // Roy entry alters these
+	dw  0x00000218
+    dw  0x00000344
+    dw  0x000003A0
+
+    entry_anim_struct_2_ROY:
+    dw  0x040A0000
+    dw  Character.ROY_file_8_ptr
+    OS.copy_segment(0xA9D14, 0x10)
+	dw	0x00000638					        // Roy entry alters these
+	dw  0x00000740
+    dw  0x0000076C
+    dw  0x000007B4
+
     entry_anim_struct_1_MARINA:
     dw  0x040A0000
     dw  Character.MARINA_file_9_ptr
@@ -169,6 +187,9 @@ scope LinkShared {
         ori     t1, r0, Character.id.MARTH  // t1 = id.MARTH
         li      a0, entry_anim_struct_1_MARTH       // a0 = entry_anim_struct
         beq     t0, t1, _custom             // branch if Marth
+        ori     t1, r0, Character.id.ROY  // t1 = id.ROY
+        li      a0, entry_anim_struct_1_ROY         // a0 = entry_anim_struct
+        beq     t0, t1, _custom             // branch if Roy
         ori     t1, r0, Character.id.YLINK  // t1 = id.YLINK
         li      a0, entry_anim_struct_1_YLINK       // a0 = entry_anim_struct
         beq     t0, t1, _custom             // branch if Young Link
@@ -223,6 +244,9 @@ scope LinkShared {
         ori     t1, r0, Character.id.MARTH  // t1 = id.MARTH
         li      a0, entry_anim_struct_2_MARTH       // a0 = entry_anim_struct
         beq     t0, t1, _custom             // branch if Marth
+        ori     t1, r0, Character.id.ROY  // t1 = id.ROY
+        li      a0, entry_anim_struct_2_ROY         // a0 = entry_anim_struct
+        beq     t0, t1, _custom             // branch if Roy
         ori     t1, r0, Character.id.YLINK  // t1 = id.YLINK
         li      a0, entry_anim_struct_2_YLINK       // a0 = entry_anim_struct
         beq     t0, t1, _custom             // branch if Young Link
@@ -698,6 +722,8 @@ scope LinkShared {
 	    beq		a0, at, _pull_bomb			// branch if ELink
 	    addiu 	at, r0, Character.id.JLINK
 	    beq		a0, at, _pull_bomb			// branch if JLink
+	    addiu 	at, r0, Character.id.PEACH
+        beq     a0, at, _pull_bomb          // branch if Peach
 	    addiu 	at, r0, Character.id.MARINA
 	    beq		a0, at, _marina			    // branch if Marina
 	    addiu 	at, r0, Character.id.YLINK
@@ -725,4 +751,199 @@ scope LinkShared {
 
 	}
 
+    // @ Description
+    // Fixes a crash-creating scenario when the boomerang is destroyed twice by being
+    // caught and being outside the blast zone on the same frame. Can happen on scrolling
+    // stages like 1-1. For the fix, we'll make wpLinkBoomerangCheckOwnerCatch() return 1
+    // if the boomerang is caught, 0 if not, and use the result as the return value of
+    // wpLinkBoomerangProcUpdate() so that it properly reports as destroyed.
+    scope boomerang_crash_fix_: {
+        // initialize return value to FALSE
+        OS.patch_start(0xE7DA4, 0x8016D364)
+        jal     boomerang_crash_fix_._initialize_return_value
+        sw      a0, 0x0020(sp)              // original line 1
+        OS.patch_end()
+
+        // set return value to TRUE if boomerang is caught
+        OS.patch_start(0xE7E34, 0x8016D3F4)
+        // don't call this function since it will be called in wpProcessProcWeaponMain()
+        // jal     0x8016800C                  // original line 1 - wpMainDestroyWeapon
+        // lw      a0, 0x0020(sp)              // original line 2
+        lli     v0, OS.TRUE                 // v0 = TRUE
+        sw      v0, 0x0018(sp)              // set return value to TRUE
+        _return:
+        // here at the end of the function, use the return value
+        lw      ra, 0x0014(sp)              // original line 3
+        lw      v0, 0x0018(sp)              // return TRUE/FALSE value
+        jr      ra                          // original line 5
+        addiu   sp, sp, 0x0020              // original line 4
+        OS.patch_end()
+
+        // use return value in wpLinkBoomerangProcUpdate()
+        OS.patch_start(0xE7FCC, 0x8016D58C)
+        // originally, it is: or v0, r0, r0
+        nop                                 // use v0 from wpLinkBoomerangCheckOwnerCatch()
+        OS.patch_end()
+
+        _initialize_return_value:
+        sw      r0, 0x0018(sp)              // initialize return value to FALSE in free stack space
+        jr      ra
+        mtc1    a1, f12                     // original line 2
     }
+
+scope cpu_post_process: {
+        OS.routine_begin(0x20)
+        sw a0, 0x10(sp)
+
+        // If YLINK, continue
+        lli t0, Character.id.YLINK
+        lw t1, 0x8(a0) // t1 = character id
+        beq t0, t1, _continue
+        nop
+
+        // Check CPU level for vanilla characters
+        lbu t1, 0x0013(a0) // t1 = cpu level
+        addiu t1, t1, -10 // t1 = 0 if level 10
+        bnezl t1, _end // if not lv10, skip
+        nop
+
+        _continue:
+        // If going for NSP, check if boomerang is available
+        lw t0, 0x1D4(a0) // t0 = ft_com->p_command
+        li t1, AI.command_table // load command table base address
+
+        lw at, AI.ATTACK_TABLE.NSPG.INPUT << 2(t1)
+        beq t0, at, boomerang_check
+        lw at, AI.ATTACK_TABLE.NSPA.INPUT << 2(t1)
+        beq t0, at, boomerang_check
+        nop
+
+        b _end
+        nop
+
+        scope boomerang_check: {
+            lw at, 0xADC(a0) // at = fighter_vars.link.boomerang_gobj
+            beqz at, _end // if no boomerang object, we can spawn one
+            nop
+
+            _no_input:
+            // If there's a boomerang out, skip using NSP
+            jal 0x80132758 // execute AI command
+            lli a1, AI.ROUTINE.NULL // arg1 = NULL
+            b _end
+            nop
+
+            _end:
+        }
+
+        _end:
+        lw a0, 0x10(sp)
+        OS.routine_end(0x20)
+    }
+    Character.table_patch_start(cpu_post_process, Character.id.LINK, 0x4)
+    dw cpu_post_process; OS.patch_end()
+    Character.table_patch_start(cpu_post_process, Character.id.JLINK, 0x4)
+    dw cpu_post_process; OS.patch_end()
+    Character.table_patch_start(cpu_post_process, Character.id.ELINK, 0x4)
+    dw cpu_post_process; OS.patch_end()
+    Character.table_patch_start(cpu_post_process, Character.id.YLINK, 0x4)
+    dw cpu_post_process; OS.patch_end()
+}
+
+// This one is just for the regular Links, pull bomb when up far and away from stage
+scope recovery_logic: {
+    OS.routine_begin(0x20)
+    sw a0, 0x10(sp)
+
+    // Check CPU level for vanilla characters
+    lbu t1, 0x0013(a0) // t1 = cpu level
+    addiu t1, t1, -10 // t1 = 0 if level 10
+    bnezl t1, _end // if not lv10, skip
+    nop
+
+    lw at, 0x84C(a0) // at = held item
+    bnez at, _end // branch to end if holding an item
+
+    mtc1 r0, f0 // guarantee f0 = 0
+
+    lw t0, 0x78(a0) // load location vector
+    lwc1 f2, 0x0(t0) // f2 = location X
+    lwc1 f4, 0x4(t0) // f4 = location Y
+
+    // check closest ledge in X
+    scope ledge_check: {
+        lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+        lwc1 f8, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+
+        sub.s f6, f6, f2
+        abs.s f6, f6 // f6 = abs(distance) to left ledge
+
+        sub.s f8, f8, f2
+        abs.s f8, f8 // f8 = abs(distance) to right ledge
+
+        c.le.s f6, f8
+        nop
+        bc1f _right
+        nop
+
+        _left:
+        lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+        lwc1 f8, 0x01CC+0x50(a0) // load nearest LEFT ledge Y
+        
+        b _check_end
+        nop
+
+        _right:
+        lwc1 f6, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+        lwc1 f8, 0x01CC+0x58(a0) // load nearest RIGHT ledge Y
+
+        _check_end:
+    }
+
+    sub.s f14, f6, f2 // f14 = x diff
+    sub.s f12, f8, f4 // f12 = y diff
+
+    // check if too close to use DSP
+    lui at, 0x44FA
+    mtc1 at, f22 // f22 = 2000.0
+
+    abs.s f16, f14 // f16 = abs(x distance to ledge)
+
+    c.le.s f16, f22 // if distance to ledge is lower than 1000.0
+    nop
+    bc1t _end // do not go for NSP if already close to ledge
+    nop
+
+    // check if up high
+    // in this case, go for DSP
+    lui at, 0xC4FA
+    mtc1 at, f22 // f22 = -2000.0
+
+    c.le.s f12, f22 // if 2000 units or more above ledge
+    nop
+    bc1t _dsp
+    nop
+
+    b _end // no conditions matched, skip
+    nop
+
+    _dsp:
+    swc1 f6, 0x01CC+0x60(a0) // save new target x = ledge x
+    swc1 f8, 0x01CC+0x64(a0) // save new target y = ledge y
+
+    jal 0x80132758 // execute AI command
+    lli a1, AI.ATTACK_TABLE.DSPA.INPUT // arg1 = DSP
+
+    b _end
+    nop
+
+    _end:
+    lw a0, 0x10(sp)
+    OS.routine_end(0x20)
+}
+Character.table_patch_start(recovery_logic, Character.id.LINK, 0x4)
+dw recovery_logic; OS.patch_end()
+Character.table_patch_start(recovery_logic, Character.id.JLINK, 0x4)
+dw recovery_logic; OS.patch_end()
+Character.table_patch_start(recovery_logic, Character.id.ELINK, 0x4)
+dw recovery_logic; OS.patch_end()

@@ -55,6 +55,33 @@ scope Size {
     second_jumping_height_multiplier:;      float32 0.0395604
     weight_multiplier:;                     float32 -0.24
 
+
+    // @ Description
+    // Adjusts the respawn platform size
+    scope adjust_respawn_platform: {
+        OS.patch_start(0x7F878, 0x80104078)
+        j       adjust_respawn_platform
+        nop
+        _return:
+        OS.patch_end()
+        
+        // a0 = player obj
+        // f12 = current respawn platform multiplier
+        li      t7, multiplier_table    // t7 = multiplier_table
+        lw      a0, 0x0084(a0)          // a0 = player struct
+        lbu     t6, 0x000D(a0)          // t6 = port
+        sll     t6, t6, 0x0002          // t6 = index = port * 4
+        addu    t7, t7, t6              // t7 = &multiplier_table[index]
+        lwc1    f14, 0x0000(t7)         // f16 = multiplier
+        mul.s   f12, f12, f14           // respawn platform multiplier *= size multiplier
+        nop
+        
+        // return
+        lui     a0, 0x8013              // og line 1
+        j       _return
+        addiu   a0, a0, 0xE770          // og line 2
+    }
+
     // @ Description
     // Adjusts the height of the player label.
     scope adjust_player_label_: {
@@ -329,12 +356,16 @@ scope Size {
         sw      at, 0x0004(sp)              // save registers
 
         // hijack this routine to clear KirbyHats.magic_hat_on and taunt_loses_power :E
+        lli     t6, OS.FALSE                // t6 = FALSE
+        lw      at, 0x0020(t2)              // at = hat power ID
+        lli     a2, Character.id.NONE       // a2 = magic hat power ID
+        beql    at, a2, pc() + 8            // if magic hat, then set to on
+        lli     t6, OS.TRUE                 // t6 = TRUE
         li      a2, KirbyHats.spawn_with_hat
         addu    a2, a2, t9                  // a2 = address of port's spawn_with_hat
-        lw      at, 0x0000(a2)              // t6 = spawn_with_hat
+        lw      at, 0x0000(a2)              // at = spawn_with_hat
         lli     a2, CharacterSelectDebugMenu.KirbyHat.MAX_VALUE - 1 // a2 = 2nd to last kirby hat entry ('???')
-        bnel    at, a2, pc() + 12           // if not magic hat, then don't set to on
-        lli     t6, OS.FALSE                // t6 = FALSE
+        beql    at, a2, pc() + 8            // if magic hat, then set to on
         lli     t6, OS.TRUE                 // t6 = TRUE
         li      a2, KirbyHats.magic_hat_on  // a2 = magic_hat_on
         addu    a2, a2, t9                  // a2 = address of port's magic_hat_on
@@ -1729,6 +1760,47 @@ scope Size {
 
                 li      t8, Size.multiplier_table
                 lw      t7, 0x0084(t7)          // t7 = player special struct
+                lw      t8, 0x0008(t7)          // t7 = char_id
+                lli     at, Character.id.KEN
+                beq     t8, at, _scale_ken
+                nop
+
+                b _scale_normal
+                nop
+
+                _scale_ken:
+                li      t8, Size.multiplier_table
+                lbu     t7, 0x000D(t7)          // t7 = port
+                sll     t7, t7, 0x0002          // t7 = port * 4 = offset to multiplier
+                addu    t8, t8, t7              // t8 = size multiplier address
+                lwc1    f6, 0x0000(t8)          // f6 = size multiplier
+
+                lui     t8, 0x3ECC
+                mtc1    t8, f0          // f6 = size multiplier
+
+                mul.s   f6, f6, f0
+
+                lwc1    f0, 0x0040(t3)          // f0 = x
+                mul.s   f0, f0, f6              // f0 = updated x
+                lwc1    f2, 0x0044(t3)          // f2 = y
+                mul.s   f2, f2, f6              // f2 = updated y
+                lwc1    f4, 0x0048(t3)          // f4 = z
+                mul.s   f4, f4, f6              // f4 = updated z
+
+                swc1    f0, 0x0040(t3)          // update x scale
+                li      t7, 0x43A20002          // t7 = original z offset
+                mtc1    t7, f0                  // f0 = original z offset
+                mul.s   f0, f0, f6              // f0 = updated z offset
+                swc1    f2, 0x0044(t3)          // update y scale
+                swc1    f4, 0x0048(t3)          // update z scale
+                swc1    f0, 0x0024(t3)          // update z offset
+
+                b _end
+                nop
+
+                _scale_normal:
+                li      t8, Size.multiplier_table
+
                 lbu     t7, 0x000D(t7)          // t7 = port
                 sll     t7, t7, 0x0002          // t7 = port * 4 = offset to multiplier
                 addu    t8, t8, t7              // t8 = size multiplier address
@@ -2289,6 +2361,8 @@ scope Size {
             beq     a1, at, _apply_scale    // apply scale if Luigi
             lli     at, Character.id.DRM
             beq     a1, at, _apply_scale    // apply scale if Dr. Mario
+            lli     at, Character.id.DRL
+            beq     a1, at, _apply_scale    // apply scale if Dr. Luigi
             lli     at, Character.id.JMARIO
             beq     a1, at, _apply_scale    // apply scale if J Mario
             lli     at, Character.id.JLUIGI

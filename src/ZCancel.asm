@@ -13,7 +13,8 @@ include "Toggles.asm"
 scope ZCancel {
 
     // @ Description
-    // An optional toggle to spice things up
+    // A good training mechanic that punishes you form missing your z cancels while landing with aerials
+    // by halofactory
     scope _cruel_z_cancel: {
         scope CRUEL_Z_CANCEL_MODE: {
             constant OFF(0)
@@ -25,7 +26,10 @@ scope ZCancel {
             constant BURY(6)
             constant LAUGH_TRACK(7)
             constant EGG(8)
-            constant RANDOM(9)
+            constant SLEEP(9)
+            constant TRIP(10)
+            constant SWAP_MUSIC(11)
+            constant RANDOM(12)
         }
 
         OS.patch_start(0xCB488, 0x80150A48)
@@ -67,7 +71,63 @@ scope ZCancel {
         dw  _bury
         dw  _laugh
         dw  _egg
+        dw  _sleep
+        dw  _trip
+        dw  _swap_music
         dw  _random
+        
+        // A copy of 'Pause.set_alternate_music_', trimmed and modified to be a Z-Cancel punishment
+        _swap_music:
+        li      t0, Toggles.entry_play_music
+        lw      t0, 0x0004(t0)              // t0 = 0 if music is toggled off
+        beqz    t0, _swap_music_end         // skip if music is toggled off
+        nop
+        OS.save_registers()
+
+        // this block loads from the random list using a random int
+        li      t0, ZCancel._cruel_z_cancel._swapping_music
+        addiu   t8, r0, 0x0001              // ~
+        sw      t8, 0x0000(t0)              // set _swapping_music to 1
+        jal     BGM.random_music_
+        nop
+        li      t0, ZCancel._cruel_z_cancel._swapping_music
+        sw      r0, 0x0000(t0)              // set _swapping_music to 0
+        beqz    v1, _swap_music_restore     // if there were no valid entries in the random table, then don't do anything
+        nop
+        move    a0, v1                      // a0 - range (0, N-1)
+
+        jal     Global.get_random_int_      // v0 = (0, N-1)
+        nop
+        li      t0, BGM.random_table        // t0 = random_table
+        sll     v0, v0, 0x0002              // v0 = offset = random_int * 4
+        addu    t0, t0, v0                  // t0 = random_table + offset
+        lw      a1, 0x0000(t0)              // a1 = bgm_id
+        b       _play_random
+        nop
+
+        _play_random:
+        li      a0, BGM.current_track       // a0 = address of current_track
+        sw      a1, 0x0000(a0)              // store current_track
+        li      t1, BGM.vanilla_current_track // t1 = hardcoded spot for current track
+        sw      a1, 0x0000(t1)              // save as override track (vanilla)
+        lw      at, 0x0004(t1)              // at = stage music (vanilla)
+        sw      a1, 0x0004(t1)              // save as stage music (vanilla)
+        beq     at, a1, _swap_music_restore // don't change the music if it's the same track
+        nop
+        lui     a0, 0x8013
+        lw      a0, 0x1300(a0)              // a0 = stage file
+        sw      a1, 0x007C(a0)              // store bgm_id
+
+        jal     BGM.play_                   // play music
+        addiu   a0, r0, 0x0000
+
+        _swap_music_restore:
+        OS.restore_registers()
+        _swap_music_end:
+        li      at, _last_known_speed_value
+        lw      v0, 0x0000(at)           // load last known landing speed
+        b       _end                     // branch to end
+        lw      t9, 0x0028(v1)           // original line 2
 
         _on:
         lli     t8, 0x0012               // t8 =  custom surface flag (damage, minimal KB)
@@ -100,6 +160,7 @@ scope ZCancel {
 
         _egg:
         sw      r0, 0x0B18(v1)              //
+        sw      r0, 0x07A0(v1)              // set capturer to 0
 
         addiu   a1, r0, Action.EggLay       // set to egg
         or      a2, r0, r0                  // a2(starting frame) = 0 (doesn't do anything here?)
@@ -145,22 +206,22 @@ scope ZCancel {
         li      t0, Global.current_screen   // ~
         lbu     t0, 0x0000(t0)              // t0 = current screen
         addiu   at, r0, 0x0001              // at = 1P mode screen_id
-        
+
         bne     t0, at, _instant_ko_normal  // continue normal path if not on 1p screen (as well as title screen)
         nop
-        
+
         li      at, SinglePlayerModes.STAGE_FLAG
         lb      at, 0x0000(at)           // load current stage
         addiu   t0, r0, 0x000D           // final stage ID
-        
+
         bne     t0, at, _instant_ko_normal  // continue normal path if not on 1p screen (as well as title screen)
         nop
-        
+
         li      at, 0x80131580           // load "match off" byte (gets turned on after fight ends and when pause pressed
         lbu     at, 0x0000(at)
         beqz    at, _instant_ko_skip     // if "match off" byte is set to 0, then you shouldn't be able to KO in the 1p Final Boss (this should possibly always be the case)
         nop
-        
+
         _instant_ko_normal:
         lw      t0, 0x0084(a0)           // t0 = player struct
         sw      r0, 0x0A20(t0)           // clear Overlay Routine
@@ -170,7 +231,7 @@ scope ZCancel {
         sw      r0, 0x0A88(t0)           // clear current Overlay
         jal     0x8013C1C4               // set to KO action
         nop
-        
+
         _instant_ko_skip:
         j       0x80150AF0 + 0x4         // and skip to end
         lw      ra, 0x0014(sp)
@@ -184,7 +245,45 @@ scope ZCancel {
         b       _end                     // branch to end
         lw      t9, 0x0028(v1)           // original line 2
 
+        _trip:
+        lbu     at, 0x000D(v1)              // at = player index (0 - 3)
+        li      a1, Tripping.tripping.player_trip_flag
+        addu    a1, a1, at                  // a1 = address of trip flag for this player
+        sb      at, 0x0000(a1)              // at = clear trip flag (just in case)
+
+        addiu   a1, r0, 0x0008              // a1 = 8 frames (note: hitstun needs to be higher value than 'action frame' count)
+        sh      a1, 0x0B1A(v1)              // a1 = put player in hitstun
+
+        addiu   a1, r0, Action.DamageLow3   // a1 = DamageLow3 action (0x02D)
+        or      a2, r0, r0                  // a2(starting frame) = 0
+        lui     a3, 0x3F80                  // a3(frame speed multiplier) = 1.0
+        jal     0x800E6F24                  // change action
+        sw      r0, 0x0010(sp)              // argument 4 = 0
+
+        // play sound effect
+        jal     FGM.play_                   // play sfx
+        lli     a0, 0x0456                  // tripstart
+
+        lw      v1, 0x001C(sp)              // restore player struct
+        lbu     at, 0x000D(v1)              // at = player index (0 - 3)
+        li      t0, Tripping.tripping.player_trip_flag
+        addu    t0, t0, at                  // t0 = address of trip flag for this player
+        addiu   at, r0, 0x0001
+        sb      at, 0x0000(t0)              // at = update trip flag (true)
+
+        j       0x80150AF0 + 0x4            // and skip to end
+        lw      ra, 0x0014(sp)
+
+        _sleep:
+        jal     0x801499A4               // set fighter status to sleep
+        nop
+        j       0x80150AF0 + 0x4         // and skip to end
+        lw      ra, 0x0014(sp)
+
         _last_known_speed_value:
+        dw 0
+
+        _swapping_music:
         dw 0
     }
 
@@ -204,7 +303,7 @@ scope ZCancel {
         nop
 
         li      t6, Toggles.entry_z_cancel_opts
-        lw      t6, 0x0004(t6)              // t0 = 0 for DEFAULT, 1 for Disabled, 2 for Melee, 3 for Auto, 4 for Glide
+        lw      t6, 0x0004(t6)              // t6 = 0 for DEFAULT, 1 for Disabled, 2 for Melee, 3 for Auto, 4 for Glide
         beqz    t6, _default                // branch accordingly
         lli     at, 0x0001                  // t1 = 1 (Disabled)
         beq     at, t6, _return             // branch accordingly
@@ -219,7 +318,7 @@ scope ZCancel {
         // if we're here, this is a CPU z cancel
         _cpu_z_cancel:
         li      t6, Toggles.entry_z_cancel_opts
-        lw      t6, 0x0004(t6)              // t0 = 0 for DEFAULT, 1 for Disabled, 2 for Melee, 3 for Auto, 4 for Glide
+        lw      t6, 0x0004(t6)              // t6 = 0 for DEFAULT, 1 for Disabled, 2 for Melee, 3 for Auto, 4 for Glide
         beqz    t6, _z_cancel_success       // branch accordingly
         lli     at, 0x0001                  // t1 = 1 (Disabled)
         beq     at, t6, _return             // branch accordingly
@@ -246,11 +345,53 @@ scope ZCancel {
         nop
 
         _z_cancel_success:
+        li      at, VsStats.z_cancel_success_tracker
+        lbu     t6, 0x000D(v1)          // t6 = player index (0 - 3)
+        sll     t6, t6, 0x0002          // t6 = player index * 4
+        addu    at, at, t6              // at = address of successful z-cancels for this player
+        lw      t6, 0x0000(at)          // t6 = successful z-cancel count
+        addiu   t6, t6, 0x0001          // increment
+        sw      t6, 0x0000(at)          // store updated z-cancel count
+
+        OS.read_word(Training.entry_z_cancel_guide + 0x4, t6) // t6 = z cancel guide toggle
+        beqzl   t6, _no_zcg_success     // branch if z cancel guide disabled
+        nop
+
+        OS.read_byte(Global.current_screen, t6) // t6 = screen_id
+        lli     at, Global.screen.TRAINING_MODE
+        bnel    t6, at, _no_zcg_success // skip if screen_id != training mode
+        nop
+
+        jal     Training.z_cancel_guide_
+        addiu   t6, r0, 1               // at = z cancel status arg (successful)
+
+        _no_zcg_success:
         // bnezl   at, 0x80150AC0       // original line 1 (need to 'j' instead of 'b')
         j       0x80150AC0              // original line 1, modified
         lui     at, 0xC1A0              // original line 2
 
         _z_cancel_miss:
+        li      at, VsStats.z_cancel_miss_tracker
+        lbu     t6, 0x000D(v1)          // t6 = player index (0 - 3)
+        sll     t6, t6, 0x0002          // t6 = player index * 4
+        addu    at, at, t6              // at = address of missed z-cancels for this player
+        lw      t6, 0x0000(at)          // t6 = missed z-cancel count
+        addiu   t6, t6, 0x0001          // increment
+        sw      t6, 0x0000(at)          // store updated z-cancel count
+
+        OS.read_word(Training.entry_z_cancel_guide + 0x4, t6) // t6 = z cancel guide toggle
+        beqzl   t6, _no_zcg_miss        // branch if z cancel guide disabled
+        nop
+
+        OS.read_byte(Global.current_screen, t6) // t6 = screen_id
+        lli     at, Global.screen.TRAINING_MODE
+        bnel    t6, at, _no_zcg_miss    // skip if screen_id != training mode
+        nop
+
+        jal     Training.z_cancel_guide_
+        addiu   t6, r0, 0                // at = z cancel status arg (missed)
+
+        _no_zcg_miss:
         // check for 'Glide'
         li      t6, Toggles.entry_z_cancel_opts
         lw      t6, 0x0004(t6)          // t0 = 0 for DEFAULT, 1 for Disabled, 2 for Melee, 3 for Auto, 4 for Glide

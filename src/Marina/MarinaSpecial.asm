@@ -21,9 +21,8 @@ scope MarinaCargo {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     constant SHAKE_FGM_ID(0x420)            // JPN voice clip
@@ -159,9 +158,8 @@ scope MarinaCargo {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     // @ Description
@@ -213,11 +211,20 @@ scope MarinaCargo {
 
 
         lw      t6, 0x0008(s0)              // t6 = character id
+        lli     at, Character.id.LUCIA     // at = id.MARINA
+        beq     at, t6, _lucia
         lli     at, Character.id.MARINA     // at = id.MARINA
         beq     at, t6, _marina
         lli     at, Character.id.NMARINA    // at = id.NMARINA
         bnel    at, t6, _end                // branch if character != MARINA...
         mfc1    a3, f0                      // ...and a3(frame speed multiplier) = 0 (original line 2)
+
+        _lucia:
+        // if we're here then the character is MARINA, so load CargoJump parameters
+        lli     a1, Lucia.Action.CargoJump // ...and a1(action id) = CargoJump
+        lui     a3, 0x3F80                  // a3(frame speed multiplier) = 1.0
+        j       _end
+        nop
 
         _marina:
         // if we're here then the character is MARINA, so load CargoJump parameters
@@ -241,6 +248,8 @@ scope MarinaCargo {
         lui     a3, 0x3F80                  // a3(frame speed multiplier) = 1.0
         lw      t7, 0x0024(sp)              // t7 = player struct
         lw      t6, 0x0008(t7)              // t6 = character id
+        lli     at, Character.id.LUCIA     // at = id.MARINA
+        beq     at, t6, _end                // branch if character = MARINA
         lli     at, Character.id.MARINA     // at = id.MARINA
         beq     at, t6, _end                // branch if character = MARINA
         lli     at, Character.id.NMARINA    // at = id.NMARINA
@@ -289,6 +298,8 @@ scope MarinaCargo {
         addiu   a1, r0, 0x0005              // damage = 5 (for Marina)
         lli     at, Character.id.MARINA     // at = id.MARINA
         beq     at, t6, _marina             // branch if character = MARINA...
+        lli     at, Character.id.LUCIA    // at = id.NMARINA
+        bnel    at, t6, _end                // branch if character != NMARINA...
         lli     at, Character.id.NMARINA    // at = id.NMARINA
         bnel    at, t6, _end                // branch if character != NMARINA...
         // if we're here then the character is not (N)MARINA, so continue normally
@@ -349,9 +360,8 @@ scope MarinaNSP {
         sw      r0, 0x0180(a0)              // temp variable 2 = 0
         sw      r0, 0x0184(a0)              // temp variable 3 = 0
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -390,9 +400,8 @@ scope MarinaNSP {
         and     v1, v1, t6                  // ~
         sb      v1, 0x018D(a0)              // disable fast fall flag
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -428,9 +437,8 @@ scope MarinaNSP {
         sw      r0, 0x0184(a0)              // temp variable 3 = 0
         sw      r0, 0x0B18(a0)              // turn frame timer = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -472,9 +480,8 @@ scope MarinaNSP {
         sw      r0, 0x0B18(a0)              // turn frame timer = 0
         swc1    f4, 0x0048(a0)              // store updated x velocity
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -489,9 +496,8 @@ scope MarinaNSP {
         lw      t6, 0x0830(a0)              // ~
         sw      t6, 0x0840(a0)              // update captured player?
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -546,9 +552,8 @@ scope MarinaNSP {
         jal     0x800E0830                  // unknown common subroutine
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -606,9 +611,8 @@ scope MarinaNSP {
         sw      r0, 0x0048(a0)              // x velocity = 0
         sw      r0, 0x004C(a0)              // y velocity = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
 
@@ -630,9 +634,8 @@ scope MarinaNSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     // @ Description
@@ -653,9 +656,8 @@ scope MarinaNSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     // @ Description
@@ -751,9 +753,8 @@ scope MarinaNSP {
         _end:
         lw      ra, 0x0014(sp)              // ~
         lw      s0, 0x001C(sp)              // load ra, s0
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     // @ Description
@@ -809,9 +810,8 @@ scope MarinaNSP {
         _end:
         lw      ra, 0x0014(sp)              // ~
         lw      s0, 0x001C(sp)              // load ra, s0
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     // @ Description
@@ -890,9 +890,8 @@ scope MarinaNSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0040              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
     // @ Description
@@ -924,9 +923,8 @@ scope MarinaNSP {
         jal     0x800DDDDC                  // common ground collision subroutine (transition on no floor, slide-off)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -938,9 +936,8 @@ scope MarinaNSP {
         jal     0x800DE6E4                  // common air collision subroutine (transition on landing, no ledge grab)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -973,9 +970,8 @@ scope MarinaNSP {
         jal     0x8015E310                  // command grab setup (yoshi)
         lw      a0, 0x0084(a0)              // a0 = player struct
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -1008,9 +1004,8 @@ scope MarinaNSP {
         jal     0x8015E310                  // command grab setup (yoshi)
         lw      a0, 0x0084(a0)              // a0 = player struct
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -1022,9 +1017,8 @@ scope MarinaNSP {
         jal     0x800DDE84                  // common ground collision subroutine (transition on no floor, no slide-off)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -1043,9 +1037,8 @@ scope MarinaNSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -1057,9 +1050,8 @@ scope MarinaNSP {
         jal     0x800DE6E4                  // common air collision subroutine (transition on landing, no ledge grab)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -1080,9 +1072,8 @@ scope MarinaNSP {
         jal     0x800E6F24                  // change action
         lui     a3, 0x3F80                  // a3(frame speed multiplier) = 1.0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -1103,9 +1094,8 @@ scope MarinaNSP {
         jal     0x800E6F24                  // change action
         lui     a3, 0x3F80                  // a3(frame speed multiplier) = 1.0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 }
 
@@ -1152,9 +1142,8 @@ scope MarinaUSP {
         lw      v1, 0x0058(v1)              // v1 = gravity
         sw      v1, 0x004C(a0)              // y velocity = gravity
         lw      ra, 0x001C(sp)              // ~
-        addiu   sp, sp, 0x0020              // ~
         jr      ra                          // original return logic
-        nop
+        addiu   sp, sp, 0x0020              // ~
     }
 
     // @ Description
@@ -1178,9 +1167,8 @@ scope MarinaUSP {
         ori     v1, r0, 0x0001              // ~
         sw      v1, 0x0184(a0)              // temp variable 3 = 0x1(BEGIN)
         lw      ra, 0x001C(sp)              // ~
-        addiu   sp, sp, 0x0020              // ~
         jr      ra                          // original return logic
-        nop
+        addiu   sp, sp, 0x0020              // ~
     }
 
     // @ Description
@@ -1200,9 +1188,8 @@ scope MarinaUSP {
         lw      ra, 0x0024(sp)              // restore ra
 
         _end:
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -1229,9 +1216,8 @@ scope MarinaUSP {
         lw      t0, 0x0004(sp)              // ~
         lw      t1, 0x0008(sp)              // ~
         lw      ra, 0x000C(sp)              // load t0, t1, ra
-        addiu   sp, sp, 0x0010              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0010              // deallocate stack space
     }
 
     // @ Description
@@ -1331,9 +1317,8 @@ scope MarinaUSP {
         lw      ra, 0x001C(sp)              // ~
         lw      s0, 0x0014(sp)              // ~
         lw      s1, 0x0018(sp)              // loar ra, s0, s1
-        addiu   sp, sp, 0x0038              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0038              // deallocate stack space
     }
 
     // @ Description
@@ -1354,9 +1339,8 @@ scope MarinaUSP {
         lw      ra, 0x0014(sp)              // ~
         lw      t0, 0x0020(sp)              // ~
         lw      t1, 0x0024(sp)              // load ra, t0, t1
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -1405,9 +1389,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1436,9 +1419,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1463,9 +1445,8 @@ scope MarinaDSP {
         sw      at, 0x0B20(a0)              // b_press_buffer = -1
         sw      r0, 0x0B24(a0)              // add_charge = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1490,9 +1471,8 @@ scope MarinaDSP {
         sw      at, 0x0B20(a0)              // b_press_buffer = -1
         sw      r0, 0x0B24(a0)              // add_charge = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1517,9 +1497,8 @@ scope MarinaDSP {
         jal     absorb_setup_               // absorb setup
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -1544,9 +1523,8 @@ scope MarinaDSP {
         jal     absorb_setup_               // absorb setup
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -1589,9 +1567,8 @@ scope MarinaDSP {
 
         _destroy:
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -1608,9 +1585,8 @@ scope MarinaDSP {
         jal     0x800E0830                  // unknown common subroutine
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1627,9 +1603,8 @@ scope MarinaDSP {
         jal     0x800E0830                  // unknown common subroutine
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1669,9 +1644,8 @@ scope MarinaDSP {
         lw      a0, 0x0084(a0)              // a0 = player struct
         sw      r0, 0x017C(a0)              // temp variable 1 = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1711,9 +1685,8 @@ scope MarinaDSP {
         lw      a0, 0x0084(a0)              // a0 = player struct
         sw      r0, 0x017C(a0)              // temp variable 1 = 0
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1730,9 +1703,8 @@ scope MarinaDSP {
         jal     0x800E0830                  // unknown common subroutine
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1749,9 +1721,8 @@ scope MarinaDSP {
         jal     0x800E0830                  // unknown common subroutine
         lw      a0, 0x0020(sp)              // a0 = player object
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1784,9 +1755,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1819,9 +1789,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1862,9 +1831,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1905,9 +1873,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1951,9 +1918,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -1997,9 +1963,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0030              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0030              // deallocate stack space
     }
 
     // @ Description
@@ -2033,9 +1998,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -2069,9 +2033,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -2107,9 +2070,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -2157,9 +2119,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0028              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0028              // deallocate stack space
     }
 
     // @ Description
@@ -2190,9 +2151,8 @@ scope MarinaDSP {
         jal     0x800DDE84                  // common ground collision subroutine (transition on no floor, no slide-off)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -2204,9 +2164,8 @@ scope MarinaDSP {
         jal     0x800DE6E4                  // common air collision subroutine (transition on landing, no ledge grab)
         nop
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0018              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0018              // deallocate stack space
     }
 
     // @ Description
@@ -2249,9 +2208,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0038              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0038              // deallocate stack space
     }
 
     // @ Description
@@ -2292,9 +2250,8 @@ scope MarinaDSP {
 
         _end:
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0038              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0038              // deallocate stack space
     }
 
     // @ Description
@@ -2309,9 +2266,8 @@ scope MarinaDSP {
         li      t7, absorb_struct           // t7 = absorb_struct
         sw      t7, 0x0850(v1)              // store absorb_struct pointer
         lw      ra, 0x001C(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -2397,42 +2353,6 @@ scope MarinaDSP {
     }
 
     // @ Description
-    // Patch which prevents Marina's items from being destroyed when landing on floors.
-    scope prevent_item_despawn_: {
-        OS.patch_start(0xEE644, 0x80173C04)
-        j       prevent_item_despawn_
-        nop
-        _return:
-        OS.patch_end()
-
-        // s0 = item struct
-        lw      t0, 0x000C(s0)              // t0 = item_id
-        lli     t1, Item.Gem.id             // t1 = gem/bomb id
-        beq     t1, t0, _j_0x80173C28       // skip if item = gem/bomb
-        lli     t1, Item.Shuriken.id        // t1 = shuriken id
-        beq     t1, t0, _j_0x80173C28       // skip if item = shuriken
-        lli     t1, Item.Boomerang.id       // t1 = boomerang id
-        beq     t1, t0, _j_0x80173C28       // skip if item = boomerang
-        lli     t1, Item.ClanBomb.id        // t1 = clanbomb id
-        beq     t1, t0, _j_0x80173C28       // skip if item = boomerang
-        nop
-
-        beq     v1, at, _j_0x80173C1C       // original line 1 (destroys item if it has landed 4 times)
-        nop
-
-        j       _return                     // return
-        nop
-
-        _j_0x80173C1C:
-        j       0x80173C1C                  // jump to original branch location
-        nop
-
-        _j_0x80173C28:
-        j       0x80173C28                  // skips random despawning
-        lw      t0, 0x02CC(s0)              // original line 2
-    }
-
-    // @ Description
     // Patch which gets the charge level for projectiles when absorbed by Marina's down special
     // 800E5330
     // fp - projectile special struct
@@ -2506,32 +2426,32 @@ scope MarinaDSP {
     // @ Returns
     // v0 - clanpot charge level
     scope get_projectile_level_: {
-        lw      t0, 0x000C(a0)              // t0 = projectile id
-        lli     at, 0x2                     // at = charge shot id
-        beq     t0, at, _charge_shot        // branch if projectile = charge shot
-        lli     at, 0x0005                  // at = yoshi egg id
-        beql    t0, at, _end                // branch if projectile = yoshi egg...
-        lli     v0, 0x0002                  // ...and return 2
-        lli     at, 0x0007                  // at = link boomerang id
-        beql    t0, at, _end                // branch if projectile = link boomerang...
-        lli     v0, 0x0002                  // ...and return 2
-        lli     at, 0x000B                  // at = pikachu thunder head id
-        beql    t0, at, _end                // branch if projectile = pikachu thunder head...
-        lli     v0, 0x0002                  // ...and return 2
-        lli     at, 0x000C                  // at = pikachu thunder tail id
-        beql    t0, at, _end                // branch if projectile = pikachu thunder tail...
-        lli     v0, 0x0002                  // ...and return 2
-        lli     at, 0x0012                  // at = arwing shot id
-        beql    t0, at, _end                // branch if projectile = arwing shot...
-        lli     v0, 0x0004                  // ...and return 4
-        lli     at, 0x1005                  // at = pirate land cannonball id
-        beql    t0, at, _end                // branch if projectile = pirate land cannonball...
-        lli     v0, 0x0004                  // ...and return 4
-        lli     at, 0x1009                  // at = golden gun bullet
-        beql    t0, at, _end                // branch if projectile = golden gun bullet...
-        lli     v0, 0x0004                  // ...and return 4
-        b       _end                        // for all other projectiles...
-        lli     v0, 0x0001                  // ...return 1
+        lw      t0, 0x000C(a0)                          // t0 = projectile id
+        lli     at, 0x2                                 // at = charge shot id
+        beq     t0, at, _charge_shot                    // branch if projectile = charge shot
+        lli     at, 0x0005                              // at = yoshi egg id
+        beql    t0, at, _end                            // branch if projectile = yoshi egg...
+        lli     v0, 0x0002                              // ...and return 2
+        lli     at, 0x0007                              // at = link boomerang id
+        beql    t0, at, _end                            // branch if projectile = link boomerang...
+        lli     v0, 0x0002                              // ...and return 2
+        lli     at, 0x000B                              // at = pikachu thunder head id
+        beql    t0, at, _end                            // branch if projectile = pikachu thunder head...
+        lli     v0, 0x0002                              // ...and return 2
+        lli     at, 0x000C                              // at = pikachu thunder tail id
+        beql    t0, at, _end                            // branch if projectile = pikachu thunder tail...
+        lli     v0, 0x0002                              // ...and return 2
+        lli     at, 0x0012                              // at = arwing shot id
+        beql    t0, at, _end                            // branch if projectile = arwing shot...
+        lli     v0, 0x0004                              // ...and return 4
+        lli     at, Projectile.id.PIRATELAND_CANNONBALL // at = pirate land cannonball id
+        beql    t0, at, _end                            // branch if projectile = pirate land cannonball...
+        lli     v0, 0x0004                              // ...and return 4
+        lli     at, Projectile.id.GOLDENGUN_BULLET      // at = golden gun bullet
+        beql    t0, at, _end                            // branch if projectile = golden gun bullet...
+        lli     v0, 0x0004                              // ...and return 4
+        b       _end                                    // for all other projectiles...
+        lli     v0, 0x0001                              // ...return 1
 
         _charge_shot:
         lw      t0, 0x02A4(a0)              // t0 = charge shot level
@@ -2559,6 +2479,22 @@ scope MarinaDSP {
         beql    t0, at, _end                // branch if item = bowser bomb...
         lli     v0, 0x0002                  // ...and return 2
 
+        lli     at, Item.Turnip.id          // at = Peach turnip item id
+        bne     t0, at, _normal_item        // implying that peach turnip is not NORMAL?
+        nop
+        // Peach Turnip check
+        lw      t2, 0x0110(a0)              // t2 = item base damage
+        lli     at, Item.Turnip.STITCH_BASE_DAMAGE
+        beql    t2, at, _end
+        lli     v0, 4                       // ...and return 4
+        lli     at, Item.Turnip.DOT_BASE_DAMAGE
+        beql    t2, at, _end
+        lli     v0, 3                       // ...and return 3
+        lli     at, Item.Turnip.WINK_BASE_DAMAGE
+        beql    t2, at, _end
+        lli     v0, 2                       // ...and return 2
+
+        _normal_item:
         // if here, normal item
         li      t1, item_charge_table       // t1 = item_charge_table
         addu    t1, t1, t0                  // t1 = item charge table + id
@@ -2629,6 +2565,8 @@ scope MarinaDSP {
     db 2    // 0x35 - GoldenGun
     db 0    // 0x36 - Dango
     db 0    // 0x37 - Pwing
+    db 1    // 0x38 - Mr Saturn
+    db 0    // 0x39 - Stopwatch
     // custom stage items
     db 0    // 1 - KlapTrap
     db 0    // 2 - RobotBee
@@ -2636,7 +2574,9 @@ scope MarinaDSP {
     db 0    // 4 - Bullet Bill
     db 0    // 5 - Scuttle Town Minion
     db 0    // 6 - Cacodemon
+    db 0    // 7 - Basketball
     // custom pokemon
+    db 0    // 1 - Psyduck
     // custom character items
     db 1    // 1 - Gem
     db 2    // 2 - Shuriken
@@ -2644,9 +2584,10 @@ scope MarinaDSP {
     db 4    // 4 - ClanBomb
     db 1    // 5 - Waddle Dee
     db 1    // 6 - Waddle Doo
-    db 1    // 7 - Gordo
+    db 3    // 7 - Gordo
     db 0    // 8 - Cloud
-    db 1    // 9 - Flashbang
+    db 2    // 9 - Flashbang
+    db 1    // 10 - Turnip
     OS.align(4)
 
     // @ Description

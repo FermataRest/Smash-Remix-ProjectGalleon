@@ -41,9 +41,7 @@ scope Banjo {
     }
 
     // Insert AI attack options
-    constant CPU_ATTACKS_ORIGIN(origin())
-    insert CPU_ATTACKS,"AI/attack_options.bin"
-    OS.align(16)
+    include "AI/Attacks.asm"
 
     DASH:; insert "moveset/DASH.bin"
     TURN:; insert "moveset/TURN.bin"
@@ -128,6 +126,7 @@ scope Banjo {
     CLIFF_ATTACK_QUICK_2:; insert "moveset/CLIFF_ATTACK_QUICK_2.bin"
     CLIFF_ATTACK_SLOW_2:; insert "moveset/CLIFF_ATTACK_SLOW_2.bin"
 
+    DASH_ATTACK:; insert "moveset/DASH_ATTACK.bin"
     JAB1:; insert "moveset/JAB1.bin"
     JAB2:; insert "moveset/JAB2.bin"
     JAB3:; insert "moveset/JAB3.bin"
@@ -306,27 +305,27 @@ scope Banjo {
     Character.edit_action_parameters(BANJO, Action.ShieldDrop,              File.BANJO_PLAT_DROP,               -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.Teeter,                  File.BANJO_TEETER,                  0x80000000,                 0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.TeeterStart,             File.BANJO_TEETERSTART,             0x80000000,                 0x0FE00000)
-    Character.edit_action_parameters(BANJO, Action.DamageHigh1,             File.BANJO_DMG_HIGH_1,              DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageHigh2,             File.BANJO_DMG_HIGH_2,              DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageHigh3,             File.BANJO_DMG_HIGH_3,              DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageMid1,              File.BANJO_DMG_MID_1,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageMid2,              File.BANJO_DMG_MID_2,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageMid3,              File.BANJO_DMG_MID_3,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageLow1,              File.BANJO_DMG_LOW_1,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageLow2,              File.BANJO_DMG_LOW_2,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageLow3,              File.BANJO_DMG_LOW_3,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageAir1,              File.BANJO_DMG_AIR_1,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageAir2,              File.BANJO_DMG_AIR_2,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageAir3,              File.BANJO_DMG_AIR_3,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageElec1,             File.BANJO_DMG_ELEC,                DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageElec2,             File.BANJO_DMG_ELEC,                DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageFlyHigh,           File.BANJO_DMG_FLY_HIGH,            DMG_2,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageFlyMid,            File.BANJO_DMG_FLY_MID,             DMG_2,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageFlyLow,            File.BANJO_DMG_FLY_LOW,             DMG_2,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageFlyTop,            File.BANJO_DMG_FLY_TOP,             DMG_2,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DamageFlyRoll,           File.BANJO_DMG_FLY_ROLL,            DMG_2,                         -1)
-    Character.edit_action_parameters(BANJO, Action.WallBounce,              File.BANJO_TUMBLE,                  DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.Tumble,                  File.BANJO_TUMBLE,                  DMG_1,                         -1)
+    Character.edit_action_parameters(BANJO, Action.DamageHigh1,             File.BANJO_DMG_HIGH_1,              DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageHigh2,             File.BANJO_DMG_HIGH_2,              DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageHigh3,             File.BANJO_DMG_HIGH_3,              DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageMid1,              File.BANJO_DMG_MID_1,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageMid2,              File.BANJO_DMG_MID_2,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageMid3,              File.BANJO_DMG_MID_3,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageLow1,              File.BANJO_DMG_LOW_1,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageLow2,              File.BANJO_DMG_LOW_2,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageLow3,              File.BANJO_DMG_LOW_3,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageAir1,              File.BANJO_DMG_AIR_1,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageAir2,              File.BANJO_DMG_AIR_2,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageAir3,              File.BANJO_DMG_AIR_3,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageElec1,             File.BANJO_DMG_ELEC,                DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageElec2,             File.BANJO_DMG_ELEC,                DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageFlyHigh,           File.BANJO_DMG_FLY_HIGH,            DMG_2,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageFlyMid,            File.BANJO_DMG_FLY_MID,             DMG_2,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageFlyLow,            File.BANJO_DMG_FLY_LOW,             DMG_2,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageFlyTop,            File.BANJO_DMG_FLY_TOP,             DMG_2,                      -1)
+    Character.edit_action_parameters(BANJO, Action.DamageFlyRoll,           File.BANJO_DMG_FLY_ROLL,            DMG_2,                      -1)
+    Character.edit_action_parameters(BANJO, Action.WallBounce,              File.BANJO_TUMBLE,                  DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.Tumble,                  File.BANJO_TUMBLE,                  DMG_1,                      -1)
     Character.edit_action_parameters(BANJO, Action.FallSpecial,             File.BANJO_FALL_SPECIAL,            -1,                         0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.LandingSpecial,          File.BANJO_USP_LAND,                -1,                         0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.Tornado,                 File.BANJO_TUMBLE,                  -1,                         -1)
@@ -338,13 +337,13 @@ scope Banjo {
     Character.edit_action_parameters(BANJO, Action.DownBounceU,             File.BANJO_DOWN_BNCE_U,             DOWN_BOUNCE,                -1)
     Character.edit_action_parameters(BANJO, Action.DownStandD,              File.BANJO_DOWN_STND_D,             -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.DownStandU,              File.BANJO_DOWN_STND_U,             -1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.TechF,                   File.BANJO_TECH_F,                  TECH_ROLL,                       -1)
-    Character.edit_action_parameters(BANJO, Action.TechB,                   File.BANJO_TECH_B,                  TECH_ROLL,                       -1)
+    Character.edit_action_parameters(BANJO, Action.TechF,                   File.BANJO_TECH_F,                  TECH_ROLL,                  -1)
+    Character.edit_action_parameters(BANJO, Action.TechB,                   File.BANJO_TECH_B,                  TECH_ROLL,                  -1)
     Character.edit_action_parameters(BANJO, Action.DownForwardD,            File.BANJO_DOWN_FWRD_D,             -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.DownForwardU,            File.BANJO_DOWN_FWRD_U,             -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.DownBackD,               File.BANJO_DOWN_BACK_D,             -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.DownBackU,               File.BANJO_DOWN_BACK_U,             -1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.DownAttackD,             File.BANJO_DOWN_ATK_D,              DOWNATTACKD,                         0x0FE00000)
+    Character.edit_action_parameters(BANJO, Action.DownAttackD,             File.BANJO_DOWN_ATK_D,              DOWNATTACKD,                0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.DownAttackU,             File.BANJO_DOWN_ATK_U,              DOWNATTACKU,                0x10000000)
     Character.edit_action_parameters(BANJO, Action.Tech,                    File.BANJO_TECH,                    TECH,                       -1)
     Character.edit_action_parameters(BANJO, Action.ClangRecoil,             File.BANJO_CLANG_RECOIL,            -1,                         -1)
@@ -441,25 +440,25 @@ scope Banjo {
     Character.edit_action_parameters(BANJO, Action.ThrownDKPulled,          File.BANJO_THROWN_DKPULLED,         DMG_1,                         -1)
     Character.edit_action_parameters(BANJO, Action.ThrownMarioBros,         File.BANJO_THROWN_MARIO_BROS,       DMG_1,                         -1)
     // B7
-    Character.edit_action_parameters(BANJO, Action.ThrownDK,                File.BANJO_THROWN_DK,               DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.Thrown1,                 File.BANJO_THROWN_1,                DMG_1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.Thrown2,                 File.BANJO_THROWN_2,                DMG_1,                         -1)
+    Character.edit_action_parameters(BANJO, Action.ThrownDK,                File.BANJO_THROWN_DK,               DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.Thrown1,                 File.BANJO_THROWN_1,                DMG_1,                      -1)
+    Character.edit_action_parameters(BANJO, Action.Thrown2,                 File.BANJO_THROWN_2,                DMG_1,                      -1)
     Character.edit_action_parameters(BANJO, Action.Taunt,                   File.BANJO_TAUNT,                   TAUNT,                      0x0FE00000)
-    Character.edit_action_parameters(BANJO, Action.Jab1,                    File.BANJO_JAB_1,                   JAB1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.Jab2,                    File.BANJO_JAB_2,                   JAB2,                         -1)
+    Character.edit_action_parameters(BANJO, Action.Jab1,                    File.BANJO_JAB_1,                   JAB1,                       -1)
+    Character.edit_action_parameters(BANJO, Action.Jab2,                    File.BANJO_JAB_2,                   JAB2,                       -1)
     Character.edit_action_parameters(BANJO, Action.Jab3,                    File.BANJO_JAB_3,                   JAB3,                       0x40000000)
-    Character.edit_action_parameters(BANJO, Action.DashAttack,              File.BANJO_DASH_ATTACK,             -1,                         0x4FE00000)
-    Character.edit_action_parameters(BANJO, Action.FTiltHigh,               File.BANJO_FTILT_HIGH,              F_TILT_HIGH,                 0x0FE00000)
+    Character.edit_action_parameters(BANJO, Action.DashAttack,              File.BANJO_DASH_ATTACK,             DASH_ATTACK,                0x4FE00000)
+    Character.edit_action_parameters(BANJO, Action.FTiltHigh,               File.BANJO_FTILT_HIGH,              F_TILT_HIGH,                0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.FTiltMidHigh,            0,                                  0x80000000,                 -1)
     Character.edit_action_parameters(BANJO, Action.FTilt,                   File.BANJO_FTILT,                   F_TILT_MID,                 0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.FTiltMidLow,             0,                                  0x80000000,                 -1)
     Character.edit_action_parameters(BANJO, Action.FTiltLow,                File.BANJO_FTILT_LOW,               F_TILT_LOW,                 0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.UTilt,                   File.BANJO_UTILT,                   U_TILT,                     0x0FE00000)
-    Character.edit_action_parameters(BANJO, Action.DTilt,                   File.BANJO_DTILT,                   D_TILT,                 0x0FE00000)
+    Character.edit_action_parameters(BANJO, Action.DTilt,                   File.BANJO_DTILT,                   D_TILT,                     0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.FSmashHigh,              0,                                  -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.FSmash,                  File.BANJO_FSMASH,                  F_SMASH,                    0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.FSmashLow,               0,                                  -1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.USmash,                  File.BANJO_USMASH,                  U_SMASH,                         0x0FE00000)
+    Character.edit_action_parameters(BANJO, Action.USmash,                  File.BANJO_USMASH,                  U_SMASH,                    0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.DSmash,                  File.BANJO_DSMASH,                  D_SMASH,                    0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.AttackAirN,              File.BANJO_ATTACK_AIR_N,            ATTACK_AIR_N,               0x0FE00000)
     Character.edit_action_parameters(BANJO, Action.AttackAirF,              File.BANJO_ATTACK_AIR_F,            ATTACK_AIR_F,               0x0FE00000)
@@ -470,8 +469,8 @@ scope Banjo {
     Character.edit_action_parameters(BANJO, Action.LandingAirD,             File.BANJO_LANDING_AIR_D,           -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.LandingAirB,             File.BANJO_LANDING,                 -1,                         -1)
     Character.edit_action_parameters(BANJO, Action.LandingAirX,             File.BANJO_LANDING,                 -1,                         -1)
-    Character.edit_action_parameters(BANJO, Action.EntryR,                  File.BANJO_ENTRY_RIGHT,             ENTRY,                         0x4FE00008)
-    Character.edit_action_parameters(BANJO, Action.EntryL,                  File.BANJO_ENTRY_LEFT,              ENTRY,                         0x4FE00008)
+    Character.edit_action_parameters(BANJO, Action.EntryR,                  File.BANJO_ENTRY_RIGHT,             ENTRY,                      0x4FE00008)
+    Character.edit_action_parameters(BANJO, Action.EntryL,                  File.BANJO_ENTRY_LEFT,              ENTRY,                      0x4FE00008)
     Character.edit_action_parameters(BANJO, 0xDF,                           File.BANJO_ACTION_0DF,              -1,                         -1)
     Character.edit_action_parameters(BANJO, 0xE0,                           File.BANJO_ACTION_0E0,              -1,                         -1)
 
@@ -505,7 +504,7 @@ scope Banjo {
     Character.edit_action(BANJO, Action.DSPA,           0x1E,           BanjoDSP.aerial_main_,          BanjoDSP.air_move_,             BanjoDSP.physics_,              BanjoDSP.collision_)
     Character.edit_action(BANJO, Action.DSPLand,        0x1E,           0x800D94C4,                     0,                              0x800D8BB4,                     0x800DDEE8)
     Character.edit_action(BANJO, Action.DSPG,           0x1E,           0x800D94C4,                     0,                              0x800D8CCC,                     BanjoDSP.grounded_collision_)
-    Character.edit_action(BANJO, Action.DSPGAir,        0x1E,           0x800D94E8,                     0,                              0x800D8BB4,                     0x800DE99C)
+    Character.edit_action(BANJO, Action.DSPGAir,        0x1E,           0x800D94E8,                     0,                              0x800D8BB4,                     0x800DE978)
     Character.edit_action(BANJO, Action.DSPALoop,       0x1E,           0x00000000,                     BanjoDSP.air_move_,             BanjoDSP.physics_,              BanjoDSP.collision_)
 
     // Add Action Parameters                // Action Name      // Base Action  // Animation                    // Moveset Data             // Flags
@@ -520,7 +519,7 @@ scope Banjo {
     Character.add_new_action(BANJO,  USPBegin,          -1,             ActionParams.USPBegin,      0x11,           BanjoUSP.begin_main_,       0,                          BanjoUSP.begin_physics_,    BanjoUSP.begin_collision_)
     Character.add_new_action(BANJO,  USPAttack,         -1,             ActionParams.USPAttack,     0x11,           BanjoUSP.attack_main_,      BanjoUSP.attack_interupt_,  BanjoUSP.attack_physics_,   BanjoUSP.attack_collision_)
     Character.add_new_action(BANJO,  USPAttackEnd,      -1,             ActionParams.USPAttackEnd,  0x11,           BanjoUSP.attack_end_main_,  0,                          0x800D91EC,                 BanjoUSP.collision_)
-    Character.add_new_action(BANJO,  USPRecoil,         -1,             ActionParams.USPRecoil,     0x11,           0x800D94E8,                 BanjoUSP.recoil_move_,      BanjoUSP.recoil_physics_,   0x800DE99C)
+    Character.add_new_action(BANJO,  USPRecoil,         -1,             ActionParams.USPRecoil,     0x11,           0x800D94E8,                 BanjoUSP.recoil_move_,      BanjoUSP.recoil_physics_,   0x800DE978)
     Character.add_new_action(BANJO,  USPWallSplat,      -1,             ActionParams.USPWallSplat,  0x11,           BanjoUSP.wall_splat_main_,  0,                          BanjoUSP.splat_physics_,    BanjoUSP.collision_)
 
     // Modify Menu Action Parameters              // Action     // Animation                // Moveset Data             // Flags
@@ -596,43 +595,12 @@ scope Banjo {
     dh 0x26
     OS.patch_end()
 
-    // Set CPU behaviour
-    Character.table_patch_start(ai_behaviour, Character.id.BANJO, 0x4)
-    dw      CPU_ATTACKS
-    OS.patch_end()
-
-    // Set CPU SD prevent routine
-    Character.table_patch_start(ai_attack_prevent, Character.id.BANJO, 0x4)
-    dw      AI.PREVENT_ATTACK.ROUTINE.NONE
-    OS.patch_end()
-
-    // Edit cpu attack behaviours, original table is from Falcon
-    // edit_attack_behavior(table, attack, override,	start_hb, end_hb, 	min_x, max_x, min_y, max_y)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DAIR,  	-1,  6,     0,  -132, 276, -90, 329)	//
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSPA,   -1,  26,    0,  0, 100, 100, 330)       //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSPG,   -1,  14,    0,  0, 100, 100, 330)       //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSMASH, -1,  10,    0,  -320, 320, -100, 300)	//
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DTILT,  -1,  5,     0,  -50, 499, -100, 325)	//
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, BAIR,   -1,  12,    0,  -40, 280, 100, 300)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, FSMASH, -1,  16,    0,  250, 1170, 50, 590)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, FTILT,  -1,  8,     0,  45, 560, -45, 270)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, GRAB,   -1,  6,     0,  50, 240, 65, 355.0)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, JAB,    -1,  4,     0,  25, 495, 280, 510)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NAIR,   -1,  5,     0,  -192, 201, -30, 280)	//
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NSPA,   -1,  14,    0,  200, 900, 100, 250)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NSPG,   -1,  14,    0,  200, 900, 100, 250)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, UAIR,   -1,  7,     0,  50, 200, 128, 500)	    //
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USPA,   -1,  0,     0,  89, 475, 242, 1000)     // no offensive up B
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USPG,   -1,  0,     0,  89, 475, 242, 1700)     // no offensive up B
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USMASH, -1,  12,    0,  -174, 243, 177, 940)	//
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, UTILT,  -1,  6,     0,  -274, 326, 196, 717)	//
-
     // Set default costumes(id, costume_1, costume_2, costume_3, costume_4, red_team, blue_team, green_team)
     Character.set_default_costumes(Character.id.BANJO, 0, 2, 4, 5, 1, 2, 3)
     Teams.add_team_costume(YELLOW, BANJO, 4)
 
     // Shield colors for costume matching
-    Character.set_costume_shield_colors(BANJO, BROWN, RED, BLUE, GREEN, YELLOW, WHITE, ORANGE, NA)
+    Character.set_costume_shield_colors(BANJO, BROWN, RED, BLUE, GREEN, YELLOW, WHITE, ORANGE, PINK)
 
     // Set action strings
     Character.table_patch_start(action_string, Character.id.BANJO, 0x4)
@@ -659,4 +627,140 @@ scope Banjo {
     db      Character.id.NONE
     OS.patch_end()
 
+    // Set Remix 1P ending music
+    Character.table_patch_start(remix_1p_end_bgm, Character.id.BANJO, 0x2)
+    dh {MIDI.id.BANJO_MAIN}
+    OS.patch_end()
+
+    scope recovery_logic: {
+        OS.routine_begin(0x20)
+        sw a0, 0x10(sp)
+
+        // if currently doing fair, skip
+        lw at, 0x24(a0) // at = action id
+        lli t0, Action.AttackAirF
+        beq at, t0, _end
+        nop
+
+        // if current command is jump, skip
+        lw t0, 0x1D4(a0) // t0 = current command
+        li t1, 0x8018814C // t1 = jump command address
+        beq t0, t1, _end // if current command is jump, skip
+        nop
+
+        lw t0, 0x78(a0) // load location vector
+        lwc1 f2, 0x0(t0) // f2 = location X
+        lwc1 f4, 0x4(t0) // f4 = location Y
+
+        lw t2, 0x44(a0) // t2 = player facing direction (int)
+
+        // check closest ledge in X
+        scope ledge_check: {
+            lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+
+            sub.s f6, f6, f2
+            abs.s f6, f6 // f6 = abs(distance) to left ledge
+
+            sub.s f8, f8, f2
+            abs.s f8, f8 // f8 = abs(distance) to right ledge
+
+            c.le.s f6, f8
+            nop
+            bc1f _right
+            nop
+
+            _left:
+            lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x50(a0) // load nearest LEFT ledge Y
+
+            // if not facing right, skip to _end
+            addiu at, r0, 1
+            bne t2, at, _end
+            nop
+            
+            b _check_end
+            nop
+
+            _right:
+            lwc1 f6, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+            lwc1 f8, 0x01CC+0x58(a0) // load nearest RIGHT ledge Y
+
+            // if not facing left, skip to _end
+            addiu at, r0, -1
+            bne t2, at, _end
+            nop
+
+            _check_end:
+        }
+
+        sub.s f14, f6, f2 // f14 = x diff
+        sub.s f12, f8, f4 // f12 = y diff
+
+        mtc1 r0, f0 // guarantee f0 = 0
+
+        // skip if air speed is up (to not cut a jump short)
+        lwc1 f20, 0x004C(a0) // f20 = y speed
+        c.le.s f20, f0 // y speed < 0?
+        nop
+        bc1f _end // if so, skip
+        nop
+
+        // check if too close to use fair
+        lui at, 0x44E1
+        mtc1 at, f22 // f22 = 1800.0
+
+        abs.s f16, f14 // f16 = abs(x distance to ledge)
+
+        c.le.s f16, f22 // if distance to ledge is lower than 1800.0
+        nop
+        bc1t _end // do not go for fair if already close to ledge
+        nop
+
+        // check if we have jumps left
+        lw t0, 0x09C8(a0) // t0 = attribute pointer
+        lw t0, 0x0064(t0) // t0 = max jumps
+        lb t1, 0x0148(a0) // t1 = jumps used
+
+        beq t0, t1, _no_jump // used all jumps already
+        nop
+
+        _has_jump:
+        lui at, 0x4496
+        mtc1 at, f22 // f22 = 1200.0
+        b _check_distance
+        nop
+
+        _no_jump:
+        lui at, 0x4448
+        mtc1 at, f22 // f22 = 800.0
+
+        // check if not too low
+        _check_distance:
+        c.le.s f22, f12 // if at most N units below ledge
+        nop
+        bc1f _fair
+        nop
+
+        b _end // no conditions matched, skip
+        nop
+
+        _fair:
+        swc1 f6, 0x01CC+0x60(a0) // save new target x = ledge x
+        swc1 f8, 0x01CC+0x64(a0) // save new target y = ledge y
+
+        sb r0, 0x01C9(a0) // CPU stick y = 0
+
+        jal 0x80132758 // execute AI command
+        lli a1, AI.ROUTINE.FTILT // arg1 = FTILT
+
+        b _end
+        nop
+
+        _end:
+        lw a0, 0x10(sp)
+        OS.routine_end(0x20)
+    }
+    Character.table_patch_start(recovery_logic, Character.id.BANJO, 0x4)
+    dw recovery_logic; OS.patch_end()
 }

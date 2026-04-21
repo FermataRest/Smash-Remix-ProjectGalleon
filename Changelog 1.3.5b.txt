@@ -1,0 +1,74 @@
+v1.3.5b (up to down)
++Shovel Knight: DTilt Hitbox changed
++Shovel Knight: Victory Animations changed to the one from select
++Shovel Knight: DSmash Hitboxes fixed
++Shovel Knight: FTilt Hitbox Changed
++Shovel Knight: CSS has sound effects
++Lucia: When She loses instead of clap She sleeps
++Shovel Knight: TurnBrake, Landing, TurnRun, JumpSquat Movesets Changed and Damage Animations Changed
++Shovel Knight: DSP's Recoil Animation Replaced 
++Shovel Knight: Jab Fixed and Hitbox Changed
++Shovel Knight: BThrow Replaced for the DR Mario one
++Startup sound effect changed to Melee Select sound effect
++Startup Easter Egg (Ganondorf's Laugh) Changed to Uzi's Laugh
++Startup Easter Egg (when everyone is pressing L) Changed to Windows Startup
++Shovel Knight: FallSpecial has Hitbox
++Uzi: NSPG Changed
++Uzi: NSPA Changed
++Uzi: DSPG Changed
++Uzi: DSPA Changed
++Uzi: USP can change to DSPA by pressing B again
++Tug of War text graphics changed
++Name textures changed for the new characters
++Wadle Doo asm fixed
++Uzi: Ending Victory Screen added
++Shovel Knight: Ending Victory Screen added
++Portraits for Ryu, Ken, and Training Stages from Shino Mod added
++Shovel Knight: Change DSPG Attack (new animation and hitbox) 
++Shovel Knight: Clap Animation replaced
++Shovel Knight: DownAttackD, DownAttackU Hitboxes and Animation (Using Goemon's) changed
++Shovel Knight: 1P CPU pose animation changed using Goemon's
++Uzi: Team color sorted
++Shovel Knight: Tumble shows shovel
++Shovel Knight: JumpB, JumpFAerial, JumpBAerial, FallAerial, Entry L and R, and Walk3 Changed (new animations)
++Shovel Knight: USPG JUMP animation changed to JumpAerialF animation
++Shovel Knight: Cliff Animations changed to Goemon's and Hitboxes changed
++Shovel Knight: Turn shows Shovel, animation replaced with Wario's
++Shovel Knight: FAIR and DSPA nerfed
++Shovel Knight: Clang Recoil and Pipe animations show shovel
++Shovel Knight: Doll animations show Shovel
++Shovel Knight: play custom sound when Doll up 
++Shovel Knight: Teeter shows shovel
++Lucia: Voices Restored
++Lucia: Stun, Boxgrab, Victory, CSS, sound effects added to Lucia
++Spider-Man: Cliffattacks sound effects changed
++Spider-Man: Tech sound effects changed
++Cloud: Cliffattacks sound effects changed 
++DR Mario: Pills sound effects changed
++Lucia: CSS, Taunt and 1P expressions changed
++12CB fixed
++Uzi: Stun sound effect plays once
++1P Remix Crash fixed by deleting Kazuya from there
++Shovel Knight: Walk2 and Walk3 shows shovel
++Shovel Knight: DSPG and DSPA Spear nerfed
++New characters set in different locations in 1P Remix
++Shovel Knight: Being Thrown Animations show shovel
++Lucia: DSPA falling faster
++Uzi: Third jab disabled
++Added music from midi to resultscreen for: Uzi, Shovel Knight, Spider-Man, Rebecca, Metal Mario (replaced with Metallic Mario), and Kazuya
++Uzi: Dash Attack animation changed using Conker's and modified
++Uzi: Entry changed
++Rebecca: Model updated
++Shovel Knight: Change logo while matching
++Shovel Knight: Low poly model changed
++Lucia: Ending Screen added
++Chants changed
++PS1 Stage updated
++Goku is hidden in characterselect.asm, so DRL replaces Goku's spot
++Goku is hidden in training.asm
++1P Remix fixed
++Shovel Knight: Sleep and Stun show shovel
++Uzi: Nair and Uair hitboxes changed
++Credits updated
++Uzi: Utilt changed to Falco's
++All stars fixed

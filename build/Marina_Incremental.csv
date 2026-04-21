@@ -1,0 +1,4 @@
+Mode,FileNumberHex,NewFilePath,Compressed,InternalFileTableOffsetBytes,InternalFileResourceOffsetBytes,ReqFilesFile,CompressionLevel
+ADD,,.\original\SKINGHT_Idle.bin,0,00000,3FFFC,,2
+
+END,,,,,,,

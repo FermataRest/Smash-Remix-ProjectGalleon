@@ -51,11 +51,14 @@ scope Falco {
     insert POSE_1P, "moveset/POSE_1P.bin"
 
     // Insert AI attack options
-    constant CPU_ATTACKS_ORIGIN(origin())
-    insert CPU_ATTACKS,"AI/attack_options.bin"
-    OS.align(16)
+    include "AI/Attacks.asm"
 
     // Modify Action Parameters             // Action               // Animation                // Moveset Data             // Flags
+	Character.edit_action_parameters(FALCO, Action.Idle,             File.FALCO_IDLE,           -1,                         -1)
+    Character.edit_action_parameters(FALCO, Action.ReviveWait,       File.FALCO_IDLE,           -1,                         -1)
+    Character.edit_action_parameters(FALCO, Action.EggLay,           File.FALCO_IDLE,           -1,                         -1)
+    Character.edit_action_parameters(FALCO, 0x006,                   File.FALCO_IDLE,           -1,                         -1)
+    Character.edit_action_parameters(FALCO, Action.Entry,            File.FALCO_IDLE,           -1,                         -1)
     Character.edit_action_parameters(FALCO, Action.Run,              -1,                        RUN,                        -1)
     Character.edit_action_parameters(FALCO, Action.Dash,             -1,                        DASH,                       -1)
     Character.edit_action_parameters(FALCO, Action.JumpAerialF,      -1,                        JUMP2,                      -1)
@@ -99,6 +102,7 @@ scope Falco {
     Character.edit_action(FALCO, 0xE2,              -1,             0x8015C750,                 Phantasm.air_subroutine_,       Phantasm.air_physics_,          Phantasm.air_collision_)
 
     // Modify Menu Action Parameters             // Action          // Animation                // Moveset Data             // Flags
+    Character.edit_menu_action_parameters(FALCO, 0x0,              File.FALCO_IDLE,            -1,                         -1)
     Character.edit_menu_action_parameters(FALCO, 0x1,               -1,                         VICTORY_POSE_1,             -1)
     Character.edit_menu_action_parameters(FALCO, 0x2,               File.FALCO_SELECT,          VICTORY_POSE_2,             -1)
     Character.edit_menu_action_parameters(FALCO, 0x3,               -1,                         VICTORY_POSE_3,             -1)
@@ -108,7 +112,7 @@ scope Falco {
     Character.edit_menu_action_parameters(FALCO, 0xE,               File.FALCO_CPU_POSE,        POSE_1P,                    -1)
 
     Character.table_patch_start(variants, Character.id.FALCO, 0x4)
-    db      Character.id.SLIPPY // set Slippy as SPECIAL variant for FALCO
+    db      Character.id.NONE
     db      Character.id.NFALCO // set as POLYGON variant for FALCO
     db      Character.id.NONE
     db      Character.id.NONE
@@ -136,41 +140,10 @@ scope Falco {
     // Shield colors for costume matching
     Character.set_costume_shield_colors(FALCO, WHITE, RED, BLUE, GREEN, BLACK, ORANGE, NA, NA)
 
-    // Set CPU behaviour
-    Character.table_patch_start(ai_behaviour, Character.id.FALCO, 0x4)
-    dw      CPU_ATTACKS
+    // Set Remix 1P ending music
+    Character.table_patch_start(remix_1p_end_bgm, Character.id.FALCO, 0x2)
+    dh {MIDI.id.CORNERIA}
     OS.patch_end()
-
-	// Set CPU SD prevent routine
-    Character.table_patch_start(ai_attack_prevent, Character.id.FALCO, 0x4)
-    dw    	AI.PREVENT_ATTACK.ROUTINE.FALCO_NSP
-    OS.patch_end()
-
-	// Set CPU NSP long range behaviour
-    Character.table_patch_start(ai_long_range, Character.id.FALCO, 0x4)
-    dw    	AI.LONG_RANGE.ROUTINE.NONE
-    OS.patch_end()
-
-    // Edit cpu attack behaviours
-    // edit_attack_behavior(table, attack, override, start_hb, end_hb, min_x, max_x, min_y, max_y)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DAIR,   -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSPA,   -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSPG,   -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DSMASH, -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, DTILT,  -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, FAIR,   -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, FSMASH, -1,  14,   22,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, FTILT,  -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, GRAB,   -1,  -1,   -1,   -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, JAB,    -1,  -1,   -1,   -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NAIR,   -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NSPA,   -1,  17,   20,  50, 700, 35, 200)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, NSPG,   -1,  17,   20,  50, 700, 35, 200)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, UAIR,   -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USPA,   -1,  43,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USPG,   -1,  43,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, USMASH, -1,  -1,   -1,  -1, -1, -1, -1)
-    AI.edit_attack_behavior(CPU_ATTACKS_ORIGIN, UTILT,  -1,  -1,   -1,  -1, -1, -1, -1)
 
     // @ Description
     // Falco's extra actions
@@ -389,4 +362,110 @@ scope Falco {
         j       _return                     // return
         nop
     }
+
+    // Custom recovery logic
+    scope recovery_logic: {
+        OS.routine_begin(0x20)
+        sw a0, 0x10(sp)
+
+        lw at, 0x24(a0) // at = action id
+        lli t0, Falco.Action.PhantasmAir
+        beq t0, at, _hold_b
+        nop
+
+        lw t0, 0x78(a0) // load location vector
+        lwc1 f2, 0x0(t0) // f2 = location X
+        lwc1 f4, 0x4(t0) // f4 = location Y
+
+        mtc1 r0, f0 // guarantee f0 = 0
+
+        // check closest ledge in X
+        scope ledge_check: {
+            lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+
+            sub.s f6, f6, f2
+            abs.s f6, f6 // f6 = abs(distance) to left ledge
+
+            sub.s f8, f8, f2
+            abs.s f8, f8 // f8 = abs(distance) to right ledge
+
+            c.le.s f6, f8
+            nop
+            bc1f _right
+            nop
+
+            _left:
+            lwc1 f6, 0x01CC+0x4C(a0) // load nearest LEFT ledge X
+            lwc1 f8, 0x01CC+0x50(a0) // load nearest LEFT ledge Y
+            
+            b _check_end
+            nop
+
+            _right:
+            lwc1 f6, 0x01CC+0x54(a0) // load nearest RIGHT ledge X
+            lwc1 f8, 0x01CC+0x58(a0) // load nearest RIGHT ledge Y
+
+            _check_end:
+        }
+
+        sub.s f14, f6, f2 // f14 = x diff
+        sub.s f12, f8, f4 // f12 = y diff
+
+        lui at, 0x44FA
+        mtc1 at, f22 // f22 = 2000.0 (approximately how much Falco moves with NSP
+
+        abs.s f16, f14 // f16 = abs(x distance to ledge)
+
+        c.le.s f22, f16 // if distance to ledge is lower than 2000.0
+        nop
+        bc1t _end // do not go for NSP if too far
+        nop
+
+        lw t6, 0x9C8(a0) // t6 = character attributes
+        lwc1 f10, 0xB0(t6) // f10 = ledge grab Y
+        add.s f12, f4, f10 // f12 = Y + ledge grab Y
+
+        // at this point, f4 = y; f12 = ledge grab; f8 = ledge Y
+        // so we want ledge grab to be >= ledge Y
+        // and our Y to be lower than ledge Y
+        c.le.s f12, f8
+        nop
+        bc1t _end // ledge grab Y < ledge Y, skip since we're too low
+        nop
+        c.le.s f4, f8
+        nop
+        bc1f _end // our Y > ledge Y, skip since we're too high
+        nop
+
+        _random_chance:
+        jal Global.get_random_int_ // v0 = (random value)
+        lli a0, 8 // 1 in 8 chance to nsp
+        beqz v0, _execute_ai_command
+        lw a0, 0x10(sp) // restore player struct
+        b _end // skipping nsp based on random
+        nop
+
+        _execute_ai_command:
+        swc1 f6, 0x01CC+0x60(a0) // save new target x = ledge x
+        swc1 f8, 0x01CC+0x64(a0) // save new target y = ledge y
+
+        jal 0x80132758 // execute AI command
+        lli a1, AI.ROUTINE.NSP_TOWARDS // arg1 = NSP
+
+        b _end
+        nop
+
+        // if already performing air nsp, hold B for the long version
+        _hold_b:
+        lh at, 0x01C6(a0) // at = cpu buttons pressed
+        ori at, at, 0x4000 // press B
+        sh at, 0x01C6(a0) // save press B mask
+
+        _end:
+        lw a0, 0x10(sp)
+        OS.routine_end(0x20)
+    }
+    Character.table_patch_start(recovery_logic, Character.id.FALCO, 0x4)
+    dw recovery_logic; OS.patch_end()
 }

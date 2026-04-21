@@ -40,6 +40,20 @@ scope JFox {
     dw  Action.FOX.action_string_table
     OS.patch_end()
 
+    // Set Remix 1P ending music
+    Character.table_patch_start(remix_1p_end_bgm, Character.id.JFOX, 0x2)
+    dh {MIDI.id.STARFOX_MEDLEY}
+    OS.patch_end()
+
+    // Update variants with same model
+    Character.table_patch_start(variants_with_same_model, Character.id.JFOX, 0x4)
+    db      Character.id.FOX
+    db      Character.id.NONE
+    db      Character.id.NONE
+    db      Character.id.NONE
+    OS.patch_end()
+}
+
     // @ Description
     // loads a different special struct when JFox uses his up special.
     scope get_laser_special_struct_: {
@@ -62,11 +76,17 @@ scope JFox {
         lli     t1, Character.id.JKIRBY     // t1 = id.JKIRBY
         beql    t0, t1, pc() + 8            // if J Kirby, get held power character_id
         lw      t0, 0x0ADC(a3)              // t0 = character id of copied power
-
+        ori     t1, r0, Character.id.REBECCA  	// t1 = id.JFOX
+		beq		t1, t0, _action
+        nop
         ori     t1, r0, Character.id.JFOX  	// t1 = id.JFOX
 		bne		t1, t0, _end
 		nop
         li      a1, laser_special_struct  	// a1 = laser_special_struct
+        j       _end
+        nop
+        _action:
+        li      a1, laser_special_struct_rebecca  	// a1 = laser_special_struct
 
         _end:
         lw      t0, 0x0004(sp)              // ~
@@ -81,6 +101,14 @@ scope JFox {
     dw 0x00000000
     dw 0x00000001
     dw Character.JFOX_file_6_ptr
+    OS.copy_segment(0x10391C, 0x28)
+
+
+	OS.align(16)
+    laser_special_struct_rebecca:
+    dw 0x00000000
+    dw 0x00000001
+    dw Character.REBECCA_file_6_ptr
     OS.copy_segment(0x10391C, 0x28)
 
 }

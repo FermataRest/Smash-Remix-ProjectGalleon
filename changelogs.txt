@@ -1,0 +1,365 @@
+v1.3.5b (up to down)
++Shovel Knight: DTilt Hitbox changed
++Shovel Knight: Victory Animations changed to the one from select
++Shovel Knight: DSmash Hitboxes fixed
++Shovel Knight: FTilt Hitbox Changed
++Shovel Knight: CSS has sound effects
++Lucia: When She loses instead of clap She sleeps
++Shovel Knight: TurnBrake, Landing, TurnRun, JumpSquat Movesets Changed and Damage Animations Changed
++Shovel Knight: DSP's Recoil Animation Replaced 
++Shovel Knight: Jab Fixed and Hitbox Changed
++Shovel Knight: BThrow Replaced for the DR Mario one
++Startup sound effect changed to Melee Select sound effect
++Startup Easter Egg (Ganondorf's Laugh) Changed to Uzi's Laugh
++Startup Easter Egg (when everyone is pressing L) Changed to Windows Startup
++Shovel Knight: FallSpecial has Hitbox
++Uzi: NSPG Changed
++Uzi: NSPA Changed
++Uzi: DSPG Changed
++Uzi: DSPA Changed
++Uzi: USP can change to DSPA by pressing B again
++Tug of War text graphics changed
++Name textures changed for the new characters
++Wadle Doo asm fixed
++Uzi: Ending Victory Screen added
++Shovel Knight: Ending Victory Screen added
++Portraits for Ryu, Ken, and Training Stages from Shino Mod added
++Shovel Knight: Change DSPG Attack (new animation and hitbox) 
++Shovel Knight: Clap Animation replaced
++Shovel Knight: DownAttackD, DownAttackU Hitboxes and Animation (Using Goemon's) changed
++Shovel Knight: 1P CPU pose animation changed using Goemon's
++Uzi: Team color sorted
++Shovel Knight: Tumble shows shovel
++Shovel Knight: JumpB, JumpFAerial, JumpBAerial, FallAerial, Entry L and R, and Walk3 Changed (new animations)
++Shovel Knight: USPG JUMP animation changed to JumpAerialF animation
++Shovel Knight: Cliff Animations changed to Goemon's and Hitboxes changed
++Shovel Knight: Turn shows Shovel, animation replaced with Wario's
++Shovel Knight: FAIR and DSPA nerfed
++Shovel Knight: Clang Recoil and Pipe animations show shovel
++Shovel Knight: Doll animations show Shovel
++Shovel Knight: play custom sound when Doll up 
++Shovel Knight: Teeter shows shovel
++Lucia: Voices Restored
++Lucia: Stun, Boxgrab, Victory, CSS, sound effects added to Lucia
++Spider-Man: Cliffattacks sound effects changed
++Spider-Man: Tech sound effects changed
++Cloud: Cliffattacks sound effects changed 
++DR Mario: Pills sound effects changed
++Lucia: CSS, Taunt and 1P expressions changed
++12CB fixed
++Uzi: Stun sound effect plays once
++1P Remix Crash fixed by deleting Kazuya from there
++Shovel Knight: Walk2 and Walk3 shows shovel
++Shovel Knight: DSPG and DSPA Spear nerfed
++New characters set in different locations in 1P Remix
++Shovel Knight: Being Thrown Animations show shovel
++Lucia: DSPA falling faster
++Uzi: Third jab disabled
++Added music from midi to resultscreen for: Uzi, Shovel Knight, Spider-Man, Rebecca, Metal Mario (replaced with Metallic Mario), and Kazuya
++Uzi: Dash Attack animation changed using Conker's and modified
++Uzi: Entry changed
++Rebecca: Model updated
++Shovel Knight: Change logo while matching
++Shovel Knight: Low poly model changed
++Lucia: Ending Screen added
++Chants changed
++PS1 Stage updated
++Goku is hidden in characterselect.asm, so DRL replaces Goku's spot
++Goku is hidden in training.asm
++1P Remix fixed
++Shovel Knight: Sleep and Stun show shovel
++Uzi: Nair and Uair hitboxes changed
++Credits updated
++Uzi: Utilt changed to Falco's
++All stars fixed
+
+----------------------------------------------------------
+v1.0.8a
++Added European and Polygon Remix presets to 12cb
++Added 'No Dream Land' and 'Omega Only' stage profiles
++Readded scrapped Grim Reapers Cavern hazards
++'Battlefield ver. 2' as 3rd song
++Added Suzaku Castle to Tourney SSS
++Deleted Tourney SSS buggy page 5
++BlastZone GFX added to Remix Settings (Options are DEFAULT / OFF / REDUCED)
++Japanese Stun/Sleep added to Gameplay Settings
++Disable HUD (Remix Settings) ALL option now hides HUD in Training Mode
++‘Preserve Menu Selections’ added to Training ModeCustom Menu
++SFX and BGM voulume settings from 2.0.1 Added
++Lost added to Discovery Falls
++Final Destination added to Dragon King & Dragon King Remix
++Koopa’s Theme reworked
++Bubblegum K.K. updated
++WarioWare, Inc. updated
++Yoshi’s Tale updated
++Dr. Mario victory theme updated
++Fresh Jams music profile updated 
++Z Cancel Guide from Debugged added
++Added Training Mode song to the music list
+
+----------------------------------------------------------
+v1.0.3a
++CSS Start animation is fixed and faster
++Ryu, Ken and Kazuya ReviveWait changed to their default idle animations
++Tower of Heaven, Hyrule Temple and Autumn How To Play from 2.0.1 added
++1P Remix/All-Stars updated (From SR 2.0.1)
++Massively Improved AI, new characters balance for some Remix characters and new charge smash animation (From Smash Remix 2.0.1)
++Dragon King sounds changed
++Changed Tug of War voice announcer to "Choose your Character"
++Alts and Poly offset in CSS fixed
++CSS roster updated
++CSS Bug that crashes the game Fixed
++Stages sorted
+
+Uzi
++Fair Hitboxes attributes changed
++Nair Changed (New animation and Hitboxes)
++Dair Changed
++Bair animation changed
++Changed FTilt to Conker's FTilt
++Added to 1P Remix
++UAIR changed (animation and hitboxes)
+
+Shovel Knight
++1P Player Pose and 1P CPU Pose animations changed
++Added to 1P Remix
++Team color updated
++Aternate FSmash attacks disabled
+
+Lucia
++Attributes Slightly Changed
++Low Poly Model Added
++DSPA Graphic Added (DSPA animation changed)
++Stock Icons Changed
++BAIR, DSPG, JAB1, JAB2, DTILT, DASHATTACK, USMASH, DAIR, JABLOOP, NAIR Hitboxes changed
++Voice changed
++FSmash hitbox changed
++CSS/Vicotory 1, Taunt and DAIR animations changed
+
+Cloud
++ReviveWait, Lose resultscreen and Doll animations restored (restoring the doll animations fixes the 1P crash) 
+
+Ryu
++Added to 1P Remix
+
+Ken
++NSP voice changed
++Added to 1P Remix
+
+Kazuya
++Added to 1P Remix
+
+Rebecca
++Added a new costume
++Logo in match changed
++Stock icons changed
++Model changed
++Low poly model changed
++Voices restored
+
+----------------------------------------------------------
+v0.8.2a
++Ryu and Ken resultscreen offset fixed
++Tug of War Game Mode functionality added (from SR 2.0.1)
++Ryu's Stage, Training Stage from Shino and Ken's Stage imported
++Ryu, Ken and Kazuya USP bug fixed
++Added M.U.G.E.N sound effects for Rebecca
++Changed Ryu and Ken SF sound to SF Impact
++New 10 midis added
++New Zoom Mechanic for Falcon Punch kind of attacks
++Ryu, Ken and Kazuya imported
++DR. Mario Sounds sample rate in 32000 fixed to 16000
++Replaced Rebecca and Cloud voice announcer to "Bonus Character"
+
+Goku
++Animations changed: Dtilt, Utilt, Ftilt, Crouch, CrouchEnd, CrouchIdle, KH1 (Kamehameha start), KH2 (Kamehameha over), Dash Attack, JumpB, Nair, Bair, Dair, Uair, USmash, DSmash, and FSmash
++JumpF and JumpB sfx changed/JumpF animation changed
++Tech and Jump Aerial sfx changed
+
+Uzi
++Uzi result screen offset fixed
++NSP changed and SFX fixed by separating the sound
++ThrowF, ThrowB, Shield Break, Stun, Teeter, and sleep sound effects changed
++Taunt Animation Changed
++USmash and FSmash hitboxes fixed
++USmash, FSmash and Dtilt Animations changed
++Jump Fall Animation Changed
+
+Ryu
++Entry Right side fixed
+
+Ken
++Entry Right side fixed
+
+Kazuya
++KO, Death and Hurt sound effects added
+
+Rebecca
++Voice replaced
+
+
+
+
+----------------------------------------------------------
+
+v0.6.4a
++Theme of Captain America MIDI from Spider-Man Mod Added
++Credits Updated
++1P Remix Fixed
++Spider-Man, Spider-Man (MVC voiceover) and Poly Spider-Man by UltIMa647 Added/Fixed the Falcon Kick Graphic bug
++All-Star Fixed by putting it as before
++Charge Smash, Cloaking Device and P-Wing sound effects changed
++Re-ordered loop points instruments
++Peach sounds changed
++Fixed the Training sort order of Poly Crash and Poly Peach
++Cloud by Shino Added/Fixed the USP bugs
++Music and MIDIS Updated/"Select BGM" MIDI added
+
+
+Rebecca
++Model Fixed
+
+
+---------------------------------------------------------
+
+v0.5.5a
++Changed some icons to COM
++Sine Wave Fixed & Talent Choir got replaced for choir of SR-JV
++New Doorway Stage
+
+
+Shovel Knight
++Add RoA costume icon
++Fix transition between DSPA to DSPG
++Put Hitbox in USPG
++Put Rod Fish Model in USPG
++Add a RoA costume
++Replace FallSpecial Animation
++Show anchor in FallSpecial
++Change USP Animation and show anchor
++Change Nair
++Change Throw Animation
++FSmash Hitbox Fixed
++Change Jab
++Replace Utilt
++Change Uair
++Change USmash
++Replace Run Animation
++Replace Bair
++Replace CrouchEnd
++Replace Crouch
++Replace alternate Ftilts
++Change FTilt
++Change tech sounds
++Change DTilt
+
+
+
+
+---------------------------------------------------------
+
+v0.5.3a
++MIDIS Added for menu music: 7AM, Astral Observatory, Drake Lake, Eladard, Luna Ascension, Nutty Noon, Sticketbrush Symphony, Water land, Yoshi's tale
++SSS Expanded
++CSS and SSS UI sprites updated
++Stage pages reordered
++New Characters Name Texture in 1p fixed
++Instruments updated
++Conker & D.King SFX Updated
++Stage musics changed
++Goku Super Saiyan 3 MIDI
++Random ALL fixed in Remix settings
++D. Fury MIDI
+
+Shovel Knight
++CSS Logo changed
+
+Uzi
++Uzi Tech sounds changed
++Crouch animations changed
++Chanting changed
++Low poly and Skeleton model changed
++Model and costumes changed
++USP more higher
++Change railgun sound speed
+
+Lucia
++Fixed transition between DSPA to DSPG
++Removed the Shaking ability while grabbing an enemy
+
+Rebecca
++CSS Logo replaced
++Resultscreen name offset fixed
+
+Goku
++Goku Idle animation in CSS changed
++Idle Animation added
++Announcer voice added
+
+---------------------------------------------------------
+
+v0.5.0a
++Spiderman Marvel Super Heroes MIDI
++Added Rebecca
++Added Sound Type Z
++Updated Texture Names
++Updated Portrait Images
++PS1 Portrait
++Black lines in portraits fixed
++Roster Updated
++A Bug Fixed by putting some Lucia move names
++Goku Added
++Remix debugger stuffs added
+
+Rebecca
++Moveset Added
+
+Lucia
++Her additional costume can be used
++NSP Grab offset fixed
++Grab fixed
+
+Shovel Knight
++DSPA Updated (can switch special attacks)
++DAIR Updated
+
+Goku
++USP Updated
++NSP tempo sound added
++Fair Animation
++Added Loop attack
+
+
+
+---------------------------------------------------------
+
+v0.4.5a
++Fixed Lucia & Uzi crashing Training Mode
++PGCSS in Menu Music
++Random Music Menu by deafult
++DKC2KR in Menu Music
++PG Character Select MIDI
++Game boot faster and automatically
++Put Lucia placeholder Voices
++Changed Gameplay Settings in default
++Crocodile Cacophony MIDI
++Model display High Poly in default
++Change Game version in Menu Screen
++Changed the default Music of Training Mode
++Stage Backgrounds starts ON in Training Mode
++Uzi Theme MIDI
++Lucia Theme MIDI
++PG Training MIDI
+=Copper-09 Portrait
++99 X-Files MIDI
++New Menu Look
++Mario Metallic MIDI
+
+Lucia
++DSA Changed
++DSP Changed
+
+Uzi
+
+Shovel Knight
+=SK DSP more faster

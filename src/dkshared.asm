@@ -15,6 +15,8 @@ scope DKShared {
         beq     v0, at, _dkcargo_jump_1     // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
         beq     v0, at, _dkcargo_jump_1
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
+        beq     v0, at, _dkcargo_jump_1
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _dkcargo_jump_1
         addiu   at, r0, Character.id.NMARINA // NMARINA ID
@@ -40,6 +42,8 @@ scope DKShared {
         beq     v0, at, _dkcargo_jump_2     // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
         beq     v0, at, _dkcargo_jump_2
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
+        beq     v0, at, _dkcargo_jump_2
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _dkcargo_jump_2
         addiu   at, r0, Character.id.NMARINA // NMARINA ID
@@ -63,6 +67,8 @@ scope DKShared {
 
         beq     v0, at, _item_jump_1        // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
+        beq     v0, at, _item_jump_1
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
         beq     v0, at, _item_jump_1
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _item_jump_1
@@ -88,6 +94,8 @@ scope DKShared {
         beq     v0, at, _item_jump_2        // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
         beq     v0, at, _item_jump_2
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
+        beq     v0, at, _item_jump_2
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _item_jump_2
         addiu   at, r0, Character.id.NMARINA // NMARINA ID
@@ -111,6 +119,8 @@ scope DKShared {
 
         beq     v0, at, _item_jump_3        // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
+        beq     v0, at, _item_jump_3
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
         beq     v0, at, _item_jump_3
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _item_jump_3
@@ -136,6 +146,8 @@ scope DKShared {
         beq     v0, at, _item_jump_4        // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
         beq     v0, at, _item_jump_4
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
+        beq     v0, at, _item_jump_4
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _item_jump_4
         addiu   at, r0, Character.id.NMARINA // NMARINA ID
@@ -145,7 +157,7 @@ scope DKShared {
         addiu   at, r0, 0x0010              // original line 2
 
         _item_jump_4:
-        j       0x800EA3CA
+        j       0x800EA3C4
         addiu   at, r0, 0x0010              // original line 2
     }
 
@@ -159,6 +171,8 @@ scope DKShared {
 
         beq     v0, at, _item_jump_5        // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
+        beq     v0, at, _item_jump_5
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
         beq     v0, at, _item_jump_5
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _item_jump_5
@@ -183,6 +197,8 @@ scope DKShared {
 
         beq     v0, at, _item_jump_6        // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
+        beq     v0, at, _item_jump_6
+        addiu   at, r0, Character.id.LUCIA // MARINA ID
         beq     v0, at, _item_jump_6
         addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v0, at, _item_jump_6
@@ -295,6 +311,8 @@ scope DKShared {
         beq     v1, at, _cpu_2              // modified original line 1
         addiu   at, r0, Character.id.JDK    // JDK ID
         beq     v1, at, _cpu_2
+		addiu   at, r0, Character.id.LUCIA // MARINA ID
+        beq     v1, at, _marina				// Branch for Marina cpus
 		addiu   at, r0, Character.id.MARINA // MARINA ID
         beq     v1, at, _marina				// Branch for Marina cpus
 		addiu   at, r0, Character.id.NMARINA // NMARINA ID
@@ -306,7 +324,7 @@ scope DKShared {
         _cpu_2:
         j       0x80138F90
         addiu   at, r0, 0x0010              // original line 2
-	
+
 		_marina:
         lw		v0, 0x0024(a2)				// v0 = current action id
 		lli		at, Marina.Action.Cargo
@@ -320,11 +338,27 @@ scope DKShared {
 		lli		at, Marina.Action.CargoTurn
 		beq		at, v0, _marina_cargo
 		nop
-		
+
+		_lucia:
+        lw		v0, 0x0024(a2)				// v0 = current action id
+		lli		at, Lucia.Action.Cargo
+		beq		at, v0, _marina_cargo
+		lli		at, Lucia.Action.CargoWalk1
+		beq		at, v0, _marina_cargo
+		lli		at, Lucia.Action.CargoWalk2
+		beq		at, v0, _marina_cargo
+		lli		at, Lucia.Action.CargoWalk3
+		beq		at, v0, _marina_cargo
+		lli		at, Lucia.Action.CargoTurn
+		beq		at, v0, _marina_cargo
+		nop
+
+
+
 		// if here, no marina cargo
 		j		0x8013900C
 		addiu	v1, a2, 0x01CC				// v1 = ai struct
-		
+
 		_marina_cargo:
         j       0x801392B8					// goto 0x801392B8
         addiu	v0, r0, 0x0000				// return 0
@@ -339,14 +373,16 @@ scope DKShared {
         OS.patch_end()
 
         lw      t6, 0x0008(s0)              // load character ID
-        beq     t6, at, _sonic              // modified original line 1
+        beq     t6, at, _sonic              // branch if character = Sonic
+        lli     at, Character.id.LANKY      // at = id.LANKY
+        beq     t6, at, _lanky              // branch if character = Lanky
         addiu   at, r0, Character.id.SSONIC // SSONIC ID
         bnel    t6, at, _end
         addiu   a0, a0, 0xE654              // original line 2
 
         _ssonic:
         addiu   at, r0, 0x0001
-        lw      t6, 0x0044(s0)              // load character ID
+        lw      t6, 0x0044(s0)              // load direction
         bne     t6, at, _ssonic_left        // if facing left, use left
         sw      r0, 0x0044(s0)              // clears out player facing
         li      a0, ssonic_entry_struct_right
@@ -360,7 +396,7 @@ scope DKShared {
 
         _sonic:
         addiu   at, r0, 0x0001
-        lw      t6, 0x0044(s0)              // load character ID
+        lw      t6, 0x0044(s0)              // load direction
         bne     t6, at, _sonic_left                 // if facing left, use left
         sw      r0, 0x0044(s0)              // clears out player facing
         li      a0, sonic_entry_struct_right
@@ -371,6 +407,9 @@ scope DKShared {
         li      a0, sonic_entry_struct_left
         beq     r0, r0, _end
         nop
+
+        _lanky:
+        li      a0, lanky_entry_struct
 
         _end:
         jal     0x800FDAFC                  // original line 1
@@ -383,7 +422,7 @@ scope DKShared {
 
     sonic_entry_struct_right:
     // Entry Objects like the barrel have structs which are used to load them, similar to the Blue Falcon and others
-    // Needs UPDATED whenever Tails file updated due to offsets
+    // Needs UPDATED whenever Tails file updated due to offsets, original is at 0xA9E54
     dw  0x040A0000
     dw  Character.SONIC_file_8_ptr // pointer to pointer to Tails file
     dw  0x1C00001C
@@ -397,7 +436,7 @@ scope DKShared {
 
     sonic_entry_struct_left:
     // Entry Objects like the barrel have structs which are used to load them, similar to the Blue Falcon and others
-    // Needs UPDATED whenever Tails file updated due to offsets
+    // Needs UPDATED whenever Tails file updated due to offsets, original is at 0xA9E54
     dw  0x040A0000
     dw  Character.SONIC_file_8_ptr // pointer to pointer to Tails file
     dw  0x1C00001C
@@ -411,7 +450,7 @@ scope DKShared {
 
     ssonic_entry_struct_right:
     // Entry Objects like the barrel have structs which are used to load them, similar to the Blue Falcon and others
-    // Needs UPDATED whenever Tails file updated due to offsets
+    // Needs UPDATED whenever Tails file updated due to offsets, original is at 0xA9E54
     dw  0x040A0000
     dw  Character.SSONIC_file_8_ptr // pointer to pointer to Tails file
     dw  0x1C00001C
@@ -425,7 +464,7 @@ scope DKShared {
 
     ssonic_entry_struct_left:
     // Entry Objects like the barrel have structs which are used to load them, similar to the Blue Falcon and others
-    // Needs UPDATED whenever Tails file updated due to offsets
+    // Needs UPDATED whenever Tails file updated due to offsets, original is at 0xA9E54
     dw  0x040A0000
     dw  Character.SSONIC_file_8_ptr // pointer to pointer to Tails file
     dw  0x1C00001C
@@ -436,4 +475,151 @@ scope DKShared {
     dw  0x00000000
     dw  0x000112AC          // offset
     dw  0x00000000
+
+    lanky_entry_struct:
+    // Entry Objects like the barrel have structs which are used to load them, similar to the Blue Falcon and others
+    // Needs UPDATED whenever Tails file updated due to offsets, original is at 0xA9E54
+    dw  0x040A0000
+    dw  Character.LANKY_file_7_ptr // pointer to pointer to Tails file
+    dw  0x1C00001C
+    dw  0x00000000
+    dw  0x800FD568
+    dw  0x80014038
+    dw  0x00000F88          // offset
+    dw  0x00000000
+    dw  0x000014E4          // offset
+    dw  0x00000000
+
+    scope cpu_post_process: {
+        OS.routine_begin(0x20)
+        sw a0, 0x10(sp)
+
+        // Check CPU level for vanilla characters
+        lbu t1, 0x0013(a0) // t1 = cpu level
+        addiu t1, t1, -10 // t1 = 0 if level 10
+        bnezl t1, _end // if not lv10, skip
+        nop
+
+        // If performing any DSP action, release inputs
+        // for us to avoid a DSP loop
+        lw at, 0x24(a0) // at = action id
+        lli t0, Action.DK.HandSlapStart
+        beq t0, at, _no_input
+        lli t0, Action.DK.HandSlapLoop
+        beq t0, at, _no_input
+        lli t0, Action.DK.HandSlapEnd
+        beq t0, at, _no_input
+        // if performing USP, check if going offstage
+        lli t0, Action.DK.SpinningKong
+        beq t0, at, ground_check
+        lli t0, Action.DK.SpinningKongAir
+        beq t0, at, ground_check
+        nop
+
+        b _end
+        nop
+
+        scope ground_check: {
+            addiu sp, sp, -0x20
+            sw a0, 0x18(sp)
+
+            lli v0, 0x1 // default to safe to move
+
+            // check if above clipping
+            addiu at, r0, -1 // at = 0xFFFFFFF
+            lw t0, 0xEC(a0) // get current clipping below player
+            beq at, t0, _ground_check_end // skip if not above clipping
+            nop
+
+            // create vec3 at sp+0x4
+            // based on position + 200 in the x axis towards movement speed direction
+            lw t0, 0x78(a0) // load location vector
+            lwc1 f2, 0x0(t0) // f2 = location X
+            swc1 f2, 0x4(sp) // vec3.x = location X
+            lwc1 f2, 0x4(t0) // f2 = location Y
+            swc1 f2, 0x8(sp) // vec3.y = location Y
+            lwc1 f2, 0x8(t0) // f2 = location Z
+            swc1 f2, 0xC(sp) // vec3.z = location Z
+
+            // get kinetic state
+            lw at, 0x14C(a0) // at = kinetic state
+            lwc1 f2, 0x48(a0) // f2 = air x velocity
+            mfc1 at, f2 // at = x velocity
+            beqz at, _ground_check_end // if x velocity = 0, skip
+            nop
+
+            abs.s f4, f2 // f4 = abs(x velocity)
+
+            mtc1 r0, f0
+            c.eq.s f4, f0 // if f4 == 0
+            nop
+            bc1t _ground_check_end // skip to avoid div by 0
+            nop
+
+            div.s f2, f2, f4 // f2 = sign(x velocity)
+
+            lui at, 0x43C8 // at = 400.0F
+            mtc1 at, f4
+            mul.s f4, f2, f4 // f4 = sign(x velocity) * 400.0F
+
+            lwc1 f2, 0x4(sp) // vec3.x
+            add.s f2, f2, f4 // vec3.x += sign(x velocity) * 400.0F
+            swc1 f2, 0x4(sp) // store back
+
+            jal 0x800F8FFC
+            addiu a0, sp, 0x4 // position vector to check
+
+            _ground_check_end:
+            lw a0, 0x18(sp)
+            addiu sp, sp, 0x20
+        }
+        // if moving offstage(v0 == 0), hold towards stage
+        beqz v0, _cancel_velocity
+        nop
+        b _end
+        nop
+
+        _no_input:
+        jal 0x80132758 // execute AI command
+        lli a1, AI.ROUTINE.NULL // arg1 = NULL
+        b _end
+        nop
+
+        _cancel_velocity:
+        jal 0x80132758 // execute AI command
+        lli a1, AI.ROUTINE.NULL // arg1 = point to target
+
+        sb r0, 0x01C9(a0) // save CPU stick y
+
+        // get kinetic state
+        lw at, 0x14C(a0) // at = kinetic state
+        lwc1 f2, 0x48(a0) // f2 = air x velocity
+        mfc1 at, f2 // at = x velocity
+        nop
+
+        abs.s f4, f2 // f4 = abs(x velocity)
+        div.s f2, f2, f4 // f2 = sign(x velocity)
+
+        mtc1 r0, f0
+        c.le.s f2, f0 // if sign(x velocity) <= 0
+        nop
+        bc1f _move_left
+        nop
+        // move right
+        addiu at, r0, 0x50
+        sb at, 0x01C8(a0) // CPU stick x = right
+        b _end
+        nop
+        _move_left:
+        addiu at, r0, 0xFFB0
+        sb at, 0x01C8(a0) // CPU stick x = left
+
+        _end:
+        lw a0, 0x10(sp)
+        OS.routine_end(0x20)
+    }
+    Character.table_patch_start(cpu_post_process, Character.id.DK, 0x4)
+    dw cpu_post_process; OS.patch_end()
+    Character.table_patch_start(cpu_post_process, Character.id.JDK, 0x4)
+    dw cpu_post_process; OS.patch_end()
 }

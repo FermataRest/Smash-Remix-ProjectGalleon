@@ -90,13 +90,13 @@ scope Fireball: {
         pullvar base, origin
 
         OS.save_registers()
-        lw      t0, 0x010C (v1)             // t0 = projectile type
-        ori     t1, r0, Capsule.TYPE        // t1 = Capsule.TYPE
-        beq     t0, t1, _capsule            // branch if type = Capsule.TYPE
-        ori     t1, r0, Book.TYPE           // t1 = Book.TYPE
-        beq     t0, t1, _book               // branch if type = Book.TYPE
-        lw      t0, 0x000C(v1)              // t0 = projectile ID
-        addiu   t1, r0, 0x1008              // Banjos egg ID
+        lw      t0, 0x010C (v1)                 // t0 = projectile type
+        ori     t1, r0, Capsule.TYPE            // t1 = Capsule.TYPE
+        beq     t0, t1, _capsule                // branch if type = Capsule.TYPE
+        ori     t1, r0, Book.TYPE               // t1 = Book.TYPE
+        beq     t0, t1, _book                   // branch if type = Book.TYPE
+        lw      t0, 0x000C(v1)                  // t0 = projectile ID
+        addiu   t1, r0, Projectile.id.BANJO_EGG // Banjos egg ID
         beq     t1, t0, _egg
         nop
 
@@ -169,16 +169,16 @@ scope Fireball: {
         _bounce_effect_return:
         pullvar base, origin
 
-        addiu   sp, sp,-0x0010              // allocate stack space
-        sw      t0, 0x0004(sp)              // ~
-        sw      t1, 0x0008(sp)              // store t0, t1
-        lw      t0, 0x010C (v0)             // t0 = projectile type
-        ori     t1, r0, Capsule.TYPE        // t1 = Capsule.TYPE
-        beq     t0, t1, _capsule            // branch if type = Capsule.TYPE
-        ori     t1, r0, Book.TYPE           // t1 = Book.TYPE
-        beq     t0, t1, _book               // branch if type = Book.TYPE
-        lw      t0, 0x000C(v0)              // check projectile ID
-        addiu   t1, r0, 0x1008              // Banjos egg ID
+        addiu   sp, sp,-0x0010                  // allocate stack space
+        sw      t0, 0x0004(sp)                  // ~
+        sw      t1, 0x0008(sp)                  // store t0, t1
+        lw      t0, 0x010C (v0)                 // t0 = projectile type
+        ori     t1, r0, Capsule.TYPE            // t1 = Capsule.TYPE
+        beq     t0, t1, _capsule                // branch if type = Capsule.TYPE
+        ori     t1, r0, Book.TYPE               // t1 = Book.TYPE
+        beq     t0, t1, _book                   // branch if type = Book.TYPE
+        lw      t0, 0x000C(v0)                  // check projectile ID
+        addiu   t1, r0, Projectile.id.BANJO_EGG // Banjos egg ID
         beq     t1, t0, _egg
         nop
 
@@ -220,9 +220,9 @@ scope Fireball: {
         _return:
         OS.patch_end()
 
-        addiu   t4, r0, 0x1008              // t4 = banjo egg projectile id
-        bne     t4, t3, _normal             // branch to normal logic if not Banjos egg
-        addu    at, at, t2                  // og line 1
+        addiu   t4, r0, Projectile.id.BANJO_EGG // t4 = banjo egg projectile id
+        bne     t4, t3, _normal                 // branch to normal logic if not Banjos egg
+        addu    at, at, t2                      // og line 1
 
         // banjo egg
         lh      t4, 0x0082(t0)              // get current collision result
@@ -354,6 +354,101 @@ scope Fireball: {
         }
     }
 
+
+
+
+
+    // @ Description
+    // Setup for SKnights's book.
+    scope BookSK {
+        constant TYPE(0x3)                  // damage type to use for book effects
+        constant FGM(0x1F)                  // fgm to play when a book hits an opponent
+        angle_info:
+        float32 1.0472                      // 0x00 - Default Angle (60 degrees)
+        float32 0.436332                    // 0x04 - Angle Spread (25 degrees)
+
+        // @ Description
+        // Subroutine used during the creation of the book projectile.
+        // Randomizes the angle the book is shot at, and creates multiple books if the Piano has bonus ammo.
+        scope create_: {
+            // v0 = player struct
+            // a3 = player object
+
+            addiu   a1, sp, 0x0020          // a1 =  pointer to x/y/z coords
+            addiu   sp, sp,-0x0040          // allocate stack space
+            sw      a1, 0x0020(sp)          // 0x0020(sp) = x/y/z pointer
+            sw      a3, 0x0024(sp)          // 0x0024(sp) = player object
+            sw      v0, 0x0028(sp)          // 0x0028(sp) = player struct
+
+            // first check if the character is Piano, if not then assume it's Kirby
+            lw      t0, 0x0008(v0)          // t0 = character id
+            lli     t1, Character.id.SKNIGHT  // t1 = id.SKNIGHT
+            bnel    t0, t1, _begin_loop     // begin loop if character is not Piano...
+            or      t9, r0, r0              // ...and set loop iteration count to 0 (don't loop)
+
+            _begin_loop:
+            or      t8, r0, r0              // t8 = current loop iteration (0)
+
+            _loop:
+            // t8 = current loop iteration
+            // t9 = loop iteration count
+            // get a random multiplier between -0.5 and 0.5 for calculating the spread
+            jal     Global.get_random_int_  // v0 = (0, 100)
+            lli     a0, 0101                // ~
+            addiu   t0, v0,-0050            // ~
+            mtc1    t0, f0                  // ~
+            cvt.s.w f0, f0                  // f0 = (-50, 50)
+            li      t0, 0x3C23D70A          // ~
+            mtc1    t0, f2                  // f2 = 0.01
+            mul.s   f0, f0, f2              // f0 = spread multiplier (-0.5, 0.5)
+            // increase the intensity of the spread multiplier by 25% for each loop iteration
+            mtc1    t8, f2                  // ~
+            cvt.s.w f2, f2                  // f2 = current iteration
+            lui     t0, 0x3E80              // ~
+            mtc1    t0, f4                  // f2 = 0.25
+            mul.s   f2, f2, f4              // f2 = 0.25 * current iteration
+            lui     t0, 0x3F80              // ~
+            mtc1    t0, f4                  // f4 = 1
+            add.s   f2, f2, f4              // f2 = intensity multiplier (1 + 0.25 per loop iteration)
+            mul.s   f0, f0, f2              // f0 = final spread multiplier (spread multiplier * intensity multiplier)
+            // apply the final spread multiplier to the default angle
+            li      t0, angle_info          // t0 = angle_info
+            lwc1    f2, 0x0004(t0)          // f2 = spread
+            lwc1    f4, 0x0000(t0)          // f4 = default angle
+            mul.s   f2, f2, f0              // f2 = spread angle (spread * spread multiplier)
+            add.s   f2, f2, f4              // f2 = final angle (default angle + spread angle)
+            li      t0, struct_booksk         // t0 = book fireball struct
+            swc1    f2, 0x0018(t0)          // ~
+            swc1    f2, 0x001C(t0)          // update projectile launch angle
+            // create the projectile
+            lw      a0, 0x0024(sp)          // a0(player) = player object
+            lw      a1, 0x0020(sp)          // a1(coordinates) = pointer to x/y/z coords
+            li      a2, struct_booksk_id      // a2(struct id) = struct_book_id
+            sw      t8, 0x002C(sp)          // store t8
+            jal     0x801687A0              // create fireball
+            sw      t9, 0x0030(sp)          // store t9
+
+            _end_loop:
+            // exit the loop if the iteration count has not yet been reached
+            lw      t8, 0x002C(sp)          // load t8 (current loop iteration)
+            lw      t9, 0x0030(sp)          // load t9 (iteration count)
+            bnel    t8, t9, _loop           // loop if current iteration < iteration count...
+            addiu   t8, t8, 0x0001          // ...and increment current iteration
+
+            _end:
+            addiu   sp, sp, 0x0040          // deallocate stack space
+            j       0x80155EF4              // return to the end of the fireball subroutine
+            nop
+        }
+
+
+    }
+
+
+
+
+
+
     // @ Description
     // Setup for Dr. Mario's capsule.
     scope Capsule {
@@ -376,15 +471,45 @@ scope Fireball: {
             sw      ra, 0x0008(sp)          // store f0, ra
             lw      v0, 0x0084(a0)          // v0 = player struct
             OS.save_registers()
+            lw      t1, 0x0008(v0)          // t1 = char_id
             lw      t0, 0x017C(v0)          // t0 = temp variable 1
             beq     t0, r0, _end            // end if temp variable 1 = 0
             nop
-            li      t1, struct_capsule      // t1 = struct_capsule
-            ori     a0, r0, 0x3             // ~
-            jal     Global.get_random_int_  // v0 = (0-2)
+
+            lli     t0, Character.id.KIRBY  // t0 = id.KIRBY
+            beq     t0, t1, _kirby_check    // branch if KIRBY
+            lli     t0, Character.id.JKIRBY // t0 = id.JKIRBY
+            beq     t0, t1, _kirby_check    // branch if JKIRBY
             nop
+            lli     t0, Character.id.DRL    // t0 = id.DRL
+            bne     t0, t1, _drmario        // skip if not Dr. Luigi
+            nop
+            _drluigi:
+            li      t1, struct_drl          // ~
+            b       _palette
+            nop
+
+            _kirby_check:
+            lb      t0, 0x0980(v0)          // t0 = current hat ID
+            addiu   t1, r0, 0x10            // at = Kirbys DRM hat ID
+            beq     t0, t1, _drmario
+            nop
+
+            // if here, then Kirby is wearing Dr Luigis hat
+            b       _drluigi
+            nop
+
+            _drmario:
+            li      t1, struct_capsule      // otherwise, t1 = struct_capsule
+            _palette:
+            ori     a0, r0, 0x3             // ~
+            jal     Global.get_random_int_  // v0 = palette index (0-2)
+            nop
+            li      t0, struct_drl
+            beql    t0, t1, pc() + 8        // if Dr Luigi, adjust palette index
+            addiu   v0, v0, 0x0003          // v0 = palette index (3-5)
             mtc1    v0, f0                  // ~
-            cvt.s.w f0, f0                  // f0 = random palette index (0-2)
+            cvt.s.w f0, f0                  // f0 = random palette index
             swc1    f0, 0x002C(t1)          // store palette index
 
             _end:
@@ -443,9 +568,14 @@ scope Fireball: {
             lw      t1, 0x0ADC(v0)          // t1 = character id of copied power
 
             _capsule_check:
+            lli     t0, Character.id.DRL    // t0 = id.DRL
+            beql    t0, t1, _pill           // skip if char id != DRL
+            nop
             lli     t0, Character.id.DRM    // t0 = id.DRM
             bne     t0, t1, _end            // skip if char id != DRM
             nop
+
+            _pill:
             li      t6, capsule_subroutine_ // t6 = capsule subroutine
 
             _end:
@@ -468,9 +598,15 @@ scope Fireball: {
     struct(struct_jmario, 0, 140, 55, 30, 1.2, 0.85, 0.3490659, -0.08726647, -0.08726647, 50, Character.JMARIO_file_6_ptr, 0)
     struct(struct_jluigi, 0, 90, 55, 30, 0, 0.85, 0.4363323, 0, 0, 36, Character.JLUIGI_file_6_ptr, 1)
     struct(struct_book, 0, 120, 60, 25, 1.4, 0.55, 0.139626, 1.0472, 1.0472, 50, Character.PIANO_file_6_ptr, 0)
+    struct(struct_booksk, 0, 120, 60, 25, 1.4, 0.55, 0.139626, 1.0472, 1.0472, 50, Character.SKNIGHT_file_6_ptr, 0)
+    struct(struct_drl, 0, 100, 55, 30, 0, 0.85, 0.4363323, 0, 0, 36, Character.DRL_file_6_ptr, 0)
+
+    // macro struct(name, defaults, duration, max_speed, min_speed, gravity, bounce, rotation, angle_g, angle_a, init_speed, data_pointer, palette_idx)
 
     // Add fireball structs to characters.
     add_to_character(Character.id.DRM, struct_capsule)
     add_to_character(Character.id.JMARIO, struct_jmario)
     add_to_character(Character.id.JLUIGI, struct_jluigi)
+    add_to_character(Character.id.DRL, struct_drl)
+
 }

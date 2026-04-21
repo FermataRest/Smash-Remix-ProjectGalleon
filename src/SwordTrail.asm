@@ -100,6 +100,7 @@ scope SwordTrail {
     // start_pos - float32 position for the base of the sword trail
     // end_pos - float32 position for the end of the sword trail
 
+
     add_sword_trail(marth_default_trail, Character.id.MARTH, 0xE, AXIS_Z, 0x00FFFF00, 0xFFFFFF00, 70, 370)
     add_sword_trail(conker_katana_trail, Character.id.CONKER, 0xD, AXIS_Z, 0x00FFFF00, 0xFFFFFF00, 150, 800)
     add_sword_trail(marth_nsp_red_trail, Character.id.MARTH, 0xE, AXIS_Z, 0xFF000000, 0xFFFFFF00, 70, 370)
@@ -115,6 +116,17 @@ scope SwordTrail {
     add_sword_trail(falco_trail, Character.id.FALCO, 0x0, AXIS_Y, 0x00FFFF00, 0x00FFFF00, -150, 250)
     add_sword_trail(falco_trail2, Character.id.FALCO, 0x1, AXIS_Y, 0x00FFFF00, 0x00FFFF00, -150, 250)
     add_sword_trail(kirby_falco_trail, Character.id.KIRBY, 0x0, AXIS_Y, 0x00FFFF00, 0x00FFFF00, -140, 240)
+    add_sword_trail(roy_default_trail, Character.id.ROY, 0xE, AXIS_Z, 0xFF440000, 0xFFFFFF00, 70, 370)
+    add_sword_trail(roy_nsp_red_trail, Character.id.ROY, 0xE, AXIS_Z, 0xFF000000, 0xFFFFFF00, 70, 370)
+    add_sword_trail(roy_nsp_blue_trail, Character.id.ROY, 0xE, AXIS_Z, 0x0050FF00, 0xFFFFFF00, 70, 370)
+    add_sword_trail(roy_nsp_green_trail, Character.id.ROY, 0xE, AXIS_Z, 0x00FF0000, 0xFFFFFF00, 70, 370)
+    add_sword_trail(roy_dsp_trail, Character.id.ROY, 0xE, AXIS_Z, 0xFF000000, 0xE06C0000, 50, 380)
+    add_sword_trail(dsamus_trail, Character.id.DSAMUS, 0x0, AXIS_Y, 0x40C0FF00, 0x80E0FF00, 0, 180)
+    add_sword_trail(sknight_default_trail, Character.id.SKNIGHT, 0xC, AXIS_Z, 0x00FFFF00, 0xFFFFFF00, 70, 370)
+    add_sword_trail(sknight_wand_trail, Character.id.SKNIGHT, 0xC, AXIS_Y, 0xEB100000, 0xFFFFFF00, -200, 150)
+    add_sword_trail(cloud_default_trail, Character.id.CLOUD, 0xF, AXIS_X, 0x00FF0000, 0xFFFFFF00, 32, 400)
+    add_sword_trail(cloud_pink_trail, Character.id.CLOUD, 0xF, AXIS_X, 0xFE50B200, 0xFE50B200, 32, 400)
+
     // write sword trails to ROM
     write_sword_trails()
 

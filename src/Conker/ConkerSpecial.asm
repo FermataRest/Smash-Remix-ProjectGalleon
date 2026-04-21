@@ -681,14 +681,13 @@ scope ConkerNSP {
         nop
 
         _fired:
-       jal      0x800DE99C                  // air collision subroutine (cancel on landing)
+       jal      0x800DE978                  // air collision subroutine (cancel on landing)
        nop
 
         _end:
         lw      ra, 0x0014(sp)              // load ra
-        addiu   sp, sp, 0x0020              // deallocate stack space
         jr      ra                          // return
-        nop
+        addiu   sp, sp, 0x0020              // deallocate stack space
     }
 
     // @ Description
@@ -951,9 +950,8 @@ scope ConkerNSP {
 
     OS.align(16)
     nut_projectile_struct:
-    constant NUT_ID(0x1001)
     dw 0x00000000                           // unknown
-    dw NUT_ID                               // projectile id
+    dw Projectile.id.CONKER_NUT             // projectile id
     dw Character.CONKER_file_6_ptr          // address of conker's file 6 pointer
     dw 0x00000000                           // offset to hitbox
     dw 0x12470000                           // This determines z axis rotation? (samus is 1246)

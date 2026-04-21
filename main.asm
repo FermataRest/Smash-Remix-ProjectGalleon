@@ -15,7 +15,7 @@ db  "SMASH REMIX"
 fill 0x34 - origin(), 0x20
 
 // add asm to rom
-origin  0x02400000
+origin  0x03000000
 base    0x80400000
 include "src/OS.asm"
 include "src/String.asm"
@@ -66,7 +66,11 @@ include "src/SinglePlayerModes.asm"
 include "src/SinglePlayerMenus.asm"
 include "src/HRC.asm"
 include "src/Bonus.asm"
+include "src/VsRemixMenu.asm"
 include "src/TwelveCharBattle.asm"
+include "src/TagTeam.asm"
+include "src/KingOfTheHill.asm"
+include "src/Smashketball.asm"
 include "src/Size.asm"
 include "src/CharEnvColor.asm"
 include "src/SwordTrail.asm"
@@ -92,6 +96,9 @@ include "src/JabLock.asm"
 include "src/LedgeJump.asm"
 include "src/PerfectShield.asm"
 include "src/SpotDodge.asm"
+include "src/Parry.asm"
+include "src/Rage.asm"
+include "src/SpecialZoom.asm"
 include "src/AerialAttackFastFall.asm"
 include "src/LedgeTrump.asm"
 include "src/Hitstun.asm"
@@ -105,10 +112,22 @@ include "src/DragonKingHUD.asm"
 include "src/Accessibility.asm"
 include "src/BlastZone.asm"
 include "src/MagnifyingGlass.asm"
+include "src/DKMode.asm"
+include "src/Walljump.asm"
+include "src/Speed.asm"
+include "src/OnHit.asm"
+include "src/SingleButtonMode.asm"
+include "src/SFXReplace.asm"
+include "src/StaleMoves.asm"
+include "src/FGC.asm"
+include "src/TugOfWar.asm"
+include "src/Projectile.asm"
+include "src/DI.asm"
 
 // CHARACTER
 include "src/Character.asm"
 include "src/AI.asm"
+include "src/VanillaLv10Attacks.asm"
 include "src/CharacterSelect.asm"
 include "src/CharacterSelectDebugMenu.asm"
 include "src/Costumes.asm"
@@ -123,6 +142,9 @@ include "src/jigglypuffkirbyshared.asm"
 include "src/yoshishared.asm"
 include "src/pikashared.asm"
 include "src/samusshared.asm"
+include "src/marioshared.asm"
+include "src/foxshared.asm"
+include "src/CustomGrabAction.asm"
 // METAL MARIO
 include "src/MetalMario/MetalMario.asm"
 // FALCO
@@ -139,6 +161,7 @@ include "src/DrMario/DrMario.asm"
 include "src/Wario/WarioSpecial.asm"
 include "src/Wario/Wario.asm"
 // DARK SAMUS
+include "src/DSamus/DSamusSpecial.asm"
 include "src/DSamus/DSamus.asm"
 // ELINK
 include "src/ELink/ELink.asm"
@@ -170,6 +193,7 @@ include "src/EPuff/EPuff.asm"
 // JYOSHI
 include "src/JYoshi/JYoshi.asm"
 // JPIKA
+include "src/JPika/JPikaSpecial.asm"
 include "src/JPika/JPika.asm"
 // ESAMUS
 include "src/ESamus/ESamus.asm"
@@ -265,19 +289,57 @@ include "src/NGoemon/NGoemon.asm"
 include "src/NConker/NConker.asm"
 // NBANJO
 include "src/NBanjo/NBanjo.asm"
+// CRASH
+include "src/Crash/CrashSpecial.asm"
+include "src/Crash/Crash.asm"
+// PEACH
+include "src/Peach/PeachSpecial.asm"
+include "src/Peach/Peach.asm"
+// ROY
+include "src/Roy/RoySpecial.asm"
+include "src/Roy/Roy.asm"
+// DRL
+include "src/DrLuigi/DrLuigi.asm"
+// LANKY
+include "src/Lanky/LankySpecial.asm"
+include "src/Lanky/Lanky.asm"
+
+// SHOVEL KNIGHT
+include "src/SKnight/SKnightSpecial.asm"
+include "src/SKnight/SKnight.asm"
+
+// SPM
+include "src/Spiderman/SpidermanSpecial.asm"
+include "src/Spiderman/Spiderman.asm"
+include "src/Spiderman3/Spiderman3.asm"
+
 // UZI
 include "src/Uzi/UziSpecial.asm"
 include "src/Uzi/Uzi.asm"
-// V
-include "src/Serial_V/VSpecial.asm"
-include "src/Serial_V/V.asm"
-// N
-include "src/Serial_N/NSpecial.asm"
-include "src/Serial_N/N.asm"
-// J
 
-// CYN
+// GOKU
+include "src/Goku/GokuSpecial.asm"
+include "src/Goku/Goku.asm"
 
+// REBECCA
+include "src/Rebecca/Rebecca.asm"
+
+// CLOUD
+include "src/Cloud/CloudSpecial.asm"
+include "src/Cloud/Cloud.asm"
+
+// LUCIA
+include "src/Lucia/LuciaSpecial.asm"
+include "src/Lucia/Lucia.asm"
+
+//PLACEHOLDER
+include "src/Placeholder/PholderSpecial.asm"
+include "src/Placeholder/Pholder.asm"
+
+// NPEACH
+include "src/NPeach/NPeach.asm"
+// NCRASH
+include "src/NCrash/NCrash.asm"
 
 // KIRBY
 include "src/Kirby/Kirby.asm"
@@ -285,8 +347,29 @@ include "src/KirbyHats.asm"
 // JKIRBY
 include "src/JKirby/JKirby.asm"
 
+
+// NSPM
+include "src/NSpiderman/NSpiderman.asm"
+
+// RYU
+include "src/Ryu/RyuSpecial.asm"
+include "src/Ryu/Ryu.asm"
+// KEN
+include "src/Ken/KenSpecial.asm"
+include "src/Ken/Ken.asm"
+
+// KAZUYA
+include "src/Kazuya/KazuyaSpecial.asm"
+include "src/Kazuya/Kazuya.asm"
+
+// RANDOM
+include "src/Random/Random.asm"
+
 // MIDI
 include "src/MIDI.asm"
+
+// creates PAL compatible ROM when MAKE_PAL is defined
+include "src/PAL.asm"
 
 OS.align(16)
 midi_memory_block: // This is where music files will be loaded
@@ -296,6 +379,7 @@ OS.align(16)
 file_table:  // This is where we move the file table to in order to load more files
 fill 0x620
 
+custom_heap_address:; dw custom_heap
 custom_heap: // This is where we move the heap to when we need to increase its size
 
 // rom size = 64MB

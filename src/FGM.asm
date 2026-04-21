@@ -1,4 +1,5 @@
 // FGM.asm
+// FGM.asm
 if !{defined __FGM__} {
 define __FGM__()
 print "included FGM.asm\n"
@@ -87,6 +88,80 @@ scope FGM {
     }
 
     // @ Description
+    // Away mode Sound test
+    // Advances and plays songs every X seconds
+    scope afk_soundTest: {
+        // 7 minutes (60*60*7)
+        constant WAIT_TIME(25200)
+
+        OS.patch_start(0x1884D4, 0x80132104)
+        j       afk_soundTest._A_away
+        nop
+        OS.patch_end()
+
+        OS.patch_start(0x188324, 0x80131F54)
+        j       afk_soundTest._right_away
+        nop
+        OS.patch_end()
+
+        _A_away:
+        jal     0x8039076C                  // original line 1 (check for A button press)
+        ori     a0, r0, 0x8000              // original line 2
+
+        li      a0, CharacterSelectDebugMenu.PlayerTag.string_table + (2 * 4)
+        lw      a0, 0x0000(a0)              // a0 = 2nd tag
+        lw      a0, 0x0000(a0)              // a0 = tag
+        li      at, 0x61666B00
+        bne     a0, at, _end_A              // branch if tag is not equal
+        nop
+        bnez    v0, _timer_clear            // branch if we pressed 'A'
+        nop
+
+        li      a0, BGM.safe_id             // t0 = address of safe bgm_id
+        lw      a0, 0x0000(a0)              // a0 = current bgm_id (-1 if not playing)
+        bltz    a0, _timer_clear            // clear timer if no song playing
+        nop
+        li      t6, awayTimer               // t6 = address of awayTimer
+        lw      a0, 0x0000(t6)              // a0 = timer value
+        addiu   a0, a0, 1                   // a0++
+        sw      a0, 0x0000(t6)              // update timer
+        sltiu   a0, a0, WAIT_TIME           // wait 7 minutes...
+        bnez    a0, _end_A                  // ...skip until then
+        nop
+        lli     v0, OS.TRUE                 // v0 = 1 (simulate 'A' pressed)
+
+        _timer_clear:
+        li      t6, awayTimer               // t6 = address of awayTimer
+        sw      r0, 0x0000(t6)              //
+
+        _end_A:
+        j       0x8013210C                  // return to function
+        nop
+
+        _right_away:
+        li      a3, CharacterSelectDebugMenu.PlayerTag.string_table + (2 * 4)
+        lw      a3, 0x0000(a3)              // a3 = 2nd tag
+        lw      a3, 0x0000(a3)              // a3 = tag
+        li      a2, 0x61666B00
+        bne     a3, a2, _end_right          // branch if tag is not equal
+        nop
+        li      a3, awayTimer               // a3 = address of awayTimer
+        lw      a3, 0x0000(a3)              // a3 = timer value
+        sltiu   a3, a3, WAIT_TIME - 1       // wait 7 minutes...
+        beqzl   a3, _end_right              // branch accordingly
+        lli     v0, OS.TRUE                 // v0 = 1 (simulate 'right' pressed)
+
+        _end_right:
+        lui     a3, 0x8013                  // original line 1
+        lui     a2, 0x8013                  // original line 2
+        j       0x80131F5C                  // return to function
+        nop
+
+        awayTimer:
+        dw  0
+    }
+
+    // @ Description
     // Plays a sound effect (safe)
     // @ Arguments
     // a0 - fgm_id
@@ -104,6 +179,55 @@ scope FGM {
     macro play(sfx) {
         jal     0x800269C0
         addiu   a0, r0, {sfx}
+    }
+
+    // @ Description
+    // Sets FGM volume
+    // @ Arguments
+    // a0 - volume, max = 30720 (0x7800)
+    constant set_volume_(0x80020E64)
+
+    // @ Description
+    // Edits function 0x80020E64 (Set FGM Volume) to take into account the master SFX volume toggle
+    // a0 - volume, max = 30720 (0x7800)
+    scope master_fgm_volume: {
+        OS.patch_start(0x21A64, 0x80020E64)
+        addiu   sp, sp, -0x0018                 // original line 1
+        sw      ra, 0x0014(sp)                  // original line 3
+        jal     master_fgm_volume
+        nop
+        nop
+        nop
+        nop
+        _return:
+        OS.patch_end()
+
+        li      at, Toggles.entry_fgm_volume    // at = address of master SFX volume
+        lw      at, 0x0004(at)                  // at = master SFX volume (0 to 10)
+        beqzl   at, _srl                        // branch if volume is 0
+        or      a1, r0, r0                      // a1 = 0
+        mtc1    at, f4                          // ~
+        cvt.s.w f4, f4                          // f4 = master SFX volume fp
+        lui     at, 0x4120                      // ~
+        mtc1    at, f0                          // f0 = 10.0
+        div.s   f2, f4, f0                      // f2 = (master SFX volume / 10.0)
+        mtc1    a0, f0                          // ~
+        cvt.s.w f0, f0                          // f0 = new volume fp
+        mul.s   f0, f0, f2                      // f0 = new volume * f2 (master SFX volume / 10.0)
+        cvt.w.s f4, f0                          // f4 = (word)f0
+        mfc1    a0, f4                          // a0 = updated volume
+
+        sltiu   at, a0, 0x7801                  // original line 2
+        //bnez    at, 0x80020E80                // original line 4 (need to update branch address)
+        bnez    at, _srl                        // original line 4, modified
+        or      a1, a0, r0                      // original line 5
+        //b       0x80020E88                    // original line 6 (need to 'j' instead of 'b')
+        j       _return+8                       // original line 6, modified
+        addiu   a0, r0, 0x007F                  // original line 7
+
+        _srl:
+        j       _return
+        nop
     }
 
     // Extended Sound Effects
@@ -292,7 +416,7 @@ scope FGM {
 
     // @ Description
     // Adds a new FGM ID
-    // name - Name to displayed in debug output
+    // name - Name to display in debug output
     // fgm_microcode_file - The file containing the FGM microcode
     // fgm_microcode_file_size - The size of the FGM microcode file
     // sfx_id - The sfx_id to use - if -1, then a new one is added from the following file
@@ -829,6 +953,11 @@ scope FGM {
 
         pullvar base, origin
 
+        // Allow Sound Test to go beyond 999
+        OS.patch_start(0x189390, 0x80132FC0)
+        addiu   s7, r0, 0x0004                // was 0x0003 (max digits + 1)
+        OS.patch_end()
+
         // @ Description
         // 0x2B7 was used as a way to cancel SFX for at least Metal Mario.
         // This patch will look for 0x2B7 and treat it as out of bounds when
@@ -865,15 +994,15 @@ scope FGM {
     add_sound(Ganondorf/sounds/57 middle size attackcut6, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/58 attacklike2cut7, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/GNDWARLOCKPUNCH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // PLACEHOLDER: GNDWARLOCKPUNCH is now all one sound so this lsot is unused
+    add_sound(Peach/sounds/DOUBLE_JUMP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/5C Goodattacksound, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/5D attacklike6, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/5E shortenedlaugh, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/5F attacklike5cut4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/62 deathlikecut1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(DrMario/sounds/65, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(DrMario/sounds/B5, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(DrMario/sounds/65, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(DrMario/sounds/B5, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Falco/sounds/FALCO_CROWD, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 0x157)
     add_sound(Falco/sounds/66, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Falco/sounds/67, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -936,18 +1065,18 @@ scope FGM {
     add_sound(Wario/sounds/WARIO_CROWD, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1)
     add_sound(Wario/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(Elink/sounds/ANNOUNCER, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(sounds/PolygonMario, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonFox, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonDonkeyKong, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonSamus, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonLuigi, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonLink, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonYoshi, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonCaptainFalcon, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonKirby, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonPikachu, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonJigglypuff, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/PolygonNess, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/PolygonFighter, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/KoTH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/Smashketball, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/Random, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(1p/sounds/ROYAL_RUMBLE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/BONUS_CHARACTER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(DrLuigi/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(1p/sounds/DR_MARIO_BROS, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/Tag_Team, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(1p/sounds/DK_CREW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(DragonKing/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 303)
     add_sound(Ganondorf/sounds/VICTORY_LAUGH, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
     add_sound(JFox/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(JMario/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 265)
@@ -1127,7 +1256,7 @@ scope FGM {
     add_sound(Conker/sounds/CONKER_TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Wolf/sounds/WOLF_CHEER, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1)
     add_sound(Conker/sounds/CONKER_ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(Falco/sounds/STARFOX, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(1p/sounds/STAR_FOX, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(Piano/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(1p/sounds/MULTIMAN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(1p/sounds/CRUEL_MULTIMAN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
@@ -1185,7 +1314,7 @@ scope FGM {
     add_sound(Sonic/sounds/SONIC_JUMP_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Sonic/sounds/CLASSIC_SONIC_JUMP_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(SSonic/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-	add_sound(Sonic/sounds/SONIC_TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Sonic/sounds/SONIC_TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/rain, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/chainchomp, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/mk64_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1195,7 +1324,7 @@ scope FGM {
     add_sound(sounds/misc/mk64_5, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/deku_nut, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/deku_nut_freeze, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Sheik/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Sheik/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(Sheik/sounds/CROWD_CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 375)
     add_sound(Sheik/sounds/HURT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Sheik/sounds/DEATH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1217,32 +1346,32 @@ scope FGM {
     add_sound(sounds/onett/honk, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Sheik/sounds/TEETER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Sheik/sounds/SHIELD_BREAK, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-	add_sound(Marina/sounds/SHAKE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/HOI, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/YAHOO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/HO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/YAH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/YAAAH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/TORIYA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/PAIN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/STARKO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/SIGH, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x120)
-	add_sound(Marina/sounds/THRUSTER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Marina/sounds/STUNLOOP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(NBowser/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NDrMario/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NLucas/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NSheik/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NSonic/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NWario/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NWolf/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Marina/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Marina/sounds/SHAKE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/HOI, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/YAHOO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/HO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/YAH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/YAAAH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/TORIYA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/PAIN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/STARKO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/SIGH, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x120)
+    add_sound(Marina/sounds/THRUSTER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Marina/sounds/STUNLOOP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/smashketball/bounce, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/smashketball/fire_bounce, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/smashketball/spawn_buzz, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/smashketball/end_buzzer, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Slippy/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 334)
+    add_sound(Peppy/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 334)
+    add_sound(Ebi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 303)
     add_sound(Dedede/sounds/USP_INITIAL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Dedede/sounds/USP_LAND, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/Pitfall_Jump, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Dedede/sounds/CROWD_CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 469)
+    add_sound(Dedede/sounds/CROWD_CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 454)
     add_sound(sounds/misc/pitfall_vanish, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Dedede/sounds/USP_LAND_VOICE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Dedede/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1268,7 +1397,7 @@ scope FGM {
     add_sound(Dedede/sounds/VOICE_ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Dedede/sounds/VOICE_ATTACK_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Dedede/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NMarina/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(DrLuigi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 341)
     add_sound(Marina/sounds/VICTORY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(1p/sounds/TINY_TEAM, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(YoungLink/sounds/BOMBCHU, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1382,7 +1511,7 @@ scope FGM {
     add_sound(sounds/stadium/OPENING_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/goldengunshoot, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/goldengunnoammo, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Goemon/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Goemon/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(Goemon/sounds/RAKU_SHOU, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Goemon/sounds/ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Goemon/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1397,8 +1526,8 @@ scope FGM {
     add_sound(Goemon/sounds/STAR_KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Goemon/sounds/STUN_INITIAL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Goemon/sounds/LETS_GO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(NFalco/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NGanondorf/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Piano/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 312)
+    add_sound(Sandbag/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(YoungLink/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Peppy/sounds/ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Peppy/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1461,7 +1590,7 @@ scope FGM {
     add_sound(Banjo/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/ATTACK_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NDSamus/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/misc/cdtime_travel, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/SHIELD_BREAK, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(MLuigi/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(Ebi/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
@@ -1482,9 +1611,9 @@ scope FGM {
     add_sound(Ebi/sounds/LETS_GO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ebi/sounds/THROW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/boo_laugh, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 60, -1)
-    add_sound(sounds/misc/chargesmash, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(sounds/misc/cloak, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/misc/decloak, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/chargesmash, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(sounds/misc/cloak, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/decloak, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/KAZOOIE_FAIR_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/KAZOOIE_FAIR_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/BREEGUL_BASH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1503,13 +1632,13 @@ scope FGM {
     add_sound(Banjo/sounds/CROWD_CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 420)
     add_sound(Banjo/sounds/KAZOOIE_USMASH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Goemon/sounds/SLEEP, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x150)
-    add_sound(NMarth/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NMewtwo/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Sandbag/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 318)
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
     add_sound(Banjo/sounds/KAZOOIE_DSMASH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Banjo/sounds/YUH_OH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(NDedede/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
     add_sound(1p/sounds/METAL_MARIO_BROTHERS, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NYoungLink/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
     add_sound(DragonKing/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(DragonKing/sounds/KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(DragonKing/sounds/STAR_KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1530,20 +1659,20 @@ scope FGM {
     add_sound(sounds/pokemon/Venusaur_J, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ebi/sounds/CAMERA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(GOEMON/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 313)
-    add_sound(sounds/misc/pwing, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/misc/pwing_pickup, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/misc/pwing_end, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(sounds/misc/pwing_low, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/pwing, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/pwing_pickup, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/pwing_end, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/pwing_low, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
     add_sound(1p/sounds/RARE_PAIR, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
     add_sound(sounds/misc/thunderball_shoot, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/cacodemon_death, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(Ganondorf/sounds/GNDSLEEP, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x180)
     add_sound(DragonKing/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(DragonKing/sounds/SLEEP, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x120)
-    add_sound(NConker/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
     add_sound(Ebi/sounds/EBI_SELECT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(NGoemon/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(NBanjo/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
     add_sound(sounds/misc/song_of_time, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/meow, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
     add_sound(sounds/misc/woof, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
@@ -1565,27 +1694,386 @@ scope FGM {
     add_sound(EPuff/sounds/STUN, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
     add_sound(EPuff/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 291)
     add_fgm(Pummeluff Sleep Snore, EPuff/sounds/REST_SNORE_fgm_microcode, 0x15, 0x486, -1, -1, 0x3F0)
-    add_sound(Uzi/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-	add_sound(Uzi/sounds/Robot_Suit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/Railgun, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/Laugh, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/jumpaction1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/jumpaction2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/boxgrab, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/attack1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/attack2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/attack3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/attack4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-	add_sound(Uzi/sounds/starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Uzi/sounds/shieldbreak, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Uzi/sounds/DIZZY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    add_sound(Uzi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1)
-    add_sound(Serial_V/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(Serial_N/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
-    add_sound(Uzi/sounds/SOLVER_RICOCHET, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
-    
+    add_sound(Crash/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Crash/sounds/ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/ATTACK_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/STAR_KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/DAMAGE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/SHIELD_BREAK, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/SPIN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/BADABA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/SLIDE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/WOAH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/ATTACK_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/DAMAGE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/STAR_KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/JUMP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/ROLL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/SLEEP, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x120)
+    add_sound(Peach/sounds/ALL_RIGHT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/HELLO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/OH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/OH_NO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/PEACHY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/TAKE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/YEAH_PEACHYS_GOT_IT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Peach/sounds/TURNIP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/PARASOL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/CLUB, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/RACKET, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/WARP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/WARPDIE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/AKUAKU, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/SNORE, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, -1)
+    add_sound(Crash/sounds/BOUNCE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ATTACK_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ATTACK_4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ATTACK_5, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/ATTACK_6, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/DODGE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/JUMP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 244)
+    add_sound(Roy/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/DAMAGE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/DEATH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/STAR_KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/SLEEP, SAMPLE_RATE_16000, FGM_TYPE_SLEEP, 0, 0x120)
+    add_sound(Roy/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/USP_VOICE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 20, -1)
+    add_sound(Peach/sounds/THAT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(EPika/sounds/ANNOUNCER, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Roy/sounds/COUNTER_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)      // UNUSED, REPLACE
+    add_sound(Roy/sounds/VICTORY_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/VICTORY_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/VICTORY_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/HEAVY_LIFT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Roy/sounds/DSP_SFX, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_sound(Roy/sounds/DSP_VOICE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/parry, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/DSP_FALL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/ITEMSHOOT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_fgm(DRM_HAHA, DrMario/sounds/HAHA, 0x18, 0x117, -1, -1, -1)
+    add_sound(Crash/sounds/FRUIT_EAT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_fgm(RoyCharge1, Roy/sounds/CHARGE_fgm_microcode, 0x1B, -1, Roy/sounds/CHARGE_sfx_microcode, 0xA8, 0x12B)
+    add_sound(Ganondorf/sounds/PLACEHOLDER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // UNUSED, REPLACE WITH ADD_SOUND OR ADD_SOUND_AVANCED
+    add_sound(sounds/misc/crate_bounce, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/crash_collect, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_fgm(DSamusAttack1, DSamus/sounds/ATTACK_1, 0x1A, 0x1A6, -1, -1, -1)
+    add_fgm(DSamusAttack2, DSamus/sounds/ATTACK_2, 0x12, 0x1A7, -1, -1, -1)
+    add_fgm(DSamusAttack3, DSamus/sounds/ATTACK_3, 0x14, 0x1A8, -1, -1, -1)
+    add_fgm(DSamusDamage, DSamus/sounds/DAMAGE, 0x10, 0x1AD, -1, -1, -1)
+    add_fgm(DSamusKO, DSamus/sounds/KO, 0x13, 0x1AE, -1, -1, -1)
+    add_fgm(DSamusStarKO, DSamus/sounds/STAR_KO, 0x23, 0x1A9, -1, -1, -1)
+    add_fgm(DSamusTech, DSamus/sounds/TECH, 0x10, 0x1AC, -1, -1, -1)
+    add_sound(sounds/misc/fzerox_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/fzerox_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/fzerox_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/fzerox_go, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/stadium/BODY_SLAM, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/stadium/DIG_THIS, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/stadium/IT_BURROWED_UNDERGROUND, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/stadium/IT_BURROWED_AGAIN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/stadium/THE_UNDERGROUND_ATTACK_CONTINUES, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(DSamus/sounds/BALL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(DrLuigi/sounds/BOING, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Peach/sounds/BINGO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Crash/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 334)
+    add_sound(Peach/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 333)
+    add_sound(Lanky/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1)
+    add_fgm(AnnouncerThreeNonBlocking, sounds/misc/announcer_three_nonblocking, 0x12, 0x14B, -1, -1, -1)
+    add_fgm(AnnouncerTwoNonBlocking, sounds/misc/announcer_two_nonblocking, 0x12, 0x14C, -1, -1, -1)
+    add_sound(Lanky/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, 303)
+    add_sound(Lanky/sounds/ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/ATTACK_3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/DAMAGE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/STAR_KO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/STUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/HEAVY_LIFT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/JUMP_F, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/JUMP_B, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/TECH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/DSP_TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/HUP_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/HUP_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/NSP_YEH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/DSP_HUP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/STRETCH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/UNSTRETCH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/NSP_SHOOT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/GRAPE_SPLAT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/INFLATE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/DEFLATE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/DEFLATE_LONG, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/USP_RISE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_fgm(LankyUSPBegin, Lanky/sounds/USP_WOOHOO, 0x11, 0x4E7, -1, -1, -1) // note: the sfx_id here and the length in the microcode are hard coded based on Lanky Kong ATTACK_3
+    add_fgm(LankyHup1Low, Lanky/sounds/HUP_1_LOW, 0x11, 0x4F2, -1, -1, -1) // note: the sfx_id here and the length in the microcode are hard coded based on Lanky Kong HUP_1
+    add_fgm(LankyHup1High, Lanky/sounds/HUP_1_HIGH, 0x11, 0x4F2, -1, -1, -1) // note: the sfx_id here and the length in the microcode are hard coded based on Lanky Kong HUP_1
+    add_fgm(LankyHup2Low, Lanky/sounds/HUP_2_LOW, 0x11, 0x4F3, -1, -1, -1) // note: the sfx_id here and the length in the microcode are hard coded based on Lanky Kong HUP_2
+    add_fgm(LankyHup2High, Lanky/sounds/HUP_2_HIGH, 0x11, 0x4F3, -1, -1, -1) // note: the sfx_id here and the length in the microcode are hard coded based on Lanky Kong HUP_2
+    add_sound(Lanky/sounds/DASH_ATTACK_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(Lanky/sounds/DASH_ATTACK_2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/mr_saturn_1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_fgm(mr_saturn_2, sounds/misc/mr_saturn_2, 0x11, 0x500, -1, -1, -1) //note: the sfx_id here and the length in the microcode are hard coded based on mr_saturn_1
+    add_fgm(mr_saturn_3, sounds/misc/mr_saturn_3, 0x11, 0x500, -1, -1, -1) //note: the sfx_id here and the length in the microcode are hard coded based on mr_saturn_1
+    add_sound_advanced(Timer, sounds/misc/timer, sounds/misc/timer_fgm_microcode, 0x12, sounds/misc/timer_sfx_microcode, 0xD, OS.FALSE, 0, 0, 0, OS.FALSE)  // note: the sfx_microcode here is the generic sfx microcode that gets used by the VOICE type fgm
+    add_fgm(TimerBackfire, sounds/misc/timer_slow_fgm_microcode, 0x12, 0x501, -1, -1, -1)
+    add_sound(sounds/misc/gaw_biip, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/gaw_boop, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/gaw_hardland, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound(sounds/misc/dne_remit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1)
+    add_sound_advanced(TimerBackfireEnd, sounds/misc/dne_remit, sounds/misc/timer_fgm_microcode, 0x12, sounds/misc/timer_sfx_microcode, 0xD, OS.FALSE, 0, 0, 0, OS.FALSE)  // note: the sfx_microcode here is the generic sfx microcode that gets used by the VOICE type fgm
+    add_fgm(DEATH, Crash/sounds/DEATH, 0x11, 0x498, -1, -1, -1) // note: the sfx_id here and the length in the microcode are hard coded based on Crash WOAH
+
+    add_sound(SKnight/sounds/DIE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 0x606 1544
+    add_sound(SKnight/sounds/DIG, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 0x607 1545
+    add_sound(SKnight/sounds/HURT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 0x608 1546
+    add_sound(SKnight/sounds/INTRO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 0x609 1547
+    add_sound(SKnight/sounds/JUMP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 0x60A 1548
+    add_sound(SKnight/sounds/SLASH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 0x60B 1549
+    add_sound(SKnight/sounds/DASH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 1550
+    add_sound(SKnight/sounds/SAND_DIG, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 1551
+    add_sound(SKnight/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) // 1552
+    add_sound(audio/SELECT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) // 1553
+    add_sound(audio/GAME, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) // 1554
+    add_sound(SKnight/sounds/PD_FLIP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 1555
+    add_sound(SKnight/sounds/PD_THRUST, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) // 1556
+    add_sound(Uzi/sounds/ANNOUNCER_Uzi, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1557
+	add_sound(Uzi/sounds/Robot_Suit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1558
+	add_sound(Uzi/sounds/Railgun, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1) //1559
+	add_sound(Uzi/sounds/Laugh, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1560
+	add_sound(Uzi/sounds/jumpaction1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1561
+	add_sound(Uzi/sounds/jumpaction2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1562
+	add_sound(Uzi/sounds/boxgrab, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1563
+	add_sound(Uzi/sounds/attack1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1564
+	add_sound(Uzi/sounds/attack2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1565
+	add_sound(Uzi/sounds/attack3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1566
+	add_sound(Uzi/sounds/attack4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1567
+	add_sound(Uzi/sounds/hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1568
+	add_sound(Uzi/sounds/ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1569
+	add_sound(Uzi/sounds/starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1570
+    add_sound(Uzi/sounds/shieldbreak, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1571
+    add_sound(Uzi/sounds/DIZZY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1572
+    add_sound(Uzi/sounds/CHANT, SAMPLE_RATE_16000, FGM_TYPE_CHANT, 0, -1) //1573
+    add_sound(Uzi/sounds/SOLVER_RICOCHET, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1574
+    add_sound(Uzi/sounds/NEWRAILGUN_CHARGE, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1) //1575
+    add_sound(Uzi/sounds/NEWRAILGUN_SHOOT, SAMPLE_RATE_32000, FGM_TYPE_VOICE, 0, -1) //1576
+    add_sound(Uzi/sounds/RailgunPump, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1577
+    add_sound(Uzi/sounds/bite_her, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1578
+    add_sound(SKnight/sounds/FIRE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1579
+    add_sound(SKnight/sounds/FIREBALL_SPLIT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1580
+    add_sound(Uzi/sounds/Wings, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1581
+    add_sound(SKnight/sounds/FISHING_CAST, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1582
+    add_sound(SKnight/sounds/FISHING_REEL_IN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1583
+    add_sound(SKnight/sounds/ANCHOR, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1584
+    add_sound(SKnight/sounds/ANCHOR_READY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1585
+    add_sound(SKnight/sounds/ANCHOR_RETRACT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1586
+    add_sound(SKnight/sounds/ANNOUNCER_ShovelKnight, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1587
+    add_sound(Lucia/sounds/ANNOUNCER_Lucia, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1588
+    add_sound(Lucia/sounds/asleep, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1589
+    add_sound(Lucia/sounds/attack1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1590
+    add_sound(Lucia/sounds/attack2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1591
+    add_sound(Lucia/sounds/attack3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1592
+    add_sound(Lucia/sounds/attack4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1593
+    add_sound(Lucia/sounds/boxgrab, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1594
+    add_sound(Lucia/sounds/hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1595
+    add_sound(Lucia/sounds/ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1596
+    add_sound(Lucia/sounds/starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1597
+    add_sound(Lucia/sounds/SparkingNova, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1598
+    add_sound(Goku/sounds/attack1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1599
+    add_sound(Goku/sounds/attack2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1600
+    add_sound(Goku/sounds/attack3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1601
+    add_sound(Goku/sounds/hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1602
+    add_sound(Goku/sounds/ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1603
+    add_sound(Goku/sounds/starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1604
+    add_sound(Goku/sounds/P1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1605
+    add_sound(Goku/sounds/P2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1606
+    add_sound(Goku/sounds/P3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1607
+    add_sound(Goku/sounds/K1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1608
+    add_sound(Goku/sounds/K2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1609
+    add_sound(Goku/sounds/K3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1610
+    add_sound(Goku/sounds/JabLoop, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1611
+    add_sound(Goku/sounds/KH1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1612
+    add_sound(Goku/sounds/KH2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1613
+    add_sound(Goku/sounds/KH3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1614
+    add_sound(Goku/sounds/KH4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1615
+    add_sound(Goku/sounds/Go, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1616
+    add_sound(Goku/sounds/KHout, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1617
+    add_sound(Goku/sounds/Recover, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1618
+    add_sound(Goku/sounds/Announcer, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1619
+
+    add_sound(Cloud/sounds/vc_jump, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1620 - 1435 - 059B = 0654 DONE
+    add_sound(Cloud/sounds/vc_usp, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1621 - 1436 - 059C = 0655 DONE
+    add_sound(Cloud/sounds/vc_usp2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1622 - 1437 - 059D = 0656 DONE
+    add_sound(Cloud/sounds/blade_beam, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1623 - 1438 - 059E = 0657
+    add_sound(Cloud/sounds/cross_slash_hit, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1624 - 1439 - 059F = 0658 DONE
+    add_sound(Cloud/sounds/sword_finisher, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1625 - 1440 - 05A0 = 0659 DONE
+    add_sound(Cloud/sounds/sword_pierce, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1626 - 1441 - 05A1 = 065A DONE
+    add_sound(Cloud/sounds/blade_beam_slash, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1627 - 1442 - 05A2 = 065B DONE
+    add_sound(Cloud/sounds/upBInitial, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1628 - 1443 - 05A3 = 065C DONE
+    add_sound(Cloud/sounds/upBRise, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1629 - 1444 - 05A4 = 065D DONE
+    add_sound(Cloud/sounds/vc_dsp_finisher, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1630 - 1445 - 05A5 = 065E DONE
+    add_sound(Cloud/sounds/vc_attack_dsmash, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1631 - 1446 - 05A6 = 065F DONE
+    add_sound(Cloud/sounds/vc_attack_usmash, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1632 - 1447 - 05A7 = 0660 DONE
+    add_sound(Cloud/sounds/vc_attack_fsmash, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1633 - 1448 - 05A8 = 0661 DONE
+    add_sound(Cloud/sounds/vc_die, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1634 - 1449 - 05A9 = 0662 DONE
+    add_sound(Cloud/sounds/vc_star_ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1635 - 1450 - 05AA = 0663 DONE
+    add_sound(Cloud/sounds/vc_damagefly, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1636 - 1451 - 05AB = 0664 DONE
+    add_sound(Cloud/sounds/vc_tech, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1637 - 1452 - 05AC = 0665 DONE
+    add_sound(Cloud/sounds/vc_taunt, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1638 - 1453 - 05AD = 0666 DONE
+
+    add_sound(Spiderman/sounds/ATK1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1639 - 057B - 0667 DONE
+    add_sound(Spiderman/sounds/ATK2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1640 - 057C - 0668 DONE
+    add_sound(Spiderman/sounds/ATK3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1641 - 057D - 0669 DONE
+    add_sound(Spiderman/sounds/CAMERA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1642 - 057E - 066A DONE
+    add_sound(Spiderman/sounds/CMON, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1643 - 057F - 066B DONE
+    add_sound(Spiderman/sounds/DEATH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1644 - 0580 - 066C DONE
+    add_sound(Spiderman/sounds/DMG1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1645 - 0581 - 066D DONE
+    add_sound(Spiderman/sounds/DMG2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1646 - 0582 - 066E DONE
+    add_sound(Spiderman/sounds/HEY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1647 - 0583 - 066F DONE
+    add_sound(Spiderman/sounds/ONEFORJJ, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1648 - 0584 - 0670 DONE
+    add_sound(Spiderman/sounds/SHOOT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1649 - 0585 - 0671 DONE
+    add_sound(Spiderman/sounds/SHOWTIME, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1650 - 0586 - 0672 DONE
+    add_sound(Spiderman/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1651 - 0587 - 0673 DONE
+    add_sound(Spiderman/sounds/WEBBALL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1652 - 0588 - 0674 DONE
+    add_sound(Spiderman/sounds/WEBSWING, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1653 - 0589 - 0675 DONE
+    add_sound(Spiderman/sounds/WEBTHROW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1654 - 058A - 0676 DONE
+    add_sound(Spiderman/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1655 - 058B - 0677 DONE
+    add_sound(Spiderman/sounds/SFX_NSP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1656 - 058C - 0678 DONE
+    add_sound(Spiderman/sounds/SFX_THREAD, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1657 - 058D - 0679 DONE
+    add_sound(Spiderman/sounds/SFX_WEBTHROW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1658 - 058E - 067A DONE
+    add_sound(Spiderman/sounds/SFX_NSP_HIT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1659 - 058F - 067B DONE
+
+    add_sound(Spiderman3/sounds/ATK1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1660 - 0590 - 067C DONE
+    add_sound(Spiderman3/sounds/ATK2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1661 - 0591 - 067D DONE
+    add_sound(Spiderman3/sounds/ATK3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1662 - 0592 - 067E DONE
+    add_sound(Spiderman3/sounds/HAVINFUN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1663 - 0593 - 067F DONE
+    add_sound(Spiderman3/sounds/DEATH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1664 - 0594 - 0680 DONE
+    add_sound(Spiderman3/sounds/DMG1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1665 - 0595 - 0681 DONE
+    add_sound(Spiderman3/sounds/DMG2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1666 - 0596 - 0682 DONE
+    add_sound(Spiderman3/sounds/SPIDERCAN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1667 - 0597 - 0683 DONE
+    add_sound(Spiderman3/sounds/JJBIGBUCKS, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1668 - 0598 - 0684 DONE
+    add_sound(Spiderman3/sounds/GETREADY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1669 - 0599 - 0685 DONE
+    add_sound(Spiderman3/sounds/BUTTWOOPIN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1670 - 059A - 0686 DONE
+    add_sound(Spiderman3/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1671 - 059B - 0687 DONE
+    add_sound(Spiderman3/sounds/WEBBALL, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1672 - 059C - 0688 DONE
+    add_sound(Spiderman3/sounds/WEBSWING, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1673 - 059D - 0689 DONE
+    add_sound(Spiderman3/sounds/WEBTHROW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1674 - 059E - 068A DONE
+    add_sound(Spiderman3/sounds/ANNOUNCER, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1675 - 059F - 068B DONE
+
+    add_sound(Rebecca/sounds/Dizzy, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1676 DONE
+    add_sound(Rebecca/sounds/USP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1677 DONE
+    add_sound(Rebecca/sounds/Attack1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1678 DONE
+    add_sound(Rebecca/sounds/Attack2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1679 DONE
+    add_sound(Rebecca/sounds/Attack3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1680 DONE
+    add_sound(Rebecca/sounds/Hurt, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1681 DONE
+    add_sound(Rebecca/sounds/Jump, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1682 DONE
+    add_sound(Rebecca/sounds/KOhurt, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1683 DONE
+    add_sound(Rebecca/sounds/Shieldbreak, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1684 DONE
+    add_sound(Rebecca/sounds/Sleep, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1685 DONE
+    add_sound(Rebecca/sounds/Starko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1686 DONE
+    add_sound(Rebecca/sounds/Taunt, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1687 DONE
+    add_sound(Rebecca/sounds/Victory1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1688 DONE
+    add_sound(Rebecca/sounds/Victory2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1689 DONE
+    add_sound(Rebecca/sounds/Victory3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1690 DONE
+
+    add_sound(Uzi/sounds/RG1, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1691
+    add_sound(Uzi/sounds/RG2, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1692
+    add_sound(Uzi/sounds/RG3, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1693
+    add_sound(Uzi/sounds/RG4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 40, -1) //1694
+
+    add_sound(Goku/sounds/JUMP_VOICE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1695
+    add_sound(Goku/sounds/JUMP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1696
+
+
+    add_sound(Ryu/sounds/HIT_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1697 - 057B - 06A1
+    add_sound(Ryu/sounds/HIT_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1698 - 057C - 06A2
+    add_sound(Ryu/sounds/HIT_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1699 - 057D - 06A3
+    add_sound(Ryu/sounds/WHOOSH_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1700 - 057E - 06A4
+    add_sound(Ryu/sounds/WHOOSH_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1701 - 057F - 06A5
+    add_sound(Ryu/sounds/WHOOSH_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1702 - 0580 - 06A6
+    add_sound(Ryu/sounds/THROW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1703 - 0581 - 06A7
+    add_sound(Ryu/sounds/HADOUKEN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1704 - 0582 - 06A8
+    add_sound(Ryu/sounds/SHORYUKEN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1705 - 0583 - 06A9
+    add_sound(Ryu/sounds/TATSU, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1706 - 0584 - 06AA
+    add_sound(Ryu/sounds/TATSU_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1707 - 0585 - 06AB
+    add_sound(Ryu/sounds/DIE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1708 - 0586 - 06AC
+
+    add_sound(Ken/sounds/THROW, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1709 - 0587 - 06AD
+    add_sound(Ken/sounds/HADOUKEN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1710 - 0588 - 06AE
+    add_sound(Ken/sounds/SHORYUKEN, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1711 - 0589 - 06AF
+    add_sound(Ken/sounds/TATSU, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1712 - 058A - 06B0
+    add_sound(Ken/sounds/TATSU_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1713 - 058B - 06B1
+    add_sound(Ken/sounds/DIE, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1714 - 058C - 06B2
+
+    add_sound(Ryu/sounds/PERFECT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1715 - 058D - 06B3
+    add_sound(Ryu/sounds/GROUND_BUMP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1716 - 058E - 06B4
+
+    add_sound(Ryu/sounds/PUNCH_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1717 - 058F - 06B5
+    add_sound(Ryu/sounds/PUNCH_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1718 - 0590 - 06B6
+    add_sound(Ryu/sounds/PUNCH_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1719 - 0591 - 06B7
+
+    add_sound(Ryu/sounds/DIZZY, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1720 - 0592 - 06B8
+
+    add_sound(Ryu/sounds/TECH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1721 - 0593 - 06B9
+    add_sound(Ryu/sounds/SEYA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1722 - 0594 - 06BA
+    add_sound(Ryu/sounds/YA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1723 - 0595 - 06BB
+
+    add_sound(Ken/sounds/TECH, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1724 - 0596 - 06BC
+    add_sound(Ken/sounds/HA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1725 - 0597 - 06BD
+    add_sound(Ken/sounds/YATTA, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1726 - 0598 - 06BE
+
+    add_sound(Ryu/sounds/DAMAGED, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1727 - 0599 - 06BF
+    add_sound(Ken/sounds/DAMAGED, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1728 - 059A - 06C0
+
+
+    add_sound(Kazuya/sounds/kaz_yag, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1729 - 05AE - 06C1
+    add_sound(Kazuya/sounds/kaz_ya, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1730 - 05AF - 06C2
+    add_sound(Kazuya/sounds/kaz_uia, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1731 - 05B0 - 06C3
+    add_sound(Kazuya/sounds/kaz_toah, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1732 - 05B1 - 06C4
+    add_sound(Kazuya/sounds/kaz_ho, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1733 - 05B2 - 06C5
+    add_sound(Kazuya/sounds/kaz_hurt, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1734 - 05B3 - 06C6
+    add_sound(Kazuya/sounds/kaz_ko, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1735 - 05B4 - 06C7
+
+
+    add_sound(Ken/sounds/HIT_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1736 - 05A2 - 06C8
+    add_sound(Ken/sounds/HIT_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1737 - 05A3 - 06C9
+    add_sound(Ken/sounds/HIT_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1738 - 05A4 - 06CA
+    add_sound(Ken/sounds/PUNCH_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1739 - 05A5 - 06CB
+    add_sound(Ken/sounds/PUNCH_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1740 - 05A6 - 06CC
+    add_sound(Ken/sounds/PUNCH_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1741 - 05A7 - 06CD
+
+    add_sound(Rebecca/sounds/HIT_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1742
+    add_sound(Rebecca/sounds/HIT_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1743
+    add_sound(Rebecca/sounds/HIT_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1744
+    add_sound(Rebecca/sounds/PUNCH_S, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1745
+    add_sound(Rebecca/sounds/PUNCH_M, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1746
+    add_sound(Rebecca/sounds/PUNCH_L, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1747
+
+    add_sound(sounds/stadium/PUMPED, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1748
+
+    add_sound(sounds/TheMicrosoftSound, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1749
+    add_sound(Lucia/sounds/TAUNT, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1750
+    add_sound(Lucia/sounds/attack4, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1751
+    add_sound(Lucia/sounds/STUNLOOP, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1752
+    add_sound(Lucia/sounds/asleep, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1753
+    add_sound(Lucia/sounds/boxgrab, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1754
+    add_sound(Lucia/sounds/YAHOO, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1755
+    add_sound(Lucia/sounds/Crowd, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1756
+    add_sound(Rebecca/sounds/Crowd, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1757
+    add_sound(SKnight/sounds/Crowd, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1758
+    add_sound(Lucia/sounds/victory_and_css, SAMPLE_RATE_16000, FGM_TYPE_VOICE, 0, -1) //1759
 
     // This is always last
     write_sounds()
@@ -1680,13 +2168,17 @@ scope FGM {
     scope announcer {
 
         scope names {
-            constant STARFOX(0x03C5)
+            constant STAR_FOX(0x03C5)
             constant DOUBLE_TROUBLE(1274)
             constant DREAM_TEAM(1275)
             constant ECHOES(1276)
             constant HYLIAN_HEROES(1277)
+            constant MYSTICAL_NINJAS(1330)
             constant POCKET_MONSTERS(1278)
             constant PSI_ROCKERS(1279)
+            constant RARE_PAIR(1372)
+            constant ROYAL_RUMBLE(779)
+            constant DK_CREW(784)
             constant FIGHTING_POLYGON_TEAM(482)
             constant MASTERHAND(1282)
             constant DONKEY_KONG(483)
@@ -1713,18 +2205,12 @@ scope FGM {
             constant WARIO(772)
             constant DSAMUS(748)
             constant ELINK(773)
-            constant POLYGON_MARIO(774)
-            constant POLYGON_FOX(775)
-            constant POLYGON_DONKEY_KONG(776)
-            constant POLYGON_SAMUS(777)
-            constant POLYGON_LUIGI(778)
-            constant POLYGON_LINK(779)
-            constant POLYGON_YOSHI(780)
-            constant POLYGON_CAPTAIN_FALCON(781)
-            constant POLYGON_KIRBY(782)
-            constant POLYGON_PIKACHU(783)
-            constant POLYGON_JIGGLYPUFF(784)
-            constant POLYGON_NESS(785)
+            constant NFIGHTER(774)
+            constant ROY(777)
+            constant RANDOM(778)
+            constant BONUS_CHARACTER(780)
+            constant DRL(781)
+            constant DR_MARIO_BROS(782)
             constant JFOX(787)
             constant JPUFF(804)
             constant ESAMUS(839)
@@ -1740,36 +2226,27 @@ scope FGM {
             constant SSONIC(1022)
             constant SHEIK(1033)
             constant MARINA(1055)
-            constant NBOWSER(1070)
-            constant NDR_MARIO(1071)
-            constant NLUCAS(1072)
-            constant NSHEIK(1073)
-            constant NSONIC(1074)
-            constant NWARIO(1075)
-            constant NWOLF(1076)
             constant DEDEDE(1105)
             constant GOEMON(1220)
-            constant NMARINA(1106)
             constant SLIPPY(1272)
             constant PEPPY(1273)
-            constant NFALCO(1235)
-            constant NGANONDORF(1236)
             constant BANJO(1298)
-            constant NDSAMUS(1299)
             constant MLUIGI(1301)
             constant EBI(1302)
-            constant NMARTH(1341)
-            constant NMTWO(1342)
-            constant NDEDEDE(1345)
-            constant NYLINK(1347)
             constant DRAGONKING(1348)
-            constant NCONKER(1378)
-            constant NGOEMON(1380)
-            constant NBANJO(1381)
             constant EPUFF(1388)
-			constant UZI(1403)
-            constant V(1420)
-            constant N(1421)
+            constant CRASH(1403)
+            constant PEACH(1432)
+            constant LANKY(1497)
+            constant EPIKA(1459)
+            constant SANDBAG(1236)
+            constant SKNIGHT(1587)
+            constant UZI(1557)
+            constant LUCIA(1588)
+            constant GOKU(1619)
+            constant SPM(1655)
+            constant SP3(1675)
+
         }
 
         scope css {
@@ -1780,6 +2257,10 @@ scope FGM {
             constant ALLSTAR(1014)
             constant HRC(1015)
             constant TWELVECB(1016)
+            constant KOTH(775)
+            constant SMASHKETBALL(776)
+            constant TAG_TEAM(783)
+            constant TUG_OF_WAR(479)
         }
 
         scope team {
@@ -1811,7 +2292,12 @@ scope FGM {
         }
 
         scope fight {
-            constant GAME_SET(488)
+            constant ONE(467)
+            constant TWO(469)
+            constant TWO_NONBLOCKING(1499)
+            constant THREE(470)
+            constant THREE_NONBLOCKING(1498)
+            constant GAME_SET(1552) // 488
             constant GO(490)
             constant PLAYER_1(503)
             constant PLAYER_2(504)
