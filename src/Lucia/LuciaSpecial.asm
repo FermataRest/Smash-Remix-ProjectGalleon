@@ -162,41 +162,7 @@ scope LuciaCargo {
         addiu   sp, sp, 0x0040              // deallocate stack space
     }
 
-    // @ Description
-    // Patch which extends Cargo action checks to include CargoShake for Lucia.
-    scope shake_check_: {
-        OS.patch_start(0xC89F4, 0x8014DFB4)
-        j       shake_check_
-        or      a2, a0, r0                  // original line 1
-        _return:
-        OS.patch_end()
 
-        or      a1, r0, r0                  // original line 2
-        lw      t6, 0x0008(v1)              // t6 = character id
-        lli     at, Character.id.LUCIA     // at = id.LUCIA
-        bne     at, t6, _end                // skip if character != LUCIA...
-        nop
-
-        // if the character is LUCIA, check kinetic state
-        lw      t6, 0x014C(v1)              // t0 = kinetic state
-        bnez    t6, _end                    // skip if kinectic state != grounded
-        nop
-
-        // if Marina is grounded, check for a B press
-        lhu     t6, 0x01BE(v1)              // t6 = buttons_pressed
-        andi    t6, t6, Joypad.B            // t6 = 0x4000 if (B_PRESSED); else t6 = 0
-        beqz    t6, _end                    // skip if B is not pressed
-        nop
-
-
-        j       0x8014E034                  // end original function
-        lli     v1, OS.TRUE                 // return TRUE (action change occured)
-
-        _end:
-        j       _return
-        nop
-
-    }
 
 
 

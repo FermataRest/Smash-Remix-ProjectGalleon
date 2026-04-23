@@ -111,10 +111,10 @@ scope Ken {
     Character.edit_action_parameters(KEN,   Action.Tech,            -1,                         Ryu.TECHSTAND,                  -1)
     Character.edit_action_parameters(KEN,   Action.CliffAttackQuick2, -1,                       Ryu.EDGEATTACKF,                -1)
     Character.edit_action_parameters(KEN,   Action.CliffAttackSlow2, -1,                        Ryu.EDGEATTACKS,                -1)
-    Character.edit_action_parameters(KEN,   Action.Taunt,           File.KEN_TAUNT,             TAUNT,                      -1)
+    Character.edit_action_parameters(KEN,   Action.Taunt,           File.KEN_TAUNT,             Ryu.TAUNTKEN,                      -1)
     Character.edit_action_parameters(KEN,   Action.ShieldBreak,     -1,                         Ryu.SHIELD_BREAK,               -1)
     Character.edit_action_parameters(KEN,   Action.Stun,             -1,                        Ryu.STUN,                       -1)
-    Character.edit_action_parameters(KEN,   Action.Jab1,            File.KEN_COMMAND_KICK_FINISHER,   FSMASH,                 0x40000000)
+    Character.edit_action_parameters(KEN,   Action.Jab1,            File.KEN_FAR_JAB,           Ryu.JAB_FAR,                 0x40000000)
     Character.edit_action_parameters(KEN,   Action.DashAttack,      File.RYU_DASH_ATTACK,       Ryu.DASH_ATTACK,                0x40000000)
     Character.edit_action_parameters(KEN,   Action.FTiltHigh,       File.KEN_HARD_FTILT,        FTILT_H,                   0x00000000)
     Character.edit_action_parameters(KEN,   Action.FTiltMidHigh,    File.KEN_HARD_FTILT,        FTILT_H,                 0x00000000)
@@ -179,8 +179,8 @@ scope Ken {
     Character.add_new_action_params(KEN,    DSP_AIR_G,         0xE6,             File.RYU_TATSU_GND_M,           Ryu.DSP_M,                        -1)
     Character.add_new_action_params(KEN,    USP_H,             -1,             File.RYU_SHORYUKEN_H,            USP_H,                        0x40000000)
     Character.add_new_action_params(KEN,    ROUNDHOUSE,             -1,        File.RYU_ROUNDHOUSE,            Ryu.ROUNDHOUSE,                   0)
-    Character.add_new_action_params(KEN,    COMMAND_KICK_2,             -1,    File.KEN_COMMAND_KICK_FINISHER,  FSMASH,                   0x40000000)
-    Character.add_new_action_params(KEN,    COMMAND_KICK,             -1,      File.KEN_COMMAND_KICK,         FSMASH,                   0x40000000)
+    Character.add_new_action_params(KEN,    COMMAND_KICK_2,             -1,    File.KEN_COMMAND_KICK_FINISHER,  Ryu.COMMAND_KICK_2,                   0x40000000)
+    Character.add_new_action_params(KEN,    COMMAND_KICK,             -1,      File.KEN_COMMAND_KICK,         Ryu.COMMAND_KICK,                   0x40000000)
 
     // Add Actions                   // Action Name     // Base Action  //Parameters                    // Staling ID   // Main ASM                     // Interrupt/Other ASM          // Movement/Physics ASM             // Collision ASM
     Character.add_new_action(KEN,    USP_L,              -1,             ActionParams.USP_L,            -1,           RyuUSP.main_,                   RyuUSP.change_direction_,          RyuUSP.physics_,                 RyuUSP.collision_)
@@ -246,9 +246,9 @@ scope Ken {
     // dw 0x8013DD68                           // skips entry script
     // OS.patch_end()
 
-	// Set crowd chant FGM.
+    // Set crowd chant FGM to none
     Character.table_patch_start(crowd_chant_fgm, Character.id.KEN, 0x2)
-    dh  0x02EA
+    dh  0x02B7
     OS.patch_end()
 
     // Set down bound FGM.

@@ -156,9 +156,9 @@ scope Kazuya {
     dw 0x8013DD68                           // skips entry script
     OS.patch_end()
 
-	// Set crowd chant FGM.
+    // Set crowd chant FGM to none
     Character.table_patch_start(crowd_chant_fgm, Character.id.KAZUYA, 0x2)
-    dh  0x02EA
+    dh  0x02B7
     OS.patch_end()
 
     // Disable rapid jab

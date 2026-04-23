@@ -62,6 +62,11 @@ scope Ryu {
     insert JAB_CLOSE,"moveset/JAB_CLOSE.bin"
     insert FTILT_CLOSE,"moveset/FORWARD_TILT_CLOSE.bin"
     insert ENTRY,"moveset/ENTRY.bin"
+    insert TAUNTKEN,"moveset/TAUNTKEN.bin"
+
+    insert COMMAND_KICK,"moveset/COMMAND_KICK.bin"
+    insert COMMAND_KICK_2,"moveset/COMMAND_KICK_2.bin"
+    insert JAB_FAR,"moveset/JAB_FAR.bin"
 
     insert THROWF_DATA, "moveset/THROWF_DATA.bin"
     THROWF:; Moveset.THROW_DATA(THROWF_DATA); insert "moveset/THROWF.bin"
@@ -236,9 +241,9 @@ scope Ryu {
     // dw 0x8013DD68                           // skips entry script
     // OS.patch_end()
 
-	// Set crowd chant FGM.
+    // Set crowd chant FGM to none
     Character.table_patch_start(crowd_chant_fgm, Character.id.RYU, 0x2)
-    dh  0x02EA
+    dh  0x02B7
     OS.patch_end()
 
     // Set down bound FGM.
