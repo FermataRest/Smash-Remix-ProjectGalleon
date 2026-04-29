@@ -168,6 +168,13 @@ scope SwordTrail {
         lli     t8, 0xFFFF                  // t8 = -1
         beq     a1, t8, _continue           // continue if no character is specified
         lw      t8, 0x0008(s0)              // t8 = current character id
+
+
+        // duplicate character trails (temporary fix)
+        lli     t7, 0x0058                  // t7 = Isaac ID
+        beq     t7, t8, _continue           // continue if Marth clone
+        nop
+
         bnel    a1, t8, _original           // branch if character id does not match
         addiu   at, r0, 0x0001              // original line 2
 

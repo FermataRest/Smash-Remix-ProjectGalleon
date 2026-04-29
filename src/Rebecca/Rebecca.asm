@@ -78,7 +78,9 @@ scope Rebecca {
     dh  0x06DD
     OS.patch_end()
 
-
+    // Set default costumes
+    Character.set_default_costumes(Character.id.REBECCA, 0, 1, 2, 3, 0, 1, 2)
+    Teams.add_team_costume(YELLOW, REBECCA, 0x5)
 
 
 }

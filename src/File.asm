@@ -3802,6 +3802,10 @@ scope File {
     constant UZI_ENTRY2(0x1736)
     constant LUCIA_VICTORY_IMAGE_BOTTOM(0x1737)
     constant LUCIA_VICTORY_IMAGE_TOP(0x1738)
+    // 2 Stages
+    constant KEN_IDLE(0x173F)
+    constant ISAAC_MAIN(0x1743)
+    constant ISAAC_CHARACTER(0x1744)
 
  }
 

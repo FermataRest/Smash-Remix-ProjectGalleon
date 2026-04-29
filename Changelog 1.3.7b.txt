@@ -1,0 +1,8 @@
+v1.3.7b
++Bug Fixed when selecting Random slot on 12CB and then leaving
++Rith Essa Stage from SR 2.0.1 added
++Great Bay Stage from SR 2.0.1 added
++New Ken Idle Animation
++Isaac added
++The Pit Stage added
++Rebecca Color Team fixed

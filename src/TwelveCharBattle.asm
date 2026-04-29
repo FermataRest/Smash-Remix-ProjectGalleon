@@ -3310,12 +3310,13 @@ scope TwelveCharBattle {
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x07 - GOKU
     add_defeat_parameters(0x2B1,                        defeated_moveset_fox_link,  0)          // 0x01 - REBECCA
     add_defeat_parameters(0x48A,                        defeated_moveset_fox_link,  0)          // 0x05 - CLOUD
-    add_defeat_parameters(File.MARINA_DOWN_STND_U,      defeated_moveset_marina,    0)          // 0x3F - PHOLDER
+    // add_defeat_parameters(File.MARINA_DOWN_STND_U,      defeated_moveset_marina,    0)          // 0x3F - PHOLDER
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - SPM
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - SP3
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - RYU
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - KEN
     add_defeat_parameters(0x617,                        defeated_moveset_captain,   0)          // 0x47 - KAZUYA
+    add_defeat_parameters(File.MARTH_DOWN_STAND_U,      defeated_moveset_jiggly,    0)          // 0x58 - ISAAC
 
     // ADD NEW CHARACTERS HERE
 

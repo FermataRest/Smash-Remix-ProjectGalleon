@@ -808,6 +808,7 @@ scope ResultsScreen {
     add_to_results_screen(Character.id.RYU,      FGM.announcer.names.BONUS_CHARACTER,        SMASH,           Character.id.CAPTAIN, 185,     RYU,          70,     1,          {MIDI.id.SF2_VICTORY})
     add_to_results_screen(Character.id.KEN,      FGM.announcer.names.BONUS_CHARACTER,        SMASH,           Character.id.CAPTAIN, 185,     KEN,          70,     1,          {MIDI.id.SF2_VICTORY})
     add_to_results_screen(Character.id.KAZUYA,   FGM.announcer.names.BONUS_CHARACTER,        SMASH,           Character.id.CAPTAIN, 180,     KAZUYA,          20,     0.9,      {MIDI.id.DOOM1})
+    add_to_results_screen(Character.id.ISAAC,    FGM.announcer.names.MARTH,                  FIRE_EMBLEM,     Character.id.CAPTAIN, 180,     ISAAC,           35,     1,         {MIDI.id.MARTH_VICTORY})
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS

@@ -9647,4 +9647,126 @@ scope Hazards {
         dw 0;
         
     }
+
+    mmm_thank_you:
+    dw 0
+
+    // @ Description
+    // This establishes bounce surface main routine
+    scope mmm_setup: {
+        addiu   sp, sp,-0x0060              // allocate stack space
+        sw      ra, 0x0024(sp)              // ~
+        sw      s0, 0x0028(sp)              // store ra, s0
+
+        li      s0, 0x801313F0              // load hardcoded space used by hazards, generally for pointers
+        sw      r0, 0x0060(s0)              // clear under_water flags and frenzy turns
+
+        sw      s0, 0x0020(sp)              // hardcoded space used by hazards, generally for pointers
+
+        li      a1, mmm_main                // routine
+        addiu   a2, r0, 0x0001              // group
+        addiu   a0, r0, 0x03F2              // object id
+
+        jal     Render.CREATE_OBJECT_       // create object
+        lui     a3, 0x8000                  // unknown
+
+        sw      v0, 0x0050(sp)              // save object address
+        addiu   t6, r0, 0xFFFF
+        or      s0, v0, r0
+        sw      t6, 0x0010(sp)
+        or      a0, v0, r0
+        lw      a1, 0x0030(sp)
+        addiu   a2, r0, 0x0004
+
+        lui     t7, 0x8013
+        lw      t7, 0x13F0(t7)
+        lw      t8, 0x0028(sp)
+        or      a0, s0, r0
+        or      a2, r0, r0
+        addiu   a3, r0, 0x001C
+        sw      r0, 0x0010(sp)
+        sw      r0, 0x0014(sp)
+
+        li      at, mmm_thank_you
+        sw      r0, 0x0000(at)              // reset flag
+
+        lw      ra, 0x0024(sp)              // ~
+        lw      s0, 0x0028(sp)              // load ra, s0
+        jr      ra
+        addiu   sp, sp, 0x0060              // deallocate stack space
+    }
+
+    // @ Description
+    // Main function for mmm
+    scope mmm_main: {
+        addiu   sp, sp, -0x0050             // allocate stack space
+        sw      ra, 0x0024(sp)              // ~
+        sw      s0, 0x0028(sp)              // ~
+        sw      s1, 0x002C(sp)              // store ra, s0, s1
+
+        OS.read_word(mmm_thank_you, at)     // at = thank you collected flag
+        bnez    at, _end                    // skip if already done
+
+        or      s0, r0, r0                  // current port = 0
+        lli     s1, 0x0003                  // final iteration = 0x3
+
+        _loop:
+        jal     Character.port_to_struct_   // v0 = player struct for current port
+        or      a0, s0, r0                  // a0 = current port
+        beqz    v0, _loop_end               // skip if no struct found for current port
+        nop
+
+        // if the player is present
+        sw      v0, 0x003C(sp)              // 0x003C(sp) = px struct
+        
+        lw      at, 0x0024(v0)              // action id
+        addiu   t0, r0, Action.Taunt
+        bne     at, t0, _loop_end
+        nop
+
+        // player is taunting
+        lw      t0, 0x00EC(v0)              // get clipping id
+        addiu   at, r0, 2                   // clipping id 2
+        bne     t0, at, _loop_end
+        nop
+        // check position
+        lw      v1, 0x0004(v0)              // v1 = player obj
+        lw      v1, 0x0074(v1)              // = location struct
+        lwc1    f10, 0x001C(v1)             // f10 = x coordinate
+        lui     at, 0x44D4                  // 1700ish
+        mtc1    at, f12
+        c.le.s  f12, f10                    // ~
+        nop                                 // ~
+        bc1fl   _end                        // end if 
+        nop
+
+        lui     at, 0x4502                  // 2080
+        mtc1    at, f12
+        c.le.s  f10, f12                    // ~
+        nop                                 // ~
+        bc1fl   _end                        // end if 
+        nop
+
+        // easter egg
+        FGM.play(0x564)
+        
+        li      v0, mmm_thank_you
+        addiu   at, r0, 1
+        sw      a0, 0x0000(v0)              // overwrite flag
+
+        b       _end
+        nop
+
+        _loop_end:
+        bne     s0, s1, _loop               // loop if final iteration has not been reached
+        addiu   s0, s0, 0x0001              // iterate current port
+
+        _end:
+        lw      ra, 0x0024(sp)              // ~
+        lw      s0, 0x0028(sp)              // ~
+        lw      s1, 0x002C(sp)              // load ra, s0, s1
+        jr      ra                          // return
+        addiu   sp, sp, 0x0050              // deallocate stack space
+    }
+
 } // __HAZARDS__

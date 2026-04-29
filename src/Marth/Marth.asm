@@ -483,6 +483,13 @@ scope Marth {
     dw      MarthDSP.ground_initial_
     OS.patch_end()
 
+    Character.table_patch_start(variants, Character.id.MARTH, 0x4)
+    db      Character.id.ISAAC  // set as SPECIAL variant for GND
+    db      Character.id.NMARTH // set as POLYGON variant for GND
+    db      Character.id.NONE
+    db      Character.id.NONE
+    OS.patch_end()
+
     // Use Mario's initial/grounded script.
     Character.table_patch_start(initial_script, Character.id.MARTH, 0x4)
     dw 0x800D7DCC
@@ -679,5 +686,7 @@ scope Marth {
     Character.table_patch_start(recovery_logic, Character.id.MARTH, 0x4)
     dw recovery_logic; OS.patch_end()
     Character.table_patch_start(recovery_logic, Character.id.ROY, 0x4)
+    dw recovery_logic; OS.patch_end()
+    Character.table_patch_start(recovery_logic, Character.id.ISAAC, 0x4)
     dw recovery_logic; OS.patch_end()
 }

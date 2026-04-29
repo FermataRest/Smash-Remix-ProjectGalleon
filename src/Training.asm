@@ -3381,6 +3381,7 @@ scope Training {
     string_ryu:; char_0x54:; db "Ryu", 0x00
     string_ken:; char_0x55:; db "Ken Masters", 0x00
     string_kazuya:; char_0x56:; db "Kazuya Mishima", 0x00
+    string_isaac:; char_0x57:; db "Isaac", 0x00
     OS.align(4)
 
     string_table_char:
@@ -3452,6 +3453,7 @@ scope Training {
     dw char_0x54            // RYU
     dw char_0x55            // KEN
     dw char_0x56            // KAZUYA
+    dw char_0x57            // ISAAC
     dw char_0x47            // DRAGONKING
     dw char_0x46            // EBISUMARU
     dw char_0x36            // PIANO
@@ -3495,6 +3497,8 @@ scope Training {
     dw char_Px13            // POLYGON PEACH
     dw char_Px14            // POLYGON CRASH
     dw char_Px15            // POLYGON SPM
+
+    dw string_random        // RANDOM
 
     // @ Description
     // Training character id is really the order they are displayed in
@@ -3581,6 +3585,7 @@ scope Training {
         register_character_id(RYU);
         register_character_id(KEN);
         register_character_id(KAZUYA);
+        register_character_id(ISAAC);
         register_character_id(DRAGONKING);
         register_character_id(EBI);
         register_character_id(PIANO);
@@ -3697,6 +3702,7 @@ scope Training {
     db Character.id.RYU
     db Character.id.KEN
     db Character.id.KAZUYA
+    db Character.id.ISAAC
     db Character.id.DRAGONKING
     db Character.id.EBI
     db Character.id.PIANO
@@ -3742,6 +3748,8 @@ scope Training {
     db Character.id.NCRASH
     db Character.id.NSPM
 
+    db Character.id.PLACEHOLDER // Random
+
     char_id_to_entry_id:
     db id.MARIO
     db id.FOX
@@ -3770,7 +3778,7 @@ scope Training {
     db id.NJIGGLY
     db id.NNESS
     db id.GDONKEY
-    db Character.id.NONE         // Not used
+    db char_id_to_entry_id - entry_id_to_char_id - 1 // Random (always last)
     db Character.id.NONE         // Not used
     db id.FALCO
     db id.GND
@@ -3826,12 +3834,13 @@ scope Training {
     db Character.id.GOKU // Change it to "db id.GOKU"
     db id.REBECCA
     db id.CLOUD
-    db Character.id.PHOLDER
+    // db Character.id.PHOLDER
     db id.SPM
     db id.SP3
     db id.RYU
     db id.KEN
     db id.KAZUYA
+    db id.ISAAC
     // ADD NEW CHARACTERS Here
 
     // REMIX POLYGONS
@@ -3856,6 +3865,7 @@ scope Training {
     db id.NPEACH
     db id.NCRASH
     db id.NSPM
+
 
     // @ Description
     // Spawn Position Strings

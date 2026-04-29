@@ -2379,6 +2379,9 @@ scope Toggles {
     dw piano
     dw remix
     dw spiderman
+    dw uzi
+    dw sknight
+    dw lucia
 
     // @ Description
     // Gallery strings
@@ -2423,6 +2426,9 @@ scope Toggles {
     piano:; db "Mad Piano", 0x00
     remix:; db "Remix", 0x00
     spiderman:; db "Spider-Man", 0x00
+    uzi:; db "Uzi", 0x00
+    sknight:; db "S Knight", 0x00
+    lucia:; db "Lucia", 0x00
     OS.align(4)
 
     // @ Description
@@ -2776,7 +2782,7 @@ scope Toggles {
     entry_view_intro:;     Menu.entry_title_with_extra("View Intro", view_screen_, 0x001C, entry_view_htp)
     entry_view_htp:;       Menu.entry_title_with_extra("View How to Play", view_screen_, 0x003C, entry_view_credits)
     entry_view_credits:;   Menu.entry_title_with_extra("View Credits", view_credits_, 0x0038, entry_view_gallery)
-    entry_view_gallery:;   entry("View Gallery", Menu.type.INT, OS.FALSE, OS.FALSE, OS.FALSE, OS.FALSE, 0, 40, view_gallery, string_table_gallery, OS.NULL, OS.NULL)
+    entry_view_gallery:;   entry("View Gallery", Menu.type.INT, OS.FALSE, OS.FALSE, OS.FALSE, OS.FALSE, 0, 43, view_gallery, string_table_gallery, OS.NULL, OS.NULL)
 
     // @ Description
     // Frames to block B from triggering exiting submenu

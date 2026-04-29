@@ -1765,6 +1765,24 @@ scope Spawn {
     float32 -0647,  2086
     float32  0665, -0731
 
+    // 7D - Rith Essa 2
+    float32 -3353,  1190
+    float32  3722,  1190
+    float32 -1723,  0066
+    float32  2113,  0043
+
+    // 36 - Great Bay 2
+    float32 -1013,  0511
+    float32  1190,  0511
+    float32 -2162, -0563
+    float32  2083, -0545
+
+    // 36 - PIT
+    float32 -1158, -1390
+    float32  1158, -1390
+    float32 -3332, -2413
+    float32  3332, -2413
+
     neutral_table:
     // 00 - Peach's Castle
     float32 -1613,  1554
@@ -3116,6 +3134,25 @@ scope Spawn {
     float32  2846, -0006
     float32 -0647,  2086
     float32  0665, -0731
+
+    // 7D - Rith Essa 2
+    float32 -3353,  1190
+    float32  3722,  1190
+    float32 -1723,  0066
+    float32  2113,  0043
+
+    // 36 - Great Bay 2
+    float32 -1013,  0511
+    float32  1190,  0511
+    float32 -2162, -0563
+    float32  2083, -0545
+
+    // 36 - PIT
+    float32 -1158, -1390
+    float32  1158, -1390
+    float32 -3332, -2413
+    float32  3332, -2413
+
 }
 
 } // __SPAWN__

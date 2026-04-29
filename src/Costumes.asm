@@ -1020,13 +1020,12 @@ scope Costumes {
         db 0x03                             // Goku
         db 0x04                             // Rebecca
         db 0x04                             // Cloud
-        db 0x00                             // Pholder
         db 0x07                             // Spiderman
         db 0x07                             // Spiderman UMvC3
         db 0x07                             // Ryu
         db 0x07                             // Ken
         db 0x04                             // Kazuya
-
+        db 0x05                             // Isaac
         // Polygons
         db 0x05                             // Polygon Wario
         db 0x05                             // Polygon Lucas

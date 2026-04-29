@@ -2,7 +2,7 @@ Known Issues: Ryu & Ken freeze the game in Rest Room if using some attacks.
 
 Credits:
 
-JJ MH - Director, Composer, Animator, Sound Designer, MIDI Editor, 3D Modeller, Rigging, Graphic Editor, Ending Screen, Stage Designer
+JillyJane - Director, Composer, Animator, Sound Designer, MIDI Editor, 3D Modeller, Rigging, Graphic Editor, Ending Screen, Stage Designer
 
 Cakiws - Co-Director, ASM Coding, Graphic Editor, Animator, 3D Modeller, Rigging, Moveset Commands, Attribute Editor, Stage Importer
 
@@ -38,11 +38,11 @@ jesus_2007pr - Playtester
 
 MarioYT21 - Playtester
 
-
 Additional Credits:
 
-Maafia - Rebecca's OC
-
+Maafia - The Pit Stage Creator, Rebecca's OC
+MrPr1993 - Model uploader of Shovel Knight on The Model Resources
+Smash Remix San Antonio Dev Team - Isaac Character
 
 Shino Mod
 
@@ -75,7 +75,6 @@ Spider-Man Mod (Credits from Credits.asm)
 
 Extra:
 some sound effects from Super Smash Bros. Melee
-Microsoft Windows Startup
-
+Microsoft Windows 95 Startup
 
 I appreaciate everyone who has participated in this project to make this possible - Cakiws.

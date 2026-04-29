@@ -217,6 +217,8 @@ include "src/Mewtwo/Mewtwo.asm"
 // MARTH
 include "src/Marth/MarthSpecial.asm"
 include "src/Marth/Marth.asm"
+// ISAAC
+include "src/Isaac/Isaac.asm"
 // SONIC
 include "src/Sonic/SonicSpecial.asm"
 include "src/Sonic/Sonic.asm"
@@ -331,10 +333,6 @@ include "src/Cloud/Cloud.asm"
 // LUCIA
 include "src/Lucia/LuciaSpecial.asm"
 include "src/Lucia/Lucia.asm"
-
-//PLACEHOLDER
-include "src/Placeholder/PholderSpecial.asm"
-include "src/Placeholder/Pholder.asm"
 
 // NPEACH
 include "src/NPeach/NPeach.asm"

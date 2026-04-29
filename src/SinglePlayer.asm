@@ -2395,6 +2395,7 @@ scope SinglePlayer {
     set_ending_image(Character.id.UZI, File.UZI_VICTORY_IMAGE_BOTTOM)
     set_ending_image(Character.id.SKNIGHT, File.SKNIGHT_VICTORY_IMAGE_BOTTOM)
     set_ending_image(Character.id.LUCIA, File.LUCIA_VICTORY_IMAGE_BOTTOM)
+    set_ending_image(Character.id.ISAAC, File.MARTH_VICTORY_IMAGE_BOTTOM)
 
     // @ Description
     // Patch which substitutes the victory picture with a custom one for all non-original characters.
@@ -2777,6 +2778,7 @@ scope SinglePlayer {
     add_to_single_player(Character.id.RYU,      name_texture.RYU,      name_delay.SKNIGHT)
     add_to_single_player(Character.id.KEN,      name_texture.KEN,      name_delay.SKNIGHT)
     add_to_single_player(Character.id.KAZUYA,      name_texture.KAZUYA,      name_delay.SKNIGHT)
+    add_to_single_player(Character.id.ISAAC,   name_texture.MARTH,         name_delay.MARTH)
 
     // REMIX POLYGONS    character id          name texture          name delay
     add_to_single_player(Character.id.NWARIO,  name_texture.NWARIO,  name_delay.NFIGHTER)

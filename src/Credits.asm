@@ -652,21 +652,21 @@ scope Credits {
     add_name("Matthew McCleskey", "Acting, Cinematic|Animation, Trailer|Editing", remix)
 
 
-    add_title("Project Galleon Dev Team")
+    add_title("Project Galleon Dev Team - Directors")
     add_company(galleon, "(Project Galleon)")
 
-    add_title("Directors")
-    add_name("JillyJane", "Director, Composer, Animator, 3D Modeller, MIDI Editor", galleon)
-    add_name("Cakiws", "Co-Director, ASM Coding, Graphic Editor, Animator, 3D Modeller", galleon)
+
+    add_name("JillyJane", "Director, Composer,|Animator, 3D Modeller,|MIDI Editor", galleon)
+    add_name("Cakiws", "Co-Director, ASM Coding,|Animator, Graphic Editor,|3D Modeller", galleon)
 
     add_title("Developers")
-    add_name("Brobgonal Second", "Smash Remix Debugged, ASM Coding", galleon)
-    add_name("Tanuki25", "Graphic editor, Ending Screen", galleon)
-    add_name("ryanbuss19", "Attribute Editor, Moveset Commands, ASM Coding, Stage Helper", galleon)
-    add_name("Mikan Ghoul Kiwi", "VA Casting Director, Instrument Designer", galleon)
-    add_name("Krix08", "ASM Coding, Moveset Commands", none)
-    add_name("Obsolete", "3D Modeller, Rigging, Animator, Playtester", galleon)
-    add_name("Avizura", "Additional Instrument Designer", galleon)
+    add_name("Brob2nd", "Smash Remix Debugged,|ASM Coding", galleon)
+    add_name("Tanuki25", "Graphic editor,|Ending Screen", galleon)
+    add_name("ryanbuss19", "Attribute Editor,|Moveset Commands, ASM|Coding, Stage Helper", galleon)
+    add_name("Mikan Ghoul Kiwi", "VA Casting Director,|Instrument Designer", galleon)
+    add_name("Krix08", "ASM Coding,|Moveset Commands", none)
+    add_name("Obsolete", "3D Modeller, Rigging,|Animator,|Playtester", galleon)
+    add_name("Avizura", "Additional Instrument|Designer", galleon)
     add_name("TheDelta", "Character Select Artworks", galleon)
 
     add_title("Playtesters")
@@ -676,23 +676,21 @@ scope Credits {
 
     add_title("Voice Actors")
     add_name("Enthuziastic |WTFAreHandlesLol", "Voice Actress for Uzi/Cyn", galleon)
-    add_name("Nero Sakamaki", "Japanese Voice Actress for Lucia Parsec", galleon)
+    add_name("Nero Sakamaki", "Japanese Voice Actress|for Lucia Parsec", galleon)
     add_name("Siren", "Voice Actress for Rebecca", galleon)
-    add_name("MichaelthemanX", "Voice Actor for the Announcer", galleon)
-    add_name("lucifer_kai1511", "Voice Actor for Serial Designation-N", galleon)
-    add_name("SurelyNissyVA", "Voice Actress for Serial Designation-V", galleon)
-    add_name("YuriuKeijiVA", "Voice Actress for Serial Designation-J", galleon)
+    add_name("MichaelthemanX", "Voice Actor for the|Announcer", galleon)
+    add_name("SurelyNissyVA", "Voice Actress for Serial|Designation-V", galleon)
 
     add_title("Additional Credits")
     add_name("Maafia", "Rebecca's OC", remix)
 
     add_title("Shino Mod")
     add_name("Shino", "Director", remix)
-    add_name("MultiVolt", "Cloud's stock icon, extra series icons", none)
+    add_name("MultiVolt", "Cloud's stock icon,|extra series icons", none)
     add_name("Caballo Juan", "Extra character portraits", none)
     add_name("Halofactory", "Tap Jump toggle", remix)
-    add_name("NewoRGBY_255", "Extra Street Fither songs and victory theme", none)
-    add_name("Pringles", "Extra Street Fither songs and victory theme", remix)
+    add_name("NewoRGBY_255", "Extra Street Fither songs|and victory theme", none)
+    add_name("Pringles", "Extra Street Fither songs|and victory theme", remix)
     add_name("Smash Remix", "Smash Remix", remix)
 
     add_title("Spider-Man Mod")
@@ -714,10 +712,10 @@ scope Credits {
     add_name("Marvel vs. Capcom: Infinite", "Capcom|September 19, 2017", none)
 
     add_title("Extra")
-    add_name("Super Smash Bros. Melee", "some sound effects", none)
-    add_name("Microsoft Windows 95", "startup sound effect", none)
+    add_name("Super Smash Bros. Melee", "Nintendo|some sound effects", none)
+    add_name("Microsoft Windows 95", "Microsoft|startup sound effect", none)
 
-    add_title("And...")
+    add_title("And")
     add_name("You", "Thanks for Playing!", none)
 
     // The strings and tables for the Remix credits will be in an external file...

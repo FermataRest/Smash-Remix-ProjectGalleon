@@ -56,6 +56,21 @@ Character.table_patch_start(ai_attack_prevent, Character.id.MARTH, 0x4)
 dw AI.PREVENT_ATTACK.ROUTINE.MARIO
 OS.patch_end()
 
+// Set CPU behaviour
+Character.table_patch_start(ai_behaviour, Character.id.ISAAC, 0x4)
+dw      CPU_ATTACKS
+OS.patch_end()
+
+// Set CPU NSP long range behaviour
+Character.table_patch_start(ai_long_range, Character.id.ISAAC, 0x4)
+dw      AI.LONG_RANGE.ROUTINE.NONE
+OS.patch_end()
+
+// Set CPU SD prevent routine
+Character.table_patch_start(ai_attack_prevent, Character.id.ISAAC, 0x4)
+dw    	AI.PREVENT_ATTACK.ROUTINE.MARIO
+OS.patch_end()
+
 scope cpu_post_process: {
     OS.routine_begin(0x20)
     sw a0, 0x10(sp)
@@ -146,4 +161,7 @@ scope cpu_post_process: {
     OS.routine_end(0x20)
 }
 Character.table_patch_start(cpu_post_process, Character.id.MARTH, 0x4)
+dw cpu_post_process; OS.patch_end()
+
+Character.table_patch_start(cpu_post_process, Character.id.ISAAC, 0x4)
 dw cpu_post_process; OS.patch_end()

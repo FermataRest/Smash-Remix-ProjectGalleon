@@ -3971,18 +3971,18 @@ scope Character {
     define_character(REBECCA, FOX, File.REBECCA_MAIN, 0x0D0, 0, 0x139, 0x13A, File.REBECCA_PROJECTILE, 0x15A, 0x0A1, 0x013C, 0x470, 0x0, OS.TRUE, OS.FALSE, Stages.id.BTT_FOX, Stages.id.BTP_FOX, Stages.id.BTT_FALCO, Stages.id.BTP_FALCO, sound_type.MG, variant_type.SPECIAL)
     // 0x52 - CLOUD
     define_character(CLOUD, LINK, File.CLOUD_MAIN, 0x0E0, 0, File.CLOUD_CHARACTER, 0x147, File.CLOUD_PROJECTILE_HITBOX, 0x161, 0x145, 0, 0x724, 10, OS.TRUE, OS.FALSE, Stages.id.BTT_LINK, Stages.id.BTP_LINK, Stages.id.BTT_YL, Stages.id.BTP_YL, sound_type.U, variant_type.SPECIAL)
-    // 0x53 - PLACEHOLDER
-    define_character(PHOLDER, FOX, File.FALCO_MAIN, 0x0D0, 0, File.FALCO_CHARACTER, 0x13A, 0x0D2, 0x15A, 0x0A1, 0x013C, 0x474, 35, OS.TRUE, OS.FALSE, Stages.id.BTT_FALCO, Stages.id.BTP_FALCO, Stages.id.BTT_FALCON, Stages.id.BTP_GND, sound_type.U, variant_type.SPECIAL)
-    // 0x54 - SPM
+    // 0x53 - SPM
     define_character(SPM, CAPTAIN, File.SPM_MAIN, 0x0EB, 0, File.SPM_CHARACTER, File.SPM_SHIELD_POSE, File.SPM_PROJECTILE_HITBOX, 0x15E, 0x14D, File.SPM_PROJECTILE_GRAPHIC, 0x508, 11, OS.TRUE, OS.FALSE, Stages.id.BTT_FALCON, Stages.id.BTP_FALCON, Stages.id.BTT_GND, Stages.id.BTP_GND, sound_type.U, variant_type.SPECIAL)
-    // 0x55 - SP3
+    // 0x54 - SP3
     define_character(SP3, CAPTAIN, File.SP3_MAIN, 0x0EB, 0, File.SPM_CHARACTER, File.SPM_SHIELD_POSE, File.SPM_PROJECTILE_HITBOX, 0x15E, 0x14D, File.SPM_PROJECTILE_GRAPHIC, 0x508, 9, OS.TRUE, OS.FALSE, Stages.id.BTT_FALCON, Stages.id.BTP_FALCON, Stages.id.BTT_GND, Stages.id.BTP_GND, sound_type.U, variant_type.SPECIAL)
-    // 0x56 - RYU
+    // 0x55 - RYU
     define_character(RYU, CAPTAIN, File.RYU_MAIN, 0x0EB, 0, File.RYU_CHARACTER, 0x14E, File.RYU_PROJECTILE_HITBOX, 0x15E, 0x14D, File.RYU_PROJECTILE_GRAPHIC, 0x3F0, 30, OS.TRUE, OS.FALSE, Stages.id.BTT_GND, Stages.id.BTP_GND, Stages.id.BTT_FALCON, Stages.id.BTP_YOSHI, sound_type.SF, variant_type.SPECIAL)
-    // 0x57 - KEN
+    // 0x56 - KEN
     define_character(KEN, CAPTAIN, File.KEN_MAIN, 0x0EB, 0, File.KEN_CHARACTER, 0x14E, File.KEN_PROJECTILE_HITBOX, 0x15E, 0x14D, File.KEN_PROJECTILE_GRAPHIC, 0x410, 30, OS.TRUE, OS.FALSE, Stages.id.BTT_GND, Stages.id.BTP_GND, Stages.id.BTT_FALCON, Stages.id.BTP_YOSHI, sound_type.SFI, variant_type.SPECIAL)
-    // 0x58 - KAZUYA
+    // 0x57 - KAZUYA
     define_character(KAZUYA, CAPTAIN, File.KAZUYA_MAIN, 0x0EB, 0, 0x14C, 0x14E, 0, 0x15E, 0x14D, 0, 0x3F0, 30, OS.TRUE, OS.FALSE, Stages.id.BTT_GND, Stages.id.BTP_GND, Stages.id.BTT_FALCON, Stages.id.BTP_YOSHI, sound_type.U, variant_type.SPECIAL)
+    // 0x58 - ISAAC
+    define_character(ISAAC, CAPTAIN, File.ISAAC_MAIN, 0x0EB, 0, File.ISAAC_CHARACTER, File.MARTH_SHIELD, 0, 0x15E, File.MARTH_ENTRY_EFFECTS, 0, 0x524, 8, OS.FALSE, OS.FALSE, Stages.id.BTT_MARTH, Stages.id.BTP_MARTH, Stages.id.BTT_DRM, Stages.id.BTP_YL, sound_type.U, variant_type.SPECIAL)
 
  // define_character(JFALCON, CAPTAIN, File.JFALCON_MAIN, 0x0EB, 0, 0x14C, 0x14E, 0, 0x15E, 0x14D, 0, 0x488, 15, OS.TRUE, OS.TRUE, Stages.id.BTT_FALCON, Stages.id.BTP_FALCON, Stages.id.BTT_GND, Stages.id.BTP_GND, sound_type.Z, variant_type.J)
     // ADD NEW CHARACTERS HERE

@@ -1,3 +1,18 @@
+v1.3.7b
++Bug Fixed when selecting Random slot on 12CB and then leaving
++Rith Essa Stage from SR 2.0.1 added
++Great Bay Stage from SR 2.0.1 added
++New Ken Idle Animation
++Isaac added
++The Pit Stage added
++Rebecca Color Team fixed
+
+v1.3.6b
++Credits fixed
++12cb fixed
++Ken voices fixed
++Rebecca voices fixed
+
 v1.3.5b (up to down)
 +Shovel Knight: DTilt Hitbox changed
 +Shovel Knight: Victory Animations changed to the one from select

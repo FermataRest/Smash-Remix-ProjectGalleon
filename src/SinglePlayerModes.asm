@@ -6276,6 +6276,7 @@ scope SinglePlayerModes: {
     add_team_parameters(File.MARTH_TEAM_POSE,         0x80000000,             0)          // 0x4A - ROY
     add_team_parameters(0x222,                        team_moveset_luigi,     0)          // 0x4B - DRL
     add_team_parameters(0x222,                        team_moveset_mario,     0)          // 0x4C - LANKY
+    add_team_parameters(File.DRM_TEAM_POSE,           0x80000000,             0)          // 0x20 - DRM
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
@@ -6482,6 +6483,7 @@ scope SinglePlayerModes: {
     add_duo_parameters(File.ROY_DUO_POSE,            0x80000000,            0)          // 0x4A - ROY
     add_duo_parameters(0x1D4,                        duo_moveset_luigi,     0)          // 0x4B - DRL
     add_duo_parameters(File.LANKY_DUO_POSE,          duo_moveset_lanky,     0)          // 0x4C - LANKY
+    add_duo_parameters(0x171,                        0x80000000,            0)          // 0x20 - DRM
 
     // ADD NEW CHARACTERS HERE
 

@@ -84,10 +84,10 @@ scope Ken {
     OS.align(16)
 
     // Modify Action Parameters             // Action               // Animation                // Moveset Data             // Flags
-    Character.edit_action_parameters(KEN,   Action.Entry,           File.RYU_IDLE,              Ryu.IDLE,                         -1)
-    Character.edit_action_parameters(KEN,   0x006,                  File.RYU_IDLE,              Ryu.IDLE,                         -1)
-    Character.edit_action_parameters(KEN,   Action.Idle,            File.RYU_IDLE,              Ryu.IDLE,                       -1)
-    Character.edit_action_parameters(KEN,   Action.ReviveWait,      File.RYU_IDLE,              Ryu.IDLE,                       -1)
+    Character.edit_action_parameters(KEN,   Action.Entry,           File.KEN_IDLE,              Ryu.IDLE,                         -1)
+    Character.edit_action_parameters(KEN,   0x006,                  File.KEN_IDLE,              Ryu.IDLE,                         -1)
+    Character.edit_action_parameters(KEN,   Action.Idle,            File.KEN_IDLE,              Ryu.IDLE,                       -1)
+    Character.edit_action_parameters(KEN,   Action.ReviveWait,      File.KEN_IDLE,              Ryu.IDLE,                       -1)
     Character.edit_action_parameters(KEN,   Action.Run,             -1,                         Ryu.RUN,                        -1)
     Character.edit_action_parameters(KEN,   Action.Dash,            File.RYU_DASH,              -1,                         -1)
     Character.edit_action_parameters(KEN,   Action.Walk3,           File.RYU_WALK3,              -1,                         -1)

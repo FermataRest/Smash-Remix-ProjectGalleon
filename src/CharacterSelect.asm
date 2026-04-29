@@ -274,12 +274,12 @@ scope CharacterSelect {
     dw  0x15AE0 + 0x200                      // 0x4D - GOKU
     dw  0x10B10 + 0x200                      // 0x4E - REBECCA
     dw  0xFB00 + 0x200                      // 0x4F - CLOUD
-    dw  0xA498 + 0x200                      // 0x50 - PHOLDER
     dw  0x149C8 + 0x200                     // 0x51 - SPM
     dw  0x149C8 + 0x200                     // 0x52 - SP3
     dw  0xC9F0 + 0x200                      // 0x53 - RYU
     dw  0xD220 + 0x200                     // 0x54 - KEN
     dw  0xB4C0 + 0x200                      // 0x55 - KAZUYA
+    dw  0x197D0 + 0x200                     // 0x58 - ISAAC
 
     // ADD NEW CHARACTERS HERE
 
@@ -434,6 +434,7 @@ scope CharacterSelect {
     add_alt_req_list(Character.id.RYU, req/RYU_MODEL)
     add_alt_req_list(Character.id.KEN, req/KEN_MODEL)
     add_alt_req_list(Character.id.KAZUYA, req/KAZUYA_MODEL)
+    add_alt_req_list(Character.id.ISAAC, req/ISAAC_MODEL)
 
     // POLYGONS
     add_alt_req_list(Character.id.NWARIO, req/NWARIO_MODEL)
@@ -2051,9 +2052,6 @@ scope CharacterSelect {
         lli     a0, Character.id.SANDBAG    // a0 = SANDBAG
         beql    a0, s0, _loop               // if char_id = SANDBAG, skip
         addiu   s0, s0, 0x0001              // increment index
-        lli     a0, Character.id.PHOLDER    // a0 = PLACE HOLDER FOR CHARACTERS
-        beql    a0, s0, _loop               // if char_id = SANDBAG, skip
-        addiu   s0, s0, 0x0001              // increment index
 
 
         li      a0, alt_malloc_table
@@ -3568,6 +3566,7 @@ scope CharacterSelect {
         constant KEN(0x0002A168 + 0x10)
         constant KAZUYA(0x0002A968 + 0x10)
         constant REBECCA(0x00029E40 + 0x10)
+        constant ISAAC(0x0001A428)
 
         // POLYGONS
         constant NWARIO(0x0001CB28)
@@ -5249,6 +5248,11 @@ scope CharacterSelect {
         lli     t2, Character.id.SP3
         beql    a1, t2, _draw_icon          // If SP3, then draw SP3 stock icon
         addiu   a1, at, VARIANT_ICON_OFFSET.SP3 // a1 = SP3 footer struct
+
+        lli     t2, Character.id.ISAAC
+        beql    a1, t2, _draw_icon          // If ISAAC, then draw ISAAC stock icon
+        addiu   a1, at, VARIANT_ICON_OFFSET.POLYGON // a1 = ISAAC footer struct
+
         lli     t2, Character.id.GBOWSER
         beql    a1, t2, _draw_icon          // If GBOWSER, then draw GBOWSER stock icon
         addiu   a1, at, VARIANT_ICON_OFFSET.GBOWSER // a1 = GBOWSER footer struct
@@ -6817,7 +6821,7 @@ scope CharacterSelect {
         bne     t9, t4, _end_vs             // if not random, skip
         nop
 
-        addiu   sp, sp,-0x0040              // allocate stack space
+        addiu   sp, sp,-0x0050              // allocate stack space
         sw      ra, 0x0004(sp)              // save registers
         sw      a0, 0x0008(sp)              // ~
         sw      s1, 0x000C(sp)              // ~
@@ -6833,9 +6837,30 @@ scope CharacterSelect {
         // 0x0034(sp) used below
         sw      t1, 0x0038(sp)              // ~
         sw      t0, 0x003C(sp)              // ~
+        sw      s0, 0x0040(sp)              // ~
 
-        jal     get_random_char_id_
+        _vs_loop:
+        lli     s1, 0x00BC                  // s1 = size of VS CSS Panel Struct
+        multu   s1, v1                      // mflo = offset to port's panel struct
+        li      s0, CSS_PLAYER_STRUCT       // s0 = VS CSS Panel Struct, p1
+        mflo    s1                          // s1 = offset to ports panel struct
+        addu    s0, s0, s1                  // s0 = port's VS CSS Panel Struct (expected in get_random_char_id)
+
+        OS.read_word(TwelveCharBattle.twelve_cb_flag, t0) // t0 = 1 if 12cb
+        li      t1, get_random_char_id_     // t1 = get random routine based on css layout
+        li      t2, TwelveCharBattle.get_random_char_id_ // t1 = get random routine not based on css layout
+        bnezl   t0, pc() + 8                // if 12cb, use 12cb routine
+        or      t1, t2, r0                  // t1 = get random routine
+
+        li      a0, _recent_randoms_lookup.placeholder_port
+        sw      v1, 0x0000(a0)              // store port in flag
+
+        jalr    t1
         or      s1, v1, r0                  // s1 = port (expected in get_random_char_id)
+
+        lli     t9, Character.id.PLACEHOLDER
+        beql    v0, t9, _vs_loop            // if Random was rolled (can happen in 12cb), then roll again
+        lw      v1, 0x002C(sp)              // restore port to v1
 
         or      t9, v0, r0                  // t9 = char_id
         sw      v0, 0x0034(sp)              // save char_id
@@ -6895,7 +6920,8 @@ scope CharacterSelect {
         lw      a1, 0x0030(sp)              // ~
         lw      t1, 0x0038(sp)              // ~
         lw      t0, 0x003C(sp)              // ~
-        addiu   sp, sp, 0x0040              // deallocate stack space
+        lw      s0, 0x0040(sp)              // ~
+        addiu   sp, sp, 0x0050              // deallocate stack space
 
         li      at, random_char_flag_vs
         addu    at, at, v1                  // at = address of random_char_flag_vs
@@ -6918,6 +6944,9 @@ scope CharacterSelect {
         bne     t2, t0, _check_human        // if CPU is not random, skip
         nop
 
+        li      t0, _recent_randoms_lookup.placeholder_port
+        OS.read_word(0x80138898, v1)        // v1 = cpu port
+        sw      v1, 0x0000(t0)              // store port in flag
         jal     get_random_char_id_
         nop
 
@@ -6942,6 +6971,9 @@ scope CharacterSelect {
         bne     t8, t0, _end_training       // if Human is not random, skip
         nop
 
+        li      t0, _recent_randoms_lookup.placeholder_port
+        OS.read_word(0x80138894, v1)        // v1 = human port
+        sw      v1, 0x0000(t0)              // store port in flag
         jal     get_random_char_id_
         nop
         lw      a0, 0x0008(sp)              // ~
@@ -6978,6 +7010,9 @@ scope CharacterSelect {
         bne     a0, t4, _end_1p             // if not random, skip
         nop
 
+        li      a0, _recent_randoms_lookup.placeholder_port
+        OS.read_word(0x80138FA8, t4)        // t4 = '1P' active port (hard coded address)
+        sw      t4, 0x0000(a0)              // store port in flag
         jal     get_random_char_id_
         nop
 
@@ -7007,6 +7042,10 @@ scope CharacterSelect {
         addiu   sp, sp,-0x0030              // allocate stack space
         sw      ra, 0x0004(sp)              // save registers
         sw      v0, 0x0008(sp)              // ~
+
+        li      a0, _recent_randoms_lookup.placeholder_port
+        OS.read_word(0x801376F8, t4)        // t4 = 'BONUS' active port (t6?)
+        sw      t4, 0x0000(a0)              // store port in flag
 
         jal     get_random_char_id_
         nop
@@ -7300,6 +7339,7 @@ scope CharacterSelect {
     add_to_css(Character.id.RYU,    FGM.announcer.names.BONUS_CHARACTER,          1.50,         0x00010001, SMASH,        name_texture.RYU,          portrait_offsets.RYU,          -1)
     add_to_css(Character.id.KEN,    FGM.announcer.names.BONUS_CHARACTER,          1.50,         0x00010001, SMASH,        name_texture.KEN,          portrait_offsets.KEN,          -1)
     add_to_css(Character.id.KAZUYA,    FGM.announcer.names.BONUS_CHARACTER,          1.50,         0x00010001, SMASH,      name_texture.KAZUYA,          portrait_offsets.KAZUYA,          -1)
+    add_to_css(Character.id.ISAAC,  FGM.announcer.names.MARTH,          1.50,         0x00010004, FIRE_EMBLEM,  name_texture.MARTH,          portrait_offsets.MARTH,          33)
     // ADD NEW CHARACTERS HERE
 
     // REMIX POLYGONS
